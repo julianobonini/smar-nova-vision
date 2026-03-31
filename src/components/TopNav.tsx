@@ -2,11 +2,10 @@ import { useState } from 'react';
 import { useNavigate } from 'react-router-dom';
 import {
   Bell, User, Settings, Globe, Moon, Sun, Monitor, LogOut, Lock, ChevronDown,
-  LayoutDashboard, FolderOpen, ArrowLeftRight, Users, Package, UserCheck, Building2, Truck,
-  ShoppingCart, Receipt, Warehouse
 } from 'lucide-react';
 import { useApp } from '@/contexts/AppContext';
 import { t, Locale, localeNames } from '@/lib/i18n';
+import { SidebarTrigger } from '@/components/ui/sidebar';
 
 export function TopNav() {
   const { locale, setLocale, theme, setTheme, user, setUser } = useApp();
@@ -19,67 +18,11 @@ export function TopNav() {
   const themeIcons = { light: Sun, dark: Moon, system: Monitor };
   const ThemeIcon = themeIcons[theme];
 
-  const cadastroItems = [
-    { key: 'clientes', icon: Users, path: '/app/clientes' },
-    { key: 'produtos', icon: Package, path: '/app/produtos' },
-    { key: 'usuarios', icon: UserCheck, path: '/app/usuarios' },
-    { key: 'funcionarios', icon: Building2, path: '/app/funcionarios' },
-    { key: 'fornecedores', icon: Truck, path: '/app/fornecedores' },
-  ];
-
-  const movimentoItems = [
-    { key: 'pedidos', icon: ShoppingCart, path: '/app/pedidos' },
-    { key: 'faturamento', icon: Receipt, path: '/app/faturamento' },
-    { key: 'estoque', icon: Warehouse, path: '/app/estoque' },
-  ];
-
   return (
-    <nav className="fixed top-0 left-0 right-0 z-40 bg-background/80 backdrop-blur-xl" style={{ borderBottom: '1px solid hsl(var(--border) / 0.5)' }}>
-      <div className="max-w-[1600px] mx-auto px-6 lg:px-12 h-16 flex items-center justify-between">
-        {/* Left: Brand + Nav */}
-        <div className="flex items-center gap-8">
-          <span className="font-display font-bold text-primary text-lg cursor-pointer" onClick={() => navigate('/app')}>SmarNet</span>
-
-          <div className="hidden md:flex items-center gap-1">
-            <button onClick={() => navigate('/app')} className="px-4 py-2 rounded-xl text-sm font-medium text-foreground hover:bg-surface-container-low transition-colors flex items-center gap-2">
-              <LayoutDashboard size={16} /> {t('nav.dashboard', locale)}
-            </button>
-
-            {/* Cadastros dropdown */}
-            <div className="relative">
-              <button onClick={() => toggle('cadastros')} className="px-4 py-2 rounded-xl text-sm font-medium text-foreground hover:bg-surface-container-low transition-colors flex items-center gap-1">
-                <FolderOpen size={16} /> {t('nav.cadastros', locale)} <ChevronDown size={14} />
-              </button>
-              {openMenu === 'cadastros' && (
-                <div className="absolute left-0 top-full mt-1 bg-background rounded-xl shadow-ambient-lg py-2 min-w-[200px]">
-                  {cadastroItems.map(({ key, icon: Icon, path }) => (
-                    <button key={key} onClick={() => { navigate(path); close(); }}
-                      className="w-full text-left px-4 py-2.5 text-sm flex items-center gap-3 hover:bg-surface-container-low transition-colors text-foreground">
-                      <Icon size={16} className="text-muted-foreground" /> {t(`nav.${key}`, locale)}
-                    </button>
-                  ))}
-                </div>
-              )}
-            </div>
-
-            {/* Movimentos dropdown */}
-            <div className="relative">
-              <button onClick={() => toggle('movimentos')} className="px-4 py-2 rounded-xl text-sm font-medium text-foreground hover:bg-surface-container-low transition-colors flex items-center gap-1">
-                <ArrowLeftRight size={16} /> {t('nav.movimentos', locale)} <ChevronDown size={14} />
-              </button>
-              {openMenu === 'movimentos' && (
-                <div className="absolute left-0 top-full mt-1 bg-background rounded-xl shadow-ambient-lg py-2 min-w-[200px]">
-                  {movimentoItems.map(({ key, icon: Icon, path }) => (
-                    <button key={key} onClick={() => { navigate(path); close(); }}
-                      className="w-full text-left px-4 py-2.5 text-sm flex items-center gap-3 hover:bg-surface-container-low transition-colors text-foreground">
-                      <Icon size={16} className="text-muted-foreground" /> {t(`nav.${key}`, locale)}
-                    </button>
-                  ))}
-                </div>
-              )}
-            </div>
-          </div>
-        </div>
+    <nav className="sticky top-0 z-40 bg-background/80 backdrop-blur-xl" style={{ borderBottom: '1px solid hsl(var(--border) / 0.5)' }}>
+      <div className="px-4 lg:px-8 h-16 flex items-center justify-between">
+        {/* Left: sidebar trigger */}
+        <SidebarTrigger className="text-muted-foreground hover:text-foreground" />
 
         {/* Right: Actions */}
         <div className="flex items-center gap-1">
@@ -140,13 +83,6 @@ export function TopNav() {
               </div>
             )}
           </div>
-
-          {/* Settings (admin only) */}
-          {user?.role === 'admin' && (
-            <button className="p-2.5 rounded-xl hover:bg-surface-container-low transition-colors text-muted-foreground hover:text-foreground">
-              <Settings size={18} />
-            </button>
-          )}
 
           {/* Profile */}
           <div className="relative ml-2">
