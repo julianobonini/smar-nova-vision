@@ -1,4 +1,5 @@
 import { useState } from 'react';
+import { useNavigate, useLocation } from 'react-router-dom';
 import { motion } from 'framer-motion';
 import {
   Search, Filter, Plus, ChevronLeft, ChevronRight, Edit, Trash2,
@@ -24,6 +25,8 @@ interface ModulePageProps {
 
 export default function ModulePage({ title, columns, data }: ModulePageProps) {
   const { locale } = useApp();
+  const navigate = useNavigate();
+  const location = useLocation();
   const [search, setSearch] = useState('');
   const [page, setPage] = useState(1);
   const [viewMode, setViewMode] = useState<ViewMode>('table');
@@ -53,7 +56,7 @@ export default function ModulePage({ title, columns, data }: ModulePageProps) {
       {/* Header */}
       <div className="flex flex-col sm:flex-row sm:items-center sm:justify-between gap-4 mb-8">
         <h1 className="text-2xl lg:text-3xl font-display font-bold text-foreground">{title}</h1>
-        <button className="px-5 py-2.5 rounded-xl gradient-primary text-primary-foreground text-sm font-semibold flex items-center gap-2 hover:opacity-90 transition-opacity w-fit">
+        <button onClick={() => navigate(`${location.pathname}/novo`)} className="px-5 py-2.5 rounded-xl gradient-primary text-primary-foreground text-sm font-semibold flex items-center gap-2 hover:opacity-90 transition-opacity w-fit">
           <Plus size={16} /> {t('module.new', locale)}
         </button>
       </div>

@@ -12,6 +12,7 @@ import {
   ClientesPage, ProdutosPage, UsuariosPage, FuncionariosPage,
   FornecedoresPage, PedidosPage, FaturamentoPage, EstoquePage
 } from "./pages/modules";
+import ClienteForm from "./pages/modules/ClienteForm";
 import NotFound from "./pages/NotFound";
 
 const queryClient = new QueryClient();
@@ -26,6 +27,7 @@ function AppRoutes() {
       <Route path="/request-access" element={<RequestAccess />} />
       <Route path="/app" element={isAuthenticated ? <Dashboard /> : <Navigate to="/" />} />
       <Route path="/app/clientes" element={isAuthenticated ? <ClientesPage /> : <Navigate to="/" />} />
+      <Route path="/app/clientes/novo" element={isAuthenticated ? <ClienteForm /> : <Navigate to="/" />} />
       <Route path="/app/produtos" element={isAuthenticated ? <ProdutosPage /> : <Navigate to="/" />} />
       <Route path="/app/usuarios" element={isAuthenticated ? <UsuariosPage /> : <Navigate to="/" />} />
       <Route path="/app/funcionarios" element={isAuthenticated ? <FuncionariosPage /> : <Navigate to="/" />} />
