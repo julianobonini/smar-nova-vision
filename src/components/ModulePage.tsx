@@ -1,9 +1,9 @@
 import { useState } from 'react';
-import { useNavigate, useLocation } from 'react-router-dom';
+import { useNavigate, useLocation, Link } from 'react-router-dom';
 import { motion } from 'framer-motion';
 import {
   Search, Filter, Plus, ChevronLeft, ChevronRight, Edit, Trash2,
-  Table2, LayoutList, LayoutGrid, Eye, MoreVertical
+  Table2, LayoutList, LayoutGrid, Eye, MoreVertical, Home
 } from 'lucide-react';
 import { useApp } from '@/contexts/AppContext';
 import { t } from '@/lib/i18n';

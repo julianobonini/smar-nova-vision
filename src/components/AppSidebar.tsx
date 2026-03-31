@@ -97,8 +97,8 @@ export function AppSidebar() {
         </div>
         {!collapsed && (
           <div>
-            <p className="font-display font-bold text-foreground text-sm leading-tight">SmarNet</p>
-            <p className="text-[10px] font-semibold text-secondary uppercase tracking-widest">Industrial ERP</p>
+            <p className="font-display font-bold text-foreground text-base leading-tight">Smar<span className="text-secondary">NET</span></p>
+            <p className="text-[9px] font-medium text-muted-foreground tracking-wide">Nova Smar S/A ERP</p>
           </div>
         )}
       </div>
