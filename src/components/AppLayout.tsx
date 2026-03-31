@@ -10,7 +10,7 @@ export function AppLayout({ children }: { children: ReactNode }) {
         <AppSidebar />
         <div className="flex-1 flex flex-col min-w-0">
           <TopNav />
-          <main className="flex-1 pt-20 pb-12 px-6 lg:px-12 max-w-[1600px] w-full mx-auto">
+          <main className="flex-1 pt-4 pb-12 px-6 lg:px-8 max-w-[1600px] w-full mx-auto">
             {children}
           </main>
         </div>
