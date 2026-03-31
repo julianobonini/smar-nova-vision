@@ -13,6 +13,7 @@ import {
   FornecedoresPage, PedidosPage, FaturamentoPage, EstoquePage
 } from "./pages/modules";
 import ClienteForm from "./pages/modules/ClienteForm";
+import PedidoForm from "./pages/modules/PedidoForm";
 import NotFound from "./pages/NotFound";
 
 const queryClient = new QueryClient();
