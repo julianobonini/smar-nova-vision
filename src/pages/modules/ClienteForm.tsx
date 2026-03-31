@@ -62,12 +62,6 @@ export default function ClienteForm() {
       {/* Header */}
       <div className="flex flex-col sm:flex-row sm:items-center sm:justify-between gap-4 mb-6">
         <div className="flex items-center gap-4">
-          <button
-            onClick={() => navigate('/app/clientes')}
-            className="p-2.5 rounded-xl hover:bg-surface-container-low transition-colors text-muted-foreground hover:text-foreground"
-          >
-            <ArrowLeft size={18} />
-          </button>
           <div>
             <p className="text-xs text-muted-foreground uppercase tracking-wider font-semibold">Clientes / Novo</p>
             <h1 className="text-2xl font-display font-bold text-foreground">Cadastro de Cliente</h1>
