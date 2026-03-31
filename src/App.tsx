@@ -12,6 +12,7 @@ import {
   ClientesPage, ProdutosPage, UsuariosPage, FuncionariosPage,
   FornecedoresPage, PedidosPage, FaturamentoPage, EstoquePage
 } from "./pages/modules";
+import ClienteForm from "./pages/modules/ClienteForm";
 import NotFound from "./pages/NotFound";
 
 const queryClient = new QueryClient();
