@@ -13,6 +13,7 @@ import {
   FornecedoresPage, PedidosPage, FaturamentoPage, EstoquePage
 } from "./pages/modules";
 import ClienteForm from "./pages/modules/ClienteForm";
+import PedidoForm from "./pages/modules/PedidoForm";
 import NotFound from "./pages/NotFound";
 
 const queryClient = new QueryClient();
@@ -33,6 +34,7 @@ function AppRoutes() {
       <Route path="/app/funcionarios" element={isAuthenticated ? <FuncionariosPage /> : <Navigate to="/" />} />
       <Route path="/app/fornecedores" element={isAuthenticated ? <FornecedoresPage /> : <Navigate to="/" />} />
       <Route path="/app/pedidos" element={isAuthenticated ? <PedidosPage /> : <Navigate to="/" />} />
+      <Route path="/app/pedidos/novo" element={isAuthenticated ? <PedidoForm /> : <Navigate to="/" />} />
       <Route path="/app/faturamento" element={isAuthenticated ? <FaturamentoPage /> : <Navigate to="/" />} />
       <Route path="/app/estoque" element={isAuthenticated ? <EstoquePage /> : <Navigate to="/" />} />
       <Route path="*" element={<NotFound />} />

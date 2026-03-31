@@ -1,9 +1,9 @@
 import { useState } from 'react';
-import { useNavigate, useLocation } from 'react-router-dom';
+import { useNavigate, useLocation, Link } from 'react-router-dom';
 import { motion } from 'framer-motion';
 import {
   Search, Filter, Plus, ChevronLeft, ChevronRight, Edit, Trash2,
-  Table2, LayoutList, LayoutGrid, Eye, MoreVertical
+  Table2, LayoutList, LayoutGrid, Eye, MoreVertical, Home
 } from 'lucide-react';
 import { useApp } from '@/contexts/AppContext';
 import { t } from '@/lib/i18n';
@@ -51,8 +51,35 @@ export default function ModulePage({ title, columns, data }: ModulePageProps) {
     { key: 'grid', icon: LayoutGrid, tip: 'Grade' },
   ];
 
+  // Build breadcrumb from path
+  const pathSegments = location.pathname.replace('/app/', '').split('/');
+  const breadcrumbMap: Record<string, { group?: string; label: string }> = {
+    clientes: { group: 'Comercial', label: 'Clientes' },
+    fornecedores: { group: 'Comercial', label: 'Fornecedores' },
+    pedidos: { group: 'Comercial', label: 'Pedidos' },
+    faturamento: { group: 'Comercial', label: 'Faturamento' },
+    produtos: { group: 'Produção', label: 'Produtos' },
+    estoque: { group: 'Produção', label: 'Estoque' },
+    funcionarios: { group: 'RH', label: 'Funcionários' },
+    usuarios: { group: 'RH', label: 'Usuários' },
+  };
+  const crumb = breadcrumbMap[pathSegments[0]] || { label: title };
+
   return (
     <AppLayout>
+      {/* Breadcrumb */}
+      <nav className="flex items-center gap-1.5 text-sm mb-6">
+        <Link to="/app" className="text-muted-foreground hover:text-foreground transition-colors"><Home size={14} /></Link>
+        {crumb.group && (
+          <>
+            <ChevronRight size={14} className="text-muted-foreground/50" />
+            <span className="text-muted-foreground">{crumb.group}</span>
+          </>
+        )}
+        <ChevronRight size={14} className="text-muted-foreground/50" />
+        <span className="text-foreground font-medium">{crumb.label}</span>
+      </nav>
+
       {/* Header */}
       <div className="flex flex-col sm:flex-row sm:items-center sm:justify-between gap-4 mb-8">
         <h1 className="text-2xl lg:text-3xl font-display font-bold text-foreground">{title}</h1>
