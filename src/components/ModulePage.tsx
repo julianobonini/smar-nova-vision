@@ -25,6 +25,8 @@ interface ModulePageProps {
 
 export default function ModulePage({ title, columns, data }: ModulePageProps) {
   const { locale } = useApp();
+  const navigate = useNavigate();
+  const location = useLocation();
   const [search, setSearch] = useState('');
   const [page, setPage] = useState(1);
   const [viewMode, setViewMode] = useState<ViewMode>('table');
