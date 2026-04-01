@@ -92,13 +92,13 @@ export function AppSidebar() {
   return (
     <Sidebar collapsible="icon" className="border-r-0">
       <div className="px-4 py-5 flex items-center gap-3">
-        <div className="w-8 h-8 rounded-lg gradient-primary flex items-center justify-center text-primary-foreground text-xs font-bold shrink-0">
+        <div className="w-8 h-8 rounded-lg bg-white/15 flex items-center justify-center text-white text-xs font-bold shrink-0">
           S
         </div>
         {!collapsed && (
           <div>
-            <p className="font-display font-bold text-foreground text-base leading-tight">Smar<span className="text-secondary">NET</span></p>
-            <p className="text-[9px] font-medium text-muted-foreground tracking-wide">Nova Smar S/A ERP</p>
+            <p className="font-display font-bold text-sidebar-primary-foreground text-base leading-tight">Smar<span className="text-[hsl(185,78%,55%)]">NET</span></p>
+            <p className="text-[9px] font-medium text-sidebar-foreground/60 tracking-wide">Nova Smar S/A ERP</p>
           </div>
         )}
       </div>
