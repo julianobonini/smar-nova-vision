@@ -59,6 +59,17 @@ export default function ClienteForm() {
 
   return (
     <AppLayout>
+      {/* Breadcrumb */}
+      <nav className="flex items-center gap-1.5 text-sm mb-6">
+        <Link to="/app" className="text-muted-foreground hover:text-foreground transition-colors"><Home size={14} /></Link>
+        <ChevronRight size={14} className="text-muted-foreground/50" />
+        <span className="text-muted-foreground">Comercial</span>
+        <ChevronRight size={14} className="text-muted-foreground/50" />
+        <Link to="/app/clientes" className="text-muted-foreground hover:text-foreground transition-colors">Clientes</Link>
+        <ChevronRight size={14} className="text-muted-foreground/50" />
+        <span className="text-foreground font-medium">Novo Cliente</span>
+      </nav>
+
       {/* Header */}
       <div className="flex flex-col sm:flex-row sm:items-center sm:justify-between gap-4 mb-6">
         <div className="flex items-center gap-4">
