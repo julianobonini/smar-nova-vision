@@ -343,12 +343,10 @@ export default function PedidoForm() {
 
       {/* Header */}
       <div className="flex flex-col sm:flex-row sm:items-center justify-between gap-4 mb-6">
-        <div className="flex items-center gap-4">
-          <div>
-            <h1 className="text-2xl font-display font-bold text-foreground">Novo Pedido</h1>
-            <p className="text-sm text-muted-foreground mt-0.5">Pedido PED-88425 • <span className="px-2 py-0.5 rounded-md text-xs font-semibold bg-status-pending/10 text-status-pending">Em Elaboração</span></p>
+        <div>
+            <h1 className="text-2xl font-display font-bold text-foreground">Cadastro de Pedido — Novo</h1>
+            <p className="text-sm text-muted-foreground mt-0.5">PED-88425 • <span className="px-2 py-0.5 rounded-md text-xs font-semibold bg-status-pending/10 text-status-pending">Em Elaboração</span></p>
           </div>
-        </div>
         <div className="flex items-center gap-2">
           <button onClick={() => navigate('/app/pedidos')} className="px-5 py-2.5 rounded-xl bg-background text-foreground text-sm font-semibold flex items-center gap-2 shadow-ambient hover:bg-surface-container-high transition-colors">
             <X size={16} /> Cancelar
