@@ -148,7 +148,7 @@ function Field({ label, children, span = 1, required }: { label: string; childre
 function getISOWeekString(date: Date) {
   const year = getISOWeekYear(date);
   const week = getISOWeek(date);
-  return `${year}W${week.toString().padStart(2, '0')}`;
+  return `${year}/${week.toString().padStart(2, '0')}`;
 }
 
 // Tiptap toolbar button
@@ -474,7 +474,7 @@ export default function FormShowcase() {
                 </Field>
               </FieldGroup>
 
-              <FieldGroup title="Semana ISO (YYYY-Www)">
+              <FieldGroup title="Semana ISO (YYYY/WW)">
                 <Field label="Semana de Produção" required>
                   <Popover>
                     <PopoverTrigger asChild>
