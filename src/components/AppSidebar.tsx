@@ -2,7 +2,7 @@ import { useLocation, useNavigate } from 'react-router-dom';
 import {
   LayoutDashboard, Users, Package, UserCheck, Building2, Truck,
   ShoppingCart, Receipt, Warehouse, Settings, HelpCircle,
-  ChevronDown, Factory, Briefcase, Scale, Cog, UserCog, FlaskConical
+  ChevronDown, Factory, Briefcase, Scale, Cog, UserCog, FlaskConical, Table2
 } from 'lucide-react';
 import { useApp } from '@/contexts/AppContext';
 import { t } from '@/lib/i18n';
@@ -79,6 +79,7 @@ const menuGroups = [
         label: null,
         items: [
           { key: 'formularios', icon: FlaskConical, path: '/app/formularios' },
+          { key: 'tabelas', icon: Table2, path: '/app/tabelas' },
         ],
       },
     ],
