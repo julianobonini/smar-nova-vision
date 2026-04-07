@@ -15,6 +15,7 @@ import {
 import ClienteForm from "./pages/modules/ClienteForm";
 import PedidoForm from "./pages/modules/PedidoForm";
 import FormShowcase from "./pages/modules/FormShowcase";
+import TableShowcase from "./pages/modules/TableShowcase";
 import NotFound from "./pages/NotFound";
 
 const queryClient = new QueryClient();
@@ -39,6 +40,7 @@ function AppRoutes() {
       <Route path="/app/faturamento" element={isAuthenticated ? <FaturamentoPage /> : <Navigate to="/" />} />
       <Route path="/app/estoque" element={isAuthenticated ? <EstoquePage /> : <Navigate to="/" />} />
       <Route path="/app/formularios" element={isAuthenticated ? <FormShowcase /> : <Navigate to="/" />} />
+      <Route path="/app/tabelas" element={isAuthenticated ? <TableShowcase /> : <Navigate to="/" />} />
       <Route path="*" element={<NotFound />} />
     </Routes>
   );

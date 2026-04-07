@@ -24,14 +24,13 @@ import { ptBR } from 'date-fns/locale';
 import { cn } from '@/lib/utils';
 import type { DateRange } from 'react-day-picker';
 
-type Tab = 'selects' | 'datas' | 'toggles' | 'editor' | 'tabelas';
+type Tab = 'selects' | 'datas' | 'toggles' | 'editor';
 
 const tabs: { key: Tab; label: string; icon: typeof Palette }[] = [
   { key: 'selects', label: 'Selects & Multi-Select', icon: List },
   { key: 'datas', label: 'Datas & Calendários', icon: CalendarIcon },
   { key: 'toggles', label: 'Toggles & Radios', icon: ToggleLeft },
   { key: 'editor', label: 'Editor de Texto Rico', icon: Type },
-  { key: 'tabelas', label: 'Tabelas & Grids', icon: Table2 },
 ];
 
 // react-select custom theme for dark/corporate
@@ -739,9 +738,9 @@ export default function FormShowcase() {
             </>
           )}
 
-          {activeTab === 'tabelas' && (
+          {false && (
             <>
-              {/* Tabela Padrão com ordenação */}
+              {/* removed — moved to TableShowcase */}
               <FieldGroup title="Tabela Padrão — Ordenável">
                 <div className="col-span-2">
                   <div className="flex items-center gap-2 mb-3">
