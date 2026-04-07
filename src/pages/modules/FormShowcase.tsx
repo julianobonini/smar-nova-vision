@@ -5,8 +5,7 @@ import {
   Save, X, Home, ChevronRight, Palette, Calendar as CalendarIcon,
   Type, ToggleLeft, List, Bold, Italic, Underline as UnderlineIcon,
   AlignLeft, AlignCenter, AlignRight, Strikethrough, Highlighter,
-  Heading1, Heading2, ListOrdered, Quote, Table2, Eye, Edit, Trash2,
-  ArrowUpDown, ChevronDown, ChevronUp, Search, Filter
+  Heading1, Heading2, ListOrdered, Quote
 } from 'lucide-react';
 import { AppLayout } from '@/components/AppLayout';
 import Select from 'react-select';
