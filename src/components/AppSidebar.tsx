@@ -78,8 +78,9 @@ const menuGroups = [
       {
         label: null,
         items: [
-          { key: 'formularios', icon: FlaskConical, path: '/app/formularios' },
+  { key: 'formularios', icon: FlaskConical, path: '/app/formularios' },
           { key: 'tabelas', icon: Table2, path: '/app/tabelas' },
+          { key: 'painel', icon: LayoutDashboard, path: '/app/painel' },
         ],
       },
     ],
