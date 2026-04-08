@@ -6,7 +6,7 @@ import {
 } from 'lucide-react';
 import { useApp } from '@/contexts/AppContext';
 import { t } from '@/lib/i18n';
-import { AppLayout } from '@/components/AppLayout';
+
 import warehouseImage from '@/assets/warehouse-industrial.jpg';
 
 const fadeUp = {
@@ -31,7 +31,7 @@ export default function Dashboard() {
   const { locale, user } = useApp();
 
   return (
-    <AppLayout>
+    <>
       {/* Header */}
       <div className="flex flex-col lg:flex-row lg:items-end lg:justify-between mb-10">
         <div>
@@ -129,6 +129,6 @@ export default function Dashboard() {
           </motion.div>
         </div>
       </div>
-    </AppLayout>
+    </>
   );
 }

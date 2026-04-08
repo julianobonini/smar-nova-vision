@@ -5,7 +5,7 @@ import {
   Save, X, Building2, CreditCard, Users2, Truck,
   FileText, MapPin, Phone, Mail, Globe, Hash, CheckSquare, Home, ChevronRight
 } from 'lucide-react';
-import { AppLayout } from '@/components/AppLayout';
+
 
 type Tab = 'cadastrais' | 'financeiros' | 'contatos' | 'cobranca' | 'embarque' | 'observacao';
 
@@ -58,7 +58,7 @@ export default function ClienteForm() {
   const [isento, setIsento] = useState(false);
 
   return (
-    <AppLayout>
+    <>
       {/* Breadcrumb */}
       <nav className="flex items-center gap-1.5 text-sm mb-6">
         <Link to="/app" className="text-muted-foreground hover:text-foreground transition-colors"><Home size={14} /></Link>

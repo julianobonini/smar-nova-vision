@@ -7,7 +7,7 @@ import {
 } from 'lucide-react';
 import { useApp } from '@/contexts/AppContext';
 import { t } from '@/lib/i18n';
-import { AppLayout } from '@/components/AppLayout';
+
 
 type ViewMode = 'table' | 'list' | 'grid';
 
@@ -66,7 +66,7 @@ export default function ModulePage({ title, columns, data }: ModulePageProps) {
   const crumb = breadcrumbMap[pathSegments[0]] || { label: title };
 
   return (
-    <AppLayout>
+    <>
       {/* Breadcrumb */}
       <nav className="flex items-center gap-1.5 text-sm mb-6">
         <Link to="/app" className="text-muted-foreground hover:text-foreground transition-colors"><Home size={14} /></Link>
@@ -292,7 +292,7 @@ export default function ModulePage({ title, columns, data }: ModulePageProps) {
           </div>
         </>
       )}
-    </AppLayout>
+    </>
   );
 }
 

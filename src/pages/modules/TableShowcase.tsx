@@ -7,7 +7,7 @@ import {
   LayoutList, Grid3X3, Layers, BarChart3,
   CheckCircle2, AlertTriangle, XCircle, Clock, Info
 } from 'lucide-react';
-import { AppLayout } from '@/components/AppLayout';
+
 import { cn } from '@/lib/utils';
 
 type Tab = 'padrao' | 'compacta' | 'selecao' | 'expansivel' | 'zebrada';
@@ -42,7 +42,7 @@ export default function TableShowcase() {
   const [activeTab, setActiveTab] = useState<Tab>('padrao');
 
   return (
-    <AppLayout>
+    <>
       <div className="px-4 lg:px-8 pt-4 pb-10 space-y-5">
         {/* Breadcrumb */}
         <nav className="flex items-center gap-1.5 text-xs text-muted-foreground">
@@ -406,6 +406,6 @@ export default function TableShowcase() {
 
         </motion.div>
       </div>
-    </AppLayout>
+    </>
   );
 }

@@ -1,7 +1,7 @@
 import { ReactNode } from 'react';
 import { Link } from 'react-router-dom';
 import { Home, ChevronRight } from 'lucide-react';
-import { AppLayout } from '@/components/AppLayout';
+
 
 interface UIShowcaseLayoutProps {
   title: string;
@@ -11,7 +11,7 @@ interface UIShowcaseLayoutProps {
 
 export function UIShowcaseLayout({ title, description, children }: UIShowcaseLayoutProps) {
   return (
-    <AppLayout>
+    <>
       <div className="px-2 lg:px-4 pt-2 pb-10 space-y-5">
         {/* Breadcrumb */}
         <nav className="flex items-center gap-1.5 text-xs text-muted-foreground">
@@ -35,7 +35,7 @@ export function UIShowcaseLayout({ title, description, children }: UIShowcaseLay
         {/* Content */}
         <div className="space-y-6">{children}</div>
       </div>
-    </AppLayout>
+    </>
   );
 }
 

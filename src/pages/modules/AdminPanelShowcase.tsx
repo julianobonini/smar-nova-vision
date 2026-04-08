@@ -6,7 +6,7 @@ import {
   FileText, Clock, CheckCircle2, AlertTriangle, XCircle,
   Send, RefreshCw, Star, TrendingUp, DollarSign, Users
 } from 'lucide-react';
-import { AppLayout } from '@/components/AppLayout';
+
 import { cn } from '@/lib/utils';
 
 // Status definitions
@@ -84,7 +84,7 @@ export default function AdminPanelShowcase() {
   const totalValue = filtered.reduce((sum, p) => sum + p.valor, 0);
 
   return (
-    <AppLayout>
+    <>
       {/* Breadcrumb */}
       <nav className="flex items-center gap-1.5 text-xs text-muted-foreground mb-6">
         <Link to="/app" className="hover:text-foreground transition-colors flex items-center gap-1">
@@ -370,6 +370,6 @@ export default function AdminPanelShowcase() {
           </div>
         </div>
       </motion.div>
-    </AppLayout>
+    </>
   );
 }

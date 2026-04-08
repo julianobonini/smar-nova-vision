@@ -1,5 +1,5 @@
 import { QueryClient, QueryClientProvider } from "@tanstack/react-query";
-import { BrowserRouter, Route, Routes, Navigate } from "react-router-dom";
+import { BrowserRouter, Route, Routes, Navigate, Outlet } from "react-router-dom";
 import { Toaster as Sonner } from "@/components/ui/sonner";
 import { Toaster } from "@/components/ui/toaster";
 import { TooltipProvider } from "@/components/ui/tooltip";
@@ -19,6 +19,7 @@ import TableShowcase from "./pages/modules/TableShowcase";
 import AdminPanelShowcase from "./pages/modules/AdminPanelShowcase";
 import TemplatePlaceholder from "./pages/templates/TemplatePlaceholder";
 import NotFound from "./pages/NotFound";
+import { AppLayout } from "./components/AppLayout";
 import { lazy, Suspense } from "react";
 
 // UI Elements showcases
@@ -44,10 +45,20 @@ const TypographyShowcase = lazy(() => import("./pages/templates/ui/TypographySho
 
 const queryClient = new QueryClient();
 
-function UIRoute({ children }: { children: React.ReactNode }) {
+const LazyFallback = () => (
+  <div className="flex items-center justify-center h-64">
+    <div className="w-6 h-6 border-2 border-primary/20 border-t-primary rounded-full animate-spin" />
+  </div>
+);
+
+function LazyRoute({ children }: { children: React.ReactNode }) {
+  return <Suspense fallback={<LazyFallback />}>{children}</Suspense>;
+}
+
+function ProtectedLayout() {
   const { isAuthenticated } = useApp();
   if (!isAuthenticated) return <Navigate to="/" />;
-  return <Suspense fallback={<div className="flex items-center justify-center h-64"><div className="w-6 h-6 border-2 border-primary/20 border-t-primary rounded-full animate-spin" /></div>}>{children}</Suspense>;
+  return <AppLayout />;
 }
 
 function AppRoutes() {
@@ -58,43 +69,48 @@ function AppRoutes() {
       <Route path="/" element={isAuthenticated ? <Navigate to="/app" /> : <LandingPage />} />
       <Route path="/forgot-password" element={<ForgotPassword />} />
       <Route path="/request-access" element={<RequestAccess />} />
-      <Route path="/app" element={isAuthenticated ? <Dashboard /> : <Navigate to="/" />} />
-      <Route path="/app/clientes" element={isAuthenticated ? <ClientesPage /> : <Navigate to="/" />} />
-      <Route path="/app/clientes/novo" element={isAuthenticated ? <ClienteForm /> : <Navigate to="/" />} />
-      <Route path="/app/produtos" element={isAuthenticated ? <ProdutosPage /> : <Navigate to="/" />} />
-      <Route path="/app/usuarios" element={isAuthenticated ? <UsuariosPage /> : <Navigate to="/" />} />
-      <Route path="/app/funcionarios" element={isAuthenticated ? <FuncionariosPage /> : <Navigate to="/" />} />
-      <Route path="/app/fornecedores" element={isAuthenticated ? <FornecedoresPage /> : <Navigate to="/" />} />
-      <Route path="/app/pedidos" element={isAuthenticated ? <PedidosPage /> : <Navigate to="/" />} />
-      <Route path="/app/pedidos/novo" element={isAuthenticated ? <PedidoForm /> : <Navigate to="/" />} />
-      <Route path="/app/faturamento" element={isAuthenticated ? <FaturamentoPage /> : <Navigate to="/" />} />
-      <Route path="/app/estoque" element={isAuthenticated ? <EstoquePage /> : <Navigate to="/" />} />
-      <Route path="/app/formularios" element={isAuthenticated ? <FormShowcase /> : <Navigate to="/" />} />
-      <Route path="/app/tabelas" element={isAuthenticated ? <TableShowcase /> : <Navigate to="/" />} />
-      <Route path="/app/painel" element={isAuthenticated ? <AdminPanelShowcase /> : <Navigate to="/" />} />
-      
-      {/* UI Elements */}
-      <Route path="/app/templates/ui/alerts" element={<UIRoute><AlertsShowcase /></UIRoute>} />
-      <Route path="/app/templates/ui/badge" element={<UIRoute><BadgeShowcase /></UIRoute>} />
-      <Route path="/app/templates/ui/breadcrumb" element={<UIRoute><BreadcrumbShowcase /></UIRoute>} />
-      <Route path="/app/templates/ui/buttons" element={<UIRoute><ButtonsShowcase /></UIRoute>} />
-      <Route path="/app/templates/ui/buttongroup" element={<UIRoute><ButtonGroupShowcase /></UIRoute>} />
-      <Route path="/app/templates/ui/cards" element={<UIRoute><CardsShowcase /></UIRoute>} />
-      <Route path="/app/templates/ui/dropdowns" element={<UIRoute><DropdownsShowcase /></UIRoute>} />
-      <Route path="/app/templates/ui/images" element={<UIRoute><ImagesShowcase /></UIRoute>} />
-      <Route path="/app/templates/ui/links" element={<UIRoute><LinksShowcase /></UIRoute>} />
-      <Route path="/app/templates/ui/listgroup" element={<UIRoute><ListGroupShowcase /></UIRoute>} />
-      <Route path="/app/templates/ui/navstabs" element={<UIRoute><NavsTabsShowcase /></UIRoute>} />
-      <Route path="/app/templates/ui/objectfit" element={<UIRoute><ObjectFitShowcase /></UIRoute>} />
-      <Route path="/app/templates/ui/pagination" element={<UIRoute><PaginationShowcase /></UIRoute>} />
-      <Route path="/app/templates/ui/popovers" element={<UIRoute><PopoversShowcase /></UIRoute>} />
-      <Route path="/app/templates/ui/progress" element={<UIRoute><ProgressShowcase /></UIRoute>} />
-      <Route path="/app/templates/ui/spinners" element={<UIRoute><SpinnersShowcase /></UIRoute>} />
-      <Route path="/app/templates/ui/toasts" element={<UIRoute><ToastsShowcase /></UIRoute>} />
-      <Route path="/app/templates/ui/tooltips" element={<UIRoute><TooltipsShowcase /></UIRoute>} />
-      <Route path="/app/templates/ui/typography" element={<UIRoute><TypographyShowcase /></UIRoute>} />
 
-      <Route path="/app/templates/*" element={isAuthenticated ? <TemplatePlaceholder /> : <Navigate to="/" />} />
+      {/* All authenticated routes share the same AppLayout instance */}
+      <Route path="/app" element={<ProtectedLayout />}>
+        <Route index element={<Dashboard />} />
+        <Route path="clientes" element={<ClientesPage />} />
+        <Route path="clientes/novo" element={<ClienteForm />} />
+        <Route path="produtos" element={<ProdutosPage />} />
+        <Route path="usuarios" element={<UsuariosPage />} />
+        <Route path="funcionarios" element={<FuncionariosPage />} />
+        <Route path="fornecedores" element={<FornecedoresPage />} />
+        <Route path="pedidos" element={<PedidosPage />} />
+        <Route path="pedidos/novo" element={<PedidoForm />} />
+        <Route path="faturamento" element={<FaturamentoPage />} />
+        <Route path="estoque" element={<EstoquePage />} />
+        <Route path="formularios" element={<FormShowcase />} />
+        <Route path="tabelas" element={<TableShowcase />} />
+        <Route path="painel" element={<AdminPanelShowcase />} />
+
+        {/* UI Elements */}
+        <Route path="templates/ui/alerts" element={<LazyRoute><AlertsShowcase /></LazyRoute>} />
+        <Route path="templates/ui/badge" element={<LazyRoute><BadgeShowcase /></LazyRoute>} />
+        <Route path="templates/ui/breadcrumb" element={<LazyRoute><BreadcrumbShowcase /></LazyRoute>} />
+        <Route path="templates/ui/buttons" element={<LazyRoute><ButtonsShowcase /></LazyRoute>} />
+        <Route path="templates/ui/buttongroup" element={<LazyRoute><ButtonGroupShowcase /></LazyRoute>} />
+        <Route path="templates/ui/cards" element={<LazyRoute><CardsShowcase /></LazyRoute>} />
+        <Route path="templates/ui/dropdowns" element={<LazyRoute><DropdownsShowcase /></LazyRoute>} />
+        <Route path="templates/ui/images" element={<LazyRoute><ImagesShowcase /></LazyRoute>} />
+        <Route path="templates/ui/links" element={<LazyRoute><LinksShowcase /></LazyRoute>} />
+        <Route path="templates/ui/listgroup" element={<LazyRoute><ListGroupShowcase /></LazyRoute>} />
+        <Route path="templates/ui/navstabs" element={<LazyRoute><NavsTabsShowcase /></LazyRoute>} />
+        <Route path="templates/ui/objectfit" element={<LazyRoute><ObjectFitShowcase /></LazyRoute>} />
+        <Route path="templates/ui/pagination" element={<LazyRoute><PaginationShowcase /></LazyRoute>} />
+        <Route path="templates/ui/popovers" element={<LazyRoute><PopoversShowcase /></LazyRoute>} />
+        <Route path="templates/ui/progress" element={<LazyRoute><ProgressShowcase /></LazyRoute>} />
+        <Route path="templates/ui/spinners" element={<LazyRoute><SpinnersShowcase /></LazyRoute>} />
+        <Route path="templates/ui/toasts" element={<LazyRoute><ToastsShowcase /></LazyRoute>} />
+        <Route path="templates/ui/tooltips" element={<LazyRoute><TooltipsShowcase /></LazyRoute>} />
+        <Route path="templates/ui/typography" element={<LazyRoute><TypographyShowcase /></LazyRoute>} />
+
+        <Route path="templates/*" element={<TemplatePlaceholder />} />
+      </Route>
+
       <Route path="*" element={<NotFound />} />
     </Routes>
   );

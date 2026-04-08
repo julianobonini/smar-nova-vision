@@ -2,7 +2,7 @@ import { useState } from 'react';
 import { useNavigate, Link } from 'react-router-dom';
 import { motion, AnimatePresence } from 'framer-motion';
 import { ArrowLeft, Save, X, Plus, Trash2, Home, ChevronRight, Search } from 'lucide-react';
-import { AppLayout } from '@/components/AppLayout';
+
 
 const tabs = [
   { key: 'resumo', label: 'Resumo' },
@@ -329,7 +329,7 @@ export default function PedidoForm() {
   const ActiveComponent = tabComponents[activeTab];
 
   return (
-    <AppLayout>
+    <>
       {/* Breadcrumb */}
       <nav className="flex items-center gap-1.5 text-sm mb-6">
         <Link to="/app" className="text-muted-foreground hover:text-foreground transition-colors"><Home size={14} /></Link>
@@ -388,6 +388,6 @@ export default function PedidoForm() {
           </motion.div>
         </AnimatePresence>
       </div>
-    </AppLayout>
+    </>
   );
 }
