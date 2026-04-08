@@ -72,14 +72,24 @@ const menuGroups = [
     ],
   },
   {
-    key: 'ferramentas',
-    icon: Cog,
+    key: 'templates',
+    icon: Scale,
     sections: [
       {
-        label: null,
+        label: 'Formulários',
         items: [
-  { key: 'formularios', icon: FlaskConical, path: '/app/formularios' },
+          { key: 'formularios', icon: FlaskConical, path: '/app/formularios' },
+        ],
+      },
+      {
+        label: 'Tabelas & Grids',
+        items: [
           { key: 'tabelas', icon: Table2, path: '/app/tabelas' },
+        ],
+      },
+      {
+        label: 'Painéis',
+        items: [
           { key: 'painel', icon: LayoutDashboard, path: '/app/painel' },
         ],
       },
@@ -91,7 +101,7 @@ const groupLabels: Record<string, string> = {
   comercial: 'Comercial',
   producao: 'Produção',
   rh: 'RH',
-  ferramentas: 'Ferramentas',
+  templates: 'Templates',
 };
 
 export function AppSidebar() {
