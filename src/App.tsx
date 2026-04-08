@@ -43,6 +43,22 @@ const ToastsShowcase = lazy(() => import("./pages/templates/ui/ToastsShowcase"))
 const TooltipsShowcase = lazy(() => import("./pages/templates/ui/TooltipsShowcase"));
 const TypographyShowcase = lazy(() => import("./pages/templates/ui/TypographyShowcase"));
 
+// Forms showcases
+const InputsShowcase = lazy(() => import("./pages/templates/forms/InputsShowcase"));
+const ChecksRadiosShowcase = lazy(() => import("./pages/templates/forms/ChecksRadiosShowcase"));
+const InputGroupShowcase = lazy(() => import("./pages/templates/forms/InputGroupShowcase"));
+const FormSelectShowcase = lazy(() => import("./pages/templates/forms/FormSelectShowcase"));
+const RangeSliderShowcase = lazy(() => import("./pages/templates/forms/RangeSliderShowcase"));
+const InputMasksShowcase = lazy(() => import("./pages/templates/forms/InputMasksShowcase"));
+const FileUploadsShowcase = lazy(() => import("./pages/templates/forms/FileUploadsShowcase"));
+const DateTimePickerShowcase = lazy(() => import("./pages/templates/forms/DateTimePickerShowcase"));
+const ColorPickerShowcase = lazy(() => import("./pages/templates/forms/ColorPickerShowcase"));
+const FloatingLabelsShowcase = lazy(() => import("./pages/templates/forms/FloatingLabelsShowcase"));
+const FormLayoutsShowcase = lazy(() => import("./pages/templates/forms/FormLayoutsShowcase"));
+const SunEditorShowcase = lazy(() => import("./pages/templates/forms/SunEditorShowcase"));
+const FormsValidationShowcase = lazy(() => import("./pages/templates/forms/ValidationShowcase"));
+const Select2Showcase = lazy(() => import("./pages/templates/forms/Select2Showcase"));
+
 const queryClient = new QueryClient();
 
 const LazyFallback = () => (
@@ -107,6 +123,22 @@ function AppRoutes() {
         <Route path="templates/ui/toasts" element={<LazyRoute><ToastsShowcase /></LazyRoute>} />
         <Route path="templates/ui/tooltips" element={<LazyRoute><TooltipsShowcase /></LazyRoute>} />
         <Route path="templates/ui/typography" element={<LazyRoute><TypographyShowcase /></LazyRoute>} />
+
+        {/* Forms */}
+        <Route path="templates/forms/inputs" element={<LazyRoute><InputsShowcase /></LazyRoute>} />
+        <Route path="templates/forms/checksradios" element={<LazyRoute><ChecksRadiosShowcase /></LazyRoute>} />
+        <Route path="templates/forms/inputgroup" element={<LazyRoute><InputGroupShowcase /></LazyRoute>} />
+        <Route path="templates/forms/formselect" element={<LazyRoute><FormSelectShowcase /></LazyRoute>} />
+        <Route path="templates/forms/rangeslider" element={<LazyRoute><RangeSliderShowcase /></LazyRoute>} />
+        <Route path="templates/forms/inputmasks" element={<LazyRoute><InputMasksShowcase /></LazyRoute>} />
+        <Route path="templates/forms/fileuploads" element={<LazyRoute><FileUploadsShowcase /></LazyRoute>} />
+        <Route path="templates/forms/datetimepicker" element={<LazyRoute><DateTimePickerShowcase /></LazyRoute>} />
+        <Route path="templates/forms/colorpicker" element={<LazyRoute><ColorPickerShowcase /></LazyRoute>} />
+        <Route path="templates/forms/floatinglabels" element={<LazyRoute><FloatingLabelsShowcase /></LazyRoute>} />
+        <Route path="templates/forms/layouts" element={<LazyRoute><FormLayoutsShowcase /></LazyRoute>} />
+        <Route path="templates/forms/suneditor" element={<LazyRoute><SunEditorShowcase /></LazyRoute>} />
+        <Route path="templates/forms/validation" element={<LazyRoute><FormsValidationShowcase /></LazyRoute>} />
+        <Route path="templates/forms/select2" element={<LazyRoute><Select2Showcase /></LazyRoute>} />
 
         <Route path="templates/*" element={<TemplatePlaceholder />} />
       </Route>
