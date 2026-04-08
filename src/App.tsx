@@ -19,6 +19,28 @@ import TableShowcase from "./pages/modules/TableShowcase";
 import AdminPanelShowcase from "./pages/modules/AdminPanelShowcase";
 import TemplatePlaceholder from "./pages/templates/TemplatePlaceholder";
 import NotFound from "./pages/NotFound";
+import { lazy, Suspense } from "react";
+
+// UI Elements showcases
+const AlertsShowcase = lazy(() => import("./pages/templates/ui/AlertsShowcase"));
+const BadgeShowcase = lazy(() => import("./pages/templates/ui/BadgeShowcase"));
+const BreadcrumbShowcase = lazy(() => import("./pages/templates/ui/BreadcrumbShowcase"));
+const ButtonsShowcase = lazy(() => import("./pages/templates/ui/ButtonsShowcase"));
+const ButtonGroupShowcase = lazy(() => import("./pages/templates/ui/ButtonGroupShowcase"));
+const CardsShowcase = lazy(() => import("./pages/templates/ui/CardsShowcase"));
+const DropdownsShowcase = lazy(() => import("./pages/templates/ui/DropdownsShowcase"));
+const ImagesShowcase = lazy(() => import("./pages/templates/ui/ImagesShowcase"));
+const LinksShowcase = lazy(() => import("./pages/templates/ui/LinksShowcase"));
+const ListGroupShowcase = lazy(() => import("./pages/templates/ui/ListGroupShowcase"));
+const NavsTabsShowcase = lazy(() => import("./pages/templates/ui/NavsTabsShowcase"));
+const ObjectFitShowcase = lazy(() => import("./pages/templates/ui/ObjectFitShowcase"));
+const PaginationShowcase = lazy(() => import("./pages/templates/ui/PaginationShowcase"));
+const PopoversShowcase = lazy(() => import("./pages/templates/ui/PopoversShowcase"));
+const ProgressShowcase = lazy(() => import("./pages/templates/ui/ProgressShowcase"));
+const SpinnersShowcase = lazy(() => import("./pages/templates/ui/SpinnersShowcase"));
+const ToastsShowcase = lazy(() => import("./pages/templates/ui/ToastsShowcase"));
+const TooltipsShowcase = lazy(() => import("./pages/templates/ui/TooltipsShowcase"));
+const TypographyShowcase = lazy(() => import("./pages/templates/ui/TypographyShowcase"));
 
 const queryClient = new QueryClient();
 
