@@ -2,10 +2,11 @@ import { useLocation, useNavigate } from 'react-router-dom';
 import {
   LayoutDashboard, Users, Package, UserCheck, Building2, Truck,
   ShoppingCart, Receipt, Warehouse, Settings, HelpCircle,
-  ChevronDown, Factory, Briefcase, Scale, Cog, UserCog, FlaskConical, Table2
+  ChevronDown, ChevronRight, Factory, Briefcase, UserCog,
 } from 'lucide-react';
 import { useApp } from '@/contexts/AppContext';
 import { t } from '@/lib/i18n';
+import { templateMenuGroups, TemplateMenuItem } from '@/data/templateMenu';
 import {
   Sidebar,
   SidebarContent,
@@ -23,8 +24,10 @@ import {
   CollapsibleContent,
   CollapsibleTrigger,
 } from '@/components/ui/collapsible';
+import { useState } from 'react';
 
-const menuGroups = [
+/* ── ERP Module Groups ── */
+const erpGroups = [
   {
     key: 'comercial',
     icon: Briefcase,
@@ -71,39 +74,96 @@ const menuGroups = [
       },
     ],
   },
-  {
-    key: 'templates',
-    icon: Scale,
-    sections: [
-      {
-        label: 'Formulários',
-        items: [
-          { key: 'formularios', icon: FlaskConical, path: '/app/formularios' },
-        ],
-      },
-      {
-        label: 'Tabelas & Grids',
-        items: [
-          { key: 'tabelas', icon: Table2, path: '/app/tabelas' },
-        ],
-      },
-      {
-        label: 'Painéis',
-        items: [
-          { key: 'painel', icon: LayoutDashboard, path: '/app/painel' },
-        ],
-      },
-    ],
-  },
 ];
 
 const groupLabels: Record<string, string> = {
   comercial: 'Comercial',
   producao: 'Produção',
   rh: 'RH',
-  templates: 'Templates',
 };
 
+/* ── Badge colors ── */
+const badgeColors: Record<string, string> = {
+  warning: 'bg-amber-500/20 text-amber-400',
+  secondary: 'bg-primary/20 text-primary',
+  success: 'bg-emerald-500/20 text-emerald-400',
+  destructive: 'bg-red-500/20 text-red-400',
+};
+
+/* ── Recursive menu item renderer ── */
+function TemplateMenuItemRenderer({
+  item,
+  collapsed,
+  currentPath,
+  navigate,
+  depth = 0,
+}: {
+  item: TemplateMenuItem;
+  collapsed: boolean;
+  currentPath: string;
+  navigate: (p: string) => void;
+  depth?: number;
+}) {
+  const hasChildren = item.children && item.children.length > 0;
+  const isActive = item.path === currentPath;
+
+  // Check if any descendant is active
+  const isDescendantActive = (i: TemplateMenuItem): boolean => {
+    if (i.path === currentPath) return true;
+    return i.children?.some(isDescendantActive) ?? false;
+  };
+  const childActive = hasChildren && item.children!.some(isDescendantActive);
+
+  if (hasChildren) {
+    return (
+      <Collapsible defaultOpen={childActive}>
+        <SidebarMenuItem>
+          <CollapsibleTrigger className="w-full">
+            <SidebarMenuButton className="rounded-xl justify-between w-full">
+              <span className="flex items-center gap-2 truncate">
+                <span className={`truncate ${depth > 0 ? 'text-xs' : 'text-sm'}`}>{item.label}</span>
+                {item.badge && (
+                  <span className={`text-[9px] font-bold px-1.5 py-0.5 rounded-md ${badgeColors[item.badgeColor || 'secondary']}`}>
+                    {item.badge}
+                  </span>
+                )}
+              </span>
+              <ChevronRight size={12} className="shrink-0 transition-transform duration-200 group-data-[state=open]:rotate-90" />
+            </SidebarMenuButton>
+          </CollapsibleTrigger>
+          <CollapsibleContent>
+            <SidebarMenu className="pl-3 border-l border-border/30 ml-3 mt-0.5">
+              {item.children!.map((child, i) => (
+                <TemplateMenuItemRenderer
+                  key={i}
+                  item={child}
+                  collapsed={collapsed}
+                  currentPath={currentPath}
+                  navigate={navigate}
+                  depth={depth + 1}
+                />
+              ))}
+            </SidebarMenu>
+          </CollapsibleContent>
+        </SidebarMenuItem>
+      </Collapsible>
+    );
+  }
+
+  return (
+    <SidebarMenuItem>
+      <SidebarMenuButton
+        onClick={() => item.path && navigate(item.path)}
+        isActive={isActive}
+        className="rounded-xl"
+      >
+        <span className={`truncate ${depth > 0 ? 'text-xs' : 'text-sm'}`}>{item.label}</span>
+      </SidebarMenuButton>
+    </SidebarMenuItem>
+  );
+}
+
+/* ── Main Sidebar ── */
 export function AppSidebar() {
   const { state } = useSidebar();
   const collapsed = state === 'collapsed';
@@ -111,11 +171,11 @@ export function AppSidebar() {
   const navigate = useNavigate();
   const { locale, user } = useApp();
   const currentPath = location.pathname;
-
   const isActive = (path: string) => currentPath === path;
 
   return (
     <Sidebar collapsible="icon" className="border-r-0">
+      {/* Logo */}
       <div className="px-4 py-5 flex items-center gap-3">
         <div className="w-8 h-8 rounded-lg bg-[hsl(185,78%,55%)]/20 flex items-center justify-center text-[hsl(185,78%,55%)] text-xs font-bold shrink-0 border border-[hsl(185,78%,55%)]/30">
           S
@@ -130,7 +190,7 @@ export function AppSidebar() {
         )}
       </div>
 
-      <SidebarContent className="px-2">
+      <SidebarContent className="px-2 overflow-y-auto">
         {/* Dashboard */}
         <SidebarMenu>
           <SidebarMenuItem>
@@ -145,12 +205,11 @@ export function AppSidebar() {
           </SidebarMenuItem>
         </SidebarMenu>
 
-        {/* Menu groups */}
-        {menuGroups.map((group) => {
+        {/* ── ERP Modules ── */}
+        {erpGroups.map((group) => {
           const groupActive = group.sections.some((s) =>
             s.items.some((item) => isActive(item.path))
           );
-
           return (
             <Collapsible key={group.key} defaultOpen={groupActive} className="mt-1">
               <SidebarGroup>
@@ -192,6 +251,97 @@ export function AppSidebar() {
             </Collapsible>
           );
         })}
+
+        {/* ── Separator ── */}
+        <div className="my-3 mx-3 border-t border-border/20" />
+
+        {/* ── Template Groups ── */}
+        {templateMenuGroups.map((group) => (
+          <div key={group.category} className="mt-1">
+            {!collapsed && (
+              <p className="px-3 py-2 text-[9px] font-bold uppercase tracking-[0.2em] text-muted-foreground/50">
+                {group.category}
+              </p>
+            )}
+            {group.items.map((item) => {
+              const hasChildren = item.children && item.children.length > 0;
+
+              // Check if any descendant is active
+              const isDescendantActive = (i: TemplateMenuItem): boolean => {
+                if (i.path === currentPath) return true;
+                return i.children?.some(isDescendantActive) ?? false;
+              };
+              const childActive = hasChildren && item.children!.some(isDescendantActive);
+              const itemActive = item.path === currentPath;
+
+              if (!hasChildren) {
+                return (
+                  <SidebarMenu key={item.label}>
+                    <SidebarMenuItem>
+                      <SidebarMenuButton
+                        onClick={() => item.path && navigate(item.path)}
+                        isActive={itemActive}
+                        className="rounded-xl"
+                      >
+                        <item.icon size={16} />
+                        {!collapsed && (
+                          <span className="flex items-center gap-2">
+                            {item.label}
+                            {item.badge && (
+                              <span className={`text-[9px] font-bold px-1.5 py-0.5 rounded-md ${badgeColors[item.badgeColor || 'secondary']}`}>
+                                {item.badge}
+                              </span>
+                            )}
+                          </span>
+                        )}
+                      </SidebarMenuButton>
+                    </SidebarMenuItem>
+                  </SidebarMenu>
+                );
+              }
+
+              return (
+                <Collapsible key={item.label} defaultOpen={childActive}>
+                  <SidebarGroup>
+                    <CollapsibleTrigger className="w-full">
+                      <SidebarGroupLabel className="flex items-center justify-between cursor-pointer hover:bg-surface-container-low rounded-xl px-3 py-2 text-xs font-bold uppercase tracking-wider text-muted-foreground">
+                        <span className="flex items-center gap-2">
+                          <item.icon size={16} />
+                          {!collapsed && (
+                            <>
+                              {item.label}
+                              {item.badge && (
+                                <span className={`text-[9px] font-bold px-1.5 py-0.5 rounded-md normal-case ${badgeColors[item.badgeColor || 'secondary']}`}>
+                                  {item.badge}
+                                </span>
+                              )}
+                            </>
+                          )}
+                        </span>
+                        {!collapsed && <ChevronDown size={14} className="transition-transform duration-200 group-data-[state=open]:rotate-180" />}
+                      </SidebarGroupLabel>
+                    </CollapsibleTrigger>
+                    <CollapsibleContent>
+                      <SidebarGroupContent className="mt-0.5">
+                        <SidebarMenu>
+                          {item.children!.map((child, i) => (
+                            <TemplateMenuItemRenderer
+                              key={i}
+                              item={child}
+                              collapsed={collapsed}
+                              currentPath={currentPath}
+                              navigate={navigate}
+                            />
+                          ))}
+                        </SidebarMenu>
+                      </SidebarGroupContent>
+                    </CollapsibleContent>
+                  </SidebarGroup>
+                </Collapsible>
+              );
+            })}
+          </div>
+        ))}
       </SidebarContent>
 
       <SidebarFooter className="px-2 pb-4">

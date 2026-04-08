@@ -17,6 +17,7 @@ import PedidoForm from "./pages/modules/PedidoForm";
 import FormShowcase from "./pages/modules/FormShowcase";
 import TableShowcase from "./pages/modules/TableShowcase";
 import AdminPanelShowcase from "./pages/modules/AdminPanelShowcase";
+import TemplatePlaceholder from "./pages/templates/TemplatePlaceholder";
 import NotFound from "./pages/NotFound";
 
 const queryClient = new QueryClient();
