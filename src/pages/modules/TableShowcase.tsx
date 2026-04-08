@@ -4,7 +4,8 @@ import { motion } from 'framer-motion';
 import {
   Home, ChevronRight, X, Save, Table2, Search, Filter,
   ArrowUpDown, Eye, Edit, Trash2, ChevronDown, ChevronUp,
-  LayoutList, Grid3X3, Layers, BarChart3
+  LayoutList, Grid3X3, Layers, BarChart3,
+  CheckCircle2, AlertTriangle, XCircle, Clock, Info
 } from 'lucide-react';
 import { AppLayout } from '@/components/AppLayout';
 import { cn } from '@/lib/utils';
@@ -18,6 +19,10 @@ const tabs: { key: Tab; label: string; icon: typeof Table2 }[] = [
   { key: 'expansivel', label: 'Expansível (Master-Detail)', icon: Table2 },
   { key: 'zebrada', label: 'Zebrada + Resumo', icon: BarChart3 },
 ];
+
+const TABLE_HEADER = "bg-surface-container-high/80";
+const TABLE_FOOTER = "bg-surface-container-high/80";
+const TABLE_WRAPPER = "bg-surface-container rounded-2xl border border-border/40 overflow-hidden";
 
 function FieldGroup({ title, children }: { title: string; children: React.ReactNode }) {
   return (
@@ -102,10 +107,10 @@ export default function TableShowcase() {
                     <Filter size={13} /> Filtros
                   </button>
                 </div>
-                <div className="rounded-xl border border-border overflow-hidden">
+                <div className={TABLE_WRAPPER}>
                   <table className="w-full text-sm">
                     <thead>
-                      <tr className="bg-surface-medium/40 border-b border-border">
+                      <tr className={cn(TABLE_HEADER, "border-b border-border/40")}>
                         <th className="px-4 py-2.5 text-left font-semibold text-muted-foreground text-xs">
                           <button className="inline-flex items-center gap-1 hover:text-foreground transition-colors">Código <ArrowUpDown size={12} /></button>
                         </th>
@@ -120,7 +125,7 @@ export default function TableShowcase() {
                         <th className="px-4 py-2.5 text-center font-semibold text-muted-foreground text-xs">Ações</th>
                       </tr>
                     </thead>
-                    <tbody className="divide-y divide-border">
+                    <tbody className="divide-y divide-border/30">
                       {[
                         { cod: 'PRD-0012', desc: 'Sensor de Pressão XK-200', cat: 'Instrumentação', valor: 'R$ 1.250,00', status: 'Ativo' },
                         { cod: 'PRD-0045', desc: 'Válvula Solenoide 2"', cat: 'Controle', valor: 'R$ 3.890,00', status: 'Ativo' },
@@ -136,9 +141,9 @@ export default function TableShowcase() {
                           <td className="px-4 py-3 text-center">
                             <span className={cn(
                               "inline-flex px-2.5 py-0.5 rounded-full text-[10px] font-bold uppercase tracking-wider",
-                              row.status === 'Ativo' && 'bg-emerald-500/10 text-emerald-500',
+                              row.status === 'Ativo' && 'bg-status-success/10 text-status-success',
                               row.status === 'Inativo' && 'bg-muted text-muted-foreground',
-                              row.status === 'Baixo Estoque' && 'bg-amber-500/10 text-amber-500',
+                              row.status === 'Baixo Estoque' && 'bg-status-warning/10 text-status-warning',
                             )}>
                               {row.status}
                             </span>
@@ -154,7 +159,7 @@ export default function TableShowcase() {
                       ))}
                     </tbody>
                   </table>
-                  <div className="flex items-center justify-between px-4 py-2.5 bg-surface-medium/20 border-t border-border text-xs text-muted-foreground">
+                  <div className={cn("flex items-center justify-between px-4 py-2.5 border-t border-border/40 text-xs text-muted-foreground", TABLE_FOOTER)}>
                     <span>Exibindo 1-5 de 156 registros</span>
                     <div className="flex gap-1">
                       {[1,2,3,'...',32].map((p,i) => (
@@ -170,10 +175,10 @@ export default function TableShowcase() {
           {activeTab === 'compacta' && (
             <FieldGroup title="Tabela Compacta — Densidade Alta">
               <div className="col-span-2 xl:col-span-3">
-                <div className="rounded-xl border border-border overflow-hidden">
+                <div className={TABLE_WRAPPER}>
                   <table className="w-full text-xs">
                     <thead>
-                      <tr className="bg-surface-medium/40 border-b border-border">
+                      <tr className={cn(TABLE_HEADER, "border-b border-border/40")}>
                         <th className="px-3 py-2 text-left font-semibold text-muted-foreground">Código</th>
                         <th className="px-3 py-2 text-left font-semibold text-muted-foreground">Produto</th>
                         <th className="px-3 py-2 text-center font-semibold text-muted-foreground">Qtd</th>
@@ -181,7 +186,7 @@ export default function TableShowcase() {
                         <th className="px-3 py-2 text-right font-semibold text-muted-foreground">Total</th>
                       </tr>
                     </thead>
-                    <tbody className="divide-y divide-border/50">
+                    <tbody className="divide-y divide-border/30">
                       {[
                         { cod: '001', prod: 'Parafuso M8x30 Inox', qtd: 500, unit: '0,45', total: '225,00' },
                         { cod: '002', prod: 'Porca Sext. M8 Inox', qtd: 500, unit: '0,22', total: '110,00' },
@@ -200,7 +205,7 @@ export default function TableShowcase() {
                       ))}
                     </tbody>
                     <tfoot>
-                      <tr className="bg-surface-medium/30 border-t border-border font-semibold">
+                      <tr className={cn(TABLE_FOOTER, "border-t border-border/40 font-semibold")}>
                         <td colSpan={4} className="px-3 py-2 text-right text-xs text-muted-foreground">Total Geral:</td>
                         <td className="px-3 py-2 text-right font-mono text-sm text-secondary font-bold">R$ 3.556,50</td>
                       </tr>
@@ -214,10 +219,10 @@ export default function TableShowcase() {
           {activeTab === 'selecao' && (
             <FieldGroup title="Tabela com Seleção (Checkbox)">
               <div className="col-span-2 xl:col-span-3">
-                <div className="rounded-xl border border-border overflow-hidden">
+                <div className={TABLE_WRAPPER}>
                   <table className="w-full text-sm">
                     <thead>
-                      <tr className="bg-surface-medium/40 border-b border-border">
+                      <tr className={cn(TABLE_HEADER, "border-b border-border/40")}>
                         <th className="px-4 py-2.5 w-10"><input type="checkbox" className="rounded border-border" /></th>
                         <th className="px-4 py-2.5 text-left font-semibold text-muted-foreground text-xs">Nº Pedido</th>
                         <th className="px-4 py-2.5 text-left font-semibold text-muted-foreground text-xs">Cliente</th>
@@ -226,7 +231,7 @@ export default function TableShowcase() {
                         <th className="px-4 py-2.5 text-center font-semibold text-muted-foreground text-xs">Situação</th>
                       </tr>
                     </thead>
-                    <tbody className="divide-y divide-border">
+                    <tbody className="divide-y divide-border/30">
                       {[
                         { ped: 'PED-88425', cli: 'Metalúrgica Aço Forte', data: '02/04/2026', valor: 'R$ 15.800,00', sit: 'Aprovado', color: 'emerald' },
                         { ped: 'PED-88426', cli: 'Ind. Química Sul', data: '03/04/2026', valor: 'R$ 42.300,00', sit: 'Pendente', color: 'amber' },
@@ -242,10 +247,10 @@ export default function TableShowcase() {
                           <td className="px-4 py-3 text-center">
                             <span className={cn(
                               "inline-flex px-2.5 py-0.5 rounded-full text-[10px] font-bold uppercase tracking-wider",
-                              row.color === 'emerald' && 'bg-emerald-500/10 text-emerald-500',
-                              row.color === 'amber' && 'bg-amber-500/10 text-amber-500',
-                              row.color === 'blue' && 'bg-blue-500/10 text-blue-500',
-                              row.color === 'purple' && 'bg-purple-500/10 text-purple-500',
+                              row.color === 'emerald' && 'bg-status-success/10 text-status-success',
+                              row.color === 'amber' && 'bg-status-warning/10 text-status-warning',
+                              row.color === 'blue' && 'bg-status-info/10 text-status-info',
+                              row.color === 'purple' && 'bg-accent/10 text-accent',
                             )}>
                               {row.sit}
                             </span>
@@ -254,7 +259,7 @@ export default function TableShowcase() {
                       ))}
                     </tbody>
                   </table>
-                  <div className="flex items-center gap-3 px-4 py-2.5 bg-secondary/5 border-t border-border text-xs">
+                  <div className={cn("flex items-center gap-3 px-4 py-2.5 border-t border-border/40 text-xs", TABLE_FOOTER)}>
                     <span className="font-semibold text-secondary">2 selecionados</span>
                     <button className="px-3 py-1 rounded-md bg-secondary text-secondary-foreground font-semibold hover:bg-secondary/90 transition-colors">Aprovar</button>
                     <button className="px-3 py-1 rounded-md bg-muted text-muted-foreground font-semibold hover:bg-muted/80 transition-colors">Exportar</button>
@@ -268,10 +273,10 @@ export default function TableShowcase() {
           {activeTab === 'expansivel' && (
             <FieldGroup title="Tabela Expansível (Master-Detail)">
               <div className="col-span-2 xl:col-span-3">
-                <div className="rounded-xl border border-border overflow-hidden">
+                <div className={TABLE_WRAPPER}>
                   <table className="w-full text-sm">
                     <thead>
-                      <tr className="bg-surface-medium/40 border-b border-border">
+                      <tr className={cn(TABLE_HEADER, "border-b border-border/40")}>
                         <th className="px-4 py-2.5 w-10"></th>
                         <th className="px-4 py-2.5 text-left font-semibold text-muted-foreground text-xs">Nº NF</th>
                         <th className="px-4 py-2.5 text-left font-semibold text-muted-foreground text-xs">Fornecedor</th>
@@ -279,7 +284,7 @@ export default function TableShowcase() {
                         <th className="px-4 py-2.5 text-right font-semibold text-muted-foreground text-xs">Valor Total</th>
                       </tr>
                     </thead>
-                    <tbody className="divide-y divide-border">
+                    <tbody className="divide-y divide-border/30">
                       <tr className="hover:bg-muted/20 transition-colors">
                         <td className="px-4 py-3"><button className="p-1 rounded hover:bg-muted/50 text-muted-foreground"><ChevronDown size={14} /></button></td>
                         <td className="px-4 py-3 font-mono text-xs font-semibold text-secondary">NF-45892</td>
@@ -293,7 +298,7 @@ export default function TableShowcase() {
                           <div className="rounded-lg border border-border/50 overflow-hidden">
                             <table className="w-full text-xs">
                               <thead>
-                                <tr className="bg-surface-medium/30">
+                                <tr className={cn(TABLE_HEADER)}>
                                   <th className="px-3 py-1.5 text-left text-muted-foreground font-medium">Item</th>
                                   <th className="px-3 py-1.5 text-left text-muted-foreground font-medium">Descrição</th>
                                   <th className="px-3 py-1.5 text-center text-muted-foreground font-medium">Qtd</th>
@@ -324,46 +329,73 @@ export default function TableShowcase() {
           )}
 
           {activeTab === 'zebrada' && (
-            <FieldGroup title="Tabela Zebrada (Striped) + Resumo">
+            <FieldGroup title="Tabela Zebrada (Striped) + Resumo com Status">
               <div className="col-span-2 xl:col-span-3">
-                <div className="rounded-xl border border-border overflow-hidden">
+                <div className={TABLE_WRAPPER}>
                   <table className="w-full text-sm">
                     <thead className="sticky top-0 z-10">
-                      <tr className="bg-primary/5 border-b border-primary/20">
-                        <th className="px-4 py-2.5 text-left font-semibold text-primary text-xs">Mês</th>
-                        <th className="px-4 py-2.5 text-right font-semibold text-primary text-xs">Receita</th>
-                        <th className="px-4 py-2.5 text-right font-semibold text-primary text-xs">Custos</th>
-                        <th className="px-4 py-2.5 text-right font-semibold text-primary text-xs">Margem</th>
-                        <th className="px-4 py-2.5 text-center font-semibold text-primary text-xs">%</th>
+                      <tr className={cn(TABLE_HEADER, "border-b border-border/40")}>
+                        <th className="px-4 py-2.5 text-left font-semibold text-muted-foreground text-xs">Nº O.S.</th>
+                        <th className="px-4 py-2.5 text-left font-semibold text-muted-foreground text-xs">Descrição</th>
+                        <th className="px-4 py-2.5 text-left font-semibold text-muted-foreground text-xs">Responsável</th>
+                        <th className="px-4 py-2.5 text-right font-semibold text-muted-foreground text-xs">Valor</th>
+                        <th className="px-4 py-2.5 text-center font-semibold text-muted-foreground text-xs">Status</th>
                       </tr>
                     </thead>
                     <tbody>
                       {[
-                        { mes: 'Janeiro', rec: '125.400', cus: '89.200', marg: '36.200', pct: '28,9%' },
-                        { mes: 'Fevereiro', rec: '138.900', cus: '95.100', marg: '43.800', pct: '31,5%' },
-                        { mes: 'Março', rec: '142.300', cus: '98.700', marg: '43.600', pct: '30,6%' },
-                        { mes: 'Abril', rec: '155.800', cus: '102.400', marg: '53.400', pct: '34,3%' },
+                        { os: 'OS-4501', desc: 'Manutenção preventiva - Linha A', resp: 'João Silva', valor: 'R$ 12.500,00', status: 'Confirmado', statusType: 'success' },
+                        { os: 'OS-4502', desc: 'Calibração instrumentos', resp: 'Maria Santos', valor: 'R$ 8.200,00', status: 'Em Análise', statusType: 'info' },
+                        { os: 'OS-4503', desc: 'Reparo emergencial - Caldeira', resp: 'Carlos Oliveira', valor: 'R$ 35.000,00', status: 'Alerta', statusType: 'warning' },
+                        { os: 'OS-4504', desc: 'Instalação CLP novo', resp: 'Ana Costa', valor: 'R$ 22.800,00', status: 'Confirmado', statusType: 'success' },
+                        { os: 'OS-4505', desc: 'Troca de válvulas setor B', resp: 'Pedro Lima', valor: 'R$ 4.600,00', status: 'Cancelado', statusType: 'error' },
+                        { os: 'OS-4506', desc: 'Pintura estrutural galpão', resp: 'Lucas Mendes', valor: 'R$ 18.900,00', status: 'Pendente', statusType: 'pending' },
+                        { os: 'OS-4507', desc: 'Automação linha de envase', resp: 'Fernanda Reis', valor: 'R$ 67.400,00', status: 'Confirmado', statusType: 'success' },
+                        { os: 'OS-4508', desc: 'Revisão compressor Atlas', resp: 'Roberto Alves', valor: 'R$ 9.750,00', status: 'Alerta', statusType: 'warning' },
+                        { os: 'OS-4509', desc: 'Substituição motor 50cv', resp: 'Juliana Prado', valor: 'R$ 14.300,00', status: 'Cancelado', statusType: 'error' },
+                        { os: 'OS-4510', desc: 'Teste hidrostático vasos', resp: 'Marcos Souza', valor: 'R$ 6.100,00', status: 'Em Análise', statusType: 'info' },
                       ].map((row, i) => (
-                        <tr key={i} className={cn("transition-colors hover:bg-muted/20", i % 2 === 1 && "bg-muted/8")}>
-                          <td className="px-4 py-2.5 font-medium text-foreground">{row.mes}</td>
-                          <td className="px-4 py-2.5 text-right font-mono text-foreground">R$ {row.rec}</td>
-                          <td className="px-4 py-2.5 text-right font-mono text-muted-foreground">R$ {row.cus}</td>
-                          <td className="px-4 py-2.5 text-right font-mono font-semibold text-emerald-500">R$ {row.marg}</td>
+                        <tr key={i} className={cn(
+                          "transition-colors hover:bg-muted/30 border-b border-border/20",
+                          i % 2 === 1 ? "bg-surface-container-low/60" : "bg-transparent"
+                        )}>
+                          <td className="px-4 py-2.5 font-mono text-xs font-semibold text-secondary">{row.os}</td>
+                          <td className="px-4 py-2.5 font-medium text-foreground">{row.desc}</td>
+                          <td className="px-4 py-2.5 text-muted-foreground">{row.resp}</td>
+                          <td className="px-4 py-2.5 text-right font-mono font-semibold text-foreground">{row.valor}</td>
                           <td className="px-4 py-2.5 text-center">
-                            <span className="inline-flex items-center gap-1 text-emerald-500 font-semibold text-xs">
-                              <ChevronUp size={12} />{row.pct}
+                            <span className={cn(
+                              "inline-flex items-center gap-1.5 px-2.5 py-0.5 rounded-full text-[10px] font-bold uppercase tracking-wider",
+                              row.statusType === 'success' && 'bg-status-success/10 text-status-success',
+                              row.statusType === 'warning' && 'bg-status-warning/10 text-status-warning',
+                              row.statusType === 'error' && 'bg-status-error/10 text-status-error',
+                              row.statusType === 'info' && 'bg-status-info/10 text-status-info',
+                              row.statusType === 'pending' && 'bg-status-pending/10 text-status-pending',
+                            )}>
+                              {row.statusType === 'success' && <CheckCircle2 size={11} />}
+                              {row.statusType === 'warning' && <AlertTriangle size={11} />}
+                              {row.statusType === 'error' && <XCircle size={11} />}
+                              {row.statusType === 'info' && <Info size={11} />}
+                              {row.statusType === 'pending' && <Clock size={11} />}
+                              {row.status}
                             </span>
                           </td>
                         </tr>
                       ))}
                     </tbody>
                     <tfoot>
-                      <tr className="bg-primary/5 border-t-2 border-primary/20 font-bold">
-                        <td className="px-4 py-3 text-primary text-xs uppercase tracking-wider">Total</td>
-                        <td className="px-4 py-3 text-right font-mono text-foreground">R$ 562.400</td>
-                        <td className="px-4 py-3 text-right font-mono text-muted-foreground">R$ 385.400</td>
-                        <td className="px-4 py-3 text-right font-mono text-emerald-500">R$ 177.000</td>
-                        <td className="px-4 py-3 text-center text-emerald-500 text-xs">31,5%</td>
+                      <tr className={cn(TABLE_FOOTER, "border-t border-border/40 font-bold")}>
+                        <td className="px-4 py-3 text-xs uppercase tracking-wider text-muted-foreground">Total</td>
+                        <td className="px-4 py-3 text-xs text-muted-foreground">10 registros</td>
+                        <td className="px-4 py-3"></td>
+                        <td className="px-4 py-3 text-right font-mono text-foreground">R$ 199.550,00</td>
+                        <td className="px-4 py-3 text-center">
+                          <div className="flex items-center justify-center gap-2 text-[10px]">
+                            <span className="text-status-success font-bold">3 ✓</span>
+                            <span className="text-status-warning font-bold">2 !</span>
+                            <span className="text-status-error font-bold">2 ✗</span>
+                          </div>
+                        </td>
                       </tr>
                     </tfoot>
                   </table>
