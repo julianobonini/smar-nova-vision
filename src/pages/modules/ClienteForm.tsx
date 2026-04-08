@@ -121,7 +121,7 @@ export default function ClienteForm() {
         {activeTab === 'embarque' && <TabEmbarque />}
         {activeTab === 'observacao' && <TabObservacao />}
       </motion.div>
-    </AppLayout>
+    </>
   );
 }
 
