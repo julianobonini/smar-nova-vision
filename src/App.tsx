@@ -44,6 +44,7 @@ function AppRoutes() {
       <Route path="/app/formularios" element={isAuthenticated ? <FormShowcase /> : <Navigate to="/" />} />
       <Route path="/app/tabelas" element={isAuthenticated ? <TableShowcase /> : <Navigate to="/" />} />
       <Route path="/app/painel" element={isAuthenticated ? <AdminPanelShowcase /> : <Navigate to="/" />} />
+      <Route path="/app/templates/*" element={isAuthenticated ? <TemplatePlaceholder /> : <Navigate to="/" />} />
       <Route path="*" element={<NotFound />} />
     </Routes>
   );
