@@ -7,7 +7,7 @@ import {
   AlignLeft, AlignCenter, AlignRight, Strikethrough, Highlighter,
   Heading1, Heading2, ListOrdered, Quote
 } from 'lucide-react';
-import { AppLayout } from '@/components/AppLayout';
+
 import Select from 'react-select';
 import CreatableSelect from 'react-select/creatable';
 import { useEditor, EditorContent } from '@tiptap/react';
@@ -225,7 +225,7 @@ export default function FormShowcase() {
   const weekEnd = weekDate ? endOfWeek(weekDate, { weekStartsOn: 1 }) : undefined;
 
   return (
-    <AppLayout>
+    <>
       <div className="px-4 lg:px-8 pt-4 pb-10 space-y-5">
         {/* Breadcrumb */}
         <nav className="flex items-center gap-1.5 text-xs text-muted-foreground">
@@ -739,6 +739,6 @@ export default function FormShowcase() {
 
         </motion.div>
       </div>
-    </AppLayout>
+    </>
   );
 }

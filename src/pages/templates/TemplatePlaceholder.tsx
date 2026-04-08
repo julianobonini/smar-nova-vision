@@ -1,5 +1,5 @@
 import { useLocation } from 'react-router-dom';
-import { AppLayout } from '@/components/AppLayout';
+
 import { Construction, ArrowRight } from 'lucide-react';
 
 export default function TemplatePlaceholder() {
@@ -21,7 +21,7 @@ export default function TemplatePlaceholder() {
   ];
 
   return (
-    <AppLayout>
+    <>
       {/* Breadcrumb */}
       <nav className="flex items-center gap-1.5 text-xs text-muted-foreground mb-6">
         {breadcrumb.map((item, i) => (
@@ -52,6 +52,6 @@ export default function TemplatePlaceholder() {
           </span>
         </div>
       </div>
-    </AppLayout>
+    </>
   );
 }
