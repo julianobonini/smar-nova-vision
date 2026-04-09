@@ -162,6 +162,18 @@ function AppRoutes() {
         <Route path="templates/advancedui/ratings" element={<LazyRoute><RatingsShowcase /></LazyRoute>} />
         <Route path="templates/advancedui/swiperjs" element={<LazyRoute><SwiperShowcase /></LazyRoute>} />
 
+        {/* Utilities */}
+        <Route path="templates/utilities/avatars" element={<LazyRoute><AvatarsShowcase /></LazyRoute>} />
+        <Route path="templates/utilities/borders" element={<LazyRoute><BordersShowcase /></LazyRoute>} />
+        <Route path="templates/utilities/breakpoints" element={<LazyRoute><BreakpointsShowcase /></LazyRoute>} />
+        <Route path="templates/utilities/colors" element={<LazyRoute><ColorsShowcase /></LazyRoute>} />
+        <Route path="templates/utilities/columns" element={<LazyRoute><ColumnsShowcase /></LazyRoute>} />
+        <Route path="templates/utilities/flex" element={<LazyRoute><FlexShowcase /></LazyRoute>} />
+        <Route path="templates/utilities/gutters" element={<LazyRoute><GuttersShowcase /></LazyRoute>} />
+        <Route path="templates/utilities/helpers" element={<LazyRoute><HelpersShowcase /></LazyRoute>} />
+        <Route path="templates/utilities/position" element={<LazyRoute><PositionShowcase /></LazyRoute>} />
+        <Route path="templates/utilities/additionalcontent" element={<LazyRoute><AdditionalContentShowcase /></LazyRoute>} />
+
         <Route path="templates/*" element={<TemplatePlaceholder />} />
       </Route>
 
