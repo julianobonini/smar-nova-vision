@@ -70,6 +70,18 @@ const PlaceholdersShowcase = lazy(() => import("./pages/templates/advancedui/Pla
 const RatingsShowcase = lazy(() => import("./pages/templates/advancedui/RatingsShowcase"));
 const SwiperShowcase = lazy(() => import("./pages/templates/advancedui/SwiperShowcase"));
 
+// Utilities showcases
+const AvatarsShowcase = lazy(() => import("./pages/templates/utilities/AvatarsShowcase"));
+const BordersShowcase = lazy(() => import("./pages/templates/utilities/BordersShowcase"));
+const BreakpointsShowcase = lazy(() => import("./pages/templates/utilities/BreakpointsShowcase"));
+const ColorsShowcase = lazy(() => import("./pages/templates/utilities/ColorsShowcase"));
+const ColumnsShowcase = lazy(() => import("./pages/templates/utilities/ColumnsShowcase"));
+const FlexShowcase = lazy(() => import("./pages/templates/utilities/FlexShowcase"));
+const GuttersShowcase = lazy(() => import("./pages/templates/utilities/GuttersShowcase"));
+const HelpersShowcase = lazy(() => import("./pages/templates/utilities/HelpersShowcase"));
+const PositionShowcase = lazy(() => import("./pages/templates/utilities/PositionShowcase"));
+const AdditionalContentShowcase = lazy(() => import("./pages/templates/utilities/AdditionalContentShowcase"));
+
 const queryClient = new QueryClient();
 
 const LazyFallback = () => (
@@ -161,6 +173,18 @@ function AppRoutes() {
         <Route path="templates/advancedui/placeholders" element={<LazyRoute><PlaceholdersShowcase /></LazyRoute>} />
         <Route path="templates/advancedui/ratings" element={<LazyRoute><RatingsShowcase /></LazyRoute>} />
         <Route path="templates/advancedui/swiperjs" element={<LazyRoute><SwiperShowcase /></LazyRoute>} />
+
+        {/* Utilities */}
+        <Route path="templates/utilities/avatars" element={<LazyRoute><AvatarsShowcase /></LazyRoute>} />
+        <Route path="templates/utilities/borders" element={<LazyRoute><BordersShowcase /></LazyRoute>} />
+        <Route path="templates/utilities/breakpoints" element={<LazyRoute><BreakpointsShowcase /></LazyRoute>} />
+        <Route path="templates/utilities/colors" element={<LazyRoute><ColorsShowcase /></LazyRoute>} />
+        <Route path="templates/utilities/columns" element={<LazyRoute><ColumnsShowcase /></LazyRoute>} />
+        <Route path="templates/utilities/flex" element={<LazyRoute><FlexShowcase /></LazyRoute>} />
+        <Route path="templates/utilities/gutters" element={<LazyRoute><GuttersShowcase /></LazyRoute>} />
+        <Route path="templates/utilities/helpers" element={<LazyRoute><HelpersShowcase /></LazyRoute>} />
+        <Route path="templates/utilities/position" element={<LazyRoute><PositionShowcase /></LazyRoute>} />
+        <Route path="templates/utilities/additionalcontent" element={<LazyRoute><AdditionalContentShowcase /></LazyRoute>} />
 
         <Route path="templates/*" element={<TemplatePlaceholder />} />
       </Route>
