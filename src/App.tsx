@@ -59,6 +59,17 @@ const SunEditorShowcase = lazy(() => import("./pages/templates/forms/SunEditorSh
 const FormsValidationShowcase = lazy(() => import("./pages/templates/forms/ValidationShowcase"));
 const Select2Showcase = lazy(() => import("./pages/templates/forms/Select2Showcase"));
 
+// Advanced UI showcases
+const AccordionsShowcase = lazy(() => import("./pages/templates/advancedui/AccordionsShowcase"));
+const CarouselShowcase = lazy(() => import("./pages/templates/advancedui/CarouselShowcase"));
+const DraggableCardsShowcase = lazy(() => import("./pages/templates/advancedui/DraggableCardsShowcase"));
+const ModalsShowcase = lazy(() => import("./pages/templates/advancedui/ModalsShowcase"));
+const NavbarShowcase = lazy(() => import("./pages/templates/advancedui/NavbarShowcase"));
+const OffcanvasShowcase = lazy(() => import("./pages/templates/advancedui/OffcanvasShowcase"));
+const PlaceholdersShowcase = lazy(() => import("./pages/templates/advancedui/PlaceholdersShowcase"));
+const RatingsShowcase = lazy(() => import("./pages/templates/advancedui/RatingsShowcase"));
+const SwiperShowcase = lazy(() => import("./pages/templates/advancedui/SwiperShowcase"));
+
 const queryClient = new QueryClient();
 
 const LazyFallback = () => (
