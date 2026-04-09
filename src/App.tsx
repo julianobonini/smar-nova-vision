@@ -59,6 +59,17 @@ const SunEditorShowcase = lazy(() => import("./pages/templates/forms/SunEditorSh
 const FormsValidationShowcase = lazy(() => import("./pages/templates/forms/ValidationShowcase"));
 const Select2Showcase = lazy(() => import("./pages/templates/forms/Select2Showcase"));
 
+// Advanced UI showcases
+const AccordionsShowcase = lazy(() => import("./pages/templates/advancedui/AccordionsShowcase"));
+const CarouselShowcase = lazy(() => import("./pages/templates/advancedui/CarouselShowcase"));
+const DraggableCardsShowcase = lazy(() => import("./pages/templates/advancedui/DraggableCardsShowcase"));
+const ModalsShowcase = lazy(() => import("./pages/templates/advancedui/ModalsShowcase"));
+const NavbarShowcase = lazy(() => import("./pages/templates/advancedui/NavbarShowcase"));
+const OffcanvasShowcase = lazy(() => import("./pages/templates/advancedui/OffcanvasShowcase"));
+const PlaceholdersShowcase = lazy(() => import("./pages/templates/advancedui/PlaceholdersShowcase"));
+const RatingsShowcase = lazy(() => import("./pages/templates/advancedui/RatingsShowcase"));
+const SwiperShowcase = lazy(() => import("./pages/templates/advancedui/SwiperShowcase"));
+
 const queryClient = new QueryClient();
 
 const LazyFallback = () => (
@@ -139,6 +150,17 @@ function AppRoutes() {
         <Route path="templates/forms/suneditor" element={<LazyRoute><SunEditorShowcase /></LazyRoute>} />
         <Route path="templates/forms/validation" element={<LazyRoute><FormsValidationShowcase /></LazyRoute>} />
         <Route path="templates/forms/select2" element={<LazyRoute><Select2Showcase /></LazyRoute>} />
+
+        {/* Advanced UI */}
+        <Route path="templates/advancedui/accordions" element={<LazyRoute><AccordionsShowcase /></LazyRoute>} />
+        <Route path="templates/advancedui/carousel" element={<LazyRoute><CarouselShowcase /></LazyRoute>} />
+        <Route path="templates/advancedui/draggablecards" element={<LazyRoute><DraggableCardsShowcase /></LazyRoute>} />
+        <Route path="templates/advancedui/modals" element={<LazyRoute><ModalsShowcase /></LazyRoute>} />
+        <Route path="templates/advancedui/navbar" element={<LazyRoute><NavbarShowcase /></LazyRoute>} />
+        <Route path="templates/advancedui/offcanvas" element={<LazyRoute><OffcanvasShowcase /></LazyRoute>} />
+        <Route path="templates/advancedui/placeholders" element={<LazyRoute><PlaceholdersShowcase /></LazyRoute>} />
+        <Route path="templates/advancedui/ratings" element={<LazyRoute><RatingsShowcase /></LazyRoute>} />
+        <Route path="templates/advancedui/swiperjs" element={<LazyRoute><SwiperShowcase /></LazyRoute>} />
 
         <Route path="templates/*" element={<TemplatePlaceholder />} />
       </Route>
