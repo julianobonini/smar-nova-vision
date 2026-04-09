@@ -70,6 +70,18 @@ const PlaceholdersShowcase = lazy(() => import("./pages/templates/advancedui/Pla
 const RatingsShowcase = lazy(() => import("./pages/templates/advancedui/RatingsShowcase"));
 const SwiperShowcase = lazy(() => import("./pages/templates/advancedui/SwiperShowcase"));
 
+// Utilities showcases
+const AvatarsShowcase = lazy(() => import("./pages/templates/utilities/AvatarsShowcase"));
+const BordersShowcase = lazy(() => import("./pages/templates/utilities/BordersShowcase"));
+const BreakpointsShowcase = lazy(() => import("./pages/templates/utilities/BreakpointsShowcase"));
+const ColorsShowcase = lazy(() => import("./pages/templates/utilities/ColorsShowcase"));
+const ColumnsShowcase = lazy(() => import("./pages/templates/utilities/ColumnsShowcase"));
+const FlexShowcase = lazy(() => import("./pages/templates/utilities/FlexShowcase"));
+const GuttersShowcase = lazy(() => import("./pages/templates/utilities/GuttersShowcase"));
+const HelpersShowcase = lazy(() => import("./pages/templates/utilities/HelpersShowcase"));
+const PositionShowcase = lazy(() => import("./pages/templates/utilities/PositionShowcase"));
+const AdditionalContentShowcase = lazy(() => import("./pages/templates/utilities/AdditionalContentShowcase"));
+
 const queryClient = new QueryClient();
 
 const LazyFallback = () => (
