@@ -140,6 +140,17 @@ function AppRoutes() {
         <Route path="templates/forms/validation" element={<LazyRoute><FormsValidationShowcase /></LazyRoute>} />
         <Route path="templates/forms/select2" element={<LazyRoute><Select2Showcase /></LazyRoute>} />
 
+        {/* Advanced UI */}
+        <Route path="templates/advancedui/accordions" element={<LazyRoute><AccordionsShowcase /></LazyRoute>} />
+        <Route path="templates/advancedui/carousel" element={<LazyRoute><CarouselShowcase /></LazyRoute>} />
+        <Route path="templates/advancedui/draggablecards" element={<LazyRoute><DraggableCardsShowcase /></LazyRoute>} />
+        <Route path="templates/advancedui/modals" element={<LazyRoute><ModalsShowcase /></LazyRoute>} />
+        <Route path="templates/advancedui/navbar" element={<LazyRoute><NavbarShowcase /></LazyRoute>} />
+        <Route path="templates/advancedui/offcanvas" element={<LazyRoute><OffcanvasShowcase /></LazyRoute>} />
+        <Route path="templates/advancedui/placeholders" element={<LazyRoute><PlaceholdersShowcase /></LazyRoute>} />
+        <Route path="templates/advancedui/ratings" element={<LazyRoute><RatingsShowcase /></LazyRoute>} />
+        <Route path="templates/advancedui/swiperjs" element={<LazyRoute><SwiperShowcase /></LazyRoute>} />
+
         <Route path="templates/*" element={<TemplatePlaceholder />} />
       </Route>
 
