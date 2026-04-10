@@ -82,6 +82,11 @@ const HelpersShowcase = lazy(() => import("./pages/templates/utilities/HelpersSh
 const PositionShowcase = lazy(() => import("./pages/templates/utilities/PositionShowcase"));
 const AdditionalContentShowcase = lazy(() => import("./pages/templates/utilities/AdditionalContentShowcase"));
 
+// Tables showcases
+const BasicTablesShowcase = lazy(() => import("./pages/templates/tables/BasicTablesShowcase"));
+const GridJSTablesShowcase = lazy(() => import("./pages/templates/tables/GridJSTablesShowcase"));
+const DataTablesShowcase = lazy(() => import("./pages/templates/tables/DataTablesShowcase"));
+
 // Icons showcases
 const RemixIconsShowcase = lazy(() => import("./pages/templates/icons/RemixIconsShowcase"));
 const TablerIconsShowcase = lazy(() => import("./pages/templates/icons/TablerIconsShowcase"));
@@ -199,6 +204,11 @@ function AppRoutes() {
         <Route path="templates/icons/bootstrap" element={<LazyRoute><BootstrapIconsShowcase /></LazyRoute>} />
         <Route path="templates/icons/feather" element={<LazyRoute><FeatherIconsShowcase /></LazyRoute>} />
         <Route path="templates/icons/lucide" element={<LazyRoute><LucideIconsShowcase /></LazyRoute>} />
+
+        {/* Tables */}
+        <Route path="templates/tables/tables" element={<LazyRoute><BasicTablesShowcase /></LazyRoute>} />
+        <Route path="templates/tables/gridjs" element={<LazyRoute><GridJSTablesShowcase /></LazyRoute>} />
+        <Route path="templates/tables/datatables" element={<LazyRoute><DataTablesShowcase /></LazyRoute>} />
 
         <Route path="templates/*" element={<TemplatePlaceholder />} />
       </Route>
