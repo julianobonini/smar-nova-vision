@@ -437,7 +437,13 @@ export const templateMenuGroups: TemplateMenuGroup[] = [
       {
         label: 'Icons',
         icon: Store,
-        path: '/app/templates/icons',
+        children: [
+          { label: 'Remix Icons', path: '/app/templates/icons/remix' },
+          { label: 'Tabler Icons', path: '/app/templates/icons/tabler' },
+          { label: 'Bootstrap Icons', path: '/app/templates/icons/bootstrap' },
+          { label: 'Feather Icons', path: '/app/templates/icons/feather' },
+          { label: 'Lucide Icons', path: '/app/templates/icons/lucide' },
+        ],
       },
     ],
   },
