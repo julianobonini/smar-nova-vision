@@ -205,6 +205,11 @@ function AppRoutes() {
         <Route path="templates/icons/feather" element={<LazyRoute><FeatherIconsShowcase /></LazyRoute>} />
         <Route path="templates/icons/lucide" element={<LazyRoute><LucideIconsShowcase /></LazyRoute>} />
 
+        {/* Tables */}
+        <Route path="templates/tables/tables" element={<LazyRoute><BasicTablesShowcase /></LazyRoute>} />
+        <Route path="templates/tables/gridjs" element={<LazyRoute><GridJSTablesShowcase /></LazyRoute>} />
+        <Route path="templates/tables/datatables" element={<LazyRoute><DataTablesShowcase /></LazyRoute>} />
+
         <Route path="templates/*" element={<TemplatePlaceholder />} />
       </Route>
 
