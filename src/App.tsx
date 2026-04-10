@@ -82,6 +82,11 @@ const HelpersShowcase = lazy(() => import("./pages/templates/utilities/HelpersSh
 const PositionShowcase = lazy(() => import("./pages/templates/utilities/PositionShowcase"));
 const AdditionalContentShowcase = lazy(() => import("./pages/templates/utilities/AdditionalContentShowcase"));
 
+// Tables showcases
+const BasicTablesShowcase = lazy(() => import("./pages/templates/tables/BasicTablesShowcase"));
+const GridJSTablesShowcase = lazy(() => import("./pages/templates/tables/GridJSTablesShowcase"));
+const DataTablesShowcase = lazy(() => import("./pages/templates/tables/DataTablesShowcase"));
+
 // Icons showcases
 const RemixIconsShowcase = lazy(() => import("./pages/templates/icons/RemixIconsShowcase"));
 const TablerIconsShowcase = lazy(() => import("./pages/templates/icons/TablerIconsShowcase"));
