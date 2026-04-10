@@ -82,6 +82,13 @@ const HelpersShowcase = lazy(() => import("./pages/templates/utilities/HelpersSh
 const PositionShowcase = lazy(() => import("./pages/templates/utilities/PositionShowcase"));
 const AdditionalContentShowcase = lazy(() => import("./pages/templates/utilities/AdditionalContentShowcase"));
 
+// Icons showcases
+const RemixIconsShowcase = lazy(() => import("./pages/templates/icons/RemixIconsShowcase"));
+const TablerIconsShowcase = lazy(() => import("./pages/templates/icons/TablerIconsShowcase"));
+const BootstrapIconsShowcase = lazy(() => import("./pages/templates/icons/BootstrapIconsShowcase"));
+const FeatherIconsShowcase = lazy(() => import("./pages/templates/icons/FeatherIconsShowcase"));
+const LucideIconsShowcase = lazy(() => import("./pages/templates/icons/LucideIconsShowcase"));
+
 const queryClient = new QueryClient();
 
 const LazyFallback = () => (
@@ -185,6 +192,13 @@ function AppRoutes() {
         <Route path="templates/utilities/helpers" element={<LazyRoute><HelpersShowcase /></LazyRoute>} />
         <Route path="templates/utilities/position" element={<LazyRoute><PositionShowcase /></LazyRoute>} />
         <Route path="templates/utilities/additionalcontent" element={<LazyRoute><AdditionalContentShowcase /></LazyRoute>} />
+
+        {/* Icons */}
+        <Route path="templates/icons/remix" element={<LazyRoute><RemixIconsShowcase /></LazyRoute>} />
+        <Route path="templates/icons/tabler" element={<LazyRoute><TablerIconsShowcase /></LazyRoute>} />
+        <Route path="templates/icons/bootstrap" element={<LazyRoute><BootstrapIconsShowcase /></LazyRoute>} />
+        <Route path="templates/icons/feather" element={<LazyRoute><FeatherIconsShowcase /></LazyRoute>} />
+        <Route path="templates/icons/lucide" element={<LazyRoute><LucideIconsShowcase /></LazyRoute>} />
 
         <Route path="templates/*" element={<TemplatePlaceholder />} />
       </Route>
