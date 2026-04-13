@@ -239,6 +239,35 @@ function AppRoutes() {
         <Route path="templates/tables/gridjs" element={<LazyRoute><GridJSTablesShowcase /></LazyRoute>} />
         <Route path="templates/tables/datatables" element={<LazyRoute><DataTablesShowcase /></LazyRoute>} />
 
+        {/* Apps */}
+        <Route path="templates/apps/fullcalendar" element={<LazyRoute><FullCalendarShowcase /></LazyRoute>} />
+        <Route path="templates/apps/gallery" element={<LazyRoute><GalleryShowcase /></LazyRoute>} />
+        <Route path="templates/apps/sweetalerts" element={<LazyRoute><SweetAlertsShowcase /></LazyRoute>} />
+        <Route path="templates/apps/projects/list" element={<LazyRoute><ProjectsListShowcase /></LazyRoute>} />
+        <Route path="templates/apps/projects/overview" element={<LazyRoute><ProjectsOverviewShowcase /></LazyRoute>} />
+        <Route path="templates/apps/projects/create" element={<LazyRoute><ProjectsCreateShowcase /></LazyRoute>} />
+        <Route path="templates/apps/jobs/details" element={<LazyRoute><JobDetailsShowcase /></LazyRoute>} />
+        <Route path="templates/apps/jobs/list" element={<LazyRoute><JobsListShowcase /></LazyRoute>} />
+        <Route path="templates/apps/jobs/jobpost" element={<LazyRoute><JobPostShowcase /></LazyRoute>} />
+        <Route path="templates/apps/jobs/searchcompany" element={<LazyRoute><SearchCompanyShowcase /></LazyRoute>} />
+        <Route path="templates/apps/jobs/searchjobs" element={<LazyRoute><SearchJobsShowcase /></LazyRoute>} />
+        <Route path="templates/apps/jobs/searchcandidate" element={<LazyRoute><SearchCandidateShowcase /></LazyRoute>} />
+        <Route path="templates/apps/jobs/candidatedetails" element={<LazyRoute><CandidateDetailsShowcase /></LazyRoute>} />
+        <Route path="templates/apps/nft/marketplace" element={<LazyRoute><NFTMarketplaceShowcase /></LazyRoute>} />
+        <Route path="templates/apps/nft/details" element={<LazyRoute><NFTDetailsShowcase /></LazyRoute>} />
+        <Route path="templates/apps/nft/create" element={<LazyRoute><NFTCreateShowcase /></LazyRoute>} />
+        <Route path="templates/apps/nft/wallet" element={<LazyRoute><NFTWalletShowcase /></LazyRoute>} />
+        <Route path="templates/apps/nft/liveauction" element={<LazyRoute><NFTLiveAuctionShowcase /></LazyRoute>} />
+        <Route path="templates/apps/crm/contacts" element={<LazyRoute><CRMContactsShowcase /></LazyRoute>} />
+        <Route path="templates/apps/crm/companies" element={<LazyRoute><CRMCompaniesShowcase /></LazyRoute>} />
+        <Route path="templates/apps/crm/deals" element={<LazyRoute><CRMDealsShowcase /></LazyRoute>} />
+        <Route path="templates/apps/crm/leads" element={<LazyRoute><CRMLeadsShowcase /></LazyRoute>} />
+        <Route path="templates/apps/crypto/transactions" element={<LazyRoute><CryptoTransactionsShowcase /></LazyRoute>} />
+        <Route path="templates/apps/crypto/exchange" element={<LazyRoute><CryptoExchangeShowcase /></LazyRoute>} />
+        <Route path="templates/apps/crypto/buysell" element={<LazyRoute><CryptoBuySellShowcase /></LazyRoute>} />
+        <Route path="templates/apps/crypto/marketcap" element={<LazyRoute><CryptoMarketcapShowcase /></LazyRoute>} />
+        <Route path="templates/apps/crypto/wallet" element={<LazyRoute><CryptoWalletShowcase /></LazyRoute>} />
+
         <Route path="templates/*" element={<TemplatePlaceholder />} />
       </Route>
 
