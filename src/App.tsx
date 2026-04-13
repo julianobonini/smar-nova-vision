@@ -94,6 +94,35 @@ const BootstrapIconsShowcase = lazy(() => import("./pages/templates/icons/Bootst
 const FeatherIconsShowcase = lazy(() => import("./pages/templates/icons/FeatherIconsShowcase"));
 const LucideIconsShowcase = lazy(() => import("./pages/templates/icons/LucideIconsShowcase"));
 
+// Apps showcases
+const FullCalendarShowcase = lazy(() => import("./pages/templates/apps/FullCalendarShowcase"));
+const GalleryShowcase = lazy(() => import("./pages/templates/apps/GalleryShowcase"));
+const SweetAlertsShowcase = lazy(() => import("./pages/templates/apps/SweetAlertsShowcase"));
+const ProjectsListShowcase = lazy(() => import("./pages/templates/apps/ProjectsListShowcase"));
+const ProjectsOverviewShowcase = lazy(() => import("./pages/templates/apps/ProjectsOverviewShowcase"));
+const ProjectsCreateShowcase = lazy(() => import("./pages/templates/apps/ProjectsCreateShowcase"));
+const JobDetailsShowcase = lazy(() => import("./pages/templates/apps/JobDetailsShowcase"));
+const JobsListShowcase = lazy(() => import("./pages/templates/apps/JobsListShowcase"));
+const JobPostShowcase = lazy(() => import("./pages/templates/apps/JobPostShowcase"));
+const SearchCompanyShowcase = lazy(() => import("./pages/templates/apps/SearchCompanyShowcase"));
+const SearchJobsShowcase = lazy(() => import("./pages/templates/apps/SearchJobsShowcase"));
+const SearchCandidateShowcase = lazy(() => import("./pages/templates/apps/SearchCandidateShowcase"));
+const CandidateDetailsShowcase = lazy(() => import("./pages/templates/apps/CandidateDetailsShowcase"));
+const NFTMarketplaceShowcase = lazy(() => import("./pages/templates/apps/NFTMarketplaceShowcase"));
+const NFTDetailsShowcase = lazy(() => import("./pages/templates/apps/NFTDetailsShowcase"));
+const NFTCreateShowcase = lazy(() => import("./pages/templates/apps/NFTCreateShowcase"));
+const NFTWalletShowcase = lazy(() => import("./pages/templates/apps/NFTWalletShowcase"));
+const NFTLiveAuctionShowcase = lazy(() => import("./pages/templates/apps/NFTLiveAuctionShowcase"));
+const CRMContactsShowcase = lazy(() => import("./pages/templates/apps/CRMContactsShowcase"));
+const CRMCompaniesShowcase = lazy(() => import("./pages/templates/apps/CRMCompaniesShowcase"));
+const CRMDealsShowcase = lazy(() => import("./pages/templates/apps/CRMDealsShowcase"));
+const CRMLeadsShowcase = lazy(() => import("./pages/templates/apps/CRMLeadsShowcase"));
+const CryptoTransactionsShowcase = lazy(() => import("./pages/templates/apps/CryptoTransactionsShowcase"));
+const CryptoExchangeShowcase = lazy(() => import("./pages/templates/apps/CryptoExchangeShowcase"));
+const CryptoBuySellShowcase = lazy(() => import("./pages/templates/apps/CryptoBuySellShowcase"));
+const CryptoMarketcapShowcase = lazy(() => import("./pages/templates/apps/CryptoMarketcapShowcase"));
+const CryptoWalletShowcase = lazy(() => import("./pages/templates/apps/CryptoWalletShowcase"));
+
 const queryClient = new QueryClient();
 
 const LazyFallback = () => (
