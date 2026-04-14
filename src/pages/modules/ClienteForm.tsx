@@ -3,9 +3,13 @@ import { useNavigate, Link } from 'react-router-dom';
 import { motion } from 'framer-motion';
 import {
   Save, X, Building2, CreditCard, Users2, Truck,
-  FileText, MapPin, Phone, Mail, Globe, Hash, CheckSquare, Home, ChevronRight
+  FileText, Phone, Mail, CheckSquare, Home, ChevronRight
 } from 'lucide-react';
-
+import { Input } from '@/components/ui/input';
+import { Label } from '@/components/ui/label';
+import { Textarea } from '@/components/ui/textarea';
+import { Select, SelectContent, SelectItem, SelectTrigger, SelectValue } from '@/components/ui/select';
+import { Checkbox } from '@/components/ui/checkbox';
 
 type Tab = 'cadastrais' | 'financeiros' | 'contatos' | 'cobranca' | 'embarque' | 'observacao';
 
@@ -40,17 +44,14 @@ function Field({ label, required, children, span }: {
 }) {
   return (
     <div className={span === 3 ? 'md:col-span-2 xl:col-span-3' : span === 2 ? 'md:col-span-2' : ''}>
-      <label className="block text-xs font-semibold text-muted-foreground mb-1.5">
+      <Label className="text-xs mb-1.5">
         {label}
         {required && <span className="text-destructive ml-1">•</span>}
-      </label>
+      </Label>
       {children}
     </div>
   );
 }
-
-const inputClass = "w-full px-3.5 py-2.5 rounded-xl bg-surface-container-low text-foreground text-sm placeholder:text-muted-foreground/50 focus:outline-none focus:ring-2 focus:ring-secondary/30 transition-all";
-const selectClass = "w-full px-3.5 py-2.5 rounded-xl bg-surface-container-low text-foreground text-sm focus:outline-none focus:ring-2 focus:ring-secondary/30 transition-all appearance-none";
 
 export default function ClienteForm() {
   const navigate = useNavigate();
@@ -73,8 +74,8 @@ export default function ClienteForm() {
       {/* Header */}
       <div className="flex flex-col sm:flex-row sm:items-center sm:justify-between gap-4 mb-6">
         <div>
-            <h1 className="text-2xl font-display font-bold text-foreground">Cadastro de Cliente — Novo</h1>
-          </div>
+          <h1 className="text-2xl font-display font-bold text-foreground">Cadastro de Cliente — Novo</h1>
+        </div>
         <div className="flex gap-3">
           <button
             onClick={() => navigate('/app/clientes')}
@@ -131,72 +132,79 @@ function TabCadastrais({ isento, setIsento }: { isento: boolean; setIsento: (v: 
     <>
       <FieldGroup title="Identificação">
         <Field label="Razão Social" required span={2}>
-          <input className={inputClass} placeholder="Nome completo da empresa" />
+          <Input placeholder="Nome completo da empresa" />
         </Field>
         <Field label="Nome Reduzido" required>
-          <input className={inputClass} placeholder="Nome fantasia" />
+          <Input placeholder="Nome fantasia" />
         </Field>
         <Field label="CNPJ" required>
-          <input className={inputClass} placeholder="00.000.000/0000-00" />
+          <Input placeholder="00.000.000/0000-00" />
         </Field>
         <Field label="Inscrição Estadual">
           <div className="flex items-center gap-3">
-            <input className={`${inputClass} flex-1`} placeholder="000.000.000.000" disabled={isento} />
+            <Input className="flex-1" placeholder="000.000.000.000" disabled={isento} />
             <label className="flex items-center gap-2 text-sm text-muted-foreground cursor-pointer whitespace-nowrap">
-              <input
-                type="checkbox"
-                checked={isento}
-                onChange={(e) => setIsento(e.target.checked)}
-                className="w-4 h-4 rounded accent-secondary"
-              />
+              <Checkbox checked={isento} onCheckedChange={(v) => setIsento(!!v)} />
               Isento
             </label>
           </div>
         </Field>
         <Field label="Inscrição Municipal">
-          <input className={inputClass} placeholder="Número" />
+          <Input placeholder="Número" />
         </Field>
         <Field label="Natureza" required>
-          <select className={selectClass}>
-            <option>Jurídico</option>
-            <option>Físico</option>
-          </select>
+          <Select><SelectTrigger><SelectValue placeholder="Selecione" /></SelectTrigger>
+            <SelectContent>
+              <SelectItem value="juridico">Jurídico</SelectItem>
+              <SelectItem value="fisico">Físico</SelectItem>
+            </SelectContent>
+          </Select>
         </Field>
         <Field label="Tipo do Cliente">
-          <select className={selectClass}>
-            <option>Cliente</option>
-            <option>Prospect</option>
-            <option>Ex-Cliente</option>
-          </select>
+          <Select><SelectTrigger><SelectValue placeholder="Selecione" /></SelectTrigger>
+            <SelectContent>
+              <SelectItem value="cliente">Cliente</SelectItem>
+              <SelectItem value="prospect">Prospect</SelectItem>
+              <SelectItem value="ex">Ex-Cliente</SelectItem>
+            </SelectContent>
+          </Select>
         </Field>
         <Field label="Contribuinte">
-          <select className={selectClass}>
-            <option>Não</option>
-            <option>Sim</option>
-          </select>
+          <Select><SelectTrigger><SelectValue placeholder="Selecione" /></SelectTrigger>
+            <SelectContent>
+              <SelectItem value="nao">Não</SelectItem>
+              <SelectItem value="sim">Sim</SelectItem>
+            </SelectContent>
+          </Select>
         </Field>
         <Field label="Tipo Operação">
-          <select className={selectClass}>
-            <option>Consumidor Final</option>
-            <option>Revenda</option>
-            <option>Industrialização</option>
-          </select>
+          <Select><SelectTrigger><SelectValue placeholder="Selecione" /></SelectTrigger>
+            <SelectContent>
+              <SelectItem value="consumidor">Consumidor Final</SelectItem>
+              <SelectItem value="revenda">Revenda</SelectItem>
+              <SelectItem value="industrializacao">Industrialização</SelectItem>
+            </SelectContent>
+          </Select>
         </Field>
         <Field label="Cond. Pagamento">
-          <select className={selectClass}>
-            <option>30 dias</option>
-            <option>30/60 dias</option>
-            <option>30/60/90 dias</option>
-            <option>À vista</option>
-          </select>
+          <Select><SelectTrigger><SelectValue placeholder="Selecione" /></SelectTrigger>
+            <SelectContent>
+              <SelectItem value="30">30 dias</SelectItem>
+              <SelectItem value="3060">30/60 dias</SelectItem>
+              <SelectItem value="306090">30/60/90 dias</SelectItem>
+              <SelectItem value="avista">À vista</SelectItem>
+            </SelectContent>
+          </Select>
         </Field>
         <Field label="Modo de Pagamento">
-          <select className={selectClass}>
-            <option>Transferência Bancária</option>
-            <option>Boleto</option>
-            <option>Cartão</option>
-            <option>PIX</option>
-          </select>
+          <Select><SelectTrigger><SelectValue placeholder="Selecione" /></SelectTrigger>
+            <SelectContent>
+              <SelectItem value="transferencia">Transferência Bancária</SelectItem>
+              <SelectItem value="boleto">Boleto</SelectItem>
+              <SelectItem value="cartao">Cartão</SelectItem>
+              <SelectItem value="pix">PIX</SelectItem>
+            </SelectContent>
+          </Select>
         </Field>
         <Field label="Status" required>
           <div className="flex gap-2">
@@ -209,120 +217,140 @@ function TabCadastrais({ isento, setIsento }: { isento: boolean; setIsento: (v: 
 
       <FieldGroup title="Endereço">
         <Field label="CEP" required>
-          <input className={inputClass} placeholder="00000-000" />
+          <Input placeholder="00000-000" />
         </Field>
         <Field label="Endereço" required span={2}>
-          <input className={inputClass} placeholder="Rua, número" />
+          <Input placeholder="Rua, número" />
         </Field>
         <Field label="Complemento">
-          <input className={inputClass} placeholder="Sala, andar..." />
+          <Input placeholder="Sala, andar..." />
         </Field>
         <Field label="Bairro" required>
-          <input className={inputClass} placeholder="Bairro" />
+          <Input placeholder="Bairro" />
         </Field>
         <Field label="País" required>
-          <select className={selectClass}>
-            <option>BRASIL</option>
-            <option>ARGENTINA</option>
-            <option>ESTADOS UNIDOS</option>
-          </select>
+          <Select><SelectTrigger><SelectValue placeholder="Selecione" /></SelectTrigger>
+            <SelectContent>
+              <SelectItem value="brasil">BRASIL</SelectItem>
+              <SelectItem value="argentina">ARGENTINA</SelectItem>
+              <SelectItem value="eua">ESTADOS UNIDOS</SelectItem>
+            </SelectContent>
+          </Select>
         </Field>
         <Field label="Estado" required>
-          <select className={selectClass}>
-            <option>SÃO PAULO</option>
-            <option>RIO DE JANEIRO</option>
-            <option>MINAS GERAIS</option>
-            <option>PARANÁ</option>
-            <option>RIO GRANDE DO SUL</option>
-            <option>SANTA CATARINA</option>
-          </select>
+          <Select><SelectTrigger><SelectValue placeholder="Selecione" /></SelectTrigger>
+            <SelectContent>
+              <SelectItem value="sp">SÃO PAULO</SelectItem>
+              <SelectItem value="rj">RIO DE JANEIRO</SelectItem>
+              <SelectItem value="mg">MINAS GERAIS</SelectItem>
+              <SelectItem value="pr">PARANÁ</SelectItem>
+              <SelectItem value="rs">RIO GRANDE DO SUL</SelectItem>
+              <SelectItem value="sc">SANTA CATARINA</SelectItem>
+            </SelectContent>
+          </Select>
         </Field>
         <Field label="Cidade" required>
-          <select className={selectClass}>
-            <option>ARARAQUARA</option>
-            <option>SÃO PAULO</option>
-            <option>SERTÃOZINHO</option>
-          </select>
+          <Select><SelectTrigger><SelectValue placeholder="Selecione" /></SelectTrigger>
+            <SelectContent>
+              <SelectItem value="araraquara">ARARAQUARA</SelectItem>
+              <SelectItem value="saopaulo">SÃO PAULO</SelectItem>
+              <SelectItem value="sertaozinho">SERTÃOZINHO</SelectItem>
+            </SelectContent>
+          </Select>
         </Field>
       </FieldGroup>
 
       <FieldGroup title="Outros Dados">
         <Field label="Telefone 1">
-          <input className={inputClass} placeholder="(00) 0000-0000" />
+          <Input placeholder="(00) 0000-0000" />
         </Field>
         <Field label="Telefone 2">
-          <input className={inputClass} placeholder="(00) 0000-0000" />
+          <Input placeholder="(00) 0000-0000" />
         </Field>
         <Field label="Fax">
-          <input className={inputClass} placeholder="(00) 0000-0000" />
+          <Input placeholder="(00) 0000-0000" />
         </Field>
         <Field label="E-mail NFe">
-          <input type="email" className={inputClass} placeholder="nfe@empresa.com.br" />
+          <Input type="email" placeholder="nfe@empresa.com.br" />
         </Field>
         <Field label="E-mail NFSe">
-          <input type="email" className={inputClass} placeholder="nfse@empresa.com.br" />
+          <Input type="email" placeholder="nfse@empresa.com.br" />
         </Field>
         <Field label="Home Page">
-          <input className={inputClass} placeholder="www.empresa.com.br" />
+          <Input placeholder="www.empresa.com.br" />
         </Field>
       </FieldGroup>
 
       <FieldGroup title="Características">
         <Field label="Origem" required>
-          <select className={selectClass}>
-            <option>NACIONAL</option>
-            <option>INTERNACIONAL</option>
-          </select>
+          <Select><SelectTrigger><SelectValue placeholder="Selecione" /></SelectTrigger>
+            <SelectContent>
+              <SelectItem value="nacional">NACIONAL</SelectItem>
+              <SelectItem value="internacional">INTERNACIONAL</SelectItem>
+            </SelectContent>
+          </Select>
         </Field>
         <Field label="Segmento" required>
-          <select className={selectClass}>
-            <option>FABRICANTE DE EQUIPAMENTOS</option>
-            <option>DISTRIBUIDOR</option>
-            <option>INTEGRADOR</option>
-            <option>USUÁRIO FINAL</option>
-          </select>
+          <Select><SelectTrigger><SelectValue placeholder="Selecione" /></SelectTrigger>
+            <SelectContent>
+              <SelectItem value="fabricante">FABRICANTE DE EQUIPAMENTOS</SelectItem>
+              <SelectItem value="distribuidor">DISTRIBUIDOR</SelectItem>
+              <SelectItem value="integrador">INTEGRADOR</SelectItem>
+              <SelectItem value="usuario">USUÁRIO FINAL</SelectItem>
+            </SelectContent>
+          </Select>
         </Field>
         <Field label="Área Coord. Comercial" required>
-          <select className={selectClass}>
-            <option>São Paulo - Norte</option>
-            <option>São Paulo - Sul</option>
-            <option>Rio de Janeiro</option>
-            <option>Minas Gerais</option>
-          </select>
+          <Select><SelectTrigger><SelectValue placeholder="Selecione" /></SelectTrigger>
+            <SelectContent>
+              <SelectItem value="spn">São Paulo - Norte</SelectItem>
+              <SelectItem value="sps">São Paulo - Sul</SelectItem>
+              <SelectItem value="rj">Rio de Janeiro</SelectItem>
+              <SelectItem value="mg">Minas Gerais</SelectItem>
+            </SelectContent>
+          </Select>
         </Field>
         <Field label="Área Coord. Técnico" required>
-          <select className={selectClass}>
-            <option>ENGENHARIA DE APLICAÇÕES</option>
-            <option>SUPORTE TÉCNICO</option>
-          </select>
+          <Select><SelectTrigger><SelectValue placeholder="Selecione" /></SelectTrigger>
+            <SelectContent>
+              <SelectItem value="engenharia">ENGENHARIA DE APLICAÇÕES</SelectItem>
+              <SelectItem value="suporte">SUPORTE TÉCNICO</SelectItem>
+            </SelectContent>
+          </Select>
         </Field>
         <Field label="Transportadora">
-          <select className={selectClass}>
-            <option value="">Selecione...</option>
-            <option>Transportes Rápido</option>
-            <option>Logística Express</option>
-          </select>
+          <Select><SelectTrigger><SelectValue placeholder="Selecione..." /></SelectTrigger>
+            <SelectContent>
+              <SelectItem value="rapido">Transportes Rápido</SelectItem>
+              <SelectItem value="express">Logística Express</SelectItem>
+            </SelectContent>
+          </Select>
         </Field>
         <Field label="Vendedor Área" required>
-          <select className={selectClass}>
-            <option>SAO PAULO - OESTE</option>
-            <option>SAO PAULO - LESTE</option>
-            <option>SUL</option>
-          </select>
+          <Select><SelectTrigger><SelectValue placeholder="Selecione" /></SelectTrigger>
+            <SelectContent>
+              <SelectItem value="spo">SAO PAULO - OESTE</SelectItem>
+              <SelectItem value="spl">SAO PAULO - LESTE</SelectItem>
+              <SelectItem value="sul">SUL</SelectItem>
+            </SelectContent>
+          </Select>
         </Field>
         <Field label="Vendedor" required>
-          <select className={selectClass}>
-            <option>Paulo Roberto Ribeiro</option>
-            <option>Ana Carolina do Prado</option>
-            <option>Douglas Fabio</option>
-          </select>
+          <Select><SelectTrigger><SelectValue placeholder="Selecione" /></SelectTrigger>
+            <SelectContent>
+              <SelectItem value="paulo">Paulo Roberto Ribeiro</SelectItem>
+              <SelectItem value="ana">Ana Carolina do Prado</SelectItem>
+              <SelectItem value="douglas">Douglas Fabio</SelectItem>
+            </SelectContent>
+          </Select>
         </Field>
         <Field label="Vendedor 2">
-          <select className={selectClass}>
-            <option value="">Selecione...</option>
-            <option>Paulo Roberto Ribeiro</option>
-            <option>Ana Carolina do Prado</option>
-          </select>
+          <Select><SelectTrigger><SelectValue placeholder="Selecione..." /></SelectTrigger>
+            <SelectContent>
+              <SelectItem value="paulo">Paulo Roberto Ribeiro</SelectItem>
+              <SelectItem value="ana">Ana Carolina do Prado</SelectItem>
+            </SelectContent>
+          </Select>
         </Field>
       </FieldGroup>
     </>
@@ -335,41 +363,45 @@ function TabFinanceiros() {
     <>
       <FieldGroup title="Dados Bancários">
         <Field label="Banco">
-          <select className={selectClass}>
-            <option>Banco do Brasil</option>
-            <option>Itaú</option>
-            <option>Bradesco</option>
-            <option>Santander</option>
-            <option>Caixa Econômica</option>
-          </select>
+          <Select><SelectTrigger><SelectValue placeholder="Selecione" /></SelectTrigger>
+            <SelectContent>
+              <SelectItem value="bb">Banco do Brasil</SelectItem>
+              <SelectItem value="itau">Itaú</SelectItem>
+              <SelectItem value="bradesco">Bradesco</SelectItem>
+              <SelectItem value="santander">Santander</SelectItem>
+              <SelectItem value="caixa">Caixa Econômica</SelectItem>
+            </SelectContent>
+          </Select>
         </Field>
         <Field label="Agência">
-          <input className={inputClass} placeholder="0000-0" />
+          <Input placeholder="0000-0" />
         </Field>
         <Field label="Conta Corrente">
-          <input className={inputClass} placeholder="00000-0" />
+          <Input placeholder="00000-0" />
         </Field>
         <Field label="PIX">
-          <input className={inputClass} placeholder="Chave PIX" />
+          <Input placeholder="Chave PIX" />
         </Field>
       </FieldGroup>
       <FieldGroup title="Limites e Crédito">
         <Field label="Limite de Crédito">
-          <input className={inputClass} placeholder="R$ 0,00" />
+          <Input placeholder="R$ 0,00" />
         </Field>
         <Field label="Saldo Devedor">
-          <input className={inputClass} placeholder="R$ 0,00" readOnly />
+          <Input placeholder="R$ 0,00" readOnly className="bg-muted/30" />
         </Field>
         <Field label="Classificação de Risco">
-          <select className={selectClass}>
-            <option>A - Excelente</option>
-            <option>B - Bom</option>
-            <option>C - Regular</option>
-            <option>D - Ruim</option>
-          </select>
+          <Select><SelectTrigger><SelectValue placeholder="Selecione" /></SelectTrigger>
+            <SelectContent>
+              <SelectItem value="a">A - Excelente</SelectItem>
+              <SelectItem value="b">B - Bom</SelectItem>
+              <SelectItem value="c">C - Regular</SelectItem>
+              <SelectItem value="d">D - Ruim</SelectItem>
+            </SelectContent>
+          </Select>
         </Field>
         <Field label="Prazo Médio (dias)">
-          <input type="number" className={inputClass} placeholder="30" />
+          <Input type="number" placeholder="30" />
         </Field>
       </FieldGroup>
     </>
@@ -419,29 +451,31 @@ function TabCobranca() {
   return (
     <FieldGroup title="Dados de Cobrança">
       <Field label="Endereço de Cobrança" span={2}>
-        <input className={inputClass} placeholder="Endereço completo" />
+        <Input placeholder="Endereço completo" />
       </Field>
       <Field label="CEP">
-        <input className={inputClass} placeholder="00000-000" />
+        <Input placeholder="00000-000" />
       </Field>
       <Field label="Cidade">
-        <input className={inputClass} placeholder="Cidade" />
+        <Input placeholder="Cidade" />
       </Field>
       <Field label="Estado">
-        <select className={selectClass}>
-          <option>SÃO PAULO</option>
-          <option>RIO DE JANEIRO</option>
-          <option>MINAS GERAIS</option>
-        </select>
+        <Select><SelectTrigger><SelectValue placeholder="Selecione" /></SelectTrigger>
+          <SelectContent>
+            <SelectItem value="sp">SÃO PAULO</SelectItem>
+            <SelectItem value="rj">RIO DE JANEIRO</SelectItem>
+            <SelectItem value="mg">MINAS GERAIS</SelectItem>
+          </SelectContent>
+        </Select>
       </Field>
       <Field label="Contato Cobrança">
-        <input className={inputClass} placeholder="Nome do contato" />
+        <Input placeholder="Nome do contato" />
       </Field>
       <Field label="Telefone">
-        <input className={inputClass} placeholder="(00) 0000-0000" />
+        <Input placeholder="(00) 0000-0000" />
       </Field>
       <Field label="E-mail Cobrança">
-        <input type="email" className={inputClass} placeholder="cobranca@empresa.com.br" />
+        <Input type="email" placeholder="cobranca@empresa.com.br" />
       </Field>
     </FieldGroup>
   );
@@ -452,39 +486,44 @@ function TabEmbarque() {
   return (
     <FieldGroup title="Dados de Embarque">
       <Field label="Endereço de Entrega" span={2}>
-        <input className={inputClass} placeholder="Endereço completo" />
+        <Input placeholder="Endereço completo" />
       </Field>
       <Field label="CEP">
-        <input className={inputClass} placeholder="00000-000" />
+        <Input placeholder="00000-000" />
       </Field>
       <Field label="Cidade">
-        <input className={inputClass} placeholder="Cidade" />
+        <Input placeholder="Cidade" />
       </Field>
       <Field label="Estado">
-        <select className={selectClass}>
-          <option>SÃO PAULO</option>
-          <option>RIO DE JANEIRO</option>
-          <option>MINAS GERAIS</option>
-        </select>
+        <Select><SelectTrigger><SelectValue placeholder="Selecione" /></SelectTrigger>
+          <SelectContent>
+            <SelectItem value="sp">SÃO PAULO</SelectItem>
+            <SelectItem value="rj">RIO DE JANEIRO</SelectItem>
+            <SelectItem value="mg">MINAS GERAIS</SelectItem>
+          </SelectContent>
+        </Select>
       </Field>
       <Field label="Transportadora Padrão">
-        <select className={selectClass}>
-          <option value="">Selecione...</option>
-          <option>Transportes Rápido</option>
-          <option>Logística Express</option>
-        </select>
+        <Select><SelectTrigger><SelectValue placeholder="Selecione..." /></SelectTrigger>
+          <SelectContent>
+            <SelectItem value="rapido">Transportes Rápido</SelectItem>
+            <SelectItem value="express">Logística Express</SelectItem>
+          </SelectContent>
+        </Select>
       </Field>
       <Field label="Tipo de Frete">
-        <select className={selectClass}>
-          <option>CIF</option>
-          <option>FOB</option>
-        </select>
+        <Select><SelectTrigger><SelectValue placeholder="Selecione" /></SelectTrigger>
+          <SelectContent>
+            <SelectItem value="cif">CIF</SelectItem>
+            <SelectItem value="fob">FOB</SelectItem>
+          </SelectContent>
+        </Select>
       </Field>
       <Field label="Horário de Recebimento">
-        <input className={inputClass} placeholder="08:00 às 17:00" />
+        <Input placeholder="08:00 às 17:00" />
       </Field>
       <Field label="Observações de Entrega" span={3}>
-        <textarea className={`${inputClass} min-h-[80px] resize-y`} placeholder="Instruções especiais de entrega..." />
+        <Textarea placeholder="Instruções especiais de entrega..." className="min-h-[80px] resize-y" />
       </Field>
     </FieldGroup>
   );
@@ -495,10 +534,10 @@ function TabObservacao() {
   return (
     <FieldGroup title="Observações Gerais">
       <Field label="Observações internas" span={3}>
-        <textarea className={`${inputClass} min-h-[200px] resize-y`} placeholder="Observações sobre o cliente..." />
+        <Textarea placeholder="Observações sobre o cliente..." className="min-h-[200px] resize-y" />
       </Field>
       <Field label="Observações para Nota Fiscal" span={3}>
-        <textarea className={`${inputClass} min-h-[100px] resize-y`} placeholder="Texto que será impresso na NF..." />
+        <Textarea placeholder="Texto que será impresso na NF..." className="min-h-[100px] resize-y" />
       </Field>
     </FieldGroup>
   );

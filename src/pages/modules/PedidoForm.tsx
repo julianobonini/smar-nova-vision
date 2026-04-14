@@ -1,8 +1,11 @@
 import { useState } from 'react';
 import { useNavigate, Link } from 'react-router-dom';
 import { motion, AnimatePresence } from 'framer-motion';
-import { ArrowLeft, Save, X, Plus, Trash2, Home, ChevronRight, Search } from 'lucide-react';
-
+import { Save, X, Plus, Trash2, Home, ChevronRight, Search } from 'lucide-react';
+import { Input } from '@/components/ui/input';
+import { Label } from '@/components/ui/label';
+import { Textarea } from '@/components/ui/textarea';
+import { Select, SelectContent, SelectItem, SelectTrigger, SelectValue } from '@/components/ui/select';
 
 const tabs = [
   { key: 'resumo', label: 'Resumo' },
@@ -16,29 +19,9 @@ const tabs = [
 function Field({ label, children, span = 1 }: { label: string; children: React.ReactNode; span?: number }) {
   return (
     <div className={span === 2 ? 'sm:col-span-2' : span === 3 ? 'sm:col-span-3' : ''}>
-      <label className="block text-xs font-semibold text-muted-foreground uppercase tracking-wider mb-1.5">{label}</label>
+      <Label className="text-xs mb-1.5">{label}</Label>
       {children}
     </div>
-  );
-}
-
-function FieldInput({ placeholder = '', type = 'text', defaultValue = '' }) {
-  return (
-    <input
-      type={type}
-      defaultValue={defaultValue}
-      placeholder={placeholder}
-      className="w-full px-3 py-2.5 rounded-xl bg-background text-foreground placeholder:text-muted-foreground/50 focus:outline-none focus:ring-2 focus:ring-secondary/30 shadow-ambient text-sm"
-    />
-  );
-}
-
-function FieldSelect({ options, defaultValue = '' }: { options: string[]; defaultValue?: string }) {
-  return (
-    <select defaultValue={defaultValue} className="w-full px-3 py-2.5 rounded-xl bg-background text-foreground focus:outline-none focus:ring-2 focus:ring-secondary/30 shadow-ambient text-sm appearance-none">
-      <option value="">Selecione...</option>
-      {options.map(o => <option key={o} value={o}>{o}</option>)}
-    </select>
   );
 }
 
@@ -46,7 +29,6 @@ function SectionTitle({ children }: { children: React.ReactNode }) {
   return <h3 className="text-sm font-display font-bold text-foreground mb-4 pb-2" style={{ borderBottom: '1px solid hsl(var(--border) / 0.3)' }}>{children}</h3>;
 }
 
-// Mock item data
 const mockItems = [
   { id: 1, codigo: 'EQP-001', descricao: 'Sensor de Pressão XK-200', qtd: 10, unidade: 'UN', unitario: 1250.00, ipi: 5, icms: 12, total: 12500.00 },
   { id: 2, codigo: 'EQP-002', descricao: 'Válvula Pneumática VP-100', qtd: 5, unidade: 'UN', unitario: 3400.00, ipi: 5, icms: 12, total: 17000.00 },
@@ -58,13 +40,27 @@ function TabResumo() {
     <div className="space-y-6">
       <SectionTitle>Dados do Pedido</SectionTitle>
       <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-4">
-        <Field label="Nº Pedido"><FieldInput defaultValue="PED-88425" /></Field>
-        <Field label="Data Emissão"><FieldInput type="date" defaultValue="2023-10-28" /></Field>
+        <Field label="Nº Pedido"><Input defaultValue="PED-88425" /></Field>
+        <Field label="Data Emissão"><Input type="date" defaultValue="2023-10-28" /></Field>
         <Field label="Status">
-          <FieldSelect options={['Em Elaboração', 'Aprovado', 'Faturado', 'Cancelado']} defaultValue="Em Elaboração" />
+          <Select defaultValue="elaboracao">
+            <SelectTrigger><SelectValue /></SelectTrigger>
+            <SelectContent>
+              <SelectItem value="elaboracao">Em Elaboração</SelectItem>
+              <SelectItem value="aprovado">Aprovado</SelectItem>
+              <SelectItem value="faturado">Faturado</SelectItem>
+              <SelectItem value="cancelado">Cancelado</SelectItem>
+            </SelectContent>
+          </Select>
         </Field>
         <Field label="Origem">
-          <FieldSelect options={['Nacional', 'Importação']} defaultValue="Nacional" />
+          <Select defaultValue="nacional">
+            <SelectTrigger><SelectValue /></SelectTrigger>
+            <SelectContent>
+              <SelectItem value="nacional">Nacional</SelectItem>
+              <SelectItem value="importacao">Importação</SelectItem>
+            </SelectContent>
+          </Select>
         </Field>
       </div>
 
@@ -72,23 +68,30 @@ function TabResumo() {
       <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-4">
         <Field label="Cliente" span={2}>
           <div className="flex gap-2">
-            <input defaultValue="USINA ACUCAREIRA FURLAN S/A" className="flex-1 px-3 py-2.5 rounded-xl bg-background text-foreground focus:outline-none focus:ring-2 focus:ring-secondary/30 shadow-ambient text-sm" />
+            <Input defaultValue="USINA ACUCAREIRA FURLAN S/A" className="flex-1" />
             <button className="p-2.5 rounded-xl bg-surface-container-low hover:bg-surface-container transition-colors text-muted-foreground"><Search size={16} /></button>
           </div>
         </Field>
-        <Field label="CNPJ"><FieldInput defaultValue="56.723.257/0001-26" /></Field>
-        <Field label="Cidade/UF/País"><FieldInput defaultValue="Santa Barbar D Oeste / SP / BRA" /></Field>
-        <Field label="I.E."><FieldInput defaultValue="606039671117" /></Field>
+        <Field label="CNPJ"><Input defaultValue="56.723.257/0001-26" /></Field>
+        <Field label="Cidade/UF/País"><Input defaultValue="Santa Barbar D Oeste / SP / BRA" /></Field>
+        <Field label="I.E."><Input defaultValue="606039671117" /></Field>
         <Field label="Vendedor">
-          <FieldSelect options={['Carlos Silva', 'Maria Santos', 'Pedro Costa']} defaultValue="Carlos Silva" />
+          <Select defaultValue="carlos">
+            <SelectTrigger><SelectValue /></SelectTrigger>
+            <SelectContent>
+              <SelectItem value="carlos">Carlos Silva</SelectItem>
+              <SelectItem value="maria">Maria Santos</SelectItem>
+              <SelectItem value="pedro">Pedro Costa</SelectItem>
+            </SelectContent>
+          </Select>
         </Field>
       </div>
 
       <SectionTitle>Contatos</SectionTitle>
       <div className="grid grid-cols-1 sm:grid-cols-3 gap-4">
-        <Field label="Contato Comercial"><FieldInput defaultValue="Sr. Genivaldo A. Furlan" /></Field>
-        <Field label="E-mail"><FieldInput defaultValue="genivaldo@usinafurlan.com.br" /></Field>
-        <Field label="Telefone"><FieldInput defaultValue="(19) 3026-4600" /></Field>
+        <Field label="Contato Comercial"><Input defaultValue="Sr. Genivaldo A. Furlan" /></Field>
+        <Field label="E-mail"><Input defaultValue="genivaldo@usinafurlan.com.br" /></Field>
+        <Field label="Telefone"><Input defaultValue="(19) 3026-4600" /></Field>
       </div>
 
       <SectionTitle>Resumo Financeiro</SectionTitle>
@@ -138,7 +141,7 @@ function TabItens() {
                   <td className="px-4 py-3 text-sm text-muted-foreground">{item.id}</td>
                   <td className="px-4 py-3 text-sm font-medium text-secondary">{item.codigo}</td>
                   <td className="px-4 py-3 text-sm text-foreground">{item.descricao}</td>
-                  <td className="px-4 py-3"><input type="number" defaultValue={item.qtd} className="w-16 px-2 py-1.5 rounded-lg bg-surface-container-low text-foreground text-sm text-center focus:outline-none focus:ring-2 focus:ring-secondary/30" /></td>
+                  <td className="px-4 py-3"><Input type="number" defaultValue={item.qtd} className="w-16 text-center h-8" /></td>
                   <td className="px-4 py-3 text-sm text-muted-foreground">{item.unidade}</td>
                   <td className="px-4 py-3 text-sm text-foreground">{item.unitario.toLocaleString('pt-BR', { style: 'currency', currency: 'BRL' })}</td>
                   <td className="px-4 py-3 text-sm text-muted-foreground">{item.ipi}%</td>
@@ -170,13 +173,39 @@ function TabPagamento() {
       <SectionTitle>Condições de Pagamento</SectionTitle>
       <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-4">
         <Field label="Forma de Pagamento">
-          <FieldSelect options={['Boleto Bancário', 'Transferência', 'Cartão', 'Cheque', 'Financiamento']} defaultValue="Boleto Bancário" />
+          <Select defaultValue="boleto">
+            <SelectTrigger><SelectValue /></SelectTrigger>
+            <SelectContent>
+              <SelectItem value="boleto">Boleto Bancário</SelectItem>
+              <SelectItem value="transferencia">Transferência</SelectItem>
+              <SelectItem value="cartao">Cartão</SelectItem>
+              <SelectItem value="cheque">Cheque</SelectItem>
+              <SelectItem value="financiamento">Financiamento</SelectItem>
+            </SelectContent>
+          </Select>
         </Field>
         <Field label="Condição">
-          <FieldSelect options={['30/60/90 DDL', '28 DDL', '30 DDL', '45 DDL', 'À Vista', '30/60 DDL']} defaultValue="30/60/90 DDL" />
+          <Select defaultValue="306090">
+            <SelectTrigger><SelectValue /></SelectTrigger>
+            <SelectContent>
+              <SelectItem value="306090">30/60/90 DDL</SelectItem>
+              <SelectItem value="28">28 DDL</SelectItem>
+              <SelectItem value="30">30 DDL</SelectItem>
+              <SelectItem value="45">45 DDL</SelectItem>
+              <SelectItem value="avista">À Vista</SelectItem>
+              <SelectItem value="3060">30/60 DDL</SelectItem>
+            </SelectContent>
+          </Select>
         </Field>
         <Field label="Moeda">
-          <FieldSelect options={['BRL - Real', 'USD - Dólar', 'EUR - Euro']} defaultValue="BRL - Real" />
+          <Select defaultValue="brl">
+            <SelectTrigger><SelectValue /></SelectTrigger>
+            <SelectContent>
+              <SelectItem value="brl">BRL - Real</SelectItem>
+              <SelectItem value="usd">USD - Dólar</SelectItem>
+              <SelectItem value="eur">EUR - Euro</SelectItem>
+            </SelectContent>
+          </Select>
         </Field>
       </div>
 
@@ -209,10 +238,20 @@ function TabPagamento() {
 
       <SectionTitle>Dados Bancários</SectionTitle>
       <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-4">
-        <Field label="Banco"><FieldSelect options={['Banco do Brasil', 'Itaú', 'Bradesco', 'Santander', 'Caixa']} /></Field>
-        <Field label="Agência"><FieldInput placeholder="0000-0" /></Field>
-        <Field label="Conta"><FieldInput placeholder="00000-0" /></Field>
-        <Field label="PIX"><FieldInput placeholder="Chave PIX" /></Field>
+        <Field label="Banco">
+          <Select><SelectTrigger><SelectValue placeholder="Selecione" /></SelectTrigger>
+            <SelectContent>
+              <SelectItem value="bb">Banco do Brasil</SelectItem>
+              <SelectItem value="itau">Itaú</SelectItem>
+              <SelectItem value="bradesco">Bradesco</SelectItem>
+              <SelectItem value="santander">Santander</SelectItem>
+              <SelectItem value="caixa">Caixa</SelectItem>
+            </SelectContent>
+          </Select>
+        </Field>
+        <Field label="Agência"><Input placeholder="0000-0" /></Field>
+        <Field label="Conta"><Input placeholder="00000-0" /></Field>
+        <Field label="PIX"><Input placeholder="Chave PIX" /></Field>
       </div>
     </div>
   );
@@ -223,10 +262,17 @@ function TabPrazo() {
     <div className="space-y-6">
       <SectionTitle>Prazos de Entrega</SectionTitle>
       <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-4">
-        <Field label="Prazo de Entrega (dias)"><FieldInput type="number" defaultValue="45" /></Field>
-        <Field label="Data Prevista"><FieldInput type="date" defaultValue="2023-12-12" /></Field>
+        <Field label="Prazo de Entrega (dias)"><Input type="number" defaultValue="45" /></Field>
+        <Field label="Data Prevista"><Input type="date" defaultValue="2023-12-12" /></Field>
         <Field label="Prioridade">
-          <FieldSelect options={['Normal', 'Urgente', 'Programada']} defaultValue="Normal" />
+          <Select defaultValue="normal">
+            <SelectTrigger><SelectValue /></SelectTrigger>
+            <SelectContent>
+              <SelectItem value="normal">Normal</SelectItem>
+              <SelectItem value="urgente">Urgente</SelectItem>
+              <SelectItem value="programada">Programada</SelectItem>
+            </SelectContent>
+          </Select>
         </Field>
       </div>
 
@@ -259,7 +305,7 @@ function TabPrazo() {
 
       <div className="grid grid-cols-1 sm:grid-cols-2 gap-4">
         <Field label="Observações sobre Prazo" span={2}>
-          <textarea rows={3} className="w-full px-3 py-2.5 rounded-xl bg-background text-foreground placeholder:text-muted-foreground/50 focus:outline-none focus:ring-2 focus:ring-secondary/30 shadow-ambient text-sm resize-none" placeholder="Observações sobre condições de prazo..." />
+          <Textarea placeholder="Observações sobre condições de prazo..." className="resize-none" rows={3} />
         </Field>
       </div>
     </div>
@@ -272,22 +318,38 @@ function TabFrete() {
       <SectionTitle>Dados de Frete e Embarque</SectionTitle>
       <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-4">
         <Field label="Tipo de Frete">
-          <FieldSelect options={['FOB - Por conta do comprador', 'CIF - Por conta do vendedor', 'FOT - Fábrica']} defaultValue="FOT - Fábrica" />
+          <Select defaultValue="fot">
+            <SelectTrigger><SelectValue /></SelectTrigger>
+            <SelectContent>
+              <SelectItem value="fob">FOB - Por conta do comprador</SelectItem>
+              <SelectItem value="cif">CIF - Por conta do vendedor</SelectItem>
+              <SelectItem value="fot">FOT - Fábrica</SelectItem>
+            </SelectContent>
+          </Select>
         </Field>
-        <Field label="Transportadora"><FieldInput defaultValue="Transportes Rápidos Ltda" /></Field>
-        <Field label="Valor do Frete"><FieldInput defaultValue="R$ 850,00" /></Field>
-        <Field label="Seguro"><FieldInput defaultValue="R$ 0,00" /></Field>
-        <Field label="Peso Bruto (kg)"><FieldInput type="number" defaultValue="320" /></Field>
-        <Field label="Volume"><FieldInput type="number" defaultValue="8" /></Field>
+        <Field label="Transportadora"><Input defaultValue="Transportes Rápidos Ltda" /></Field>
+        <Field label="Valor do Frete"><Input defaultValue="R$ 850,00" /></Field>
+        <Field label="Seguro"><Input defaultValue="R$ 0,00" /></Field>
+        <Field label="Peso Bruto (kg)"><Input type="number" defaultValue="320" /></Field>
+        <Field label="Volume"><Input type="number" defaultValue="8" /></Field>
       </div>
 
       <SectionTitle>Endereço de Entrega</SectionTitle>
       <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-4">
-        <Field label="Endereço" span={2}><FieldInput defaultValue="Rod. SP-304 Km 143,5 - CX.P. 127/128" /></Field>
-        <Field label="CEP"><FieldInput defaultValue="13450-000" /></Field>
-        <Field label="Cidade"><FieldInput defaultValue="Santa Bárbara d'Oeste" /></Field>
-        <Field label="UF"><FieldSelect options={['SP', 'RJ', 'MG', 'RS', 'PR', 'SC']} defaultValue="SP" /></Field>
-        <Field label="País"><FieldInput defaultValue="Brasil" /></Field>
+        <Field label="Endereço" span={2}><Input defaultValue="Rod. SP-304 Km 143,5 - CX.P. 127/128" /></Field>
+        <Field label="CEP"><Input defaultValue="13450-000" /></Field>
+        <Field label="Cidade"><Input defaultValue="Santa Bárbara d'Oeste" /></Field>
+        <Field label="UF">
+          <Select defaultValue="sp">
+            <SelectTrigger><SelectValue /></SelectTrigger>
+            <SelectContent>
+              {['SP', 'RJ', 'MG', 'RS', 'PR', 'SC'].map(uf => (
+                <SelectItem key={uf} value={uf.toLowerCase()}>{uf}</SelectItem>
+              ))}
+            </SelectContent>
+          </Select>
+        </Field>
+        <Field label="País"><Input defaultValue="Brasil" /></Field>
       </div>
     </div>
   );
@@ -298,17 +360,17 @@ function TabObservacoes() {
     <div className="space-y-6">
       <SectionTitle>Observações Gerais</SectionTitle>
       <Field label="Observações do Pedido" span={2}>
-        <textarea rows={5} className="w-full px-3 py-2.5 rounded-xl bg-background text-foreground placeholder:text-muted-foreground/50 focus:outline-none focus:ring-2 focus:ring-secondary/30 shadow-ambient text-sm resize-none" placeholder="Observações gerais do pedido..." />
+        <Textarea rows={5} placeholder="Observações gerais do pedido..." className="resize-none" />
       </Field>
 
       <SectionTitle>Observações Internas</SectionTitle>
       <Field label="Notas internas (não visíveis ao cliente)" span={2}>
-        <textarea rows={4} className="w-full px-3 py-2.5 rounded-xl bg-background text-foreground placeholder:text-muted-foreground/50 focus:outline-none focus:ring-2 focus:ring-secondary/30 shadow-ambient text-sm resize-none" placeholder="Notas internas..." />
+        <Textarea rows={4} placeholder="Notas internas..." className="resize-none" />
       </Field>
 
       <SectionTitle>Termos e Condições</SectionTitle>
       <Field label="Condições Contratuais" span={2}>
-        <textarea rows={4} defaultValue="Validade da proposta: 15 dias. Garantia conforme especificação técnica do fabricante. Entrega sujeita à confirmação de estoque." className="w-full px-3 py-2.5 rounded-xl bg-background text-foreground placeholder:text-muted-foreground/50 focus:outline-none focus:ring-2 focus:ring-secondary/30 shadow-ambient text-sm resize-none" />
+        <Textarea rows={4} defaultValue="Validade da proposta: 15 dias. Garantia conforme especificação técnica do fabricante. Entrega sujeita à confirmação de estoque." className="resize-none" />
       </Field>
     </div>
   );
@@ -344,9 +406,9 @@ export default function PedidoForm() {
       {/* Header */}
       <div className="flex flex-col sm:flex-row sm:items-center justify-between gap-4 mb-6">
         <div>
-            <h1 className="text-2xl font-display font-bold text-foreground">Cadastro de Pedido — Novo</h1>
-            <p className="text-sm text-muted-foreground mt-0.5">PED-88425 • <span className="px-2 py-0.5 rounded-md text-xs font-semibold bg-status-pending/10 text-status-pending">Em Elaboração</span></p>
-          </div>
+          <h1 className="text-2xl font-display font-bold text-foreground">Cadastro de Pedido — Novo</h1>
+          <p className="text-sm text-muted-foreground mt-0.5">PED-88425 • <span className="px-2 py-0.5 rounded-md text-xs font-semibold bg-status-pending/10 text-status-pending">Em Elaboração</span></p>
+        </div>
         <div className="flex items-center gap-2">
           <button onClick={() => navigate('/app/pedidos')} className="px-5 py-2.5 rounded-xl bg-background text-foreground text-sm font-semibold flex items-center gap-2 shadow-ambient hover:bg-surface-container-high transition-colors">
             <X size={16} /> Cancelar
