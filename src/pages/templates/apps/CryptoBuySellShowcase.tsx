@@ -2,6 +2,9 @@ import { useState } from 'react';
 import { AppsLayout, ShowcaseSection } from './AppsLayout';
 import { TrendingUp, TrendingDown } from 'lucide-react';
 import { Button } from '@/components/ui/button';
+import { Input } from '@/components/ui/input';
+import { Label } from '@/components/ui/label';
+import { Select, SelectContent, SelectItem, SelectTrigger, SelectValue } from '@/components/ui/select';
 
 export default function CryptoBuySellShowcase() {
   const [tab, setTab] = useState<'buy' | 'sell'>('buy');
@@ -20,19 +23,24 @@ export default function CryptoBuySellShowcase() {
                   <TrendingDown size={12} className="inline mr-1" /> Vender
                 </button>
               </div>
-              <div className="space-y-1.5">
-                <label className="text-xs font-semibold text-foreground">Moeda</label>
-                <select className="w-full px-3 py-2 rounded-lg bg-muted/20 border border-border text-sm text-foreground">
-                  <option>Bitcoin (BTC)</option><option>Ethereum (ETH)</option><option>Solana (SOL)</option>
-                </select>
+              <div>
+                <Label className="text-xs mb-1.5">Moeda</Label>
+                <Select>
+                  <SelectTrigger><SelectValue placeholder="Selecione" /></SelectTrigger>
+                  <SelectContent>
+                    <SelectItem value="btc">Bitcoin (BTC)</SelectItem>
+                    <SelectItem value="eth">Ethereum (ETH)</SelectItem>
+                    <SelectItem value="sol">Solana (SOL)</SelectItem>
+                  </SelectContent>
+                </Select>
               </div>
-              <div className="space-y-1.5">
-                <label className="text-xs font-semibold text-foreground">Quantidade</label>
-                <input type="number" placeholder="0.00" className="w-full px-3 py-2 rounded-lg bg-muted/20 border border-border text-sm text-foreground focus:outline-none focus:ring-1 focus:ring-primary" />
+              <div>
+                <Label className="text-xs mb-1.5">Quantidade</Label>
+                <Input type="number" placeholder="0.00" />
               </div>
-              <div className="space-y-1.5">
-                <label className="text-xs font-semibold text-foreground">Preço (BRL)</label>
-                <input type="number" placeholder="R$ 0,00" className="w-full px-3 py-2 rounded-lg bg-muted/20 border border-border text-sm text-foreground focus:outline-none focus:ring-1 focus:ring-primary" />
+              <div>
+                <Label className="text-xs mb-1.5">Preço (BRL)</Label>
+                <Input type="number" placeholder="R$ 0,00" />
               </div>
               <div className="p-3 rounded-lg bg-muted/10 text-xs text-muted-foreground space-y-1">
                 <div className="flex justify-between"><span>Total estimado</span><span className="font-medium text-foreground">R$ 0,00</span></div>
