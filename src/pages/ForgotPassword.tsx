@@ -3,6 +3,7 @@ import { motion } from 'framer-motion';
 import { Mail, ArrowLeft } from 'lucide-react';
 import { useApp } from '@/contexts/AppContext';
 import { t } from '@/lib/i18n';
+import { Input } from '@/components/ui/input';
 
 export default function ForgotPassword() {
   const { locale } = useApp();
@@ -22,9 +23,9 @@ export default function ForgotPassword() {
         ) : (
           <form onSubmit={(e) => { e.preventDefault(); setSent(true); }} className="mt-6 space-y-4">
             <div className="relative">
-              <Mail size={18} className="absolute left-3 top-1/2 -translate-y-1/2 text-muted-foreground" />
-              <input type="email" value={email} onChange={(e) => setEmail(e.target.value)} required
-                className="w-full pl-10 pr-4 py-3 rounded-xl bg-surface-container-highest text-foreground placeholder:text-muted-foreground focus:outline-none focus:ring-2 focus:ring-secondary/20"
+              <Mail size={18} className="absolute left-3 top-1/2 -translate-y-1/2 text-muted-foreground z-10" />
+              <Input type="email" value={email} onChange={(e) => setEmail(e.target.value)} required
+                className="pl-10"
                 placeholder="nome@smar.com.br" />
             </div>
             <button type="submit" className="w-full py-3 gradient-primary text-primary-foreground font-semibold rounded-xl hover:opacity-90 transition-opacity">
