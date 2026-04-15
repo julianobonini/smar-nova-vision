@@ -1,6 +1,10 @@
 import { AppsLayout, ShowcaseSection } from './AppsLayout';
 import { ArrowUpRight, ArrowDownLeft, Search, Filter } from 'lucide-react';
 import { Button } from '@/components/ui/button';
+import { cn } from '@/lib/utils';
+
+const TH = "px-6 py-4 text-left text-xs font-bold text-muted-foreground uppercase tracking-wider bg-surface-container-low";
+const TD = "px-6 py-4 text-sm text-foreground";
 
 const transactions = [
   { type: 'buy', coin: 'BTC', amount: '0.15 BTC', value: 'R$ 45.000', date: '13/04/2026 09:30', status: 'Concluído' },
@@ -23,34 +27,39 @@ export default function CryptoTransactionsShowcase() {
             </div>
             <Button variant="outline" size="sm"><Filter size={12} className="mr-1" /> Filtros</Button>
           </div>
-          <div className="overflow-x-auto">
-            <table className="w-full text-sm">
-              <thead>
-                <tr className="border-b border-border">
-                  {['Tipo', 'Moeda', 'Quantidade', 'Valor', 'Data', 'Status'].map(h => (
-                    <th key={h} className="text-left py-3 px-3 text-xs font-semibold text-muted-foreground">{h}</th>
-                  ))}
-                </tr>
-              </thead>
-              <tbody>
-                {transactions.map((t, i) => (
-                  <tr key={i} className="border-b border-border/40 hover:bg-muted/10 transition-colors">
-                    <td className="py-3 px-3">
-                      <div className={`w-8 h-8 rounded-lg flex items-center justify-center ${t.type === 'buy' ? 'bg-green-500/10' : 'bg-destructive/10'}`}>
-                        {t.type === 'buy' ? <ArrowDownLeft size={14} className="text-green-500" /> : <ArrowUpRight size={14} className="text-destructive" />}
-                      </div>
-                    </td>
-                    <td className="py-3 px-3 font-medium text-foreground">{t.coin}</td>
-                    <td className="py-3 px-3 text-xs text-muted-foreground">{t.amount}</td>
-                    <td className="py-3 px-3 text-xs font-medium text-foreground">{t.value}</td>
-                    <td className="py-3 px-3 text-xs text-muted-foreground">{t.date}</td>
-                    <td className="py-3 px-3">
-                      <span className={`px-2 py-0.5 rounded text-[10px] font-medium ${t.status === 'Concluído' ? 'bg-green-500/10 text-green-500' : 'bg-amber-500/10 text-amber-500'}`}>{t.status}</span>
-                    </td>
+          <div className="overflow-hidden rounded-xl border border-border/40">
+            <div className="overflow-x-auto">
+              <table className="w-full text-sm">
+                <thead>
+                  <tr>
+                    <th className={TH}>Tipo</th>
+                    <th className={TH}>Moeda</th>
+                    <th className={TH}>Quantidade</th>
+                    <th className={TH}>Valor</th>
+                    <th className={TH}>Data</th>
+                    <th className={TH}>Status</th>
                   </tr>
-                ))}
-              </tbody>
-            </table>
+                </thead>
+                <tbody>
+                  {transactions.map((t, i) => (
+                    <tr key={i} className={cn("hover:bg-muted/20 transition-colors", i % 2 === 0 ? "bg-background" : "bg-surface-container-low/50")}>
+                      <td className={TD}>
+                        <div className={`w-8 h-8 rounded-lg flex items-center justify-center ${t.type === 'buy' ? 'bg-status-success/10' : 'bg-destructive/10'}`}>
+                          {t.type === 'buy' ? <ArrowDownLeft size={14} className="text-status-success" /> : <ArrowUpRight size={14} className="text-destructive" />}
+                        </div>
+                      </td>
+                      <td className={cn(TD, "font-medium")}>{t.coin}</td>
+                      <td className={cn(TD, "text-muted-foreground text-xs")}>{t.amount}</td>
+                      <td className={cn(TD, "font-medium text-xs")}>{t.value}</td>
+                      <td className={cn(TD, "text-muted-foreground text-xs")}>{t.date}</td>
+                      <td className={TD}>
+                        <span className={`px-2 py-0.5 rounded text-[10px] font-medium ${t.status === 'Concluído' ? 'bg-status-success/10 text-status-success' : 'bg-status-warning/10 text-status-warning'}`}>{t.status}</span>
+                      </td>
+                    </tr>
+                  ))}
+                </tbody>
+              </table>
+            </div>
           </div>
         </div>
       </ShowcaseSection>

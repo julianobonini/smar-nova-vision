@@ -1,5 +1,9 @@
 import { AppsLayout, ShowcaseSection } from './AppsLayout';
 import { TrendingUp, TrendingDown, Search } from 'lucide-react';
+import { cn } from '@/lib/utils';
+
+const TH = "px-6 py-4 text-left text-xs font-bold text-muted-foreground uppercase tracking-wider bg-surface-container-low";
+const TD = "px-6 py-4 text-sm text-foreground";
 
 const coins = [
   { rank: 1, name: 'Bitcoin', symbol: 'BTC', price: 'R$ 300.000', marketcap: 'R$ 5.8T', volume: 'R$ 120B', change: '+2.5%', up: true },
@@ -25,7 +29,7 @@ export default function CryptoMarketcapShowcase() {
           <div key={i} className="bg-surface-container rounded-xl border border-border/40 p-4">
             <p className="text-xs text-muted-foreground">{s.label}</p>
             <p className="text-lg font-bold text-foreground mt-1">{s.value}</p>
-            <p className={`text-xs ${s.change.startsWith('+') ? 'text-green-500' : 'text-destructive'}`}>{s.change}</p>
+            <p className={`text-xs ${s.change.startsWith('+') ? 'text-status-success' : 'text-destructive'}`}>{s.change}</p>
           </div>
         ))}
       </div>
@@ -35,40 +39,45 @@ export default function CryptoMarketcapShowcase() {
             <Search size={14} className="absolute left-2.5 top-1/2 -translate-y-1/2 text-muted-foreground" />
             <input placeholder="Buscar moeda..." className="w-full pl-8 pr-3 py-2 rounded-lg bg-muted/20 border border-border text-xs text-foreground focus:outline-none focus:ring-1 focus:ring-primary" />
           </div>
-          <div className="overflow-x-auto">
-            <table className="w-full text-sm">
-              <thead>
-                <tr className="border-b border-border">
-                  {['#', 'Moeda', 'Preço', 'Market Cap', 'Volume 24h', '24h'].map(h => (
-                    <th key={h} className="text-left py-3 px-3 text-xs font-semibold text-muted-foreground">{h}</th>
-                  ))}
-                </tr>
-              </thead>
-              <tbody>
-                {coins.map(c => (
-                  <tr key={c.rank} className="border-b border-border/40 hover:bg-muted/10 transition-colors cursor-pointer">
-                    <td className="py-3 px-3 text-xs text-muted-foreground">{c.rank}</td>
-                    <td className="py-3 px-3">
-                      <div className="flex items-center gap-2">
-                        <div className="w-7 h-7 rounded-full bg-primary/10 flex items-center justify-center text-[10px] font-bold text-primary">{c.symbol[0]}</div>
-                        <div>
-                          <span className="font-medium text-foreground text-xs">{c.name}</span>
-                          <span className="text-[10px] text-muted-foreground ml-1">{c.symbol}</span>
-                        </div>
-                      </div>
-                    </td>
-                    <td className="py-3 px-3 font-medium text-foreground text-xs">{c.price}</td>
-                    <td className="py-3 px-3 text-xs text-muted-foreground">{c.marketcap}</td>
-                    <td className="py-3 px-3 text-xs text-muted-foreground">{c.volume}</td>
-                    <td className="py-3 px-3">
-                      <span className={`flex items-center gap-1 text-xs font-medium ${c.up ? 'text-green-500' : 'text-destructive'}`}>
-                        {c.up ? <TrendingUp size={12} /> : <TrendingDown size={12} />} {c.change}
-                      </span>
-                    </td>
+          <div className="overflow-hidden rounded-xl border border-border/40">
+            <div className="overflow-x-auto">
+              <table className="w-full text-sm">
+                <thead>
+                  <tr>
+                    <th className={TH}>#</th>
+                    <th className={TH}>Moeda</th>
+                    <th className={TH}>Preço</th>
+                    <th className={TH}>Market Cap</th>
+                    <th className={TH}>Volume 24h</th>
+                    <th className={TH}>24h</th>
                   </tr>
-                ))}
-              </tbody>
-            </table>
+                </thead>
+                <tbody>
+                  {coins.map((c, i) => (
+                    <tr key={c.rank} className={cn("hover:bg-muted/20 transition-colors cursor-pointer", i % 2 === 0 ? "bg-background" : "bg-surface-container-low/50")}>
+                      <td className={cn(TD, "text-xs text-muted-foreground")}>{c.rank}</td>
+                      <td className={TD}>
+                        <div className="flex items-center gap-2">
+                          <div className="w-7 h-7 rounded-full bg-primary/10 flex items-center justify-center text-[10px] font-bold text-primary">{c.symbol[0]}</div>
+                          <div>
+                            <span className="font-medium text-xs">{c.name}</span>
+                            <span className="text-[10px] text-muted-foreground ml-1">{c.symbol}</span>
+                          </div>
+                        </div>
+                      </td>
+                      <td className={cn(TD, "font-medium text-xs")}>{c.price}</td>
+                      <td className={cn(TD, "text-xs text-muted-foreground")}>{c.marketcap}</td>
+                      <td className={cn(TD, "text-xs text-muted-foreground")}>{c.volume}</td>
+                      <td className={TD}>
+                        <span className={`flex items-center gap-1 text-xs font-medium ${c.up ? 'text-status-success' : 'text-destructive'}`}>
+                          {c.up ? <TrendingUp size={12} /> : <TrendingDown size={12} />} {c.change}
+                        </span>
+                      </td>
+                    </tr>
+                  ))}
+                </tbody>
+              </table>
+            </div>
           </div>
         </div>
       </ShowcaseSection>

@@ -1,4 +1,5 @@
 import { UtilitiesLayout, ShowcaseSection } from './UtilitiesLayout';
+import { cn } from '@/lib/utils';
 
 const breakpoints = [
   { name: 'sm', min: '640px', desc: 'Smartphones em paisagem' },
@@ -12,27 +13,29 @@ export default function BreakpointsShowcase() {
   return (
     <UtilitiesLayout title="Breakpoints" description="Referência de breakpoints responsivos do Tailwind CSS.">
       <ShowcaseSection title="Tabela de Breakpoints">
-        <div className="overflow-x-auto">
-          <table className="w-full text-sm">
-            <thead>
-              <tr className="border-b border-border bg-muted/30">
-                <th className="text-left px-4 py-3 font-semibold text-foreground">Prefixo</th>
-                <th className="text-left px-4 py-3 font-semibold text-foreground">Largura Mínima</th>
-                <th className="text-left px-4 py-3 font-semibold text-foreground">CSS</th>
-                <th className="text-left px-4 py-3 font-semibold text-foreground">Descrição</th>
-              </tr>
-            </thead>
-            <tbody>
-              {breakpoints.map(bp => (
-                <tr key={bp.name} className="border-b border-border/40">
-                  <td className="px-4 py-3"><code className="text-primary font-mono text-xs bg-primary/10 px-2 py-0.5 rounded">{bp.name}:</code></td>
-                  <td className="px-4 py-3 text-muted-foreground">{bp.min}</td>
-                  <td className="px-4 py-3"><code className="text-xs text-muted-foreground font-mono">@media (min-width: {bp.min})</code></td>
-                  <td className="px-4 py-3 text-muted-foreground">{bp.desc}</td>
+        <div className="overflow-hidden rounded-xl border border-border/40">
+          <div className="overflow-x-auto">
+            <table className="w-full text-sm">
+              <thead>
+                <tr>
+                  <th className="px-6 py-4 text-left text-xs font-bold text-muted-foreground uppercase tracking-wider bg-surface-container-low">Prefixo</th>
+                  <th className="px-6 py-4 text-left text-xs font-bold text-muted-foreground uppercase tracking-wider bg-surface-container-low">Largura Mínima</th>
+                  <th className="px-6 py-4 text-left text-xs font-bold text-muted-foreground uppercase tracking-wider bg-surface-container-low">CSS</th>
+                  <th className="px-6 py-4 text-left text-xs font-bold text-muted-foreground uppercase tracking-wider bg-surface-container-low">Descrição</th>
                 </tr>
-              ))}
-            </tbody>
-          </table>
+              </thead>
+              <tbody>
+                {breakpoints.map((bp, i) => (
+                  <tr key={bp.name} className={cn("hover:bg-muted/20 transition-colors", i % 2 === 0 ? "bg-background" : "bg-surface-container-low/50")}>
+                    <td className="px-6 py-4 text-sm text-foreground"><code className="text-primary font-mono text-xs bg-primary/10 px-2 py-0.5 rounded">{bp.name}:</code></td>
+                    <td className="px-6 py-4 text-sm text-muted-foreground">{bp.min}</td>
+                    <td className="px-6 py-4 text-sm text-foreground"><code className="text-xs text-muted-foreground font-mono">@media (min-width: {bp.min})</code></td>
+                    <td className="px-6 py-4 text-sm text-muted-foreground">{bp.desc}</td>
+                  </tr>
+                ))}
+              </tbody>
+            </table>
+          </div>
         </div>
       </ShowcaseSection>
 

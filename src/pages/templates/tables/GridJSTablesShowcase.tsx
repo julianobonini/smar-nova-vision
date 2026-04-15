@@ -6,6 +6,9 @@ import { Button } from '@/components/ui/button';
 
 type SortDir = 'asc' | 'desc' | null;
 
+const TH = "px-6 py-4 text-xs font-bold text-muted-foreground uppercase tracking-wider bg-surface-container-low";
+const TD = "px-6 py-4 text-sm text-foreground";
+
 const employees = [
   { id: 1, nome: 'Carlos Mendes', depto: 'Engenharia', cargo: 'Eng. Mecânico Sr.', admissao: '15/03/2019', salario: 12500 },
   { id: 2, nome: 'Ana Paula Costa', depto: 'Qualidade', cargo: 'Coord. Qualidade', admissao: '02/08/2020', salario: 9800 },
@@ -80,9 +83,9 @@ export default function GridJSTablesShowcase() {
 
           <div className="overflow-hidden rounded-xl border border-border/40">
             <table className="w-full text-sm">
-              <thead className="bg-surface-container-high/80 border-b border-border/40">
+              <thead>
                 <tr>
-                  <th className="px-4 py-2.5 text-left text-xs font-semibold text-muted-foreground w-10">#</th>
+                  <th className={cn(TH, "w-10")}>#</th>
                   {[
                     { key: 'nome', label: 'Nome' },
                     { key: 'depto', label: 'Departamento' },
@@ -90,7 +93,7 @@ export default function GridJSTablesShowcase() {
                     { key: 'admissao', label: 'Admissão' },
                     { key: 'salario', label: 'Salário', align: 'text-right' },
                   ].map(col => (
-                    <th key={col.key} className={cn("px-4 py-2.5 text-xs font-semibold text-muted-foreground cursor-pointer select-none", col.align || "text-left")} onClick={() => toggleSort(col.key)}>
+                    <th key={col.key} className={cn(TH, "cursor-pointer select-none", col.align)} onClick={() => toggleSort(col.key)}>
                       <span className="inline-flex items-center gap-1 hover:text-foreground transition-colors">
                         {col.label} <SortIcon col={col.key} />
                       </span>
@@ -98,23 +101,23 @@ export default function GridJSTablesShowcase() {
                   ))}
                 </tr>
               </thead>
-              <tbody className="divide-y divide-border/30">
+              <tbody>
                 {paged.length === 0 ? (
-                  <tr><td colSpan={6} className="px-4 py-8 text-center text-sm text-muted-foreground">Nenhum registro encontrado</td></tr>
-                ) : paged.map((row) => (
-                  <tr key={row.id} className="hover:bg-muted/20 transition-colors">
-                    <td className="px-4 py-2.5 font-mono text-xs text-muted-foreground">{row.id}</td>
-                    <td className="px-4 py-2.5 font-medium text-foreground">{row.nome}</td>
-                    <td className="px-4 py-2.5 text-muted-foreground">{row.depto}</td>
-                    <td className="px-4 py-2.5 text-muted-foreground">{row.cargo}</td>
-                    <td className="px-4 py-2.5 text-muted-foreground">{row.admissao}</td>
-                    <td className="px-4 py-2.5 text-right font-mono font-semibold text-foreground">{formatCurrency(row.salario)}</td>
+                  <tr><td colSpan={6} className="px-6 py-8 text-center text-sm text-muted-foreground">Nenhum registro encontrado</td></tr>
+                ) : paged.map((row, i) => (
+                  <tr key={row.id} className={cn("hover:bg-muted/20 transition-colors", i % 2 === 0 ? "bg-background" : "bg-surface-container-low/50")}>
+                    <td className={cn(TD, "font-mono text-xs text-muted-foreground")}>{row.id}</td>
+                    <td className={cn(TD, "font-medium")}>{row.nome}</td>
+                    <td className={cn(TD, "text-muted-foreground")}>{row.depto}</td>
+                    <td className={cn(TD, "text-muted-foreground")}>{row.cargo}</td>
+                    <td className={cn(TD, "text-muted-foreground")}>{row.admissao}</td>
+                    <td className={cn(TD, "text-right font-mono font-semibold")}>{formatCurrency(row.salario)}</td>
                   </tr>
                 ))}
               </tbody>
             </table>
             {totalPages > 1 && (
-              <div className="flex items-center justify-between px-4 py-2.5 border-t border-border/40 bg-surface-container-high/80 text-xs text-muted-foreground">
+              <div className="flex items-center justify-between px-6 py-4 border-t border-border/40 bg-surface-container-low text-xs text-muted-foreground">
                 <span>Página {page + 1} de {totalPages}</span>
                 <div className="flex items-center gap-1">
                   <Button variant="outline" size="icon" className="h-7 w-7" disabled={page === 0} onClick={() => setPage(p => p - 1)}><ChevronLeft size={14} /></Button>
@@ -132,38 +135,38 @@ export default function GridJSTablesShowcase() {
       <ShowcaseSection title="Tabela com Células Customizadas">
         <div className="overflow-hidden rounded-xl border border-border/40">
           <table className="w-full text-sm">
-            <thead className="bg-surface-container-high/80 border-b border-border/40">
+            <thead>
               <tr>
-                <th className="px-4 py-2.5 text-left text-xs font-semibold text-muted-foreground">Colaborador</th>
-                <th className="px-4 py-2.5 text-left text-xs font-semibold text-muted-foreground">Departamento</th>
-                <th className="px-4 py-2.5 text-center text-xs font-semibold text-muted-foreground">Performance</th>
-                <th className="px-4 py-2.5 text-right text-xs font-semibold text-muted-foreground">Salário</th>
+                <th className={TH}>Colaborador</th>
+                <th className={TH}>Departamento</th>
+                <th className={cn(TH, "text-center")}>Performance</th>
+                <th className={cn(TH, "text-right")}>Salário</th>
               </tr>
             </thead>
-            <tbody className="divide-y divide-border/30">
+            <tbody>
               {[
                 { nome: 'Carlos Mendes', iniciais: 'CM', depto: 'Engenharia', perf: 92, salario: 12500 },
                 { nome: 'Ana Paula Costa', iniciais: 'AC', depto: 'Qualidade', perf: 88, salario: 9800 },
                 { nome: 'Juliana Ferreira', iniciais: 'JF', depto: 'Automação', perf: 95, salario: 11000 },
                 { nome: 'Thiago Almeida', iniciais: 'TA', depto: 'TI', perf: 78, salario: 13500 },
               ].map((row, i) => (
-                <tr key={i} className="hover:bg-muted/20 transition-colors">
-                  <td className="px-4 py-3">
+                <tr key={i} className={cn("hover:bg-muted/20 transition-colors", i % 2 === 0 ? "bg-background" : "bg-surface-container-low/50")}>
+                  <td className={TD}>
                     <div className="flex items-center gap-3">
                       <div className="w-8 h-8 rounded-full bg-secondary/10 text-secondary flex items-center justify-center text-xs font-bold">{row.iniciais}</div>
-                      <span className="font-medium text-foreground">{row.nome}</span>
+                      <span className="font-medium">{row.nome}</span>
                     </div>
                   </td>
-                  <td className="px-4 py-3 text-muted-foreground">{row.depto}</td>
-                  <td className="px-4 py-3">
+                  <td className={cn(TD, "text-muted-foreground")}>{row.depto}</td>
+                  <td className={TD}>
                     <div className="flex items-center justify-center gap-2">
                       <div className="w-20 h-1.5 bg-muted rounded-full overflow-hidden">
                         <div className={cn("h-full rounded-full", row.perf >= 90 ? "bg-status-success" : row.perf >= 80 ? "bg-status-warning" : "bg-destructive")} style={{ width: `${row.perf}%` }} />
                       </div>
-                      <span className="text-xs font-mono font-semibold text-foreground">{row.perf}%</span>
+                      <span className="text-xs font-mono font-semibold">{row.perf}%</span>
                     </div>
                   </td>
-                  <td className="px-4 py-3 text-right font-mono font-semibold text-foreground">{formatCurrency(row.salario)}</td>
+                  <td className={cn(TD, "text-right font-mono font-semibold")}>{formatCurrency(row.salario)}</td>
                 </tr>
               ))}
             </tbody>

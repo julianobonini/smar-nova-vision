@@ -20,8 +20,8 @@ const tabs: { key: Tab; label: string; icon: typeof Table2 }[] = [
   { key: 'zebrada', label: 'Zebrada + Resumo', icon: BarChart3 },
 ];
 
-const TABLE_HEADER = "bg-surface-container-high/80";
-const TABLE_FOOTER = "bg-surface-container-high/80";
+const TABLE_HEADER = "bg-surface-container-low";
+const TABLE_FOOTER = "bg-surface-container-low";
 const TABLE_WRAPPER = "bg-surface-container rounded-2xl border border-border/40 overflow-hidden";
 
 function FieldGroup({ title, children }: { title: string; children: React.ReactNode }) {
