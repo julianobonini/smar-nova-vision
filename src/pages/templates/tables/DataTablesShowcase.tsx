@@ -6,6 +6,9 @@ import { Button } from '@/components/ui/button';
 
 type SortDir = 'asc' | 'desc' | null;
 
+const TH = "px-6 py-4 text-xs font-bold text-muted-foreground uppercase tracking-wider bg-surface-container-low";
+const TD = "px-6 py-4 text-sm text-foreground";
+
 const inventory = [
   { id: 1, sku: 'MAT-001', desc: 'Chapa Aço 1020 3mm', grupo: 'Aço', un: 'KG', estoque: 2450, minimo: 500, preco: 8.90, local: 'A1-P3' },
   { id: 2, sku: 'MAT-002', desc: 'Tubo Inox 304 1"', grupo: 'Inox', un: 'M', estoque: 180, minimo: 100, preco: 42.50, local: 'B2-P1' },
@@ -101,9 +104,9 @@ export default function DataTablesShowcase() {
           <div className="overflow-hidden rounded-xl border border-border/40">
             <div className="overflow-x-auto">
               <table className="w-full text-sm">
-                <thead className="bg-surface-container-high/80 border-b border-border/40">
+                <thead>
                   <tr>
-                    <th className="px-3 py-2.5 w-10">
+                    <th className="px-6 py-4 w-10 bg-surface-container-low">
                       <input type="checkbox" checked={selected.length === paged.length && paged.length > 0} onChange={toggleAll} className="rounded border-border accent-secondary" />
                     </th>
                     {[
@@ -115,35 +118,35 @@ export default function DataTablesShowcase() {
                       { key: 'preco', label: 'Preço Unit.', align: 'text-right' },
                       { key: 'local', label: 'Local', w: 'w-20 text-center' },
                     ].map(col => (
-                      <th key={col.key} className={cn("px-3 py-2.5 text-xs font-semibold text-muted-foreground cursor-pointer select-none", col.align || "text-left", col.w)} onClick={() => toggleSort(col.key)}>
+                      <th key={col.key} className={cn(TH, "cursor-pointer select-none", col.align || "text-left", col.w)} onClick={() => toggleSort(col.key)}>
                         <span className="inline-flex items-center gap-1 hover:text-foreground transition-colors whitespace-nowrap">
                           {col.label} <SortIcon col={col.key} />
                         </span>
                       </th>
                     ))}
-                    <th className="px-3 py-2.5 text-xs font-semibold text-muted-foreground text-center w-20">Status</th>
-                    <th className="px-3 py-2.5 text-xs font-semibold text-muted-foreground text-center w-24">Ações</th>
+                    <th className={cn(TH, "text-center w-20")}>Status</th>
+                    <th className={cn(TH, "text-center w-24")}>Ações</th>
                   </tr>
                 </thead>
-                <tbody className="divide-y divide-border/30">
+                <tbody>
                   {paged.length === 0 ? (
-                    <tr><td colSpan={10} className="px-4 py-8 text-center text-sm text-muted-foreground">Nenhum material encontrado</td></tr>
-                  ) : paged.map((row) => {
+                    <tr><td colSpan={10} className="px-6 py-8 text-center text-sm text-muted-foreground">Nenhum material encontrado</td></tr>
+                  ) : paged.map((row, i) => {
                     const status = getStockStatus(row.estoque, row.minimo);
                     return (
-                      <tr key={row.id} className={cn("transition-colors", selected.includes(row.id) ? "bg-secondary/5" : "hover:bg-muted/20")}>
-                        <td className="px-3 py-2.5"><input type="checkbox" checked={selected.includes(row.id)} onChange={() => toggleSelect(row.id)} className="rounded border-border accent-secondary" /></td>
-                        <td className="px-3 py-2.5 font-mono text-xs font-semibold text-secondary">{row.sku}</td>
-                        <td className="px-3 py-2.5 font-medium text-foreground">{row.desc}</td>
-                        <td className="px-3 py-2.5 text-muted-foreground">{row.grupo}</td>
-                        <td className="px-3 py-2.5 text-center font-mono text-xs text-muted-foreground">{row.un}</td>
-                        <td className="px-3 py-2.5 text-right font-mono font-semibold text-foreground">{row.estoque.toLocaleString('pt-BR')}</td>
-                        <td className="px-3 py-2.5 text-right font-mono text-foreground">{formatCurrency(row.preco)}</td>
-                        <td className="px-3 py-2.5 text-center font-mono text-xs text-muted-foreground">{row.local}</td>
-                        <td className="px-3 py-2.5 text-center">
+                      <tr key={row.id} className={cn("transition-colors", selected.includes(row.id) ? "bg-secondary/5" : i % 2 === 0 ? "bg-background" : "bg-surface-container-low/50")}>
+                        <td className={TD}><input type="checkbox" checked={selected.includes(row.id)} onChange={() => toggleSelect(row.id)} className="rounded border-border accent-secondary" /></td>
+                        <td className={cn(TD, "font-mono text-xs font-semibold text-secondary")}>{row.sku}</td>
+                        <td className={cn(TD, "font-medium")}>{row.desc}</td>
+                        <td className={cn(TD, "text-muted-foreground")}>{row.grupo}</td>
+                        <td className={cn(TD, "text-center font-mono text-xs text-muted-foreground")}>{row.un}</td>
+                        <td className={cn(TD, "text-right font-mono font-semibold")}>{row.estoque.toLocaleString('pt-BR')}</td>
+                        <td className={cn(TD, "text-right font-mono")}>{formatCurrency(row.preco)}</td>
+                        <td className={cn(TD, "text-center font-mono text-xs text-muted-foreground")}>{row.local}</td>
+                        <td className={cn(TD, "text-center")}>
                           <span className={cn("inline-flex px-2 py-0.5 rounded-full text-[10px] font-bold uppercase tracking-wider", status.cls)}>{status.label}</span>
                         </td>
-                        <td className="px-3 py-2.5 text-center">
+                        <td className={cn(TD, "text-center")}>
                           <div className="inline-flex gap-0.5">
                             <button className="p-1.5 rounded-md hover:bg-secondary/10 text-muted-foreground hover:text-secondary transition-colors"><Eye size={13} /></button>
                             <button className="p-1.5 rounded-md hover:bg-primary/10 text-muted-foreground hover:text-primary transition-colors"><Edit size={13} /></button>
@@ -158,7 +161,7 @@ export default function DataTablesShowcase() {
             </div>
 
             {/* Footer */}
-            <div className="flex items-center justify-between px-4 py-2.5 border-t border-border/40 bg-surface-container-high/80 text-xs text-muted-foreground flex-wrap gap-2">
+            <div className="flex items-center justify-between px-6 py-4 border-t border-border/40 bg-surface-container-low text-xs text-muted-foreground flex-wrap gap-2">
               <div className="flex items-center gap-3">
                 {selected.length > 0 && (
                   <span className="font-semibold text-secondary">{selected.length} selecionado(s)</span>
@@ -190,28 +193,28 @@ export default function DataTablesShowcase() {
         <div className="overflow-hidden rounded-xl border border-border/40">
           <div className="overflow-x-auto">
             <table className="w-full text-sm min-w-[700px]">
-              <thead className="bg-surface-container-high/80 border-b border-border/40">
+              <thead>
                 <tr>
-                  <th className="px-4 py-2.5 text-left text-xs font-semibold text-muted-foreground">Ordem Serviço</th>
-                  <th className="px-4 py-2.5 text-left text-xs font-semibold text-muted-foreground">Equipamento</th>
-                  <th className="px-4 py-2.5 text-left text-xs font-semibold text-muted-foreground">Tipo</th>
-                  <th className="px-4 py-2.5 text-center text-xs font-semibold text-muted-foreground">Prioridade</th>
-                  <th className="px-4 py-2.5 text-left text-xs font-semibold text-muted-foreground">Responsável</th>
-                  <th className="px-4 py-2.5 text-center text-xs font-semibold text-muted-foreground">Progresso</th>
+                  <th className={TH}>Ordem Serviço</th>
+                  <th className={TH}>Equipamento</th>
+                  <th className={TH}>Tipo</th>
+                  <th className={cn(TH, "text-center")}>Prioridade</th>
+                  <th className={TH}>Responsável</th>
+                  <th className={cn(TH, "text-center")}>Progresso</th>
                 </tr>
               </thead>
-              <tbody className="divide-y divide-border/30">
+              <tbody>
                 {[
                   { os: 'OS-4521', eq: 'Compressor Atlas ZR-250', tipo: 'Preventiva', prio: 'Alta', resp: 'Marcos Oliveira', prog: 75 },
                   { os: 'OS-4522', eq: 'Bomba KSB Megabloc', tipo: 'Corretiva', prio: 'Urgente', resp: 'Carlos Mendes', prog: 30 },
                   { os: 'OS-4523', eq: 'Inversor ABB ACS580', tipo: 'Preditiva', prio: 'Normal', resp: 'Juliana Ferreira', prog: 100 },
                   { os: 'OS-4524', eq: 'Esteira Transportadora T-12', tipo: 'Preventiva', prio: 'Baixa', resp: 'Roberto Silva', prog: 50 },
                 ].map((row, i) => (
-                  <tr key={i} className="hover:bg-muted/20 transition-colors">
-                    <td className="px-4 py-2.5 font-mono text-xs font-semibold text-secondary">{row.os}</td>
-                    <td className="px-4 py-2.5 font-medium text-foreground">{row.eq}</td>
-                    <td className="px-4 py-2.5 text-muted-foreground">{row.tipo}</td>
-                    <td className="px-4 py-2.5 text-center">
+                  <tr key={i} className={cn("hover:bg-muted/20 transition-colors", i % 2 === 0 ? "bg-background" : "bg-surface-container-low/50")}>
+                    <td className={cn(TD, "font-mono text-xs font-semibold text-secondary")}>{row.os}</td>
+                    <td className={cn(TD, "font-medium")}>{row.eq}</td>
+                    <td className={cn(TD, "text-muted-foreground")}>{row.tipo}</td>
+                    <td className={cn(TD, "text-center")}>
                       <span className={cn(
                         "inline-flex px-2 py-0.5 rounded-full text-[10px] font-bold uppercase",
                         row.prio === 'Urgente' && 'bg-destructive/10 text-destructive',
@@ -220,8 +223,8 @@ export default function DataTablesShowcase() {
                         row.prio === 'Baixa' && 'bg-status-success/10 text-status-success',
                       )}>{row.prio}</span>
                     </td>
-                    <td className="px-4 py-2.5 text-muted-foreground">{row.resp}</td>
-                    <td className="px-4 py-2.5">
+                    <td className={cn(TD, "text-muted-foreground")}>{row.resp}</td>
+                    <td className={TD}>
                       <div className="flex items-center justify-center gap-2">
                         <div className="w-16 h-1.5 bg-muted rounded-full overflow-hidden">
                           <div className={cn("h-full rounded-full", row.prog === 100 ? "bg-status-success" : "bg-secondary")} style={{ width: `${row.prog}%` }} />

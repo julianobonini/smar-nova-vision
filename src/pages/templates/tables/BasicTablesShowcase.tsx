@@ -3,8 +3,8 @@ import { cn } from '@/lib/utils';
 import { Eye, Edit, Trash2, ArrowUpDown, CheckCircle2, AlertTriangle, XCircle, Clock } from 'lucide-react';
 import { useState } from 'react';
 
-const TH = "px-4 py-2.5 text-left text-xs font-semibold text-muted-foreground";
-const TD = "px-4 py-3";
+const TH = "px-6 py-4 text-left text-xs font-bold text-muted-foreground uppercase tracking-wider bg-surface-container-low";
+const TD = "px-6 py-4 text-sm text-foreground";
 const WRAPPER = "overflow-hidden rounded-xl border border-border/40";
 
 const products = [
@@ -47,7 +47,7 @@ export default function BasicTablesShowcase() {
       <ShowcaseSection title="Tabela Padrão">
         <div className={WRAPPER}>
           <table className="w-full text-sm">
-            <thead className="bg-surface-container-high/80 border-b border-border/40">
+            <thead>
               <tr>
                 <th className={TH}><button className="inline-flex items-center gap-1 hover:text-foreground">Código <ArrowUpDown size={12} /></button></th>
                 <th className={TH}><button className="inline-flex items-center gap-1 hover:text-foreground">Descrição <ArrowUpDown size={12} /></button></th>
@@ -57,13 +57,13 @@ export default function BasicTablesShowcase() {
                 <th className={cn(TH, "text-center")}>Ações</th>
               </tr>
             </thead>
-            <tbody className="divide-y divide-border/30">
+            <tbody>
               {products.map((row, i) => (
-                <tr key={i} className="hover:bg-muted/20 transition-colors">
+                <tr key={i} className={cn("hover:bg-muted/20 transition-colors", i % 2 === 0 ? "bg-background" : "bg-surface-container-low/50")}>
                   <td className={cn(TD, "font-mono text-xs font-semibold text-secondary")}>{row.cod}</td>
-                  <td className={cn(TD, "font-medium text-foreground")}>{row.desc}</td>
+                  <td className={cn(TD, "font-medium")}>{row.desc}</td>
                   <td className={cn(TD, "text-muted-foreground")}>{row.cat}</td>
-                  <td className={cn(TD, "text-right font-mono font-semibold text-foreground")}>{row.valor}</td>
+                  <td className={cn(TD, "text-right font-mono font-semibold")}>{row.valor}</td>
                   <td className={cn(TD, "text-center")}>
                     <span className={cn("inline-flex px-2.5 py-0.5 rounded-full text-[10px] font-bold uppercase tracking-wider", statusMap[row.status])}>{row.status}</span>
                   </td>
@@ -85,30 +85,30 @@ export default function BasicTablesShowcase() {
       <ShowcaseSection title="Tabela Compacta">
         <div className={WRAPPER}>
           <table className="w-full text-xs">
-            <thead className="bg-surface-container-high/80 border-b border-border/40">
+            <thead>
               <tr>
-                <th className="px-3 py-2 text-left font-semibold text-muted-foreground">Código</th>
-                <th className="px-3 py-2 text-left font-semibold text-muted-foreground">Produto</th>
-                <th className="px-3 py-2 text-center font-semibold text-muted-foreground">Qtd</th>
-                <th className="px-3 py-2 text-right font-semibold text-muted-foreground">Unit.</th>
-                <th className="px-3 py-2 text-right font-semibold text-muted-foreground">Total</th>
+                <th className="px-4 py-3 text-left text-xs font-bold text-muted-foreground uppercase tracking-wider bg-surface-container-low">Código</th>
+                <th className="px-4 py-3 text-left text-xs font-bold text-muted-foreground uppercase tracking-wider bg-surface-container-low">Produto</th>
+                <th className="px-4 py-3 text-center text-xs font-bold text-muted-foreground uppercase tracking-wider bg-surface-container-low">Qtd</th>
+                <th className="px-4 py-3 text-right text-xs font-bold text-muted-foreground uppercase tracking-wider bg-surface-container-low">Unit.</th>
+                <th className="px-4 py-3 text-right text-xs font-bold text-muted-foreground uppercase tracking-wider bg-surface-container-low">Total</th>
               </tr>
             </thead>
-            <tbody className="divide-y divide-border/30">
+            <tbody>
               {orders.map((row, i) => (
-                <tr key={i} className="hover:bg-muted/20 transition-colors">
-                  <td className="px-3 py-1.5 font-mono text-muted-foreground">{row.cod}</td>
-                  <td className="px-3 py-1.5 text-foreground">{row.prod}</td>
-                  <td className="px-3 py-1.5 text-center font-mono font-semibold text-foreground">{row.qtd}</td>
-                  <td className="px-3 py-1.5 text-right font-mono text-muted-foreground">R$ {row.unit}</td>
-                  <td className="px-3 py-1.5 text-right font-mono font-semibold text-foreground">R$ {row.total}</td>
+                <tr key={i} className={cn("hover:bg-muted/20 transition-colors", i % 2 === 0 ? "bg-background" : "bg-surface-container-low/50")}>
+                  <td className="px-4 py-3 font-mono text-sm text-muted-foreground">{row.cod}</td>
+                  <td className="px-4 py-3 text-sm text-foreground">{row.prod}</td>
+                  <td className="px-4 py-3 text-center font-mono font-semibold text-sm text-foreground">{row.qtd}</td>
+                  <td className="px-4 py-3 text-right font-mono text-sm text-muted-foreground">R$ {row.unit}</td>
+                  <td className="px-4 py-3 text-right font-mono font-semibold text-sm text-foreground">R$ {row.total}</td>
                 </tr>
               ))}
             </tbody>
             <tfoot>
-              <tr className="bg-surface-container-high/80 border-t border-border/40 font-semibold">
-                <td colSpan={4} className="px-3 py-2 text-right text-xs text-muted-foreground">Total Geral:</td>
-                <td className="px-3 py-2 text-right font-mono text-sm text-secondary font-bold">R$ 3.556,50</td>
+              <tr className="bg-surface-container-low font-semibold">
+                <td colSpan={4} className="px-4 py-3 text-right text-xs font-bold text-muted-foreground uppercase tracking-wider">Total Geral:</td>
+                <td className="px-4 py-3 text-right font-mono text-sm text-secondary font-bold">R$ 3.556,50</td>
               </tr>
             </tfoot>
           </table>
@@ -119,7 +119,7 @@ export default function BasicTablesShowcase() {
       <ShowcaseSection title="Tabela Zebrada">
         <div className={WRAPPER}>
           <table className="w-full text-sm">
-            <thead className="bg-surface-container-high/80 border-b border-border/40">
+            <thead>
               <tr>
                 <th className={TH}>#</th>
                 <th className={TH}>Equipamento</th>
@@ -136,9 +136,9 @@ export default function BasicTablesShowcase() {
                 { eq: 'Torre de Resfriamento GEA', setor: 'Utilidades', crit: 'Alta', data: '18/01/2026' },
                 { eq: 'Inversor ABB ACS580', setor: 'Automação', crit: 'Baixa', data: '10/04/2026' },
               ].map((row, i) => (
-                <tr key={i} className={cn(i % 2 === 1 && "bg-muted/20", "border-b border-border/20")}>
+                <tr key={i} className={cn("hover:bg-muted/20 transition-colors", i % 2 === 0 ? "bg-background" : "bg-surface-container-low/50")}>
                   <td className={cn(TD, "font-mono text-xs text-muted-foreground")}>{i + 1}</td>
-                  <td className={cn(TD, "font-medium text-foreground")}>{row.eq}</td>
+                  <td className={cn(TD, "font-medium")}>{row.eq}</td>
                   <td className={cn(TD, "text-muted-foreground")}>{row.setor}</td>
                   <td className={cn(TD, "text-center")}>
                     <span className={cn(
@@ -161,9 +161,9 @@ export default function BasicTablesShowcase() {
       <ShowcaseSection title="Tabela com Seleção">
         <div className={WRAPPER}>
           <table className="w-full text-sm">
-            <thead className="bg-surface-container-high/80 border-b border-border/40">
+            <thead>
               <tr>
-                <th className="px-4 py-2.5 w-10">
+                <th className="px-6 py-4 w-10 bg-surface-container-low">
                   <input type="checkbox" checked={selected.length === products.length} onChange={toggleAll} className="rounded border-border accent-secondary" />
                 </th>
                 <th className={TH}>Código</th>
@@ -172,14 +172,14 @@ export default function BasicTablesShowcase() {
                 <th className={cn(TH, "text-center")}>Status</th>
               </tr>
             </thead>
-            <tbody className="divide-y divide-border/30">
+            <tbody>
               {products.map((row, i) => (
-                <tr key={i} className={cn("transition-colors", selected.includes(row.cod) ? "bg-secondary/5" : "hover:bg-muted/20")}>
-                  <td className="px-4 py-3">
+                <tr key={i} className={cn("transition-colors", selected.includes(row.cod) ? "bg-secondary/5" : i % 2 === 0 ? "bg-background" : "bg-surface-container-low/50")}>
+                  <td className="px-6 py-4">
                     <input type="checkbox" checked={selected.includes(row.cod)} onChange={() => toggleSelect(row.cod)} className="rounded border-border accent-secondary" />
                   </td>
                   <td className={cn(TD, "font-mono text-xs font-semibold text-secondary")}>{row.cod}</td>
-                  <td className={cn(TD, "font-medium text-foreground")}>{row.desc}</td>
+                  <td className={cn(TD, "font-medium")}>{row.desc}</td>
                   <td className={cn(TD, "text-right font-mono font-semibold")}>{row.valor}</td>
                   <td className={cn(TD, "text-center")}>
                     <span className={cn("inline-flex px-2.5 py-0.5 rounded-full text-[10px] font-bold uppercase tracking-wider", statusMap[row.status])}>{row.status}</span>
@@ -189,7 +189,7 @@ export default function BasicTablesShowcase() {
             </tbody>
           </table>
           {selected.length > 0 && (
-            <div className="flex items-center gap-3 px-4 py-2.5 border-t border-border/40 bg-surface-container-high/80 text-xs">
+            <div className="flex items-center gap-3 px-6 py-4 border-t border-border/40 bg-surface-container-low text-xs">
               <span className="font-semibold text-secondary">{selected.length} selecionado(s)</span>
               <button className="px-3 py-1 rounded-md bg-secondary text-secondary-foreground font-semibold hover:bg-secondary/90 transition-colors">Aprovar</button>
               <button className="px-3 py-1 rounded-md text-destructive hover:bg-destructive/10 font-semibold transition-colors">Excluir</button>
@@ -202,13 +202,13 @@ export default function BasicTablesShowcase() {
       <ShowcaseSection title="Tabela com Bordas">
         <div className="overflow-hidden rounded-xl border border-border">
           <table className="w-full text-sm">
-            <thead className="bg-surface-container-high/80">
+            <thead>
               <tr>
-                <th className="px-4 py-2.5 text-left text-xs font-semibold text-muted-foreground border-b border-r border-border">Material</th>
-                <th className="px-4 py-2.5 text-center text-xs font-semibold text-muted-foreground border-b border-r border-border">Jan</th>
-                <th className="px-4 py-2.5 text-center text-xs font-semibold text-muted-foreground border-b border-r border-border">Fev</th>
-                <th className="px-4 py-2.5 text-center text-xs font-semibold text-muted-foreground border-b border-r border-border">Mar</th>
-                <th className="px-4 py-2.5 text-center text-xs font-semibold text-muted-foreground border-b border-border">Abr</th>
+                <th className="px-6 py-4 text-left text-xs font-bold text-muted-foreground uppercase tracking-wider bg-surface-container-low border-b border-r border-border">Material</th>
+                <th className="px-6 py-4 text-center text-xs font-bold text-muted-foreground uppercase tracking-wider bg-surface-container-low border-b border-r border-border">Jan</th>
+                <th className="px-6 py-4 text-center text-xs font-bold text-muted-foreground uppercase tracking-wider bg-surface-container-low border-b border-r border-border">Fev</th>
+                <th className="px-6 py-4 text-center text-xs font-bold text-muted-foreground uppercase tracking-wider bg-surface-container-low border-b border-r border-border">Mar</th>
+                <th className="px-6 py-4 text-center text-xs font-bold text-muted-foreground uppercase tracking-wider bg-surface-container-low border-b border-border">Abr</th>
               </tr>
             </thead>
             <tbody>
@@ -217,10 +217,10 @@ export default function BasicTablesShowcase() {
                 { mat: 'Alumínio 6061', vals: [89, 92, 105, 98] },
                 { mat: 'Cobre Eletrolítico', vals: [45, 52, 48, 61] },
               ].map((row, i) => (
-                <tr key={i} className="border-b border-border/50 last:border-b-0">
-                  <td className="px-4 py-2.5 font-medium text-foreground border-r border-border/50">{row.mat}</td>
+                <tr key={i} className={cn("border-b border-border/50 last:border-b-0", i % 2 === 0 ? "bg-background" : "bg-surface-container-low/50")}>
+                  <td className="px-6 py-4 font-medium text-sm text-foreground border-r border-border/50">{row.mat}</td>
                   {row.vals.map((v, j) => (
-                    <td key={j} className={cn("px-4 py-2.5 text-center font-mono text-muted-foreground", j < 3 && "border-r border-border/50")}>{v} ton</td>
+                    <td key={j} className={cn("px-6 py-4 text-center font-mono text-sm text-muted-foreground", j < 3 && "border-r border-border/50")}>{v} ton</td>
                   ))}
                 </tr>
               ))}
@@ -233,7 +233,7 @@ export default function BasicTablesShowcase() {
       <ShowcaseSection title="Linhas Contextuais">
         <div className={WRAPPER}>
           <table className="w-full text-sm">
-            <thead className="bg-surface-container-high/80 border-b border-border/40">
+            <thead>
               <tr>
                 <th className={cn(TH, "w-10 text-center")}></th>
                 <th className={TH}>Evento</th>
@@ -241,7 +241,7 @@ export default function BasicTablesShowcase() {
                 <th className={cn(TH, "text-right")}>Horário</th>
               </tr>
             </thead>
-            <tbody className="divide-y divide-border/30">
+            <tbody>
               {[
                 { icon: CheckCircle2, color: 'text-status-success', bg: 'bg-status-success/5', ev: 'Backup concluído', desc: 'Backup diário do banco de dados finalizado', hora: '06:00' },
                 { icon: AlertTriangle, color: 'text-status-warning', bg: 'bg-status-warning/5', ev: 'CPU elevada', desc: 'Servidor APP-02 com CPU acima de 85%', hora: '09:32' },
@@ -252,7 +252,7 @@ export default function BasicTablesShowcase() {
                 return (
                   <tr key={i} className={cn(row.bg, "transition-colors")}>
                     <td className={cn(TD, "text-center")}><Icon size={16} className={row.color} /></td>
-                    <td className={cn(TD, "font-semibold text-foreground")}>{row.ev}</td>
+                    <td className={cn(TD, "font-semibold")}>{row.ev}</td>
                     <td className={cn(TD, "text-muted-foreground")}>{row.desc}</td>
                     <td className={cn(TD, "text-right font-mono text-xs text-muted-foreground")}>{row.hora}</td>
                   </tr>
