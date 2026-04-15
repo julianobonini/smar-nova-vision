@@ -241,15 +241,15 @@ export default function AdminPanelShowcase() {
           <div className="overflow-x-auto">
             <table className="w-full text-sm">
               <thead>
-                <tr className="border-b border-border/40">
-                  <th className="text-left px-4 py-3 text-[10px] font-bold uppercase tracking-widest text-muted-foreground">Pré-O.S.</th>
-                  <th className="text-left px-4 py-3 text-[10px] font-bold uppercase tracking-widest text-muted-foreground">Cliente</th>
-                  <th className="text-left px-4 py-3 text-[10px] font-bold uppercase tracking-widest text-muted-foreground">Status</th>
-                  <th className="text-left px-4 py-3 text-[10px] font-bold uppercase tracking-widest text-muted-foreground">Origem</th>
-                  <th className="text-left px-4 py-3 text-[10px] font-bold uppercase tracking-widest text-muted-foreground">Vendedor</th>
-                  <th className="text-left px-4 py-3 text-[10px] font-bold uppercase tracking-widest text-muted-foreground">Atualizado</th>
-                  <th className="text-right px-4 py-3 text-[10px] font-bold uppercase tracking-widest text-muted-foreground">Valor</th>
-                  <th className="text-center px-4 py-3 text-[10px] font-bold uppercase tracking-widest text-muted-foreground">Ações</th>
+                <tr>
+                  <th className="text-left px-6 py-4 text-xs font-bold uppercase tracking-wider text-muted-foreground bg-surface-container-low">Pré-O.S.</th>
+                  <th className="text-left px-6 py-4 text-xs font-bold uppercase tracking-wider text-muted-foreground bg-surface-container-low">Cliente</th>
+                  <th className="text-left px-6 py-4 text-xs font-bold uppercase tracking-wider text-muted-foreground bg-surface-container-low">Status</th>
+                  <th className="text-left px-6 py-4 text-xs font-bold uppercase tracking-wider text-muted-foreground bg-surface-container-low">Origem</th>
+                  <th className="text-left px-6 py-4 text-xs font-bold uppercase tracking-wider text-muted-foreground bg-surface-container-low">Vendedor</th>
+                  <th className="text-left px-6 py-4 text-xs font-bold uppercase tracking-wider text-muted-foreground bg-surface-container-low">Atualizado</th>
+                  <th className="text-right px-6 py-4 text-xs font-bold uppercase tracking-wider text-muted-foreground bg-surface-container-low">Valor</th>
+                  <th className="text-center px-6 py-4 text-xs font-bold uppercase tracking-wider text-muted-foreground bg-surface-container-low">Ações</th>
                 </tr>
               </thead>
               <tbody>
@@ -258,8 +258,8 @@ export default function AdminPanelShowcase() {
                   const StatusIcon = statusInfo.icon;
                   return (
                     <tr key={p.id} className={cn(
-                      'border-b border-border/20 transition-colors hover:bg-muted/20',
-                      i % 2 === 0 ? 'bg-transparent' : 'bg-muted/5'
+                      'transition-colors hover:bg-muted/20',
+                      i % 2 === 0 ? 'bg-background' : 'bg-surface-container-low/50'
                     )}>
                       <td className="px-4 py-3">
                         <div className="flex items-center gap-2">
