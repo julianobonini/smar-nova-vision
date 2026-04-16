@@ -123,6 +123,43 @@ const CryptoBuySellShowcase = lazy(() => import("./pages/templates/apps/CryptoBu
 const CryptoMarketcapShowcase = lazy(() => import("./pages/templates/apps/CryptoMarketcapShowcase"));
 const CryptoWalletShowcase = lazy(() => import("./pages/templates/apps/CryptoWalletShowcase"));
 
+// Pages
+const AboutUsShowcase = lazy(() => import("./pages/templates/pages/AboutUsShowcase"));
+const ChatShowcase = lazy(() => import("./pages/templates/pages/ChatShowcase"));
+const ContactsShowcase = lazy(() => import("./pages/templates/pages/ContactsShowcase"));
+const ContactUsShowcase = lazy(() => import("./pages/templates/pages/ContactUsShowcase"));
+const EmptyShowcase = lazy(() => import("./pages/templates/pages/EmptyShowcase"));
+const FAQsShowcase = lazy(() => import("./pages/templates/pages/FAQsShowcase"));
+const LandingShowcase = lazy(() => import("./pages/templates/pages/LandingShowcase"));
+const JobsLandingShowcase = lazy(() => import("./pages/templates/pages/JobsLandingShowcase"));
+const NotificationsShowcase = lazy(() => import("./pages/templates/pages/NotificationsShowcase"));
+const PricingShowcase = lazy(() => import("./pages/templates/pages/PricingShowcase"));
+const ProfileShowcase = lazy(() => import("./pages/templates/pages/ProfileShowcase"));
+const ReviewsShowcase = lazy(() => import("./pages/templates/pages/ReviewsShowcase"));
+const TeamShowcase = lazy(() => import("./pages/templates/pages/TeamShowcase"));
+const TermsConditionsShowcase = lazy(() => import("./pages/templates/pages/TermsConditionsShowcase"));
+const TimelineShowcase = lazy(() => import("./pages/templates/pages/TimelineShowcase"));
+const ToDoListShowcase = lazy(() => import("./pages/templates/pages/ToDoListShowcase"));
+const FileManagerShowcase = lazy(() => import("./pages/templates/pages/FileManagerShowcase"));
+const BlogShowcase = lazy(() => import("./pages/templates/pages/blog/BlogShowcase"));
+const BlogDetailsShowcase = lazy(() => import("./pages/templates/pages/blog/BlogDetailsShowcase"));
+const CreateBlogShowcase = lazy(() => import("./pages/templates/pages/blog/CreateBlogShowcase"));
+const MailAppShowcase = lazy(() => import("./pages/templates/pages/email/MailAppShowcase"));
+const MailSettingsShowcase = lazy(() => import("./pages/templates/pages/email/MailSettingsShowcase"));
+const CreateInvoiceShowcase = lazy(() => import("./pages/templates/pages/invoice/CreateInvoiceShowcase"));
+const InvoiceDetailsShowcase = lazy(() => import("./pages/templates/pages/invoice/InvoiceDetailsShowcase"));
+const InvoiceListShowcase = lazy(() => import("./pages/templates/pages/invoice/InvoiceListShowcase"));
+const ProductsShowcase = lazy(() => import("./pages/templates/pages/ecommerce/ProductsShowcase"));
+const ProductDetailsShowcase = lazy(() => import("./pages/templates/pages/ecommerce/ProductDetailsShowcase"));
+const CartShowcase = lazy(() => import("./pages/templates/pages/ecommerce/CartShowcase"));
+const CheckoutShowcase = lazy(() => import("./pages/templates/pages/ecommerce/CheckoutShowcase"));
+const AddProductsShowcase = lazy(() => import("./pages/templates/pages/ecommerce/AddProductsShowcase"));
+const EditProductsShowcase = lazy(() => import("./pages/templates/pages/ecommerce/EditProductsShowcase"));
+const OrdersShowcase = lazy(() => import("./pages/templates/pages/ecommerce/OrdersShowcase"));
+const OrderDetailsShowcase = lazy(() => import("./pages/templates/pages/ecommerce/OrderDetailsShowcase"));
+const EcommerceProductsListShowcase = lazy(() => import("./pages/templates/pages/ecommerce/ProductsListShowcase"));
+const WishlistShowcase = lazy(() => import("./pages/templates/pages/ecommerce/WishlistShowcase"));
+
 const queryClient = new QueryClient();
 
 const LazyFallback = () => (
@@ -267,6 +304,43 @@ function AppRoutes() {
         <Route path="templates/apps/crypto/buysell" element={<LazyRoute><CryptoBuySellShowcase /></LazyRoute>} />
         <Route path="templates/apps/crypto/marketcap" element={<LazyRoute><CryptoMarketcapShowcase /></LazyRoute>} />
         <Route path="templates/apps/crypto/wallet" element={<LazyRoute><CryptoWalletShowcase /></LazyRoute>} />
+
+        {/* Pages */}
+        <Route path="templates/pages/aboutus" element={<LazyRoute><AboutUsShowcase /></LazyRoute>} />
+        <Route path="templates/pages/chat" element={<LazyRoute><ChatShowcase /></LazyRoute>} />
+        <Route path="templates/pages/contacts" element={<LazyRoute><ContactsShowcase /></LazyRoute>} />
+        <Route path="templates/pages/contactus" element={<LazyRoute><ContactUsShowcase /></LazyRoute>} />
+        <Route path="templates/pages/empty" element={<LazyRoute><EmptyShowcase /></LazyRoute>} />
+        <Route path="templates/pages/faqs" element={<LazyRoute><FAQsShowcase /></LazyRoute>} />
+        <Route path="templates/pages/landing" element={<LazyRoute><LandingShowcase /></LazyRoute>} />
+        <Route path="templates/pages/jobslanding" element={<LazyRoute><JobsLandingShowcase /></LazyRoute>} />
+        <Route path="templates/pages/notifications" element={<LazyRoute><NotificationsShowcase /></LazyRoute>} />
+        <Route path="templates/pages/pricing" element={<LazyRoute><PricingShowcase /></LazyRoute>} />
+        <Route path="templates/pages/profile" element={<LazyRoute><ProfileShowcase /></LazyRoute>} />
+        <Route path="templates/pages/reviews" element={<LazyRoute><ReviewsShowcase /></LazyRoute>} />
+        <Route path="templates/pages/team" element={<LazyRoute><TeamShowcase /></LazyRoute>} />
+        <Route path="templates/pages/termsconditions" element={<LazyRoute><TermsConditionsShowcase /></LazyRoute>} />
+        <Route path="templates/pages/timeline" element={<LazyRoute><TimelineShowcase /></LazyRoute>} />
+        <Route path="templates/pages/todolist" element={<LazyRoute><ToDoListShowcase /></LazyRoute>} />
+        <Route path="templates/pages/filemanager/filemanager" element={<LazyRoute><FileManagerShowcase /></LazyRoute>} />
+        <Route path="templates/pages/blog/blog" element={<LazyRoute><BlogShowcase /></LazyRoute>} />
+        <Route path="templates/pages/blog/details" element={<LazyRoute><BlogDetailsShowcase /></LazyRoute>} />
+        <Route path="templates/pages/blog/create" element={<LazyRoute><CreateBlogShowcase /></LazyRoute>} />
+        <Route path="templates/pages/email/mailapp" element={<LazyRoute><MailAppShowcase /></LazyRoute>} />
+        <Route path="templates/pages/email/mailsettings" element={<LazyRoute><MailSettingsShowcase /></LazyRoute>} />
+        <Route path="templates/pages/invoice/create" element={<LazyRoute><CreateInvoiceShowcase /></LazyRoute>} />
+        <Route path="templates/pages/invoice/details" element={<LazyRoute><InvoiceDetailsShowcase /></LazyRoute>} />
+        <Route path="templates/pages/invoice/list" element={<LazyRoute><InvoiceListShowcase /></LazyRoute>} />
+        <Route path="templates/pages/ecommerce/products" element={<LazyRoute><ProductsShowcase /></LazyRoute>} />
+        <Route path="templates/pages/ecommerce/productdetails" element={<LazyRoute><ProductDetailsShowcase /></LazyRoute>} />
+        <Route path="templates/pages/ecommerce/cart" element={<LazyRoute><CartShowcase /></LazyRoute>} />
+        <Route path="templates/pages/ecommerce/checkout" element={<LazyRoute><CheckoutShowcase /></LazyRoute>} />
+        <Route path="templates/pages/ecommerce/addproducts" element={<LazyRoute><AddProductsShowcase /></LazyRoute>} />
+        <Route path="templates/pages/ecommerce/editproducts" element={<LazyRoute><EditProductsShowcase /></LazyRoute>} />
+        <Route path="templates/pages/ecommerce/orders" element={<LazyRoute><OrdersShowcase /></LazyRoute>} />
+        <Route path="templates/pages/ecommerce/orderdetails" element={<LazyRoute><OrderDetailsShowcase /></LazyRoute>} />
+        <Route path="templates/pages/ecommerce/productlist" element={<LazyRoute><EcommerceProductsListShowcase /></LazyRoute>} />
+        <Route path="templates/pages/ecommerce/wishlist" element={<LazyRoute><WishlistShowcase /></LazyRoute>} />
 
         <Route path="templates/*" element={<TemplatePlaceholder />} />
       </Route>
