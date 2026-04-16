@@ -14,7 +14,7 @@ export default function AddProductsShowcase() {
             <div className="grid sm:grid-cols-2 gap-4">
               <div className="sm:col-span-2">
                 <Label className="text-xs mb-1.5">Nome do produto <span className="text-destructive">*</span></Label>
-                <Input placeholder="Ex: Válvula reguladora 1/2\"" />
+                <Input placeholder='Ex: Válvula reguladora 1/2"' />
               </div>
               <div>
                 <Label className="text-xs mb-1.5">SKU</Label>
