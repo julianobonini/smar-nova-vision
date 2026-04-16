@@ -1,4 +1,4 @@
-import { PagesLayout, PageSection } from './PagesLayout';
+import { PagesLayout, PageSection } from '../PagesLayout';
 import { Calendar, User, MessageCircle, ArrowRight, Search, Tag } from 'lucide-react';
 import { Input } from '@/components/ui/input';
 
