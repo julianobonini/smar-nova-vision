@@ -181,6 +181,9 @@ const TwoStepCoverShowcase = lazy(() => import("./pages/templates/auth/twostep/T
 const ComingSoonShowcase = lazy(() => import("./pages/templates/auth/ComingSoonShowcase"));
 const UnderMaintenanceShowcase = lazy(() => import("./pages/templates/auth/UnderMaintenanceShowcase"));
 
+// Widgets
+const WidgetsShowcase = lazy(() => import("./pages/templates/widgets/WidgetsShowcase"));
+
 // Error
 const Error401Showcase = lazy(() => import("./pages/templates/error/Error401Showcase"));
 const Error404Showcase = lazy(() => import("./pages/templates/error/Error404Showcase"));
@@ -388,6 +391,9 @@ function AppRoutes() {
         <Route path="templates/auth/twostep/cover" element={<LazyRoute><TwoStepCoverShowcase /></LazyRoute>} />
         <Route path="templates/auth/comingsoon" element={<LazyRoute><ComingSoonShowcase /></LazyRoute>} />
         <Route path="templates/auth/undermaintenance" element={<LazyRoute><UnderMaintenanceShowcase /></LazyRoute>} />
+
+        {/* Widgets */}
+        <Route path="templates/widgets" element={<LazyRoute><WidgetsShowcase /></LazyRoute>} />
 
         {/* Error */}
         <Route path="templates/error/401" element={<LazyRoute><Error401Showcase /></LazyRoute>} />
