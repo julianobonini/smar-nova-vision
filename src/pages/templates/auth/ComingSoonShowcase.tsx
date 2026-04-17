@@ -1,4 +1,4 @@
-import { AuthLayout, AuthCard, AuthBrand } from '../AuthLayout';
+import { AuthLayout, AuthCard, AuthBrand } from './AuthLayout';
 import { Input } from '@/components/ui/input';
 import { Label } from '@/components/ui/label';
 import { Rocket } from 'lucide-react';

@@ -1,4 +1,4 @@
-import { AuthLayout, AuthCard, AuthBrand } from '../AuthLayout';
+import { AuthLayout, AuthCard, AuthBrand } from './AuthLayout';
 import { Wrench } from 'lucide-react';
 
 export default function UnderMaintenanceShowcase() {
