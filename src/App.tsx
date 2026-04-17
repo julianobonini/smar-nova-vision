@@ -160,6 +160,32 @@ const OrderDetailsShowcase = lazy(() => import("./pages/templates/pages/ecommerc
 const EcommerceProductsListShowcase = lazy(() => import("./pages/templates/pages/ecommerce/ProductsListShowcase"));
 const WishlistShowcase = lazy(() => import("./pages/templates/pages/ecommerce/WishlistShowcase"));
 
+// Task
+const KanbanShowcase = lazy(() => import("./pages/templates/task/KanbanShowcase"));
+const ListViewShowcase = lazy(() => import("./pages/templates/task/ListViewShowcase"));
+const TaskDetailsShowcase = lazy(() => import("./pages/templates/task/TaskDetailsShowcase"));
+
+// Authentication
+const SignInBasicShowcase = lazy(() => import("./pages/templates/auth/signin/SignInBasicShowcase"));
+const SignInCoverShowcase = lazy(() => import("./pages/templates/auth/signin/SignInCoverShowcase"));
+const SignUpBasicShowcase = lazy(() => import("./pages/templates/auth/signup/SignUpBasicShowcase"));
+const SignUpCoverShowcase = lazy(() => import("./pages/templates/auth/signup/SignUpCoverShowcase"));
+const ResetPasswordBasicShowcase = lazy(() => import("./pages/templates/auth/resetpassword/ResetPasswordBasicShowcase"));
+const ResetPasswordCoverShowcase = lazy(() => import("./pages/templates/auth/resetpassword/ResetPasswordCoverShowcase"));
+const CreatePasswordBasicShowcase = lazy(() => import("./pages/templates/auth/createpassword/CreatePasswordBasicShowcase"));
+const CreatePasswordCoverShowcase = lazy(() => import("./pages/templates/auth/createpassword/CreatePasswordCoverShowcase"));
+const LockScreenBasicShowcase = lazy(() => import("./pages/templates/auth/lockscreen/LockScreenBasicShowcase"));
+const LockScreenCoverShowcase = lazy(() => import("./pages/templates/auth/lockscreen/LockScreenCoverShowcase"));
+const TwoStepBasicShowcase = lazy(() => import("./pages/templates/auth/twostep/TwoStepBasicShowcase"));
+const TwoStepCoverShowcase = lazy(() => import("./pages/templates/auth/twostep/TwoStepCoverShowcase"));
+const ComingSoonShowcase = lazy(() => import("./pages/templates/auth/ComingSoonShowcase"));
+const UnderMaintenanceShowcase = lazy(() => import("./pages/templates/auth/UnderMaintenanceShowcase"));
+
+// Error
+const Error401Showcase = lazy(() => import("./pages/templates/error/Error401Showcase"));
+const Error404Showcase = lazy(() => import("./pages/templates/error/Error404Showcase"));
+const Error500Showcase = lazy(() => import("./pages/templates/error/Error500Showcase"));
+
 const queryClient = new QueryClient();
 
 const LazyFallback = () => (
@@ -341,6 +367,32 @@ function AppRoutes() {
         <Route path="templates/pages/ecommerce/orderdetails" element={<LazyRoute><OrderDetailsShowcase /></LazyRoute>} />
         <Route path="templates/pages/ecommerce/productlist" element={<LazyRoute><EcommerceProductsListShowcase /></LazyRoute>} />
         <Route path="templates/pages/ecommerce/wishlist" element={<LazyRoute><WishlistShowcase /></LazyRoute>} />
+
+        {/* Task */}
+        <Route path="templates/task/kanban" element={<LazyRoute><KanbanShowcase /></LazyRoute>} />
+        <Route path="templates/task/listview" element={<LazyRoute><ListViewShowcase /></LazyRoute>} />
+        <Route path="templates/task/details" element={<LazyRoute><TaskDetailsShowcase /></LazyRoute>} />
+
+        {/* Authentication */}
+        <Route path="templates/auth/signin/basic" element={<LazyRoute><SignInBasicShowcase /></LazyRoute>} />
+        <Route path="templates/auth/signin/cover" element={<LazyRoute><SignInCoverShowcase /></LazyRoute>} />
+        <Route path="templates/auth/signup/basic" element={<LazyRoute><SignUpBasicShowcase /></LazyRoute>} />
+        <Route path="templates/auth/signup/cover" element={<LazyRoute><SignUpCoverShowcase /></LazyRoute>} />
+        <Route path="templates/auth/resetpassword/basic" element={<LazyRoute><ResetPasswordBasicShowcase /></LazyRoute>} />
+        <Route path="templates/auth/resetpassword/cover" element={<LazyRoute><ResetPasswordCoverShowcase /></LazyRoute>} />
+        <Route path="templates/auth/createpassword/basic" element={<LazyRoute><CreatePasswordBasicShowcase /></LazyRoute>} />
+        <Route path="templates/auth/createpassword/cover" element={<LazyRoute><CreatePasswordCoverShowcase /></LazyRoute>} />
+        <Route path="templates/auth/lockscreen/basic" element={<LazyRoute><LockScreenBasicShowcase /></LazyRoute>} />
+        <Route path="templates/auth/lockscreen/cover" element={<LazyRoute><LockScreenCoverShowcase /></LazyRoute>} />
+        <Route path="templates/auth/twostep/basic" element={<LazyRoute><TwoStepBasicShowcase /></LazyRoute>} />
+        <Route path="templates/auth/twostep/cover" element={<LazyRoute><TwoStepCoverShowcase /></LazyRoute>} />
+        <Route path="templates/auth/comingsoon" element={<LazyRoute><ComingSoonShowcase /></LazyRoute>} />
+        <Route path="templates/auth/undermaintenance" element={<LazyRoute><UnderMaintenanceShowcase /></LazyRoute>} />
+
+        {/* Error */}
+        <Route path="templates/error/401" element={<LazyRoute><Error401Showcase /></LazyRoute>} />
+        <Route path="templates/error/404" element={<LazyRoute><Error404Showcase /></LazyRoute>} />
+        <Route path="templates/error/500" element={<LazyRoute><Error500Showcase /></LazyRoute>} />
 
         <Route path="templates/*" element={<TemplatePlaceholder />} />
       </Route>
