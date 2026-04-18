@@ -50,9 +50,20 @@ export default function ColorsShowcase() {
 
       <ShowcaseSection title="Opacidades">
         <div className="flex flex-wrap gap-3">
-          {[10, 20, 30, 40, 50, 60, 70, 80, 90, 100].map(o => (
+          {[
+            { o: 10, cls: 'bg-primary/10' },
+            { o: 20, cls: 'bg-primary/20' },
+            { o: 30, cls: 'bg-primary/30' },
+            { o: 40, cls: 'bg-primary/40' },
+            { o: 50, cls: 'bg-primary/50' },
+            { o: 60, cls: 'bg-primary/60' },
+            { o: 70, cls: 'bg-primary/70' },
+            { o: 80, cls: 'bg-primary/80' },
+            { o: 90, cls: 'bg-primary/90' },
+            { o: 100, cls: 'bg-primary' },
+          ].map(({ o, cls }) => (
             <div key={o} className="flex flex-col items-center gap-1">
-              <div className={`w-14 h-14 rounded-lg bg-primary/${o}`} />
+              <div className={`w-14 h-14 rounded-lg ${cls}`} />
               <code className="text-[10px] text-muted-foreground">{o}%</code>
             </div>
           ))}
