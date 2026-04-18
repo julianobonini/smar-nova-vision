@@ -1,6 +1,6 @@
 import { LineChart, Line, BarChart, Bar, PieChart, Pie, Cell, RadarChart, Radar, PolarGrid, PolarAngleAxis, XAxis, YAxis, Tooltip, ResponsiveContainer, CartesianGrid, Legend } from 'recharts';
-import { ChartsLayout, ChartSection } from '../ChartsLayout';
-import { monthly, pieData, radarData, palette, chartColors } from '../chartData';
+import { ChartsLayout, ChartSection } from './ChartsLayout';
+import { monthly, pieData, radarData, palette, chartColors } from './chartData';
 
 export default function EchartShowcase() {
   return (

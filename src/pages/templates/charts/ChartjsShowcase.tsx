@@ -1,6 +1,6 @@
 import { LineChart, Line, BarChart, Bar, PieChart, Pie, Cell, XAxis, YAxis, Tooltip, ResponsiveContainer, CartesianGrid, Legend, AreaChart, Area } from 'recharts';
-import { ChartsLayout, ChartSection } from '../ChartsLayout';
-import { monthly, pieData, palette, chartColors } from '../chartData';
+import { ChartsLayout, ChartSection } from './ChartsLayout';
+import { monthly, pieData, palette, chartColors } from './chartData';
 
 export default function ChartjsShowcase() {
   return (
