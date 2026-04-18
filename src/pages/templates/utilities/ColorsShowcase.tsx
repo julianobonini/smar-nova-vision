@@ -1,4 +1,6 @@
 import { UtilitiesLayout, ShowcaseSection } from './UtilitiesLayout';
+import { Button } from '@/components/ui/button';
+import { Badge } from '@/components/ui/badge';
 
 const semanticColors = [
   { name: 'background', cls: 'bg-background', text: 'text-foreground' },
@@ -38,13 +40,48 @@ export default function ColorsShowcase() {
       </ShowcaseSection>
 
       <ShowcaseSection title="Cores de Status">
-        <div className="flex flex-wrap gap-4">
-          {statusColors.map(c => (
-            <div key={c.name} className="flex flex-col items-center gap-2">
-              <div className={`w-16 h-16 rounded-xl ${c.bg}`} />
-              <span className={`text-xs font-semibold ${c.text}`}>{c.name}</span>
+        <div className="space-y-6">
+          <div className="flex flex-wrap gap-6">
+            {statusColors.map(c => (
+              <div key={c.name} className="flex flex-col items-center gap-2">
+                <div className={`w-16 h-16 rounded-xl ${c.bg}`} />
+                <span className={`text-xs font-semibold ${c.text}`}>{c.name}</span>
+              </div>
+            ))}
+          </div>
+
+          <div>
+            <div className="text-xs font-semibold text-muted-foreground uppercase tracking-wider mb-3">Botões</div>
+            <div className="flex flex-wrap gap-3">
+              <Button variant="success">Success</Button>
+              <Button variant="warning">Warning</Button>
+              <Button variant="alert">Alert</Button>
+              <Button variant="destructive">Destructive</Button>
+              <Button variant="info">Info</Button>
             </div>
-          ))}
+          </div>
+
+          <div>
+            <div className="text-xs font-semibold text-muted-foreground uppercase tracking-wider mb-3">Badges</div>
+            <div className="flex flex-wrap gap-3">
+              <Badge className="bg-success text-success-foreground hover:bg-success/90">Success</Badge>
+              <Badge className="bg-warning text-warning-foreground hover:bg-warning/90">Warning</Badge>
+              <Badge className="bg-alert text-alert-foreground hover:bg-alert/90">Alert</Badge>
+              <Badge className="bg-destructive text-destructive-foreground hover:bg-destructive/90">Destructive</Badge>
+              <Badge className="bg-info text-info-foreground hover:bg-info/90">Info</Badge>
+            </div>
+          </div>
+
+          <div>
+            <div className="text-xs font-semibold text-muted-foreground uppercase tracking-wider mb-3">Soft / Outline</div>
+            <div className="flex flex-wrap gap-3">
+              <span className="px-3 py-1.5 rounded-md text-xs font-semibold bg-success/15 text-success border border-success/30">Success</span>
+              <span className="px-3 py-1.5 rounded-md text-xs font-semibold bg-warning/15 text-warning border border-warning/30">Warning</span>
+              <span className="px-3 py-1.5 rounded-md text-xs font-semibold bg-alert/15 text-alert border border-alert/30">Alert</span>
+              <span className="px-3 py-1.5 rounded-md text-xs font-semibold bg-destructive/15 text-destructive border border-destructive/30">Destructive</span>
+              <span className="px-3 py-1.5 rounded-md text-xs font-semibold bg-info/15 text-info border border-info/30">Info</span>
+            </div>
+          </div>
         </div>
       </ShowcaseSection>
 
