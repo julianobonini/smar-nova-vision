@@ -424,6 +424,28 @@ function AppRoutes() {
         <Route path="templates/error/404" element={<LazyRoute><Error404Showcase /></LazyRoute>} />
         <Route path="templates/error/500" element={<LazyRoute><Error500Showcase /></LazyRoute>} />
 
+        {/* Charts */}
+        <Route path="templates/charts/apex/line" element={<LazyRoute><ApexLineChart /></LazyRoute>} />
+        <Route path="templates/charts/apex/area" element={<LazyRoute><ApexAreaChart /></LazyRoute>} />
+        <Route path="templates/charts/apex/column" element={<LazyRoute><ApexColumnChart /></LazyRoute>} />
+        <Route path="templates/charts/apex/bar" element={<LazyRoute><ApexBarChart /></LazyRoute>} />
+        <Route path="templates/charts/apex/mixed" element={<LazyRoute><ApexMixedChart /></LazyRoute>} />
+        <Route path="templates/charts/apex/rangearea" element={<LazyRoute><ApexRangeAreaChart /></LazyRoute>} />
+        <Route path="templates/charts/apex/timeline" element={<LazyRoute><ApexTimelineChart /></LazyRoute>} />
+        <Route path="templates/charts/apex/funnel" element={<LazyRoute><ApexFunnelChart /></LazyRoute>} />
+        <Route path="templates/charts/apex/candlestick" element={<LazyRoute><ApexCandleStickChart /></LazyRoute>} />
+        <Route path="templates/charts/apex/boxplot" element={<LazyRoute><ApexBoxplotChart /></LazyRoute>} />
+        <Route path="templates/charts/apex/bubble" element={<LazyRoute><ApexBubbleChart /></LazyRoute>} />
+        <Route path="templates/charts/apex/scatter" element={<LazyRoute><ApexScatterChart /></LazyRoute>} />
+        <Route path="templates/charts/apex/heatmap" element={<LazyRoute><ApexHeatmapChart /></LazyRoute>} />
+        <Route path="templates/charts/apex/treemap" element={<LazyRoute><ApexTreemapChart /></LazyRoute>} />
+        <Route path="templates/charts/apex/pie" element={<LazyRoute><ApexPieChart /></LazyRoute>} />
+        <Route path="templates/charts/apex/radialbar" element={<LazyRoute><ApexRadialBarChart /></LazyRoute>} />
+        <Route path="templates/charts/apex/radar" element={<LazyRoute><ApexRadarChart /></LazyRoute>} />
+        <Route path="templates/charts/apex/polararea" element={<LazyRoute><ApexPolarAreaChart /></LazyRoute>} />
+        <Route path="templates/charts/chartjs" element={<LazyRoute><ChartjsShowcase /></LazyRoute>} />
+        <Route path="templates/charts/echart" element={<LazyRoute><EchartShowcase /></LazyRoute>} />
+
         <Route path="templates/*" element={<TemplatePlaceholder />} />
       </Route>
 
