@@ -190,6 +190,28 @@ const Error401Showcase = lazy(() => import("./pages/templates/error/Error401Show
 const Error404Showcase = lazy(() => import("./pages/templates/error/Error404Showcase"));
 const Error500Showcase = lazy(() => import("./pages/templates/error/Error500Showcase"));
 
+// Charts - Apex
+const ApexLineChart = lazy(() => import("./pages/templates/charts/apex/ApexLineChart"));
+const ApexAreaChart = lazy(() => import("./pages/templates/charts/apex/ApexAreaChart"));
+const ApexColumnChart = lazy(() => import("./pages/templates/charts/apex/ApexColumnChart"));
+const ApexBarChart = lazy(() => import("./pages/templates/charts/apex/ApexBarChart"));
+const ApexMixedChart = lazy(() => import("./pages/templates/charts/apex/ApexMixedChart"));
+const ApexRangeAreaChart = lazy(() => import("./pages/templates/charts/apex/ApexRangeAreaChart"));
+const ApexTimelineChart = lazy(() => import("./pages/templates/charts/apex/ApexTimelineChart"));
+const ApexFunnelChart = lazy(() => import("./pages/templates/charts/apex/ApexFunnelChart"));
+const ApexCandleStickChart = lazy(() => import("./pages/templates/charts/apex/ApexCandleStickChart"));
+const ApexBoxplotChart = lazy(() => import("./pages/templates/charts/apex/ApexBoxplotChart"));
+const ApexBubbleChart = lazy(() => import("./pages/templates/charts/apex/ApexBubbleChart"));
+const ApexScatterChart = lazy(() => import("./pages/templates/charts/apex/ApexScatterChart"));
+const ApexHeatmapChart = lazy(() => import("./pages/templates/charts/apex/ApexHeatmapChart"));
+const ApexTreemapChart = lazy(() => import("./pages/templates/charts/apex/ApexTreemapChart"));
+const ApexPieChart = lazy(() => import("./pages/templates/charts/apex/ApexPieChart"));
+const ApexRadialBarChart = lazy(() => import("./pages/templates/charts/apex/ApexRadialBarChart"));
+const ApexRadarChart = lazy(() => import("./pages/templates/charts/apex/ApexRadarChart"));
+const ApexPolarAreaChart = lazy(() => import("./pages/templates/charts/apex/ApexPolarAreaChart"));
+const ChartjsShowcase = lazy(() => import("./pages/templates/charts/ChartjsShowcase"));
+const EchartShowcase = lazy(() => import("./pages/templates/charts/EchartShowcase"));
+
 const queryClient = new QueryClient();
 
 const LazyFallback = () => (
@@ -401,6 +423,28 @@ function AppRoutes() {
         <Route path="templates/error/401" element={<LazyRoute><Error401Showcase /></LazyRoute>} />
         <Route path="templates/error/404" element={<LazyRoute><Error404Showcase /></LazyRoute>} />
         <Route path="templates/error/500" element={<LazyRoute><Error500Showcase /></LazyRoute>} />
+
+        {/* Charts */}
+        <Route path="templates/charts/apex/line" element={<LazyRoute><ApexLineChart /></LazyRoute>} />
+        <Route path="templates/charts/apex/area" element={<LazyRoute><ApexAreaChart /></LazyRoute>} />
+        <Route path="templates/charts/apex/column" element={<LazyRoute><ApexColumnChart /></LazyRoute>} />
+        <Route path="templates/charts/apex/bar" element={<LazyRoute><ApexBarChart /></LazyRoute>} />
+        <Route path="templates/charts/apex/mixed" element={<LazyRoute><ApexMixedChart /></LazyRoute>} />
+        <Route path="templates/charts/apex/rangearea" element={<LazyRoute><ApexRangeAreaChart /></LazyRoute>} />
+        <Route path="templates/charts/apex/timeline" element={<LazyRoute><ApexTimelineChart /></LazyRoute>} />
+        <Route path="templates/charts/apex/funnel" element={<LazyRoute><ApexFunnelChart /></LazyRoute>} />
+        <Route path="templates/charts/apex/candlestick" element={<LazyRoute><ApexCandleStickChart /></LazyRoute>} />
+        <Route path="templates/charts/apex/boxplot" element={<LazyRoute><ApexBoxplotChart /></LazyRoute>} />
+        <Route path="templates/charts/apex/bubble" element={<LazyRoute><ApexBubbleChart /></LazyRoute>} />
+        <Route path="templates/charts/apex/scatter" element={<LazyRoute><ApexScatterChart /></LazyRoute>} />
+        <Route path="templates/charts/apex/heatmap" element={<LazyRoute><ApexHeatmapChart /></LazyRoute>} />
+        <Route path="templates/charts/apex/treemap" element={<LazyRoute><ApexTreemapChart /></LazyRoute>} />
+        <Route path="templates/charts/apex/pie" element={<LazyRoute><ApexPieChart /></LazyRoute>} />
+        <Route path="templates/charts/apex/radialbar" element={<LazyRoute><ApexRadialBarChart /></LazyRoute>} />
+        <Route path="templates/charts/apex/radar" element={<LazyRoute><ApexRadarChart /></LazyRoute>} />
+        <Route path="templates/charts/apex/polararea" element={<LazyRoute><ApexPolarAreaChart /></LazyRoute>} />
+        <Route path="templates/charts/chartjs" element={<LazyRoute><ChartjsShowcase /></LazyRoute>} />
+        <Route path="templates/charts/echart" element={<LazyRoute><EchartShowcase /></LazyRoute>} />
 
         <Route path="templates/*" element={<TemplatePlaceholder />} />
       </Route>
