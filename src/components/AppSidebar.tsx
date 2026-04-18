@@ -7,6 +7,7 @@ import {
 import { useApp } from '@/contexts/AppContext';
 import { t } from '@/lib/i18n';
 import { templateMenuGroups, TemplateMenuItem } from '@/data/templateMenu';
+import * as React from 'react';
 import {
   Sidebar,
   SidebarContent,
@@ -165,8 +166,14 @@ function TemplateMenuItemRenderer({
 
 /* ── Main Sidebar ── */
 export function AppSidebar() {
-  const { state } = useSidebar();
-  const collapsed = state === 'collapsed';
+  // Defensive: bail out if rendered outside SidebarProvider (e.g. during HMR)
+  let sidebarState: 'expanded' | 'collapsed' = 'expanded';
+  try {
+    sidebarState = useSidebar().state;
+  } catch {
+    return null;
+  }
+  const collapsed = sidebarState === 'collapsed';
   const location = useLocation();
   const navigate = useNavigate();
   const { locale, user } = useApp();
