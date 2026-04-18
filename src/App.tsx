@@ -190,6 +190,28 @@ const Error401Showcase = lazy(() => import("./pages/templates/error/Error401Show
 const Error404Showcase = lazy(() => import("./pages/templates/error/Error404Showcase"));
 const Error500Showcase = lazy(() => import("./pages/templates/error/Error500Showcase"));
 
+// Charts - Apex
+const ApexLineChart = lazy(() => import("./pages/templates/charts/apex/ApexLineChart"));
+const ApexAreaChart = lazy(() => import("./pages/templates/charts/apex/ApexAreaChart"));
+const ApexColumnChart = lazy(() => import("./pages/templates/charts/apex/ApexColumnChart"));
+const ApexBarChart = lazy(() => import("./pages/templates/charts/apex/ApexBarChart"));
+const ApexMixedChart = lazy(() => import("./pages/templates/charts/apex/ApexMixedChart"));
+const ApexRangeAreaChart = lazy(() => import("./pages/templates/charts/apex/ApexRangeAreaChart"));
+const ApexTimelineChart = lazy(() => import("./pages/templates/charts/apex/ApexTimelineChart"));
+const ApexFunnelChart = lazy(() => import("./pages/templates/charts/apex/ApexFunnelChart"));
+const ApexCandleStickChart = lazy(() => import("./pages/templates/charts/apex/ApexCandleStickChart"));
+const ApexBoxplotChart = lazy(() => import("./pages/templates/charts/apex/ApexBoxplotChart"));
+const ApexBubbleChart = lazy(() => import("./pages/templates/charts/apex/ApexBubbleChart"));
+const ApexScatterChart = lazy(() => import("./pages/templates/charts/apex/ApexScatterChart"));
+const ApexHeatmapChart = lazy(() => import("./pages/templates/charts/apex/ApexHeatmapChart"));
+const ApexTreemapChart = lazy(() => import("./pages/templates/charts/apex/ApexTreemapChart"));
+const ApexPieChart = lazy(() => import("./pages/templates/charts/apex/ApexPieChart"));
+const ApexRadialBarChart = lazy(() => import("./pages/templates/charts/apex/ApexRadialBarChart"));
+const ApexRadarChart = lazy(() => import("./pages/templates/charts/apex/ApexRadarChart"));
+const ApexPolarAreaChart = lazy(() => import("./pages/templates/charts/apex/ApexPolarAreaChart"));
+const ChartjsShowcase = lazy(() => import("./pages/templates/charts/ChartjsShowcase"));
+const EchartShowcase = lazy(() => import("./pages/templates/charts/EchartShowcase"));
+
 const queryClient = new QueryClient();
 
 const LazyFallback = () => (
