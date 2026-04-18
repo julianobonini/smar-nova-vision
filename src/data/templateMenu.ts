@@ -90,6 +90,7 @@ export const templateMenuGroups: TemplateMenuGroup[] = [
             label: 'Email',
             children: [
               { label: 'Mail App', path: '/app/templates/pages/email/mailapp' },
+              { label: 'Mail Editor', path: '/app/templates/pages/email/maileditor' },
               { label: 'Mail Settings', path: '/app/templates/pages/email/mailsettings' },
             ],
           },

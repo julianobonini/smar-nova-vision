@@ -145,6 +145,7 @@ const BlogShowcase = lazy(() => import("./pages/templates/pages/blog/BlogShowcas
 const BlogDetailsShowcase = lazy(() => import("./pages/templates/pages/blog/BlogDetailsShowcase"));
 const CreateBlogShowcase = lazy(() => import("./pages/templates/pages/blog/CreateBlogShowcase"));
 const MailAppShowcase = lazy(() => import("./pages/templates/pages/email/MailAppShowcase"));
+const MailEditorShowcase = lazy(() => import("./pages/templates/pages/email/MailEditorShowcase"));
 const MailSettingsShowcase = lazy(() => import("./pages/templates/pages/email/MailSettingsShowcase"));
 const CreateInvoiceShowcase = lazy(() => import("./pages/templates/pages/invoice/CreateInvoiceShowcase"));
 const InvoiceDetailsShowcase = lazy(() => import("./pages/templates/pages/invoice/InvoiceDetailsShowcase"));
@@ -356,6 +357,7 @@ function AppRoutes() {
         <Route path="templates/pages/blog/details" element={<LazyRoute><BlogDetailsShowcase /></LazyRoute>} />
         <Route path="templates/pages/blog/create" element={<LazyRoute><CreateBlogShowcase /></LazyRoute>} />
         <Route path="templates/pages/email/mailapp" element={<LazyRoute><MailAppShowcase /></LazyRoute>} />
+        <Route path="templates/pages/email/maileditor" element={<LazyRoute><MailEditorShowcase /></LazyRoute>} />
         <Route path="templates/pages/email/mailsettings" element={<LazyRoute><MailSettingsShowcase /></LazyRoute>} />
         <Route path="templates/pages/invoice/create" element={<LazyRoute><CreateInvoiceShowcase /></LazyRoute>} />
         <Route path="templates/pages/invoice/details" element={<LazyRoute><InvoiceDetailsShowcase /></LazyRoute>} />
