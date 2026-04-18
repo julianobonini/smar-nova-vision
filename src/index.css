@@ -51,12 +51,21 @@
     --radius: 1rem;
     
     /* Status colors */
-    --status-success: 152 60% 40%;
-    --status-warning: 42 100% 23%;
+    --success: 142 70% 38%;
+    --success-foreground: 0 0% 100%;
+    --warning: 22 95% 50%;
+    --warning-foreground: 0 0% 100%;
+    --alert: 48 96% 50%;
+    --alert-foreground: 30 30% 15%;
+    --info: 210 100% 45%;
+    --info-foreground: 0 0% 100%;
+    
+    --status-success: 142 70% 38%;
+    --status-warning: 22 95% 50%;
     --status-error: 0 72% 41%;
-    --status-info: 210 100% 40%;
-    --status-pending: 30 80% 55%;
-    --status-operational: 152 60% 40%;
+    --status-info: 210 100% 45%;
+    --status-pending: 48 96% 50%;
+    --status-operational: 142 70% 38%;
     
     /* Sidebar */
     --sidebar-background: 210 100% 13%;
@@ -103,6 +112,15 @@
     
     --destructive: 0 62% 50%;
     --destructive-foreground: 0 0% 100%;
+    
+    --success: 142 60% 45%;
+    --success-foreground: 220 20% 7%;
+    --warning: 22 90% 55%;
+    --warning-foreground: 220 20% 7%;
+    --alert: 48 90% 55%;
+    --alert-foreground: 220 20% 7%;
+    --info: 210 80% 60%;
+    --info-foreground: 220 20% 7%;
     
     --border: 220 12% 20%;
     --input: 220 12% 20%;

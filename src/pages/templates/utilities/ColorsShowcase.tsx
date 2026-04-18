@@ -15,8 +15,9 @@ const semanticColors = [
 const statusColors = [
   { name: 'Success', bg: 'bg-success', text: 'text-success' },
   { name: 'Warning', bg: 'bg-warning', text: 'text-warning' },
+  { name: 'Alert', bg: 'bg-alert', text: 'text-alert' },
   { name: 'Destructive', bg: 'bg-destructive', text: 'text-destructive' },
-  { name: 'Info (Primary)', bg: 'bg-primary', text: 'text-primary' },
+  { name: 'Info', bg: 'bg-info', text: 'text-info' },
 ];
 
 export default function ColorsShowcase() {
