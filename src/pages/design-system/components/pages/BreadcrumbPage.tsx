@@ -1,5 +1,5 @@
 import {
-  Breadcrumb, BreadcrumbItem, BreadcrumbLink, BreadcrumbList, BreadcrumbPage, BreadcrumbSeparator,
+  Breadcrumb, BreadcrumbItem, BreadcrumbLink, BreadcrumbList, BreadcrumbPage as BcPage, BreadcrumbSeparator,
 } from '@/components/ui/breadcrumb';
 import { Demo } from './Demo';
 
@@ -12,7 +12,7 @@ export default function BreadcrumbPage() {
           <BreadcrumbSeparator />
           <BreadcrumbItem><BreadcrumbLink href="#">Pedidos</BreadcrumbLink></BreadcrumbItem>
           <BreadcrumbSeparator />
-          <BreadcrumbItem><BreadcrumbPage>#4821</BreadcrumbPage></BreadcrumbItem>
+          <BreadcrumbItem><BcPage>#4821</BcPage></BreadcrumbItem>
         </BreadcrumbList>
       </Breadcrumb>
     </Demo>
