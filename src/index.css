@@ -5,52 +5,49 @@
 @tailwind utilities;
 
 @layer base {
+  /* ============================================================
+   * SMARNET DESIGN SYSTEM — DESIGN TOKENS
+   * All colors are HSL (no hex/rgb in components).
+   * Light theme (default).
+   * ============================================================ */
   :root {
-    /* Surface Hierarchy */
+    /* ── Surfaces (warm off-white hierarchy) ── */
     --background: 30 20% 98%;
     --foreground: 200 5% 11%;
-    
+
     --surface: 30 20% 98%;
     --surface-container-low: 20 12% 95%;
     --surface-container: 20 10% 93%;
     --surface-container-high: 15 8% 91%;
     --surface-container-highest: 15 6% 89%;
-    
+
     --card: 20 12% 95%;
     --card-foreground: 200 5% 11%;
-    
+
     --popover: 0 0% 100%;
     --popover-foreground: 200 5% 11%;
-    
-    /* Primary: Deep Navy */
+
+    /* ── Brand: Deep Navy (primary) ── */
     --primary: 210 100% 13%;
     --primary-foreground: 0 0% 100%;
     --primary-container: 210 100% 20%;
-    
-    /* Secondary: Slate Blue-Gray (distinta de accent/teal) */
+
+    /* ── Secondary: Slate Blue-Gray (neutral pair, distinct from accent) ── */
     --secondary: 215 25% 35%;
     --secondary-foreground: 0 0% 100%;
-    
-    /* Tertiary: Amber/Gold accent */
+
+    /* ── Tertiary: Amber/Gold (industrial accent) ── */
     --tertiary: 42 100% 23%;
     --tertiary-foreground: 0 0% 100%;
-    
-    --muted: 20 10% 93%;
-    --muted-foreground: 200 5% 40%;
-    
+
+    /* ── Accent: Teal (interactive highlights) ── */
     --accent: 185 78% 25%;
     --accent-foreground: 0 0% 100%;
-    
-    --destructive: 0 72% 41%;
-    --destructive-foreground: 0 0% 100%;
-    
-    --border: 20 8% 88%;
-    --input: 15 6% 89%;
-    --ring: 210 100% 13%;
-    
-    --radius: 1rem;
-    
-    /* Status colors */
+
+    --muted: 20 10% 93%;
+    --muted-foreground: 200 5% 40%;
+
+    /* ── Status colors ── */
     --success: 142 70% 38%;
     --success-foreground: 0 0% 100%;
     --warning: 22 95% 50%;
@@ -59,15 +56,26 @@
     --alert-foreground: 30 30% 15%;
     --info: 210 100% 45%;
     --info-foreground: 0 0% 100%;
-    
+    --destructive: 0 72% 41%;
+    --destructive-foreground: 0 0% 100%;
+
+    /* Legacy status aliases (still consumed by some modules) */
     --status-success: 142 70% 38%;
     --status-warning: 22 95% 50%;
     --status-error: 0 72% 41%;
     --status-info: 210 100% 45%;
     --status-pending: 48 96% 50%;
     --status-operational: 142 70% 38%;
-    
-    /* Sidebar */
+
+    /* ── Form & focus ── */
+    --border: 20 8% 88%;
+    --input: 15 6% 89%;
+    --ring: 210 100% 13%;
+
+    /* ── Geometry ── */
+    --radius: 1rem;
+
+    /* ── Sidebar (always dark, navy) ── */
     --sidebar-background: 210 100% 13%;
     --sidebar-foreground: 210 40% 90%;
     --sidebar-primary: 0 0% 100%;
@@ -77,6 +85,7 @@
     --sidebar-border: 210 80% 18%;
     --sidebar-ring: 185 78% 25%;
   }
+
 
   .dark {
     --background: 220 20% 7%;
