@@ -1,6 +1,6 @@
 import { ReactNode } from 'react';
 import { cn } from '@/lib/utils';
-import { DSCode } from '../_components';
+import { DSCode } from '../../_components';
 
 export function Demo({
   title,
