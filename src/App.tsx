@@ -216,7 +216,51 @@ const EchartShowcase = lazy(() => import("./pages/templates/charts/EchartShowcas
 const DesignSystemLayout = lazy(() => import("./pages/design-system/DesignSystemLayout"));
 const DSPrinciples = lazy(() => import("./pages/design-system/PrinciplesPage"));
 const DSFoundations = lazy(() => import("./pages/design-system/FoundationsPage"));
-const DSComponents = lazy(() => import("./pages/design-system/ComponentsPage"));
+const DSComponentsLayout = lazy(() => import("./pages/design-system/components/ComponentsLayout"));
+const DSComponentsIndex = lazy(() => import("./pages/design-system/components/ComponentsIndex"));
+const DSCButtons = lazy(() => import("./pages/design-system/components/pages/ButtonsPage"));
+const DSCToggles = lazy(() => import("./pages/design-system/components/pages/TogglesPage"));
+const DSCDropdownMenu = lazy(() => import("./pages/design-system/components/pages/DropdownMenuPage"));
+const DSCContextMenu = lazy(() => import("./pages/design-system/components/pages/ContextMenuPage"));
+const DSCMenubar = lazy(() => import("./pages/design-system/components/pages/MenubarPage"));
+const DSCCommand = lazy(() => import("./pages/design-system/components/pages/CommandPage"));
+const DSCInputs = lazy(() => import("./pages/design-system/components/pages/InputsPage"));
+const DSCSelect = lazy(() => import("./pages/design-system/components/pages/SelectPage"));
+const DSCCheckboxRadio = lazy(() => import("./pages/design-system/components/pages/CheckboxRadioPage"));
+const DSCSwitch = lazy(() => import("./pages/design-system/components/pages/SwitchPage"));
+const DSCSlider = lazy(() => import("./pages/design-system/components/pages/SliderPage"));
+const DSCInputOTP = lazy(() => import("./pages/design-system/components/pages/InputOTPPage"));
+const DSCCalendar = lazy(() => import("./pages/design-system/components/pages/CalendarPage"));
+const DSCForm = lazy(() => import("./pages/design-system/components/pages/FormPage"));
+const DSCCards = lazy(() => import("./pages/design-system/components/pages/CardsPage"));
+const DSCBadges = lazy(() => import("./pages/design-system/components/pages/BadgesPage"));
+const DSCAvatars = lazy(() => import("./pages/design-system/components/pages/AvatarsPage"));
+const DSCSeparator = lazy(() => import("./pages/design-system/components/pages/SeparatorPage"));
+const DSCSkeleton = lazy(() => import("./pages/design-system/components/pages/SkeletonPage"));
+const DSCAspectRatio = lazy(() => import("./pages/design-system/components/pages/AspectRatioPage"));
+const DSCTypography = lazy(() => import("./pages/design-system/components/pages/TypographyPage"));
+const DSCAlerts = lazy(() => import("./pages/design-system/components/pages/AlertsPage"));
+const DSCProgress = lazy(() => import("./pages/design-system/components/pages/ProgressPage"));
+const DSCToasts = lazy(() => import("./pages/design-system/components/pages/ToastsPage"));
+const DSCTooltip = lazy(() => import("./pages/design-system/components/pages/TooltipPage"));
+const DSCHoverCard = lazy(() => import("./pages/design-system/components/pages/HoverCardPage"));
+const DSCPopover = lazy(() => import("./pages/design-system/components/pages/PopoverPage"));
+const DSCDialog = lazy(() => import("./pages/design-system/components/pages/DialogPage"));
+const DSCAlertDialog = lazy(() => import("./pages/design-system/components/pages/AlertDialogPage"));
+const DSCSheet = lazy(() => import("./pages/design-system/components/pages/SheetPage"));
+const DSCDrawer = lazy(() => import("./pages/design-system/components/pages/DrawerPage"));
+const DSCTabs = lazy(() => import("./pages/design-system/components/pages/TabsPage"));
+const DSCAccordion = lazy(() => import("./pages/design-system/components/pages/AccordionPage"));
+const DSCCollapsible = lazy(() => import("./pages/design-system/components/pages/CollapsiblePage"));
+const DSCBreadcrumb = lazy(() => import("./pages/design-system/components/pages/BreadcrumbPage"));
+const DSCPagination = lazy(() => import("./pages/design-system/components/pages/PaginationPage"));
+const DSCNavigationMenu = lazy(() => import("./pages/design-system/components/pages/NavigationMenuPage"));
+const DSCSidebar = lazy(() => import("./pages/design-system/components/pages/SidebarPage"));
+const DSCTable = lazy(() => import("./pages/design-system/components/pages/TablePage"));
+const DSCCarousel = lazy(() => import("./pages/design-system/components/pages/CarouselPage"));
+const DSCScrollArea = lazy(() => import("./pages/design-system/components/pages/ScrollAreaPage"));
+const DSCResizable = lazy(() => import("./pages/design-system/components/pages/ResizablePage"));
+const DSCChart = lazy(() => import("./pages/design-system/components/pages/ChartPage"));
 const DSPatterns = lazy(() => import("./pages/design-system/PatternsPage"));
 const DSDashboards = lazy(() => import("./pages/design-system/DashboardsPage"));
 
@@ -251,7 +295,52 @@ function AppRoutes() {
       <Route path="/design-system" element={<LazyRoute><DesignSystemLayout /></LazyRoute>}>
         <Route index element={<LazyRoute><DSPrinciples /></LazyRoute>} />
         <Route path="foundations" element={<LazyRoute><DSFoundations /></LazyRoute>} />
-        <Route path="components" element={<LazyRoute><DSComponents /></LazyRoute>} />
+        <Route path="components" element={<LazyRoute><DSComponentsLayout /></LazyRoute>}>
+          <Route index element={<LazyRoute><DSComponentsIndex /></LazyRoute>} />
+          <Route path="buttons" element={<LazyRoute><DSCButtons /></LazyRoute>} />
+          <Route path="toggles" element={<LazyRoute><DSCToggles /></LazyRoute>} />
+          <Route path="dropdown-menu" element={<LazyRoute><DSCDropdownMenu /></LazyRoute>} />
+          <Route path="context-menu" element={<LazyRoute><DSCContextMenu /></LazyRoute>} />
+          <Route path="menubar" element={<LazyRoute><DSCMenubar /></LazyRoute>} />
+          <Route path="command" element={<LazyRoute><DSCCommand /></LazyRoute>} />
+          <Route path="inputs" element={<LazyRoute><DSCInputs /></LazyRoute>} />
+          <Route path="select" element={<LazyRoute><DSCSelect /></LazyRoute>} />
+          <Route path="checkbox-radio" element={<LazyRoute><DSCCheckboxRadio /></LazyRoute>} />
+          <Route path="switch" element={<LazyRoute><DSCSwitch /></LazyRoute>} />
+          <Route path="slider" element={<LazyRoute><DSCSlider /></LazyRoute>} />
+          <Route path="input-otp" element={<LazyRoute><DSCInputOTP /></LazyRoute>} />
+          <Route path="calendar" element={<LazyRoute><DSCCalendar /></LazyRoute>} />
+          <Route path="form" element={<LazyRoute><DSCForm /></LazyRoute>} />
+          <Route path="cards" element={<LazyRoute><DSCCards /></LazyRoute>} />
+          <Route path="badges" element={<LazyRoute><DSCBadges /></LazyRoute>} />
+          <Route path="avatars" element={<LazyRoute><DSCAvatars /></LazyRoute>} />
+          <Route path="separator" element={<LazyRoute><DSCSeparator /></LazyRoute>} />
+          <Route path="skeleton" element={<LazyRoute><DSCSkeleton /></LazyRoute>} />
+          <Route path="aspect-ratio" element={<LazyRoute><DSCAspectRatio /></LazyRoute>} />
+          <Route path="typography" element={<LazyRoute><DSCTypography /></LazyRoute>} />
+          <Route path="alerts" element={<LazyRoute><DSCAlerts /></LazyRoute>} />
+          <Route path="progress" element={<LazyRoute><DSCProgress /></LazyRoute>} />
+          <Route path="toasts" element={<LazyRoute><DSCToasts /></LazyRoute>} />
+          <Route path="tooltip" element={<LazyRoute><DSCTooltip /></LazyRoute>} />
+          <Route path="hover-card" element={<LazyRoute><DSCHoverCard /></LazyRoute>} />
+          <Route path="popover" element={<LazyRoute><DSCPopover /></LazyRoute>} />
+          <Route path="dialog" element={<LazyRoute><DSCDialog /></LazyRoute>} />
+          <Route path="alert-dialog" element={<LazyRoute><DSCAlertDialog /></LazyRoute>} />
+          <Route path="sheet" element={<LazyRoute><DSCSheet /></LazyRoute>} />
+          <Route path="drawer" element={<LazyRoute><DSCDrawer /></LazyRoute>} />
+          <Route path="tabs" element={<LazyRoute><DSCTabs /></LazyRoute>} />
+          <Route path="accordion" element={<LazyRoute><DSCAccordion /></LazyRoute>} />
+          <Route path="collapsible" element={<LazyRoute><DSCCollapsible /></LazyRoute>} />
+          <Route path="breadcrumb" element={<LazyRoute><DSCBreadcrumb /></LazyRoute>} />
+          <Route path="pagination" element={<LazyRoute><DSCPagination /></LazyRoute>} />
+          <Route path="navigation-menu" element={<LazyRoute><DSCNavigationMenu /></LazyRoute>} />
+          <Route path="sidebar" element={<LazyRoute><DSCSidebar /></LazyRoute>} />
+          <Route path="table" element={<LazyRoute><DSCTable /></LazyRoute>} />
+          <Route path="carousel" element={<LazyRoute><DSCCarousel /></LazyRoute>} />
+          <Route path="scroll-area" element={<LazyRoute><DSCScrollArea /></LazyRoute>} />
+          <Route path="resizable" element={<LazyRoute><DSCResizable /></LazyRoute>} />
+          <Route path="chart" element={<LazyRoute><DSCChart /></LazyRoute>} />
+        </Route>
         <Route path="patterns" element={<LazyRoute><DSPatterns /></LazyRoute>} />
         <Route path="dashboards" element={<LazyRoute><DSDashboards /></LazyRoute>} />
       </Route>
