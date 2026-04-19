@@ -212,6 +212,14 @@ const ApexPolarAreaChart = lazy(() => import("./pages/templates/charts/apex/Apex
 const ChartjsShowcase = lazy(() => import("./pages/templates/charts/ChartjsShowcase"));
 const EchartShowcase = lazy(() => import("./pages/templates/charts/EchartShowcase"));
 
+// Design System (standalone)
+const DesignSystemLayout = lazy(() => import("./pages/design-system/DesignSystemLayout"));
+const DSPrinciples = lazy(() => import("./pages/design-system/PrinciplesPage"));
+const DSFoundations = lazy(() => import("./pages/design-system/FoundationsPage"));
+const DSComponents = lazy(() => import("./pages/design-system/ComponentsPage"));
+const DSPatterns = lazy(() => import("./pages/design-system/PatternsPage"));
+const DSDashboards = lazy(() => import("./pages/design-system/DashboardsPage"));
+
 const queryClient = new QueryClient();
 
 const LazyFallback = () => (
@@ -238,6 +246,15 @@ function AppRoutes() {
       <Route path="/" element={isAuthenticated ? <Navigate to="/app" /> : <LandingPage />} />
       <Route path="/forgot-password" element={<ForgotPassword />} />
       <Route path="/request-access" element={<RequestAccess />} />
+
+      {/* Design System (standalone, public) */}
+      <Route path="/design-system" element={<LazyRoute><DesignSystemLayout /></LazyRoute>}>
+        <Route index element={<LazyRoute><DSPrinciples /></LazyRoute>} />
+        <Route path="foundations" element={<LazyRoute><DSFoundations /></LazyRoute>} />
+        <Route path="components" element={<LazyRoute><DSComponents /></LazyRoute>} />
+        <Route path="patterns" element={<LazyRoute><DSPatterns /></LazyRoute>} />
+        <Route path="dashboards" element={<LazyRoute><DSDashboards /></LazyRoute>} />
+      </Route>
 
       {/* All authenticated routes share the same AppLayout instance */}
       <Route path="/app" element={<ProtectedLayout />}>
