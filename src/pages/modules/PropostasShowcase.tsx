@@ -420,8 +420,8 @@ function GroupBlock({
             <td className="px-4 py-3">
               <div className="flex items-center gap-2">
                 <span className={cn(
-                  'w-5 h-5 rounded flex items-center justify-center text-[10px] font-bold text-white shrink-0',
-                  p.tipo === 'A' ? 'bg-emerald-500' : p.tipo === 'B' ? 'bg-amber-500' : 'bg-orange-500'
+                  'w-5 h-5 rounded flex items-center justify-center text-[10px] font-bold text-primary-foreground shrink-0',
+                  p.tipo === 'A' ? 'bg-status-success' : p.tipo === 'B' ? 'bg-status-warning' : 'bg-status-alert'
                 )}>{p.tipo}</span>
                 <span className="text-xs font-medium text-foreground truncate">{p.cliente}</span>
               </div>
