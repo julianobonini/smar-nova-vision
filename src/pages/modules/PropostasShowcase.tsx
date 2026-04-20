@@ -398,20 +398,28 @@ function GroupBlock({
   return (
     <>
       {/* Cabeçalho do grupo */}
-      <tr className="bg-muted/20 border-y border-border/40">
-        <td colSpan={6} className="px-4 py-2">
+      <tr className="bg-accent/15 border-y-2 border-accent/40">
+        <td colSpan={6} className="px-4 py-2.5">
           <div className="flex items-center gap-3 text-xs">
-            <span className="font-bold text-foreground">{name}</span>
-            <span className="text-muted-foreground">Qtd.: <span className="font-semibold text-foreground">{count}</span></span>
-            <span className="text-muted-foreground">Valor: <span className="font-semibold text-primary">{fmt(total)}</span></span>
+            <span className="w-1 h-4 rounded-full bg-accent" />
+            <span className="font-bold uppercase tracking-wide text-accent">{name}</span>
+            <span className="text-muted-foreground">Qtd.: <span className="font-bold text-foreground">{count}</span></span>
+            <span className="text-muted-foreground ml-auto">Subtotal: <span className="font-bold text-accent">{fmt(total)}</span></span>
           </div>
         </td>
       </tr>
-      {items.map((p) => {
+      {items.map((p, idx) => {
         const st = statuses.find(s => s.key === p.status)!;
         const tone = toneClasses[st.tone];
         return (
-          <tr key={p.id} className="border-b border-border/30 hover:bg-muted/10 transition-colors">
+          <tr
+            key={p.id}
+            className={cn(
+              'border-b border-border/30 transition-colors',
+              idx % 2 === 0 ? 'bg-surface' : 'bg-surface-container-low/50',
+              'hover:bg-accent/10'
+            )}
+          >
             <td className="px-4 py-3">
               <div className="flex items-center gap-1.5">
                 <DropdownMenu>
