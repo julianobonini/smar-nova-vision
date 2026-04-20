@@ -2,13 +2,18 @@ import { useState, useMemo } from 'react';
 import { Link } from 'react-router-dom';
 import { motion } from 'framer-motion';
 import {
-  Home, ChevronRight, Search, Eye, MessageSquare, FileText, Plus,
+  Home, ChevronRight, Search, MoreVertical, MessageSquare, FileText, Plus,
   Users, Star, DollarSign, Clock, RefreshCw, CheckCircle2, ShoppingCart,
   ShieldAlert, Compass, Settings2, MailCheck, Edit, Send, BarChart3,
   ChevronLeft, ChevronsLeft, ChevronsRight,
+  FileBarChart, Calculator, Settings, Copy, Paperclip, Activity, Printer,
 } from 'lucide-react';
 import { cn } from '@/lib/utils';
 import { Button } from '@/components/ui/button';
+import {
+  DropdownMenu, DropdownMenuContent, DropdownMenuItem, DropdownMenuLabel,
+  DropdownMenuSeparator, DropdownMenuTrigger,
+} from '@/components/ui/dropdown-menu';
 
 /* ── 14 Status (espelhando a tela legada) ────────────────────────── */
 type StatusDef = { key: string; label: string; icon: any; tone: string; isView?: boolean };
