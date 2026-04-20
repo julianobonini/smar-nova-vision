@@ -316,9 +316,9 @@ export default function PropostasShowcase() {
       {/* ── Tabela agrupada ── */}
       <div className="bg-surface-container rounded-2xl border border-border/40 overflow-hidden">
         <div className="overflow-x-auto">
-          <table className="w-full text-sm">
-            <thead className="bg-surface-container-low border-b border-border/40">
-              <tr className="[&>th]:px-4 [&>th]:py-3 [&>th]:text-left [&>th]:text-[10px] [&>th]:font-bold [&>th]:uppercase [&>th]:tracking-wider [&>th]:text-muted-foreground">
+          <table className="w-full text-sm border-separate border-spacing-0">
+            <thead className="bg-primary border-b-2 border-primary-container sticky top-0 z-10">
+              <tr className="[&>th]:px-4 [&>th]:py-3 [&>th]:text-left [&>th]:text-[10px] [&>th]:font-bold [&>th]:uppercase [&>th]:tracking-wider [&>th]:text-primary-foreground/90">
                 <th className="w-[110px]">Pré-O.Ss.</th>
                 <th>Clientes</th>
                 <th className="w-[160px]">Status</th>
