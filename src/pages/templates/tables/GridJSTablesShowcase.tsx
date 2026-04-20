@@ -1,6 +1,6 @@
+import { useState, useMemo } from 'react';
 import { TablesLayout, ShowcaseSection } from './TablesLayout';
 import { cn } from '@/lib/utils';
-import { useState, useMemo } from 'react';
 import { Search, ChevronLeft, ChevronRight, ArrowUpDown, ArrowUp, ArrowDown } from 'lucide-react';
 import { Button } from '@/components/ui/button';
 
