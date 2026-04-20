@@ -221,14 +221,12 @@ export default function PropostasShowcase() {
                   <div className={cn('w-7 h-7 rounded-lg flex items-center justify-center shrink-0', tone.soft, tone.text)}>
                     <Icon size={14} />
                   </div>
-                  <div className="min-w-0 flex-1">
-                    <p className="text-[10px] font-medium text-muted-foreground truncate uppercase tracking-wide">
-                      {s.label}
-                    </p>
-                    <p className={cn('text-base font-bold leading-none mt-0.5', isActive ? tone.text : 'text-foreground')}>
-                      {s.isView ? '—' : count}
-                    </p>
-                  </div>
+                  <p className="text-[11px] font-medium text-muted-foreground truncate uppercase tracking-wide flex-1 min-w-0">
+                    {s.label}
+                  </p>
+                  <p className={cn('text-sm font-bold leading-none shrink-0', isActive ? tone.text : 'text-foreground')}>
+                    {s.isView ? '—' : count}
+                  </p>
                 </div>
               </motion.button>
             );
