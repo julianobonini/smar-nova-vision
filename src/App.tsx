@@ -17,6 +17,7 @@ import PedidoForm from "./pages/modules/PedidoForm";
 import FormShowcase from "./pages/modules/FormShowcase";
 import TableShowcase from "./pages/modules/TableShowcase";
 import AdminPanelShowcase from "./pages/modules/AdminPanelShowcase";
+import PropostasShowcase from "./pages/modules/PropostasShowcase";
 import TemplatePlaceholder from "./pages/templates/TemplatePlaceholder";
 import NotFound from "./pages/NotFound";
 import { AppLayout } from "./components/AppLayout";
@@ -361,6 +362,7 @@ function AppRoutes() {
         <Route path="formularios" element={<FormShowcase />} />
         <Route path="tabelas" element={<TableShowcase />} />
         <Route path="painel" element={<AdminPanelShowcase />} />
+        <Route path="comercial/movimentos/propostas" element={<PropostasShowcase />} />
 
         {/* UI Elements */}
         <Route path="templates/ui/alerts" element={<LazyRoute><AlertsShowcase /></LazyRoute>} />
