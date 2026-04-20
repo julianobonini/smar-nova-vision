@@ -29,7 +29,7 @@ const statuses: readonly StatusDef[] = [
   { key: 'dashboard',   label: 'Dashboard',       icon: BarChart3,    tone: 'primary', isView: true },
 ] as const;
 
-type StatusKey = (typeof statuses)[number]['key'];
+type StatusKey = string;
 
 const toneClasses: Record<string, { bg: string; text: string; border: string; soft: string }> = {
   sky:      { bg: 'bg-sky-500',     text: 'text-sky-400',     border: 'border-sky-500/30',     soft: 'bg-sky-500/10' },
