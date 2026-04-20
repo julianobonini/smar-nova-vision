@@ -414,7 +414,43 @@ function GroupBlock({
           <tr key={p.id} className="border-b border-border/30 hover:bg-muted/10 transition-colors">
             <td className="px-4 py-3">
               <div className="flex items-center gap-1.5">
-                <button title="Visualizar" className="text-muted-foreground hover:text-primary"><Eye size={13} /></button>
+                <DropdownMenu>
+                  <DropdownMenuTrigger asChild>
+                    <button
+                      title="Ações"
+                      className="text-muted-foreground hover:text-primary p-0.5 rounded hover:bg-muted/40 transition-colors"
+                    >
+                      <MoreVertical size={14} />
+                    </button>
+                  </DropdownMenuTrigger>
+                  <DropdownMenuContent align="start" className="w-52">
+                    <DropdownMenuLabel className="flex items-center gap-2 text-[10px] uppercase tracking-wider text-muted-foreground">
+                      <Printer size={12} /> Gerar Impressão
+                    </DropdownMenuLabel>
+                    <DropdownMenuItem className="gap-2 text-xs">
+                      <FileBarChart size={14} className="text-rose-500" /> Proposta
+                    </DropdownMenuItem>
+                    <DropdownMenuItem className="gap-2 text-xs">
+                      <Calculator size={14} className="text-rose-500" /> Memorial de Cálculo
+                    </DropdownMenuItem>
+                    <DropdownMenuItem className="gap-2 text-xs">
+                      <Settings size={14} /> Configurar
+                    </DropdownMenuItem>
+                    <DropdownMenuSeparator />
+                    <DropdownMenuLabel className="text-[10px] uppercase tracking-wider text-muted-foreground">
+                      Outros
+                    </DropdownMenuLabel>
+                    <DropdownMenuItem className="gap-2 text-xs">
+                      <Copy size={14} className="text-primary" /> Copiar Proposta
+                    </DropdownMenuItem>
+                    <DropdownMenuItem className="gap-2 text-xs">
+                      <Paperclip size={14} className="text-primary" /> Arquivos Anexos
+                    </DropdownMenuItem>
+                    <DropdownMenuItem className="gap-2 text-xs">
+                      <Activity size={14} className="text-primary" /> Follow up
+                    </DropdownMenuItem>
+                  </DropdownMenuContent>
+                </DropdownMenu>
                 <button title="Comentários" className="text-muted-foreground hover:text-primary"><MessageSquare size={13} /></button>
                 <button title="Documento" className="text-muted-foreground hover:text-primary"><FileText size={13} /></button>
                 <span className="ml-1 text-xs font-mono font-semibold text-primary">{p.id}</span>
