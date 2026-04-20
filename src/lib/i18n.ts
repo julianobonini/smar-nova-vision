@@ -89,6 +89,7 @@ const translations: Record<Locale, Record<string, string>> = {
     'nav.funcionarios': 'Funcionários',
     'nav.fornecedores': 'Fornecedores',
     'nav.pedidos': 'Pedidos',
+    'nav.propostas': 'Propostas',
     'nav.faturamento': 'Faturamento',
     'nav.estoque': 'Estoque',
     'nav.formularios': 'Formulários',

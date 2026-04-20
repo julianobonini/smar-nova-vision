@@ -2,7 +2,7 @@ import { useLocation, useNavigate } from 'react-router-dom';
 import {
   LayoutDashboard, Users, Package, UserCheck, Building2, Truck,
   ShoppingCart, Receipt, Warehouse, Settings, HelpCircle,
-  ChevronDown, ChevronRight, Factory, Briefcase, UserCog,
+  ChevronDown, ChevronRight, Factory, Briefcase, UserCog, ClipboardList,
 } from 'lucide-react';
 import { useApp } from '@/contexts/AppContext';
 import { t } from '@/lib/i18n';
@@ -43,6 +43,7 @@ const erpGroups = [
       {
         label: 'Movimentos',
         items: [
+          { key: 'propostas', icon: ClipboardList, path: '/app/comercial/movimentos/propostas' },
           { key: 'pedidos', icon: ShoppingCart, path: '/app/pedidos' },
           { key: 'faturamento', icon: Receipt, path: '/app/faturamento' },
         ],
