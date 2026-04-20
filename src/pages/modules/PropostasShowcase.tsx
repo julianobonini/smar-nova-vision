@@ -11,7 +11,8 @@ import { cn } from '@/lib/utils';
 import { Button } from '@/components/ui/button';
 
 /* ── 14 Status (espelhando a tela legada) ────────────────────────── */
-const statuses = [
+type StatusDef = { key: string; label: string; icon: any; tone: string; isView?: boolean };
+const statuses: readonly StatusDef[] = [
   { key: 'visitas',     label: 'Visitas',         icon: Users,        tone: 'sky' },
   { key: 'leads',       label: 'Leads',           icon: Star,         tone: 'amber' },
   { key: 'cotacao',     label: 'Cotação',         icon: DollarSign,   tone: 'violet' },
