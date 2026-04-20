@@ -343,11 +343,11 @@ export default function PropostasShowcase() {
             </tbody>
             {filtered.length > 0 && (
               <tfoot>
-                <tr className="bg-surface-container-low border-t-2 border-border">
-                  <td colSpan={5} className="px-4 py-3 text-right text-xs font-bold text-foreground uppercase tracking-wider">
-                    Valor Total
+                <tr className="bg-primary/95 border-t-2 border-primary-container">
+                  <td colSpan={5} className="px-4 py-3.5 text-right text-xs font-bold text-primary-foreground uppercase tracking-widest">
+                    Valor Total Geral
                   </td>
-                  <td className="px-4 py-3 text-right text-sm font-bold text-primary">{fmt(totalGeral)}</td>
+                  <td className="px-4 py-3.5 text-right text-sm font-bold text-tertiary-foreground bg-tertiary">{fmt(totalGeral)}</td>
                 </tr>
               </tfoot>
             )}
