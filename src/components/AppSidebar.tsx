@@ -356,7 +356,10 @@ export function AppSidebar() {
         <SidebarMenu>
           {user?.role === 'admin' && (
             <SidebarMenuItem>
-              <SidebarMenuButton className="rounded-xl text-muted-foreground">
+              <SidebarMenuButton
+                onClick={() => navigate('/settings')}
+                className="rounded-xl text-muted-foreground"
+              >
                 <Settings size={16} />
                 {!collapsed && <span>Settings</span>}
               </SidebarMenuButton>

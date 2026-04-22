@@ -104,6 +104,12 @@ export function TopNav() {
                 <button className="w-full text-left px-4 py-2.5 text-sm flex items-center gap-3 hover:bg-surface-container-low transition-colors text-foreground">
                   <Lock size={16} className="text-muted-foreground" /> {t('nav.password', locale)}
                 </button>
+                {user?.role === 'admin' && (
+                  <button onClick={() => { navigate('/settings'); close(); }}
+                    className="w-full text-left px-4 py-2.5 text-sm flex items-center gap-3 hover:bg-surface-container-low transition-colors text-foreground">
+                    <Settings size={16} className="text-muted-foreground" /> Settings / Admin
+                  </button>
+                )}
                 <div className="my-1 mx-4 h-px bg-surface-container" />
                 <button onClick={() => { setUser(null); navigate('/'); close(); }}
                   className="w-full text-left px-4 py-2.5 text-sm flex items-center gap-3 hover:bg-surface-container-low transition-colors text-destructive">
