@@ -261,7 +261,7 @@ export default function PropostasShowcase() {
                 onClick={() => setProgresso(p)}
                 className={cn(
                   'px-2.5 py-1.5 text-xs font-medium rounded-md transition-colors',
-                  progresso === p ? 'bg-secondary text-secondary-foreground' : 'text-muted-foreground hover:text-foreground'
+                  progresso === p ? 'bg-primary text-primary-foreground' : 'text-muted-foreground hover:text-foreground'
                 )}
               >
                 {p}
@@ -277,7 +277,7 @@ export default function PropostasShowcase() {
                 onClick={() => setOrdenador(o)}
                 className={cn(
                   'px-2.5 py-1.5 text-xs font-medium rounded-md transition-colors',
-                  ordenador === o ? 'bg-foreground text-background' : 'text-muted-foreground hover:text-foreground'
+                  ordenador === o ? 'bg-primary text-primary-foreground' : 'text-muted-foreground hover:text-foreground'
                 )}
               >
                 {o}
@@ -409,7 +409,7 @@ function GroupBlock({
         </td>
       </tr>
       {/* Espaçamento após cabeçalho do grupo */}
-      <tr className="h-2" />
+      <tr className="h-2 border-b border-border" />
       {items.map((p, idx) => {
         const st = statuses.find(s => s.key === p.status)!;
         const tone = toneClasses[st.tone];
