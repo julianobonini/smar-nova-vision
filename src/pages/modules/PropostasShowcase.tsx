@@ -398,8 +398,8 @@ function GroupBlock({
   return (
     <>
       {/* Cabeçalho do grupo */}
-      <tr className="bg-muted/50 border-y border-border/50">
-        <td colSpan={6} className="px-4 py-2.5">
+<tr className="bg-muted/50">
+                      <td colSpan={6} className="px-4 py-2.5 border-b border-[#ccc]">
           <div className="flex items-center gap-3 text-xs">
             <span className="w-1 h-4 rounded-full bg-muted-foreground/60" />
             <span className="font-semibold text-foreground">{name}</span>
