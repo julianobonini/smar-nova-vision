@@ -409,7 +409,7 @@ function GroupBlock({
         </td>
       </tr>
       {/* Espaçamento após cabeçalho do grupo */}
-      <tr className="h-2" />
+      <tr className="h-2 border-b border-border" />
       {items.map((p, idx) => {
         const st = statuses.find(s => s.key === p.status)!;
         const tone = toneClasses[st.tone];
