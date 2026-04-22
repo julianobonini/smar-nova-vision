@@ -261,7 +261,7 @@ export default function PropostasShowcase() {
                 onClick={() => setProgresso(p)}
                 className={cn(
                   'px-2.5 py-1.5 text-xs font-medium rounded-md transition-colors',
-                  progresso === p ? 'bg-secondary text-secondary-foreground' : 'text-muted-foreground hover:text-foreground'
+                  progresso === p ? 'bg-primary text-primary-foreground' : 'text-muted-foreground hover:text-foreground'
                 )}
               >
                 {p}
