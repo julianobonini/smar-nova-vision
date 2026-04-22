@@ -277,7 +277,7 @@ export default function PropostasShowcase() {
                 onClick={() => setOrdenador(o)}
                 className={cn(
                   'px-2.5 py-1.5 text-xs font-medium rounded-md transition-colors',
-                  ordenador === o ? 'bg-foreground text-background' : 'text-muted-foreground hover:text-foreground'
+                  ordenador === o ? 'bg-primary text-primary-foreground' : 'text-muted-foreground hover:text-foreground'
                 )}
               >
                 {o}
