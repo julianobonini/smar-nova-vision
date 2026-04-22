@@ -317,8 +317,8 @@ export default function PropostasShowcase() {
       <div className="bg-surface-container rounded-2xl border border-border/40 overflow-hidden">
         <div className="overflow-x-auto">
           <table className="w-full text-sm border-separate border-spacing-0">
-            <thead className="bg-primary border-b-2 border-primary-container sticky top-0 z-10">
-              <tr className="[&>th]:px-4 [&>th]:py-3 [&>th]:text-left [&>th]:text-[10px] [&>th]:font-bold [&>th]:uppercase [&>th]:tracking-wider [&>th]:text-primary-foreground/90">
+            <thead className="bg-muted/90 border-b-2 border-border sticky top-0 z-10">
+              <tr className="[&>th]:px-4 [&>th]:py-3 [&>th]:text-left [&>th]:text-[10px] [&>th]:font-bold [&>th]:uppercase [&>th]:tracking-wider [&>th]:text-foreground">
                 <th className="w-[110px]">Pré-O.Ss.</th>
                 <th>Clientes</th>
                 <th className="w-[160px]">Status</th>
@@ -343,11 +343,11 @@ export default function PropostasShowcase() {
             </tbody>
             {filtered.length > 0 && (
               <tfoot>
-                <tr className="bg-primary/95 border-t-2 border-primary-container">
-                  <td colSpan={5} className="px-4 py-3.5 text-right text-xs font-bold text-primary-foreground uppercase tracking-widest">
+                <tr className="bg-muted/90 border-t-2 border-border">
+                  <td colSpan={5} className="px-4 py-3.5 text-right text-xs font-bold text-foreground uppercase tracking-widest">
                     Valor Total Geral
                   </td>
-                  <td className="px-4 py-3.5 text-right text-sm font-bold text-tertiary-foreground bg-tertiary">{fmt(totalGeral)}</td>
+                  <td className="px-4 py-3.5 text-right text-sm font-bold text-foreground bg-muted">{fmt(totalGeral)}</td>
                 </tr>
               </tfoot>
             )}
@@ -398,13 +398,13 @@ function GroupBlock({
   return (
     <>
       {/* Cabeçalho do grupo */}
-      <tr className="bg-accent/15 border-y-2 border-accent/40">
+      <tr className="bg-muted/50 border-y border-border/50">
         <td colSpan={6} className="px-4 py-2.5">
           <div className="flex items-center gap-3 text-xs">
-            <span className="w-1 h-4 rounded-full bg-accent" />
-            <span className="font-bold uppercase tracking-wide text-accent">{name}</span>
-            <span className="text-muted-foreground">Qtd.: <span className="font-bold text-foreground">{count}</span></span>
-            <span className="text-muted-foreground ml-auto">Subtotal: <span className="font-bold text-accent">{fmt(total)}</span></span>
+            <span className="w-1 h-4 rounded-full bg-muted-foreground/60" />
+            <span className="font-semibold text-foreground">{name}</span>
+            <span className="text-muted-foreground">Qtd.: <span className="font-medium text-foreground">{count}</span></span>
+            <span className="text-muted-foreground ml-auto">Subtotal: <span className="font-medium text-foreground">{fmt(total)}</span></span>
           </div>
         </td>
       </tr>
