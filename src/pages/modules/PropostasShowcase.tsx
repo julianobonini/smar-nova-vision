@@ -398,13 +398,13 @@ function GroupBlock({
   return (
     <>
       {/* Cabeçalho do grupo */}
-      <tr className="bg-accent/15 border-y-2 border-accent/40">
+      <tr className="bg-muted/50 border-y border-border/50">
         <td colSpan={6} className="px-4 py-2.5">
           <div className="flex items-center gap-3 text-xs">
-            <span className="w-1 h-4 rounded-full bg-accent" />
-            <span className="font-bold uppercase tracking-wide text-accent">{name}</span>
-            <span className="text-muted-foreground">Qtd.: <span className="font-bold text-foreground">{count}</span></span>
-            <span className="text-muted-foreground ml-auto">Subtotal: <span className="font-bold text-accent">{fmt(total)}</span></span>
+            <span className="w-1 h-4 rounded-full bg-muted-foreground/60" />
+            <span className="font-semibold text-foreground">{name}</span>
+            <span className="text-muted-foreground">Qtd.: <span className="font-medium text-foreground">{count}</span></span>
+            <span className="text-muted-foreground ml-auto">Subtotal: <span className="font-medium text-foreground">{fmt(total)}</span></span>
           </div>
         </td>
       </tr>
