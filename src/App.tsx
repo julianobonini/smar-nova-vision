@@ -21,7 +21,15 @@ import PropostasShowcase from "./pages/modules/PropostasShowcase";
 import TemplatePlaceholder from "./pages/templates/TemplatePlaceholder";
 import NotFound from "./pages/NotFound";
 import { AppLayout } from "./components/AppLayout";
+import { AdminLayout } from "./components/AdminLayout";
 import { lazy, Suspense } from "react";
+
+// Admin (Settings)
+const SettingsOverview = lazy(() => import("./pages/admin/SettingsOverview"));
+const UsersAdmin = lazy(() => import("./pages/admin/UsersAdmin"));
+const CompaniesAdmin = lazy(() => import("./pages/admin/CompaniesAdmin"));
+const AccessAdmin = lazy(() => import("./pages/admin/AccessAdmin"));
+const SystemAdmin = lazy(() => import("./pages/admin/SystemAdmin"));
 
 // UI Elements showcases
 const AlertsShowcase = lazy(() => import("./pages/templates/ui/AlertsShowcase"));
@@ -281,6 +289,12 @@ function ProtectedLayout() {
   const { isAuthenticated } = useApp();
   if (!isAuthenticated) return <Navigate to="/" />;
   return <AppLayout />;
+}
+
+function ProtectedAdminLayout() {
+  const { isAuthenticated } = useApp();
+  if (!isAuthenticated) return <Navigate to="/" />;
+  return <AdminLayout />;
 }
 
 function AppRoutes() {
@@ -555,6 +569,19 @@ function AppRoutes() {
         <Route path="templates/charts/echart" element={<LazyRoute><EchartShowcase /></LazyRoute>} />
 
         <Route path="templates/*" element={<TemplatePlaceholder />} />
+      </Route>
+
+      {/* Admin / Settings area */}
+      <Route path="/settings" element={<ProtectedAdminLayout />}>
+        <Route index element={<LazyRoute><SettingsOverview /></LazyRoute>} />
+        <Route path="usuarios" element={<LazyRoute><UsersAdmin /></LazyRoute>} />
+        <Route path="empresas" element={<LazyRoute><CompaniesAdmin /></LazyRoute>} />
+        <Route path="acessos" element={<LazyRoute><AccessAdmin /></LazyRoute>} />
+        <Route path="sistema" element={<LazyRoute><SystemAdmin /></LazyRoute>} />
+        <Route path="atividade" element={<LazyRoute><SettingsOverview /></LazyRoute>} />
+        <Route path="integracoes" element={<LazyRoute><SystemAdmin /></LazyRoute>} />
+        <Route path="notificacoes" element={<LazyRoute><SystemAdmin /></LazyRoute>} />
+        <Route path="logs" element={<LazyRoute><SettingsOverview /></LazyRoute>} />
       </Route>
 
       <Route path="*" element={<NotFound />} />
