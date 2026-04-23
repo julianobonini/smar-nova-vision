@@ -14,7 +14,7 @@ export function LandingNav() {
 
   return (
     <>
-      <nav className="fixed top-0 left-0 right-0 z-40 glass">
+      <nav className="fixed top-0 left-0 right-0 z-40 glass bg-white">
         <div className="max-w-7xl mx-auto px-6 lg:px-12 h-16 flex items-center justify-between">
           <span className="font-display font-bold text-foreground text-lg">SmarNet</span>
 
