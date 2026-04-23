@@ -277,6 +277,7 @@ const DSCResizable = lazy(() => import("./pages/design-system/components/pages/R
 const DSCChart = lazy(() => import("./pages/design-system/components/pages/ChartPage"));
 const DSPatterns = lazy(() => import("./pages/design-system/PatternsPage"));
 const DSDashboards = lazy(() => import("./pages/design-system/DashboardsPage"));
+const DSTemplates = lazy(() => import("./pages/design-system/TemplateElementsPage"));
 
 const queryClient = new QueryClient();
 
@@ -363,6 +364,7 @@ function AppRoutes() {
         </Route>
         <Route path="patterns" element={<LazyRoute><DSPatterns /></LazyRoute>} />
         <Route path="dashboards" element={<LazyRoute><DSDashboards /></LazyRoute>} />
+        <Route path="templates" element={<LazyRoute><DSTemplates /></LazyRoute>} />
       </Route>
 
       {/* All authenticated routes share the same AppLayout instance */}
