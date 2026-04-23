@@ -9,9 +9,7 @@ import {
   ListChecks,
   MessageSquareMore,
   PanelTop,
-  ShieldAlert,
   TableProperties,
-  Type,
   WandSparkles,
 } from 'lucide-react';
 import { DSCard, DSSection } from './_components';
