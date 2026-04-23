@@ -1,3 +1,4 @@
+import type { ReactNode } from 'react';
 import { Link } from 'react-router-dom';
 import {
   ArrowDownRight,
@@ -98,7 +99,7 @@ function DashboardSection({
 }: {
   title: string;
   subtitle?: string;
-  children: React.ReactNode;
+  children: ReactNode;
 }) {
   return (
     <section className="rounded-2xl bg-surface-container p-6 shadow-ambient">
