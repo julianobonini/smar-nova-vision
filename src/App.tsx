@@ -131,6 +131,11 @@ const CryptoExchangeShowcase = lazy(() => import("./pages/templates/apps/CryptoE
 const CryptoBuySellShowcase = lazy(() => import("./pages/templates/apps/CryptoBuySellShowcase"));
 const CryptoMarketcapShowcase = lazy(() => import("./pages/templates/apps/CryptoMarketcapShowcase"));
 const CryptoWalletShowcase = lazy(() => import("./pages/templates/apps/CryptoWalletShowcase"));
+const CRMExecutiveDashboard = lazy(() => import("./pages/templates/dashboards/CRMExecutiveDashboard"));
+const JobsExecutiveDashboard = lazy(() => import("./pages/templates/dashboards/JobsExecutiveDashboard"));
+const SalesExecutiveDashboard = lazy(() => import("./pages/templates/dashboards/SalesExecutiveDashboard"));
+const HRMExecutiveDashboard = lazy(() => import("./pages/templates/dashboards/HRMExecutiveDashboard"));
+const ProjectsExecutiveDashboard = lazy(() => import("./pages/templates/dashboards/ProjectsExecutiveDashboard"));
 
 // Pages
 const AboutUsShowcase = lazy(() => import("./pages/templates/pages/AboutUsShowcase"));
@@ -377,6 +382,13 @@ function AppRoutes() {
         <Route path="tabelas" element={<TableShowcase />} />
         <Route path="painel" element={<AdminPanelShowcase />} />
         <Route path="comercial/movimentos/propostas" element={<PropostasShowcase />} />
+
+        {/* Dashboards */}
+        <Route path="templates/dashboards/crm" element={<LazyRoute><CRMExecutiveDashboard /></LazyRoute>} />
+        <Route path="templates/dashboards/jobs" element={<LazyRoute><JobsExecutiveDashboard /></LazyRoute>} />
+        <Route path="templates/dashboards/sales" element={<LazyRoute><SalesExecutiveDashboard /></LazyRoute>} />
+        <Route path="templates/dashboards/hrm" element={<LazyRoute><HRMExecutiveDashboard /></LazyRoute>} />
+        <Route path="templates/dashboards/projects" element={<LazyRoute><ProjectsExecutiveDashboard /></LazyRoute>} />
 
         {/* UI Elements */}
         <Route path="templates/ui/alerts" element={<LazyRoute><AlertsShowcase /></LazyRoute>} />
