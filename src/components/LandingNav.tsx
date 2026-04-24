@@ -16,7 +16,7 @@ export function LandingNav() {
     <>
       <nav className="fixed top-0 left-0 right-0 z-40 bg-white shadow-sm">
         <div className="max-w-7xl mx-auto px-6 lg:px-12 h-16 flex items-center justify-between">
-          <p className="font-display font-extrabold text-base tracking-tight">smar<span className="text-accent">NET</span><span className="ml-2 text-[10px] font-bold tracking-[0.2em] uppercase text-muted-foreground">Design System</span></p>
+          <p className="font-display font-extrabold text-base tracking-tight">smar<span className="text-accent">NET</span><br /><span className="ml-2 text-[10px] font-bold tracking-[0.2em] uppercase text-muted-foreground">intranet</span></p>
 
           <div className="flex items-center gap-2">
             {/* Language */}
