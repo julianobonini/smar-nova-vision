@@ -1,8 +1,8 @@
 import { UIShowcaseLayout, ShowcaseSection } from './UIShowcaseLayout';
 import { Card, CardHeader, CardTitle, CardDescription, CardContent, CardFooter } from '@/components/ui/card';
-import { Button } from '@/components/ui/button';
+import { ActionButton } from '@/components/ui/buttons';
 import { KpiCard, AccentCard, ActivityCard } from '@/components/ui/cards';
-import { TrendingUp, Users, Package, DollarSign, ShoppingCart } from 'lucide-react';
+import { TrendingUp, Users, Package, DollarSign, ShoppingCart, Check } from 'lucide-react';
 
 export default function CardsShowcase() {
   return (
@@ -18,7 +18,7 @@ export default function CardsShowcase() {
               <p className="text-sm text-muted-foreground">Conteúdo do card com informações detalhadas sobre o item.</p>
             </CardContent>
             <CardFooter>
-              <Button size="sm">Ação</Button>
+              <ActionButton label="Confirmar" icon={Check} size="sm" variant="success" />
             </CardFooter>
           </Card>
           <Card>

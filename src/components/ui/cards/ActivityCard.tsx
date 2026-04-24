@@ -8,7 +8,7 @@ import {
   CardContent,
   CardFooter,
 } from '@/components/ui/card';
-import { Button } from '@/components/ui/button';
+import { ActionButton, IconButton } from '@/components/ui/buttons';
 import { Badge } from '@/components/ui/badge';
 import { cn } from '@/lib/utils';
 
@@ -51,9 +51,13 @@ export function ActivityCard({
           {description && <CardDescription>{description}</CardDescription>}
         </div>
         {showMenu && (
-          <Button variant="ghost" size="icon" className="h-8 w-8" onClick={onMenuClick}>
-            <MoreHorizontal size={16} />
-          </Button>
+          <IconButton
+            icon={MoreHorizontal}
+            label="Mais opções"
+            size="sm"
+            variant="ghost"
+            onClick={onMenuClick}
+          />
         )}
       </CardHeader>
       <CardContent className="space-y-3">
@@ -80,9 +84,15 @@ export function ActivityCard({
       </CardContent>
       {onFooterClick && (
         <CardFooter>
-          <Button variant="ghost" size="sm" className="w-full text-xs" onClick={onFooterClick}>
-            {footerLabel} <ArrowRight size={12} />
-          </Button>
+          <ActionButton
+            label={footerLabel}
+            iconRight={ArrowRight}
+            iconSize={12}
+            variant="ghost"
+            size="sm"
+            className="w-full text-xs"
+            onClick={onFooterClick}
+          />
         </CardFooter>
       )}
     </Card>
