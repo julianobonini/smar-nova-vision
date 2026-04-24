@@ -20,8 +20,8 @@ export function LandingNav() {
             <p className="font-display font-extrabold text-2xl tracking-tight text-foreground">
               smar<span className="text-accent">NET</span>
             </p>
-            <span className="mt-1.5 text-xs font-bold tracking-[0.25em] uppercase text-muted-foreground">
-              Intranet
+            <span className="text-xs font-bold tracking-[0.25em] uppercase text-muted-foreground">
+              intranet
             </span>
           </div>
 
