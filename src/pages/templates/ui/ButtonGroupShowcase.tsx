@@ -59,7 +59,7 @@ export default function ButtonGroupShowcase() {
 
       {/* ============ SEGMENTED CONTROL — cores do system ============ */}
       <ShowcaseSection title="SegmentedControl — alinhamento (cor primary)">
-        <SegmentedControl
+        <SegmentedControl<'left' | 'center' | 'right' | 'justify'>
           ariaLabel="Alinhamento"
           value={align}
           onChange={setAlign}
@@ -73,7 +73,7 @@ export default function ButtonGroupShowcase() {
       </ShowcaseSection>
 
       <ShowcaseSection title="SegmentedControl — visualização com label (cor accent)">
-        <SegmentedControl
+        <SegmentedControl<'list' | 'grid' | 'compact'>
           color="accent"
           value={view}
           onChange={setView}
@@ -90,7 +90,7 @@ export default function ButtonGroupShowcase() {
           {(['primary', 'secondary', 'tertiary', 'accent', 'success', 'warning', 'alert', 'info', 'destructive'] as const).map((c) => (
             <div key={c} className="flex items-center gap-3">
               <span className="text-xs text-muted-foreground w-20 capitalize">{c}</span>
-              <SegmentedControl
+              <SegmentedControl<'day' | 'week' | 'month' | 'year'>
                 color={c}
                 value={period}
                 onChange={setPeriod}
@@ -108,7 +108,7 @@ export default function ButtonGroupShowcase() {
 
       <ShowcaseSection title="SegmentedControl — tamanhos">
         <div className="flex items-center gap-4">
-          <SegmentedControl
+          <SegmentedControl<'list' | 'grid' | 'compact'>
             size="sm"
             value={view}
             onChange={setView}
@@ -117,7 +117,7 @@ export default function ButtonGroupShowcase() {
               { value: 'grid', icon: LayoutGrid, label: 'SM' },
             ]}
           />
-          <SegmentedControl
+          <SegmentedControl<'list' | 'grid' | 'compact'>
             size="md"
             value={view}
             onChange={setView}
@@ -126,7 +126,7 @@ export default function ButtonGroupShowcase() {
               { value: 'grid', icon: LayoutGrid, label: 'MD' },
             ]}
           />
-          <SegmentedControl
+          <SegmentedControl<'list' | 'grid' | 'compact'>
             size="lg"
             value={view}
             onChange={setView}
