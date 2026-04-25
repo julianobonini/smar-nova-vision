@@ -23,7 +23,7 @@ export interface SegmentedControlOption<T extends string = string> {
 }
 
 export interface SegmentedControlProps<T extends string = string> {
-  options: SegmentedControlOption<T>[];
+  options: ReadonlyArray<SegmentedControlOption<T>>;
   value: T;
   onChange: (value: T) => void;
   /** Cor do item ativo. Aceita qualquer cor do design system. Default: 'primary' */
