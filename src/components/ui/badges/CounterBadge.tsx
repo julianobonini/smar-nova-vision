@@ -3,8 +3,8 @@ import { cn } from '@/lib/utils';
 import { type BadgeColor } from '@/components/ui/badge';
 
 export interface CounterBadgeProps {
-  /** Valor numérico. Se >= max, exibe "{max}+". */
-  count: number;
+  /** Valor numérico. Se >= max, exibe "{max}+". Opcional quando `dot` é true. */
+  count?: number;
   /** Limite superior. Default: 99. */
   max?: number;
   /** Cor semântica. Default: 'destructive'. */
@@ -56,7 +56,7 @@ const POSITION_CLASSES: Record<NonNullable<CounterBadgeProps['position']>, strin
  * Contador / indicador (ex: notificações). Suporta modo dot e overlay sobre filho.
  */
 export function CounterBadge({
-  count,
+  count = 0,
   max = 99,
   color = 'destructive',
   dot = false,
@@ -67,7 +67,8 @@ export function CounterBadge({
   className,
   ariaLabel,
 }: CounterBadgeProps) {
-  const visible = !(hideOnZero && count <= 0);
+  // Em modo dot, sempre visível (não depende de count)
+  const visible = dot ? true : !(hideOnZero && count <= 0);
   const display = count > max ? `${max}+` : String(count);
   const showRing = ring ?? !!position;
 
