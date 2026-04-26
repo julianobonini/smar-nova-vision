@@ -2,7 +2,7 @@ import * as React from 'react';
 import { cn } from '@/lib/utils';
 import { PathBreadcrumb, type BreadcrumbItemData, type BreadcrumbSeparatorKind } from './PathBreadcrumb';
 
-export interface PageHeaderBreadcrumbProps extends React.HTMLAttributes<HTMLElement> {
+export interface PageHeaderBreadcrumbProps extends Omit<React.HTMLAttributes<HTMLElement>, 'title'> {
   /** Itens do caminho. */
   items: BreadcrumbItemData[];
   /** Título principal da página (h1). */
