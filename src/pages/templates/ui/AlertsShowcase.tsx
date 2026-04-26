@@ -1,104 +1,183 @@
-import { AlertCircle, CheckCircle2, Info, AlertTriangle, X, Bell } from 'lucide-react';
 import { useState } from 'react';
+import { Info, CheckCircle2, AlertTriangle, XCircle, Bell, Sparkles, Rocket } from 'lucide-react';
 import { UIShowcaseLayout, ShowcaseSection } from './UIShowcaseLayout';
-import { Alert, AlertTitle, AlertDescription } from '@/components/ui/alert';
+import { Alert, AlertTitle, AlertDescription, type AlertColor, type AlertTone } from '@/components/ui/alert';
+import { InlineAlert, BannerAlert, ToastAlert } from '@/components/ui/alerts';
 import { Button } from '@/components/ui/button';
 
+const COLORS: AlertColor[] = ['primary', 'secondary', 'tertiary', 'accent', 'success', 'warning', 'alert', 'info', 'destructive', 'neutral'];
+const TONES: AlertTone[] = ['solid', 'soft', 'outline'];
+
+const COLOR_LABELS: Record<AlertColor, string> = {
+  primary: 'Primary',
+  secondary: 'Secondary',
+  tertiary: 'Tertiary',
+  accent: 'Accent',
+  success: 'Sucesso',
+  warning: 'Aviso',
+  alert: 'Alerta',
+  info: 'Info',
+  destructive: 'Erro',
+  neutral: 'Neutro',
+};
+
 export default function AlertsShowcase() {
-  const [dismissible, setDismissible] = useState(true);
+  const [tone, setTone] = useState<AlertTone>('soft');
+  const [bannerOpen, setBannerOpen] = useState(true);
+  const [toasts, setToasts] = useState<{ id: number; color: AlertColor }[]>([]);
+
+  const pushToast = (color: AlertColor) => {
+    const id = Date.now();
+    setToasts(prev => [...prev, { id, color }]);
+  };
 
   return (
-    <UIShowcaseLayout title="Alerts" description="Alertas e notificações contextuais para feedback do usuário.">
-      <ShowcaseSection title="Alertas Padrão">
+    <UIShowcaseLayout title="Alerts" description="Alertas contextuais com 10 cores semânticas e 3 tons (solid · soft · outline).">
+      {/* Tone selector */}
+      <ShowcaseSection title="Alert primitivo — todas as cores">
+        <div className="flex items-center gap-2 mb-4">
+          <span className="text-xs text-muted-foreground">Tom:</span>
+          {TONES.map(t => (
+            <Button
+              key={t}
+              size="sm"
+              variant={tone === t ? 'default' : 'outline'}
+              className="h-7 text-xs capitalize"
+              onClick={() => setTone(t)}
+            >
+              {t}
+            </Button>
+          ))}
+        </div>
+
+        <div className="grid grid-cols-1 md:grid-cols-2 gap-3">
+          {COLORS.map(color => (
+            <Alert key={color} color={color} tone={tone}>
+              <Info className="h-4 w-4" />
+              <AlertTitle>{COLOR_LABELS[color]}</AlertTitle>
+              <AlertDescription>
+                Mensagem de exemplo usando <code className="text-[11px] font-mono opacity-80">color="{color}"</code> e <code className="text-[11px] font-mono opacity-80">tone="{tone}"</code>.
+              </AlertDescription>
+            </Alert>
+          ))}
+        </div>
+      </ShowcaseSection>
+
+      <ShowcaseSection title="Padrões clássicos (com ícones contextuais)">
         <div className="space-y-3">
-          <Alert>
+          <Alert color="info" tone="soft">
             <Info className="h-4 w-4" />
             <AlertTitle>Informação</AlertTitle>
-            <AlertDescription>Esta é uma mensagem informativa padrão do sistema.</AlertDescription>
+            <AlertDescription>Sincronização agendada para 02:00.</AlertDescription>
           </Alert>
-          <Alert className="border-status-success/30 bg-status-success/5">
-            <CheckCircle2 className="h-4 w-4 text-status-success" />
-            <AlertTitle className="text-status-success">Sucesso</AlertTitle>
-            <AlertDescription>Operação realizada com sucesso! O registro foi salvo.</AlertDescription>
+          <Alert color="success" tone="soft">
+            <CheckCircle2 className="h-4 w-4" />
+            <AlertTitle>Sucesso</AlertTitle>
+            <AlertDescription>Pedido #4821 faturado com sucesso.</AlertDescription>
           </Alert>
-          <Alert className="border-status-warning/30 bg-status-warning/5">
-            <AlertTriangle className="h-4 w-4 text-status-warning" />
-            <AlertTitle className="text-status-warning">Atenção</AlertTitle>
-            <AlertDescription>Existem campos obrigatórios não preenchidos no formulário.</AlertDescription>
+          <Alert color="warning" tone="soft">
+            <AlertTriangle className="h-4 w-4" />
+            <AlertTitle>Atenção</AlertTitle>
+            <AlertDescription>Estoque do SKU-203 abaixo do mínimo.</AlertDescription>
           </Alert>
-          <Alert variant="destructive">
-            <AlertCircle className="h-4 w-4" />
+          <Alert color="destructive" tone="soft">
+            <XCircle className="h-4 w-4" />
             <AlertTitle>Erro</AlertTitle>
-            <AlertDescription>Não foi possível processar a solicitação. Tente novamente.</AlertDescription>
+            <AlertDescription>Falha ao conectar ao serviço de NFe.</AlertDescription>
           </Alert>
         </div>
       </ShowcaseSection>
 
-      <ShowcaseSection title="Alertas com Ações">
-        <div className="space-y-3">
-          <div className="flex items-start gap-3 p-4 rounded-xl border border-status-info/30 bg-status-info/5">
-            <Info className="h-5 w-5 text-status-info shrink-0 mt-0.5" />
-            <div className="flex-1">
-              <p className="text-sm font-semibold text-foreground">Atualização disponível</p>
-              <p className="text-xs text-muted-foreground mt-1">Uma nova versão do sistema está disponível. Atualize para obter as correções mais recentes.</p>
-              <div className="flex gap-2 mt-3">
-                <Button size="sm" className="h-7 text-xs">Atualizar agora</Button>
-                <Button variant="ghost" size="sm" className="h-7 text-xs">Mais tarde</Button>
-              </div>
-            </div>
-          </div>
+      <ShowcaseSection title="InlineAlert — feedback compacto em formulário">
+        <div className="flex flex-wrap gap-2">
+          <InlineAlert color="info">Campo opcional</InlineAlert>
+          <InlineAlert color="success">CNPJ válido</InlineAlert>
+          <InlineAlert color="warning">Verifique o e-mail</InlineAlert>
+          <InlineAlert color="destructive">CEP inválido</InlineAlert>
+          <InlineAlert color="neutral">Nenhum filtro aplicado</InlineAlert>
+        </div>
 
-          <div className="flex items-start gap-3 p-4 rounded-xl border border-status-warning/30 bg-status-warning/5">
-            <AlertTriangle className="h-5 w-5 text-status-warning shrink-0 mt-0.5" />
-            <div className="flex-1">
-              <p className="text-sm font-semibold text-foreground">Estoque baixo</p>
-              <p className="text-xs text-muted-foreground mt-1">15 produtos estão com estoque abaixo do mínimo configurado.</p>
-              <div className="flex gap-2 mt-3">
-                <Button size="sm" variant="outline" className="h-7 text-xs">Ver produtos</Button>
-              </div>
-            </div>
-          </div>
+        <div className="mt-4 flex flex-wrap gap-2">
+          <InlineAlert color="primary" tone="solid">Primary solid</InlineAlert>
+          <InlineAlert color="accent" tone="outline">Accent outline</InlineAlert>
+          <InlineAlert color="tertiary" tone="solid">Tertiary solid</InlineAlert>
+          <InlineAlert color="alert" tone="soft">Alert soft</InlineAlert>
         </div>
       </ShowcaseSection>
 
-      <ShowcaseSection title="Alerta Dispensável">
-        {dismissible ? (
-          <div className="flex items-start gap-3 p-4 rounded-xl border border-border bg-surface-container-high/50 relative">
-            <Bell className="h-5 w-5 text-primary shrink-0 mt-0.5" />
-            <div className="flex-1 pr-8">
-              <p className="text-sm font-semibold text-foreground">Bem-vindo ao SmarNET</p>
-              <p className="text-xs text-muted-foreground mt-1">Clique no X para fechar este alerta. Ele pode ser dispensado pelo usuário.</p>
-            </div>
-            <button
-              onClick={() => setDismissible(false)}
-              className="absolute top-3 right-3 p-1 rounded-lg hover:bg-muted transition-colors"
-            >
-              <X size={14} className="text-muted-foreground" />
-            </button>
-          </div>
-        ) : (
-          <div className="text-center py-6">
-            <p className="text-sm text-muted-foreground mb-3">Alerta dispensado.</p>
-            <Button variant="outline" size="sm" onClick={() => setDismissible(true)}>Mostrar novamente</Button>
+      <ShowcaseSection title="BannerAlert — anúncios e avisos sistêmicos">
+        <div className="space-y-3">
+          {bannerOpen && (
+            <BannerAlert
+              color="info"
+              tone="soft"
+              icon={Sparkles}
+              title="Atualização disponível"
+              description="Uma nova versão do SmarNet está disponível com correções de NFe e melhorias de performance."
+              actions={[
+                { label: 'Atualizar agora', variant: 'default', onClick: () => setBannerOpen(false) },
+                { label: 'Mais tarde', variant: 'ghost', onClick: () => setBannerOpen(false) },
+              ]}
+              dismissible
+              onDismiss={() => setBannerOpen(false)}
+            />
+          )}
+          {!bannerOpen && (
+            <Button variant="outline" size="sm" onClick={() => setBannerOpen(true)}>
+              Mostrar banner novamente
+            </Button>
+          )}
+
+          <BannerAlert
+            color="warning"
+            tone="soft"
+            title="Estoque crítico"
+            description="15 produtos estão com estoque abaixo do mínimo configurado."
+            actions={[{ label: 'Ver produtos', onClick: () => {} }]}
+          />
+
+          <BannerAlert
+            color="primary"
+            tone="solid"
+            icon={Rocket}
+            title="Bem-vindo ao novo módulo de Propostas"
+            description="Configure modelos, fluxos de aprovação e envio direto por e-mail."
+            actions={[{ label: 'Começar', variant: 'secondary', onClick: () => {} }]}
+            dismissible
+          />
+        </div>
+      </ShowcaseSection>
+
+      <ShowcaseSection title="ToastAlert — notificações flutuantes">
+        <div className="flex flex-wrap gap-2 mb-4">
+          <Button size="sm" variant="outline" onClick={() => pushToast('success')}>Disparar sucesso</Button>
+          <Button size="sm" variant="outline" onClick={() => pushToast('warning')}>Disparar aviso</Button>
+          <Button size="sm" variant="outline" onClick={() => pushToast('destructive')}>Disparar erro</Button>
+          <Button size="sm" variant="outline" onClick={() => pushToast('info')}>Disparar info</Button>
+        </div>
+
+        <div className="space-y-2">
+          <p className="text-xs text-muted-foreground">Exemplos estáticos:</p>
+          <ToastAlert color="success" title="Backup concluído" description="Todos os dados foram salvos com segurança." />
+          <ToastAlert color="info" tone="soft" icon={Bell} title="Nova mensagem" description="Você recebeu uma proposta para revisão." />
+          <ToastAlert color="destructive" title="Falha na importação" description="3 linhas com formato inválido foram ignoradas." />
+        </div>
+
+        {/* Stack de toasts disparados pelos botões */}
+        {toasts.length > 0 && (
+          <div className="fixed bottom-6 right-6 z-50 flex flex-col gap-2">
+            {toasts.map(t => (
+              <ToastAlert
+                key={t.id}
+                color={t.color}
+                title="Notificação"
+                description={`Toast disparado (${t.color}). Auto-fecha em 4s.`}
+                duration={4000}
+                onDismiss={() => setToasts(prev => prev.filter(x => x.id !== t.id))}
+              />
+            ))}
           </div>
         )}
-      </ShowcaseSection>
-
-      <ShowcaseSection title="Alertas Inline (Compactos)">
-        <div className="flex flex-wrap gap-2">
-          <span className="inline-flex items-center gap-1.5 px-3 py-1.5 rounded-lg bg-status-info/10 text-status-info text-xs font-medium">
-            <Info size={12} /> Informativo
-          </span>
-          <span className="inline-flex items-center gap-1.5 px-3 py-1.5 rounded-lg bg-status-success/10 text-status-success text-xs font-medium">
-            <CheckCircle2 size={12} /> Sucesso
-          </span>
-          <span className="inline-flex items-center gap-1.5 px-3 py-1.5 rounded-lg bg-status-warning/10 text-status-warning text-xs font-medium">
-            <AlertTriangle size={12} /> Atenção
-          </span>
-          <span className="inline-flex items-center gap-1.5 px-3 py-1.5 rounded-lg bg-destructive/10 text-destructive text-xs font-medium">
-            <AlertCircle size={12} /> Erro
-          </span>
-        </div>
       </ShowcaseSection>
     </UIShowcaseLayout>
   );
