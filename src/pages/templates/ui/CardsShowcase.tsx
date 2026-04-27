@@ -93,16 +93,53 @@ export default function CardsShowcase() {
         />
       </ShowcaseSection>
 
-      <ShowcaseSection title="Variantes de Acento — <AccentCard />">
+      <ShowcaseSection title="Acento — Cores do Design System (tone='soft')">
+        <p className="text-xs text-muted-foreground mb-3">
+          <code className="text-xs">&lt;AccentCard accent="..." tone="soft" /&gt;</code> — todas as 10 cores semânticas suportadas.
+        </p>
+        <div className="grid grid-cols-1 md:grid-cols-3 lg:grid-cols-5 gap-4">
+          {(['primary', 'secondary', 'tertiary', 'accent', 'success', 'warning', 'alert', 'info', 'destructive', 'neutral'] as const).map((c) => (
+            <AccentCard key={c} title={c.charAt(0).toUpperCase() + c.slice(1)} description={`accent="${c}"`} accent={c} tone="soft">
+              <p className="text-xs text-muted-foreground">Tom suave com borda lateral.</p>
+            </AccentCard>
+          ))}
+        </div>
+      </ShowcaseSection>
+
+      <ShowcaseSection title="Tons — Solid / Soft / Outline">
+        <p className="text-xs text-muted-foreground mb-3">
+          Cada cor pode ser exibida em três tons. Use <code className="text-xs">tone</code> para ajustar o nível de destaque.
+        </p>
+        <div className="space-y-6">
+          {(['success', 'warning', 'destructive', 'info'] as const).map((c) => (
+            <div key={c}>
+              <p className="text-[11px] font-bold uppercase tracking-widest text-muted-foreground mb-2">{c}</p>
+              <div className="grid grid-cols-1 md:grid-cols-3 gap-4">
+                <AccentCard title="Solid" description={`tone="solid"`} accent={c} tone="solid">
+                  <p className="text-xs">Fundo sólido, máximo destaque.</p>
+                </AccentCard>
+                <AccentCard title="Soft" description={`tone="soft"`} accent={c} tone="soft">
+                  <p className="text-xs text-muted-foreground">Fundo suave, destaque moderado.</p>
+                </AccentCard>
+                <AccentCard title="Outline" description={`tone="outline"`} accent={c} tone="outline">
+                  <p className="text-xs text-muted-foreground">Apenas borda lateral, sutil.</p>
+                </AccentCard>
+              </div>
+            </div>
+          ))}
+        </div>
+      </ShowcaseSection>
+
+      <ShowcaseSection title="Casos de Uso ERP">
         <div className="grid grid-cols-1 md:grid-cols-3 gap-4">
-          <AccentCard title="Sucesso" description="Operação concluída" accent="success">
+          <AccentCard title="Sucesso" description="Operação concluída" accent="success" tone="soft">
             <p className="text-sm text-muted-foreground">3 pedidos faturados hoje.</p>
           </AccentCard>
-          <AccentCard title="Atenção" description="Requer revisão" accent="warning">
+          <AccentCard title="Atenção" description="Requer revisão" accent="warning" tone="soft">
             <p className="text-sm text-muted-foreground">5 propostas vencendo em 48h.</p>
           </AccentCard>
-          <AccentCard title="Crítico" description="Ação imediata" accent="destructive">
-            <p className="text-sm text-muted-foreground">2 estoques abaixo do mínimo.</p>
+          <AccentCard title="Crítico" description="Ação imediata" accent="destructive" tone="solid">
+            <p className="text-sm">2 estoques abaixo do mínimo.</p>
           </AccentCard>
         </div>
       </ShowcaseSection>
