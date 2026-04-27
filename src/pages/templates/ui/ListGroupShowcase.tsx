@@ -139,7 +139,7 @@ export default function ListGroupShowcase() {
       {/* ===== ColoredListGroup ===== */}
       <ShowcaseSection
         title="Colored List Group — Soft (todas as cores)"
-        description="Background sutil /5, padrão recomendado. Mesmo tom usado em Alerts, Cards e Panels."
+
       >
         <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
           {COLORS.map((color) => (
@@ -167,7 +167,7 @@ export default function ListGroupShowcase() {
 
       <ShowcaseSection
         title="Colored List Group — Solid"
-        description="Fundo sólido na cor, alto destaque. Útil para listas de ação principal."
+
       >
         <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
           {COLORS.map((color) => (
@@ -188,7 +188,7 @@ export default function ListGroupShowcase() {
 
       <ShowcaseSection
         title="Colored List Group — Outline"
-        description="Apenas borda colorida, fundo transparente. Destaque sutil."
+
       >
         <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
           {COLORS.map((color) => (
@@ -209,7 +209,7 @@ export default function ListGroupShowcase() {
 
       <ShowcaseSection
         title="Comparativo de Tons (info)"
-        description="Mesma cor (info) aplicada nos três tons disponíveis."
+
       >
         <div className="grid grid-cols-1 md:grid-cols-3 gap-4">
           {TONES.map((tone) => (
