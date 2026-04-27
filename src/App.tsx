@@ -45,6 +45,7 @@ const ListGroupShowcase = lazy(() => import("./pages/templates/ui/ListGroupShowc
 const NavsTabsShowcase = lazy(() => import("./pages/templates/ui/NavsTabsShowcase"));
 const ObjectFitShowcase = lazy(() => import("./pages/templates/ui/ObjectFitShowcase"));
 const PaginationShowcase = lazy(() => import("./pages/templates/ui/PaginationShowcase"));
+const PanelsShowcase = lazy(() => import("./pages/templates/ui/PanelsShowcase"));
 const PopoversShowcase = lazy(() => import("./pages/templates/ui/PopoversShowcase"));
 const ProgressShowcase = lazy(() => import("./pages/templates/ui/ProgressShowcase"));
 const SpinnersShowcase = lazy(() => import("./pages/templates/ui/SpinnersShowcase"));
@@ -406,6 +407,7 @@ function AppRoutes() {
         <Route path="templates/ui/navstabs" element={<LazyRoute><NavsTabsShowcase /></LazyRoute>} />
         <Route path="templates/ui/objectfit" element={<LazyRoute><ObjectFitShowcase /></LazyRoute>} />
         <Route path="templates/ui/pagination" element={<LazyRoute><PaginationShowcase /></LazyRoute>} />
+        <Route path="templates/ui/panels" element={<LazyRoute><PanelsShowcase /></LazyRoute>} />
         <Route path="templates/ui/popovers" element={<LazyRoute><PopoversShowcase /></LazyRoute>} />
         <Route path="templates/ui/progress" element={<LazyRoute><ProgressShowcase /></LazyRoute>} />
         <Route path="templates/ui/spinners" element={<LazyRoute><SpinnersShowcase /></LazyRoute>} />
