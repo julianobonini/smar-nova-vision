@@ -214,6 +214,7 @@ export const templateMenuGroups: TemplateMenuGroup[] = [
           { label: 'Navs & Tabs', path: '/app/templates/ui/navstabs' },
           { label: 'Object Fit', path: '/app/templates/ui/objectfit' },
           { label: 'Pagination', path: '/app/templates/ui/pagination' },
+          { label: 'Panels', path: '/app/templates/ui/panels' },
           { label: 'Popovers', path: '/app/templates/ui/popovers' },
           { label: 'Progress', path: '/app/templates/ui/progress' },
           { label: 'Spinners', path: '/app/templates/ui/spinners' },
