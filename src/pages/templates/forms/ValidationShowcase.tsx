@@ -1,37 +1,38 @@
 import { useState } from 'react';
 import { FormsShowcaseLayout, ShowcaseSection } from './FormsShowcaseLayout';
-import { Input } from '@/components/ui/input';
-import { Label } from '@/components/ui/label';
+import { FormInput } from '@/components/ui/forms';
 import { Button } from '@/components/ui/button';
-import { AlertCircle, CheckCircle2, Info } from 'lucide-react';
+import { Label } from '@/components/ui/label';
+import { Input } from '@/components/ui/input';
+import { AlertCircle, CheckCircle2 } from 'lucide-react';
 import { cn } from '@/lib/utils';
 
-function ValidatedField({ label, placeholder, validate, hint }: {
-  label: string; placeholder: string; validate: (v: string) => string | null; hint?: string;
-}) {
+interface ValidatedFieldProps {
+  label: string;
+  placeholder: string;
+  validate: (v: string) => string | null;
+  hint?: string;
+  type?: string;
+}
+
+function ValidatedField({ label, placeholder, validate, hint, type }: ValidatedFieldProps) {
   const [value, setValue] = useState('');
   const [touched, setTouched] = useState(false);
   const error = touched ? validate(value) : null;
   const valid = touched && !error && value.length > 0;
 
   return (
-    <div>
-      <Label className="text-xs mb-1.5">{label}</Label>
-      <div className="relative">
-        <Input
-          value={value}
-          onChange={e => setValue(e.target.value)}
-          onBlur={() => setTouched(true)}
-          placeholder={placeholder}
-          className={cn(error && 'border-destructive', valid && 'border-status-success')}
-        />
-        {valid && <CheckCircle2 size={16} className="absolute right-3 top-1/2 -translate-y-1/2 text-status-success" />}
-        {error && <AlertCircle size={16} className="absolute right-3 top-1/2 -translate-y-1/2 text-destructive" />}
-      </div>
-      {error && <p className="text-[11px] text-destructive mt-1 flex items-center gap-1"><AlertCircle size={11} /> {error}</p>}
-      {valid && <p className="text-[11px] text-status-success mt-1 flex items-center gap-1"><CheckCircle2 size={11} /> Campo válido</p>}
-      {hint && !error && !valid && <p className="text-[11px] text-muted-foreground mt-1 flex items-center gap-1"><Info size={11} /> {hint}</p>}
-    </div>
+    <FormInput
+      label={label}
+      type={type}
+      placeholder={placeholder}
+      value={value}
+      onChange={(e) => setValue(e.target.value)}
+      onBlur={() => setTouched(true)}
+      error={error ?? undefined}
+      success={valid ? 'Campo válido' : undefined}
+      hint={!touched ? hint : undefined}
+    />
   );
 }
 
@@ -50,6 +51,7 @@ export default function ValidationShowcase() {
           />
           <ValidatedField
             label="Email"
+            type="email"
             placeholder="email@empresa.com"
             validate={v => v.length === 0 ? 'Campo obrigatório' : !/^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(v) ? 'Email inválido' : null}
             hint="Formato: nome@dominio.com"
@@ -72,6 +74,7 @@ export default function ValidationShowcase() {
           />
           <ValidatedField
             label="Senha"
+            type="password"
             placeholder="Mínimo 8 caracteres"
             validate={v => {
               if (v.length === 0) return 'Campo obrigatório';
@@ -88,22 +91,10 @@ export default function ValidationShowcase() {
       <ShowcaseSection title="Formulário com Validação no Submit">
         <div className="max-w-lg space-y-4">
           <div className="grid grid-cols-2 gap-4">
-            <div>
-              <Label className="text-xs mb-1.5">Nome *</Label>
-              <Input placeholder="Nome" className={submitted ? 'border-destructive' : ''} />
-              {submitted && <p className="text-[11px] text-destructive mt-1">Campo obrigatório</p>}
-            </div>
-            <div>
-              <Label className="text-xs mb-1.5">Sobrenome *</Label>
-              <Input placeholder="Sobrenome" className={submitted ? 'border-destructive' : ''} />
-              {submitted && <p className="text-[11px] text-destructive mt-1">Campo obrigatório</p>}
-            </div>
+            <FormInput label="Nome" required placeholder="Nome" error={submitted ? 'Campo obrigatório' : undefined} />
+            <FormInput label="Sobrenome" required placeholder="Sobrenome" error={submitted ? 'Campo obrigatório' : undefined} />
           </div>
-          <div>
-            <Label className="text-xs mb-1.5">Email *</Label>
-            <Input placeholder="email@empresa.com" className={submitted ? 'border-destructive' : ''} />
-            {submitted && <p className="text-[11px] text-destructive mt-1">Email inválido</p>}
-          </div>
+          <FormInput label="Email" required placeholder="email@empresa.com" error={submitted ? 'Email inválido' : undefined} />
           <div className="flex items-center gap-3">
             <Button onClick={() => setSubmitted(true)}>Enviar</Button>
             <Button variant="ghost" onClick={() => setSubmitted(false)}>Limpar</Button>

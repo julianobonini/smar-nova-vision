@@ -1,103 +1,51 @@
-import { useState } from 'react';
 import { FormsShowcaseLayout, ShowcaseSection } from './FormsShowcaseLayout';
-import { Label } from '@/components/ui/label';
-import { Select, SelectContent, SelectItem, SelectTrigger, SelectValue } from '@/components/ui/select';
+import { FormSelect, FormSelectOption } from '@/components/ui/forms';
 
-const estados = [
+const estados: FormSelectOption[] = [
   'São Paulo', 'Rio de Janeiro', 'Minas Gerais', 'Paraná', 'Rio Grande do Sul',
   'Santa Catarina', 'Bahia', 'Pernambuco', 'Ceará', 'Goiás',
-];
+].map(e => ({ value: e, label: e }));
 
-const categorias = ['Metalúrgica', 'Automação', 'Elétrica', 'Hidráulica', 'Pneumática'];
+const categorias: FormSelectOption[] = ['Metalúrgica', 'Automação', 'Elétrica', 'Hidráulica', 'Pneumática']
+  .map(c => ({ value: c, label: c }));
+
+const prioridades: FormSelectOption[] = [
+  { value: 'baixa', label: '🟢 Baixa' },
+  { value: 'media', label: '🟡 Média' },
+  { value: 'alta', label: '🟠 Alta' },
+  { value: 'critica', label: '🔴 Crítica' },
+];
 
 export default function FormSelectShowcase() {
   return (
     <FormsShowcaseLayout title="Form Select" subtitle="Form Elements" description="Componentes de seleção nativa com variantes e estados.">
       <ShowcaseSection title="Select Padrão">
         <div className="grid grid-cols-1 md:grid-cols-3 gap-4">
-          <div>
-            <Label className="text-xs mb-1.5">Estado</Label>
-            <Select>
-              <SelectTrigger><SelectValue placeholder="Selecione um estado" /></SelectTrigger>
-              <SelectContent>
-                {estados.map(e => <SelectItem key={e} value={e}>{e}</SelectItem>)}
-              </SelectContent>
-            </Select>
-          </div>
-          <div>
-            <Label className="text-xs mb-1.5">Categoria</Label>
-            <Select>
-              <SelectTrigger><SelectValue placeholder="Selecione a categoria" /></SelectTrigger>
-              <SelectContent>
-                {categorias.map(c => <SelectItem key={c} value={c}>{c}</SelectItem>)}
-              </SelectContent>
-            </Select>
-          </div>
-          <div>
-            <Label className="text-xs mb-1.5">Prioridade</Label>
-            <Select defaultValue="media">
-              <SelectTrigger><SelectValue /></SelectTrigger>
-              <SelectContent>
-                <SelectItem value="baixa">🟢 Baixa</SelectItem>
-                <SelectItem value="media">🟡 Média</SelectItem>
-                <SelectItem value="alta">🟠 Alta</SelectItem>
-                <SelectItem value="critica">🔴 Crítica</SelectItem>
-              </SelectContent>
-            </Select>
-          </div>
+          <FormSelect label="Estado" placeholder="Selecione um estado" options={estados} />
+          <FormSelect label="Categoria" placeholder="Selecione a categoria" options={categorias} />
+          <FormSelect label="Prioridade" defaultValue="media" options={prioridades} />
         </div>
       </ShowcaseSection>
 
       <ShowcaseSection title="Tamanhos">
         <div className="grid grid-cols-1 md:grid-cols-3 gap-4">
-          <div>
-            <Label className="text-xs mb-1.5">Small</Label>
-            <Select>
-              <SelectTrigger className="h-8 text-xs"><SelectValue placeholder="Selecione" /></SelectTrigger>
-              <SelectContent>{categorias.map(c => <SelectItem key={c} value={c} className="text-xs">{c}</SelectItem>)}</SelectContent>
-            </Select>
-          </div>
-          <div>
-            <Label className="text-xs mb-1.5">Default</Label>
-            <Select>
-              <SelectTrigger><SelectValue placeholder="Selecione" /></SelectTrigger>
-              <SelectContent>{categorias.map(c => <SelectItem key={c} value={c}>{c}</SelectItem>)}</SelectContent>
-            </Select>
-          </div>
-          <div>
-            <Label className="text-xs mb-1.5">Large</Label>
-            <Select>
-              <SelectTrigger className="h-12 text-base"><SelectValue placeholder="Selecione" /></SelectTrigger>
-              <SelectContent>{categorias.map(c => <SelectItem key={c} value={c}>{c}</SelectItem>)}</SelectContent>
-            </Select>
-          </div>
+          <FormSelect label="Small" size="sm" placeholder="Selecione" options={categorias} />
+          <FormSelect label="Default" size="md" placeholder="Selecione" options={categorias} />
+          <FormSelect label="Large" size="lg" placeholder="Selecione" options={categorias} />
         </div>
       </ShowcaseSection>
 
       <ShowcaseSection title="Estados">
         <div className="grid grid-cols-1 md:grid-cols-3 gap-4">
-          <div>
-            <Label className="text-xs mb-1.5">Normal</Label>
-            <Select>
-              <SelectTrigger><SelectValue placeholder="Selecione" /></SelectTrigger>
-              <SelectContent>{categorias.map(c => <SelectItem key={c} value={c}>{c}</SelectItem>)}</SelectContent>
-            </Select>
-          </div>
-          <div>
-            <Label className="text-xs mb-1.5">Desabilitado</Label>
-            <Select disabled>
-              <SelectTrigger><SelectValue placeholder="Desabilitado" /></SelectTrigger>
-              <SelectContent>{categorias.map(c => <SelectItem key={c} value={c}>{c}</SelectItem>)}</SelectContent>
-            </Select>
-          </div>
-          <div>
-            <Label className="text-xs mb-1.5">Com erro</Label>
-            <Select>
-              <SelectTrigger className="border-destructive"><SelectValue placeholder="Selecione" /></SelectTrigger>
-              <SelectContent>{categorias.map(c => <SelectItem key={c} value={c}>{c}</SelectItem>)}</SelectContent>
-            </Select>
-            <p className="text-[11px] text-destructive mt-1">Seleção obrigatória</p>
-          </div>
+          <FormSelect label="Normal" placeholder="Selecione" options={categorias} />
+          <FormSelect label="Desabilitado" placeholder="Desabilitado" disabled options={categorias} />
+          <FormSelect
+            label="Com erro"
+            required
+            placeholder="Selecione"
+            options={categorias}
+            error="Seleção obrigatória"
+          />
         </div>
       </ShowcaseSection>
     </FormsShowcaseLayout>
