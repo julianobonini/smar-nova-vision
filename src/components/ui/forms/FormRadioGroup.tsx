@@ -50,6 +50,7 @@ export function FormRadioGroup({
   disabled,
 }: FormRadioGroupProps) {
   const computedStatus: FormFieldStatus = status ?? (error ? 'error' : success ? 'success' : 'default');
+  const baseId = React.useId();
   const colsClass =
     columns === 2 ? 'grid-cols-2' : columns === 4 ? 'grid-cols-2 sm:grid-cols-4' : 'grid-cols-2 sm:grid-cols-3';
 
@@ -77,7 +78,7 @@ export function FormRadioGroup({
         )}
       >
         {options.map((opt) => {
-          const itemId = `${name ?? 'radio'}-${opt.value}-${React.useId()}`;
+          const itemId = `${name ?? 'radio'}-${baseId}-${opt.value}`;
           if (variant === 'cards') {
             const checked = (value ?? defaultValue) === opt.value;
             return (
