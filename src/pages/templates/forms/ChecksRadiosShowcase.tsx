@@ -1,13 +1,11 @@
 import { useState } from 'react';
 import { FormsShowcaseLayout, ShowcaseSection } from './FormsShowcaseLayout';
-import { Checkbox } from '@/components/ui/checkbox';
-import { Label } from '@/components/ui/label';
-import { RadioGroup, RadioGroupItem } from '@/components/ui/radio-group';
-import { Switch } from '@/components/ui/switch';
+import { FormCheckbox, FormRadioGroup, FormSwitch } from '@/components/ui/forms';
 
 export default function ChecksRadiosShowcase() {
   const [checks, setChecks] = useState({ a: true, b: false, c: false, d: true });
   const [radio, setRadio] = useState('opcao1');
+  const [incoterm, setIncoterm] = useState('CIF');
   const [switches, setSwitches] = useState({ ativo: true, notif: false, dark: false });
 
   return (
@@ -16,106 +14,88 @@ export default function ChecksRadiosShowcase() {
         <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
           <div className="space-y-3">
             <p className="text-xs font-bold text-muted-foreground uppercase tracking-wider mb-2">Padrão</p>
-            {[
-              { key: 'a', label: 'Opção selecionada' },
-              { key: 'b', label: 'Opção não selecionada' },
-              { key: 'c', label: 'Terceira opção' },
-              { key: 'd', label: 'Opção com descrição' },
-            ].map(item => (
-              <div key={item.key} className="flex items-center gap-2.5">
-                <Checkbox
-                  id={`check-${item.key}`}
-                  checked={checks[item.key as keyof typeof checks]}
-                  onCheckedChange={(v) => setChecks(prev => ({ ...prev, [item.key]: !!v }))}
-                />
-                <Label htmlFor={`check-${item.key}`} className="text-sm cursor-pointer">{item.label}</Label>
-              </div>
-            ))}
+            <FormCheckbox label="Opção selecionada" checked={checks.a} onCheckedChange={v => setChecks(p => ({ ...p, a: !!v }))} />
+            <FormCheckbox label="Opção não selecionada" checked={checks.b} onCheckedChange={v => setChecks(p => ({ ...p, b: !!v }))} />
+            <FormCheckbox label="Terceira opção" checked={checks.c} onCheckedChange={v => setChecks(p => ({ ...p, c: !!v }))} />
+            <FormCheckbox
+              label="Opção com descrição"
+              description="Texto auxiliar explicando o item."
+              checked={checks.d}
+              onCheckedChange={v => setChecks(p => ({ ...p, d: !!v }))}
+            />
           </div>
           <div className="space-y-3">
-            <p className="text-xs font-bold text-muted-foreground uppercase tracking-wider mb-2">Estados</p>
-            <div className="flex items-center gap-2.5">
-              <Checkbox id="check-disabled" disabled />
-              <Label htmlFor="check-disabled" className="text-sm text-muted-foreground">Desabilitado</Label>
-            </div>
-            <div className="flex items-center gap-2.5">
-              <Checkbox id="check-disabled-checked" disabled checked />
-              <Label htmlFor="check-disabled-checked" className="text-sm text-muted-foreground">Desabilitado Marcado</Label>
-            </div>
+            <p className="text-xs font-bold text-muted-foreground uppercase tracking-wider mb-2">Estados & Card</p>
+            <FormCheckbox label="Desabilitado" disabled />
+            <FormCheckbox label="Desabilitado Marcado" disabled checked />
+            <FormCheckbox
+              variant="card"
+              label="Aceito os termos de uso"
+              description="Confirmo que li e concordo com a política de privacidade."
+              defaultChecked
+            />
           </div>
         </div>
       </ShowcaseSection>
 
       <ShowcaseSection title="Radio Buttons">
         <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
-          <div>
-            <p className="text-xs font-bold text-muted-foreground uppercase tracking-wider mb-3">Vertical</p>
-            <RadioGroup value={radio} onValueChange={setRadio} className="space-y-2.5">
-              {['opcao1', 'opcao2', 'opcao3'].map((val, i) => (
-                <div key={val} className="flex items-center gap-2.5">
-                  <RadioGroupItem value={val} id={`radio-${val}`} />
-                  <Label htmlFor={`radio-${val}`} className="text-sm cursor-pointer">Opção {i + 1}</Label>
-                </div>
-              ))}
-            </RadioGroup>
-          </div>
-          <div>
-            <p className="text-xs font-bold text-muted-foreground uppercase tracking-wider mb-3">Cards Radio</p>
-            <RadioGroup value={radio} onValueChange={setRadio} className="grid grid-cols-3 gap-2">
-              {[
-                { val: 'opcao1', label: 'CIF', desc: 'Frete incluso' },
-                { val: 'opcao2', label: 'FOB', desc: 'Frete por conta' },
-                { val: 'opcao3', label: 'EXW', desc: 'Na fábrica' },
-              ].map(item => (
-                <label
-                  key={item.val}
-                  className={`flex flex-col items-center gap-1 p-3 rounded-xl border-2 cursor-pointer transition-all ${
-                    radio === item.val
-                      ? 'border-secondary bg-secondary/10'
-                      : 'border-border/40 hover:border-border'
-                  }`}
-                >
-                  <RadioGroupItem value={item.val} className="sr-only" />
-                  <span className="text-sm font-bold text-foreground">{item.label}</span>
-                  <span className="text-[10px] text-muted-foreground">{item.desc}</span>
-                </label>
-              ))}
-            </RadioGroup>
-          </div>
+          <FormRadioGroup
+            label="Vertical"
+            value={radio}
+            onValueChange={setRadio}
+            options={[
+              { value: 'opcao1', label: 'Opção 1' },
+              { value: 'opcao2', label: 'Opção 2' },
+              { value: 'opcao3', label: 'Opção 3' },
+            ]}
+          />
+          <FormRadioGroup
+            label="Cards Radio"
+            variant="cards"
+            columns={3}
+            value={incoterm}
+            onValueChange={setIncoterm}
+            options={[
+              { value: 'CIF', label: 'CIF', description: 'Frete incluso' },
+              { value: 'FOB', label: 'FOB', description: 'Frete por conta' },
+              { value: 'EXW', label: 'EXW', description: 'Na fábrica' },
+            ]}
+          />
         </div>
       </ShowcaseSection>
 
       <ShowcaseSection title="Switches (Toggle)">
         <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
-          <div className="space-y-4">
-            <p className="text-xs font-bold text-muted-foreground uppercase tracking-wider mb-2">Padrão</p>
-            {[
-              { key: 'ativo', label: 'Sistema Ativo', desc: 'Ativar/desativar o sistema' },
-              { key: 'notif', label: 'Notificações', desc: 'Receber alertas por email' },
-              { key: 'dark', label: 'Modo Escuro', desc: 'Alternar tema visual' },
-            ].map(item => (
-              <div key={item.key} className="flex items-center justify-between p-3 rounded-xl bg-background border border-border/30">
-                <div>
-                  <p className="text-sm font-semibold text-foreground">{item.label}</p>
-                  <p className="text-[11px] text-muted-foreground">{item.desc}</p>
-                </div>
-                <Switch
-                  checked={switches[item.key as keyof typeof switches]}
-                  onCheckedChange={(v) => setSwitches(prev => ({ ...prev, [item.key]: v }))}
-                />
-              </div>
-            ))}
+          <div className="space-y-3">
+            <p className="text-xs font-bold text-muted-foreground uppercase tracking-wider mb-2">Linha (Row)</p>
+            <FormSwitch
+              variant="row"
+              label="Sistema Ativo"
+              description="Ativar/desativar o sistema"
+              checked={switches.ativo}
+              onCheckedChange={v => setSwitches(p => ({ ...p, ativo: v }))}
+            />
+            <FormSwitch
+              variant="row"
+              label="Notificações"
+              description="Receber alertas por email"
+              checked={switches.notif}
+              onCheckedChange={v => setSwitches(p => ({ ...p, notif: v }))}
+            />
+            <FormSwitch
+              variant="row"
+              label="Modo Escuro"
+              description="Alternar tema visual"
+              checked={switches.dark}
+              onCheckedChange={v => setSwitches(p => ({ ...p, dark: v }))}
+            />
           </div>
-          <div className="space-y-4">
-            <p className="text-xs font-bold text-muted-foreground uppercase tracking-wider mb-2">Estados</p>
-            <div className="flex items-center justify-between p-3 rounded-xl bg-background border border-border/30">
-              <span className="text-sm text-muted-foreground">Desabilitado Off</span>
-              <Switch disabled />
-            </div>
-            <div className="flex items-center justify-between p-3 rounded-xl bg-background border border-border/30">
-              <span className="text-sm text-muted-foreground">Desabilitado On</span>
-              <Switch disabled checked />
-            </div>
+          <div className="space-y-3">
+            <p className="text-xs font-bold text-muted-foreground uppercase tracking-wider mb-2">Inline & Estados</p>
+            <FormSwitch label="Ativar recurso" description="Variante inline com label e descrição." defaultChecked />
+            <FormSwitch variant="row" label="Desabilitado Off" disabled />
+            <FormSwitch variant="row" label="Desabilitado On" disabled checked />
           </div>
         </div>
       </ShowcaseSection>
