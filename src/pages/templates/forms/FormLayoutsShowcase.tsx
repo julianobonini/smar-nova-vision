@@ -1,151 +1,108 @@
 import { FormsShowcaseLayout, ShowcaseSection } from './FormsShowcaseLayout';
-import { Input } from '@/components/ui/input';
-import { Label } from '@/components/ui/label';
-import { Textarea } from '@/components/ui/textarea';
+import {
+  FormInput,
+  FormTextarea,
+  FormSelect,
+  FormSection,
+  FormGrid,
+  FormRow,
+  FormInline,
+  FormActions,
+} from '@/components/ui/forms';
 import { Button } from '@/components/ui/button';
-import { Select, SelectContent, SelectItem, SelectTrigger, SelectValue } from '@/components/ui/select';
+
+const ufOptions = ['SP', 'RJ', 'MG', 'PR', 'RS', 'SC'].map((uf) => ({ value: uf, label: uf }));
+const unidadeOptions = [
+  { value: 'un', label: 'UN' },
+  { value: 'kg', label: 'KG' },
+  { value: 'mt', label: 'MT' },
+];
 
 export default function FormLayoutsShowcase() {
   return (
-    <FormsShowcaseLayout title="Form Layouts" description="Diferentes padrões de layout para formulários: vertical, horizontal, inline e em grid.">
+    <FormsShowcaseLayout
+      title="Form Layouts"
+      description="Diferentes padrões de layout para formulários: vertical, horizontal, inline e em grid."
+    >
       <ShowcaseSection title="Layout Vertical (Padrão)">
         <div className="max-w-md space-y-4">
-          <div>
-            <Label className="text-xs mb-1.5">Nome Completo</Label>
-            <Input placeholder="Digite seu nome" />
-          </div>
-          <div>
-            <Label className="text-xs mb-1.5">Email</Label>
-            <Input type="email" placeholder="email@empresa.com" />
-          </div>
-          <div>
-            <Label className="text-xs mb-1.5">Mensagem</Label>
-            <Textarea placeholder="Sua mensagem..." className="min-h-[80px]" />
-          </div>
+          <FormInput label="Nome Completo" placeholder="Digite seu nome" />
+          <FormInput type="email" label="Email" placeholder="email@empresa.com" />
+          <FormTextarea label="Mensagem" placeholder="Sua mensagem..." rows={3} />
           <Button className="w-full">Enviar</Button>
         </div>
       </ShowcaseSection>
 
-      <ShowcaseSection title="Layout Horizontal">
+      <ShowcaseSection title="Layout Horizontal (FormRow)">
         <div className="space-y-4 max-w-2xl">
-          {[
-            { label: 'Nome Completo', placeholder: 'Digite seu nome' },
-            { label: 'Email', placeholder: 'email@empresa.com' },
-            { label: 'Telefone', placeholder: '(00) 00000-0000' },
-          ].map(field => (
-            <div key={field.label} className="flex items-center gap-4">
-              <Label className="text-xs w-32 text-right shrink-0">{field.label}</Label>
-              <Input placeholder={field.placeholder} className="flex-1" />
-            </div>
-          ))}
-          <div className="flex justify-end">
+          <FormRow label="Nome Completo">
+            <FormInput placeholder="Digite seu nome" />
+          </FormRow>
+          <FormRow label="Email">
+            <FormInput type="email" placeholder="email@empresa.com" />
+          </FormRow>
+          <FormRow label="Telefone">
+            <FormInput placeholder="(00) 00000-0000" />
+          </FormRow>
+          <FormActions>
             <Button>Salvar</Button>
-          </div>
+          </FormActions>
         </div>
       </ShowcaseSection>
 
-      <ShowcaseSection title="Layout Inline">
-        <div className="flex flex-wrap items-end gap-3">
-          <div>
-            <Label className="text-xs mb-1.5">Código</Label>
-            <Input placeholder="COD" className="w-24" />
-          </div>
-          <div>
-            <Label className="text-xs mb-1.5">Produto</Label>
-            <Input placeholder="Nome do produto" className="w-48" />
-          </div>
-          <div>
-            <Label className="text-xs mb-1.5">Qtd</Label>
-            <Input type="number" placeholder="0" className="w-20" />
-          </div>
-          <div>
-            <Label className="text-xs mb-1.5">Unidade</Label>
-            <Select>
-              <SelectTrigger className="w-24"><SelectValue placeholder="UN" /></SelectTrigger>
-              <SelectContent>
-                <SelectItem value="un">UN</SelectItem>
-                <SelectItem value="kg">KG</SelectItem>
-                <SelectItem value="mt">MT</SelectItem>
-              </SelectContent>
-            </Select>
-          </div>
+      <ShowcaseSection title="Layout Inline (FormInline)">
+        <FormInline>
+          <FormInput label="Código" placeholder="COD" containerClassName="w-24" />
+          <FormInput label="Produto" placeholder="Nome do produto" containerClassName="w-48" />
+          <FormInput label="Qtd" type="number" placeholder="0" containerClassName="w-20" />
+          <FormSelect
+            label="Unidade"
+            options={unidadeOptions}
+            placeholder="UN"
+            triggerClassName="w-24"
+          />
           <Button>Adicionar</Button>
-        </div>
+        </FormInline>
       </ShowcaseSection>
 
       <ShowcaseSection title="Grid Layout (Cadastro)">
-        <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-4">
-          <div>
-            <Label className="text-xs mb-1.5">Razão Social</Label>
-            <Input placeholder="Razão social da empresa" />
-          </div>
-          <div>
-            <Label className="text-xs mb-1.5">Nome Fantasia</Label>
-            <Input placeholder="Nome fantasia" />
-          </div>
-          <div>
-            <Label className="text-xs mb-1.5">CNPJ</Label>
-            <Input placeholder="00.000.000/0000-00" />
-          </div>
-          <div>
-            <Label className="text-xs mb-1.5">Inscrição Estadual</Label>
-            <Input placeholder="000.000.000.000" />
-          </div>
-          <div>
-            <Label className="text-xs mb-1.5">Telefone</Label>
-            <Input placeholder="(00) 00000-0000" />
-          </div>
-          <div>
-            <Label className="text-xs mb-1.5">Email</Label>
-            <Input type="email" placeholder="contato@empresa.com" />
-          </div>
+        <FormGrid cols={3}>
+          <FormInput label="Razão Social" placeholder="Razão social da empresa" />
+          <FormInput label="Nome Fantasia" placeholder="Nome fantasia" />
+          <FormInput label="CNPJ" placeholder="00.000.000/0000-00" />
+          <FormInput label="Inscrição Estadual" placeholder="000.000.000.000" />
+          <FormInput label="Telefone" placeholder="(00) 00000-0000" />
+          <FormInput type="email" label="Email" placeholder="contato@empresa.com" />
           <div className="sm:col-span-2">
-            <Label className="text-xs mb-1.5">Endereço</Label>
-            <Input placeholder="Rua, número, complemento" />
+            <FormInput label="Endereço" placeholder="Rua, número, complemento" />
           </div>
-          <div>
-            <Label className="text-xs mb-1.5">Cidade</Label>
-            <Input placeholder="Cidade" />
-          </div>
-          <div>
-            <Label className="text-xs mb-1.5">Estado</Label>
-            <Select>
-              <SelectTrigger><SelectValue placeholder="UF" /></SelectTrigger>
-              <SelectContent>
-                {['SP', 'RJ', 'MG', 'PR', 'RS', 'SC'].map(uf => (
-                  <SelectItem key={uf} value={uf}>{uf}</SelectItem>
-                ))}
-              </SelectContent>
-            </Select>
-          </div>
-          <div>
-            <Label className="text-xs mb-1.5">CEP</Label>
-            <Input placeholder="00000-000" />
-          </div>
-        </div>
-        <div className="flex justify-end gap-2 mt-6">
+          <FormInput label="Cidade" placeholder="Cidade" />
+          <FormSelect label="Estado" options={ufOptions} placeholder="UF" />
+          <FormInput label="CEP" placeholder="00000-000" />
+        </FormGrid>
+        <FormActions className="mt-6">
           <Button variant="outline">Cancelar</Button>
           <Button>Salvar Cadastro</Button>
-        </div>
+        </FormActions>
       </ShowcaseSection>
 
-      <ShowcaseSection title="Formulário com Seções">
+      <ShowcaseSection title="Formulário com Seções (FormSection)">
         <div className="space-y-6">
-          <div>
-            <h4 className="text-sm font-bold text-foreground mb-3 pb-2 border-b border-border/30">Dados Pessoais</h4>
-            <div className="grid grid-cols-1 sm:grid-cols-3 gap-4">
-              <div><Label className="text-xs mb-1.5">Nome</Label><Input placeholder="Nome" /></div>
-              <div><Label className="text-xs mb-1.5">Sobrenome</Label><Input placeholder="Sobrenome" /></div>
-              <div><Label className="text-xs mb-1.5">CPF</Label><Input placeholder="000.000.000-00" /></div>
-            </div>
-          </div>
-          <div>
-            <h4 className="text-sm font-bold text-foreground mb-3 pb-2 border-b border-border/30">Endereço</h4>
-            <div className="grid grid-cols-1 sm:grid-cols-3 gap-4">
-              <div className="sm:col-span-2"><Label className="text-xs mb-1.5">Logradouro</Label><Input placeholder="Rua / Avenida" /></div>
-              <div><Label className="text-xs mb-1.5">Número</Label><Input placeholder="Nº" /></div>
-            </div>
-          </div>
+          <FormSection title="Dados Pessoais">
+            <FormGrid cols={3}>
+              <FormInput label="Nome" placeholder="Nome" />
+              <FormInput label="Sobrenome" placeholder="Sobrenome" />
+              <FormInput label="CPF" placeholder="000.000.000-00" />
+            </FormGrid>
+          </FormSection>
+          <FormSection title="Endereço" description="Endereço principal de cobrança">
+            <FormGrid cols={3}>
+              <div className="sm:col-span-2">
+                <FormInput label="Logradouro" placeholder="Rua / Avenida" />
+              </div>
+              <FormInput label="Número" placeholder="Nº" />
+            </FormGrid>
+          </FormSection>
         </div>
       </ShowcaseSection>
     </FormsShowcaseLayout>
