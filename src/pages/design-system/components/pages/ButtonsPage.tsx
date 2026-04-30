@@ -1,4 +1,4 @@
-import { Loader2, Mail, Plus, Trash2, Edit, Eye, Save, X, Bold, Italic, Underline, AlignLeft, AlignCenter, AlignRight, Grid3x3, List, LayoutGrid } from 'lucide-react';
+import { Mail, Plus, Trash2, Edit, Eye, Save, X, Bold, Italic, Underline, AlignLeft, AlignCenter, AlignRight, Grid3x3, List, LayoutGrid } from 'lucide-react';
 import { useState } from 'react';
 import { Button } from '@/components/ui/button';
 import { ActionButton, IconButton, ButtonGroup, SegmentedControl, Toolbar, SimplePager } from '@/components/ui/buttons';
