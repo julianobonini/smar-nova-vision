@@ -167,7 +167,7 @@ export default function ButtonsPage() {
         <VariantSection
           title="Com ícones e label"
           preview={
-            <SegmentedControl
+            <SegmentedControl<'grid' | 'list' | 'gallery'>
               value={view}
               onChange={setView}
               options={[
@@ -194,7 +194,7 @@ export default function ButtonsPage() {
           title="Cores ativas alternativas"
           preview={
             <div className="flex flex-wrap gap-3">
-              <SegmentedControl
+              <SegmentedControl<'left' | 'center' | 'right'>
                 value={align}
                 onChange={setAlign}
                 color="secondary"
@@ -205,7 +205,7 @@ export default function ButtonsPage() {
                   { value: 'right', icon: AlignRight, ariaLabel: 'Direita' },
                 ]}
               />
-              <SegmentedControl
+              <SegmentedControl<'left' | 'center' | 'right'>
                 value={align}
                 onChange={setAlign}
                 color="success"
