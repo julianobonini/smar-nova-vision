@@ -365,6 +365,9 @@ function AppRoutes() {
           <Route path="scroll-area" element={<LazyRoute><DSCScrollArea /></LazyRoute>} />
           <Route path="resizable" element={<LazyRoute><DSCResizable /></LazyRoute>} />
           <Route path="chart" element={<LazyRoute><DSCChart /></LazyRoute>} />
+          <Route path="panels" element={<LazyRoute><DSCPanels /></LazyRoute>} />
+          <Route path="list-groups" element={<LazyRoute><DSCListGroups /></LazyRoute>} />
+          <Route path="dropdowns" element={<LazyRoute><DSCDropdowns /></LazyRoute>} />
         </Route>
         <Route path="patterns" element={<LazyRoute><DSPatterns /></LazyRoute>} />
         <Route path="dashboards" element={<LazyRoute><DSDashboards /></LazyRoute>} />
