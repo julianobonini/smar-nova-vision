@@ -24,6 +24,7 @@ export const componentGroups = [
       { to: '/design-system/components/buttons', label: 'Buttons' },
       { to: '/design-system/components/toggles', label: 'Toggles' },
       { to: '/design-system/components/dropdown-menu', label: 'Dropdown Menu' },
+      { to: '/design-system/components/dropdowns', label: 'Dropdowns (Blocks)' },
       { to: '/design-system/components/context-menu', label: 'Context Menu' },
       { to: '/design-system/components/menubar', label: 'Menubar' },
       { to: '/design-system/components/command', label: 'Command' },
