@@ -89,8 +89,8 @@ export default function ListGroupsPage() {
               tone="outline"
               showChevron
               items={[
-                { label: 'Pedidos', description: 'Gestão de pedidos', icon: Package, badge: <StatusBadge status="active" label="42" size="sm" /> },
-                { label: 'Alertas', icon: Bell, badge: <StatusBadge status="alert" label="Urgente" size="sm" /> },
+                { label: 'Pedidos', description: 'Gestão de pedidos', icon: Package, badge: <StatusBadge color="success" label="42" /> },
+                { label: 'Alertas', icon: Bell, badge: <StatusBadge color="alert" label="Urgente" /> },
                 { label: 'Desabilitado', icon: Settings, disabled: true },
               ]}
             />
