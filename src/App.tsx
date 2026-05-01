@@ -276,6 +276,9 @@ const DSCCarousel = lazy(() => import("./pages/design-system/components/pages/Ca
 const DSCScrollArea = lazy(() => import("./pages/design-system/components/pages/ScrollAreaPage"));
 const DSCResizable = lazy(() => import("./pages/design-system/components/pages/ResizablePage"));
 const DSCChart = lazy(() => import("./pages/design-system/components/pages/ChartPage"));
+const DSCPanels = lazy(() => import("./pages/design-system/components/pages/PanelsPage"));
+const DSCListGroups = lazy(() => import("./pages/design-system/components/pages/ListGroupsPage"));
+const DSCDropdowns = lazy(() => import("./pages/design-system/components/pages/DropdownsPage"));
 const DSPatterns = lazy(() => import("./pages/design-system/PatternsPage"));
 const DSDashboards = lazy(() => import("./pages/design-system/DashboardsPage"));
 const DSTemplates = lazy(() => import("./pages/design-system/TemplateElementsPage"));
