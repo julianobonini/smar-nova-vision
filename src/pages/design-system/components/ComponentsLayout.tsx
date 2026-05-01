@@ -24,6 +24,7 @@ export const componentGroups = [
       { to: '/design-system/components/buttons', label: 'Buttons' },
       { to: '/design-system/components/toggles', label: 'Toggles' },
       { to: '/design-system/components/dropdown-menu', label: 'Dropdown Menu' },
+      { to: '/design-system/components/dropdowns', label: 'Dropdowns (Blocks)' },
       { to: '/design-system/components/context-menu', label: 'Context Menu' },
       { to: '/design-system/components/menubar', label: 'Menubar' },
       { to: '/design-system/components/command', label: 'Command' },
@@ -48,6 +49,8 @@ export const componentGroups = [
     icon: LayoutPanelLeft,
     items: [
       { to: '/design-system/components/cards', label: 'Cards' },
+      { to: '/design-system/components/panels', label: 'Panels' },
+      { to: '/design-system/components/list-groups', label: 'List Groups' },
       { to: '/design-system/components/badges', label: 'Badges' },
       { to: '/design-system/components/avatars', label: 'Avatars' },
       { to: '/design-system/components/separator', label: 'Separator' },

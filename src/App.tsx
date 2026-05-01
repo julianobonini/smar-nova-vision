@@ -276,6 +276,9 @@ const DSCCarousel = lazy(() => import("./pages/design-system/components/pages/Ca
 const DSCScrollArea = lazy(() => import("./pages/design-system/components/pages/ScrollAreaPage"));
 const DSCResizable = lazy(() => import("./pages/design-system/components/pages/ResizablePage"));
 const DSCChart = lazy(() => import("./pages/design-system/components/pages/ChartPage"));
+const DSCPanels = lazy(() => import("./pages/design-system/components/pages/PanelsPage"));
+const DSCListGroups = lazy(() => import("./pages/design-system/components/pages/ListGroupsPage"));
+const DSCDropdowns = lazy(() => import("./pages/design-system/components/pages/DropdownsPage"));
 const DSPatterns = lazy(() => import("./pages/design-system/PatternsPage"));
 const DSDashboards = lazy(() => import("./pages/design-system/DashboardsPage"));
 const DSTemplates = lazy(() => import("./pages/design-system/TemplateElementsPage"));
@@ -362,6 +365,9 @@ function AppRoutes() {
           <Route path="scroll-area" element={<LazyRoute><DSCScrollArea /></LazyRoute>} />
           <Route path="resizable" element={<LazyRoute><DSCResizable /></LazyRoute>} />
           <Route path="chart" element={<LazyRoute><DSCChart /></LazyRoute>} />
+          <Route path="panels" element={<LazyRoute><DSCPanels /></LazyRoute>} />
+          <Route path="list-groups" element={<LazyRoute><DSCListGroups /></LazyRoute>} />
+          <Route path="dropdowns" element={<LazyRoute><DSCDropdowns /></LazyRoute>} />
         </Route>
         <Route path="patterns" element={<LazyRoute><DSPatterns /></LazyRoute>} />
         <Route path="dashboards" element={<LazyRoute><DSDashboards /></LazyRoute>} />
