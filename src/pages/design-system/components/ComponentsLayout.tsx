@@ -48,6 +48,8 @@ export const componentGroups = [
     icon: LayoutPanelLeft,
     items: [
       { to: '/design-system/components/cards', label: 'Cards' },
+      { to: '/design-system/components/panels', label: 'Panels' },
+      { to: '/design-system/components/list-groups', label: 'List Groups' },
       { to: '/design-system/components/badges', label: 'Badges' },
       { to: '/design-system/components/avatars', label: 'Avatars' },
       { to: '/design-system/components/separator', label: 'Separator' },
