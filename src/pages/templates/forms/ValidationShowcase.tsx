@@ -1,11 +1,8 @@
 import { useState } from 'react';
 import { FormsShowcaseLayout, ShowcaseSection } from './FormsShowcaseLayout';
-import { FormInput } from '@/components/ui/forms';
+import { FormInput, PasswordStrengthInput } from '@/components/ui/forms';
 import { Button } from '@/components/ui/button';
-import { Label } from '@/components/ui/label';
-import { Input } from '@/components/ui/input';
-import { AlertCircle, CheckCircle2 } from 'lucide-react';
-import { cn } from '@/lib/utils';
+import { AlertCircle } from 'lucide-react';
 
 interface ValidatedFieldProps {
   label: string;
@@ -109,43 +106,10 @@ export default function ValidationShowcase() {
       </ShowcaseSection>
 
       <ShowcaseSection title="Indicador de Força da Senha">
-        <PasswordStrength />
+        <div className="max-w-sm">
+          <PasswordStrengthInput />
+        </div>
       </ShowcaseSection>
     </FormsShowcaseLayout>
-  );
-}
-
-function PasswordStrength() {
-  const [pass, setPass] = useState('');
-  const checks = [
-    { label: 'Mínimo 8 caracteres', ok: pass.length >= 8 },
-    { label: 'Letra maiúscula', ok: /[A-Z]/.test(pass) },
-    { label: 'Letra minúscula', ok: /[a-z]/.test(pass) },
-    { label: 'Número', ok: /[0-9]/.test(pass) },
-    { label: 'Caractere especial', ok: /[^a-zA-Z0-9]/.test(pass) },
-  ];
-  const strength = checks.filter(c => c.ok).length;
-  const strengthColor = strength <= 1 ? 'bg-destructive' : strength <= 3 ? 'bg-status-warning' : 'bg-status-success';
-
-  return (
-    <div className="max-w-sm space-y-3">
-      <div>
-        <Label className="text-xs mb-1.5">Nova Senha</Label>
-        <Input type="password" value={pass} onChange={e => setPass(e.target.value)} placeholder="Digite sua senha" />
-      </div>
-      <div className="flex gap-1">
-        {Array.from({ length: 5 }, (_, i) => (
-          <div key={i} className={cn('h-1.5 flex-1 rounded-full transition-colors', i < strength ? strengthColor : 'bg-muted/30')} />
-        ))}
-      </div>
-      <div className="space-y-1.5">
-        {checks.map(c => (
-          <div key={c.label} className="flex items-center gap-2 text-xs">
-            {c.ok ? <CheckCircle2 size={13} className="text-status-success" /> : <div className="w-[13px] h-[13px] rounded-full border border-muted-foreground/30" />}
-            <span className={c.ok ? 'text-foreground' : 'text-muted-foreground'}>{c.label}</span>
-          </div>
-        ))}
-      </div>
-    </div>
   );
 }
