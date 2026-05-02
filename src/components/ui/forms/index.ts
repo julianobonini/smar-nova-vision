@@ -56,3 +56,15 @@ export type {
   FormInlineProps,
   FormActionsProps,
 } from './FormLayout';
+
+export { FloatingLabelSelect } from './FloatingLabelSelect';
+export type { FloatingLabelSelectProps, FloatingLabelSelectOption } from './FloatingLabelSelect';
+
+export { FloatingLabelTextarea } from './FloatingLabelTextarea';
+export type { FloatingLabelTextareaProps } from './FloatingLabelTextarea';
+
+export { InputGroup, InputGroupAddon, InputGroupButton } from './InputGroup';
+export type { InputGroupProps, InputGroupAddonProps, InputGroupButtonProps, InputGroupSize } from './InputGroup';
+
+export { PasswordStrengthInput } from './PasswordStrengthInput';
+export type { PasswordStrengthInputProps, PasswordCheck } from './PasswordStrengthInput';
