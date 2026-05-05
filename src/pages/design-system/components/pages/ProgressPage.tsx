@@ -99,7 +99,7 @@ export default function ProgressPage() {
         <PropsTable rows={progressProps} />
 
         <UsageNote type="tip">
-          Use <code className="font-mono text-[11px]">className="[&>div]:bg-success"</code> para alterar a cor do indicador sem criar componentes extras.
+          Use <code className="font-mono text-[11px]">{'className="[&>div]:bg-success"'}</code> para alterar a cor do indicador sem criar componentes extras.
         </UsageNote>
       </DocSection>
     </ComponentDoc>
