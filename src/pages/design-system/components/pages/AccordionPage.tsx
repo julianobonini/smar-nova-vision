@@ -60,7 +60,7 @@ export default function AccordionPage() {
           title="Múltiplo (várias seções abertas)"
           description="type='multiple' permite que o usuário expanda quantas seções quiser ao mesmo tempo."
           preview={
-            <Accordion type="multiple" defaultValue={['m1']} className="w-full max-w-xl">
+            <Accordion type="multiple" defaultValue={['m1']} className="w-full max-w-xl bg-surface-container rounded-xl border-2 border-border/80 px-4 [&>div:last-child]:border-b-0 [&>div]:border-border/70">
               <AccordionItem value="m1">
                 <AccordionTrigger>Faturamento</AccordionTrigger>
                 <AccordionContent className="text-muted-foreground">
