@@ -27,7 +27,7 @@ export default function AccordionPage() {
           title="Padrão (single + collapsible)"
           description="Apenas uma seção aberta por vez. Use collapsible para permitir fechar todas."
           preview={
-            <Accordion type="single" collapsible className="w-full max-w-xl">
+            <Accordion type="single" collapsible className="w-full max-w-xl bg-surface-container rounded-xl border-2 border-border/80 px-4 [&>div:last-child]:border-b-0 [&>div]:border-border/70">
               <AccordionItem value="i1">
                 <AccordionTrigger>Como faturar um pedido?</AccordionTrigger>
                 <AccordionContent className="text-muted-foreground">
