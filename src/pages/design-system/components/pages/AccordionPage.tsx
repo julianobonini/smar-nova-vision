@@ -93,7 +93,7 @@ export default function AccordionPage() {
           title="Com ícones e indicadores de status"
           description="Combine ícones, cores semânticas (success/warning/destructive) e descrições no trigger."
           preview={
-            <Accordion type="single" collapsible className="w-full max-w-xl">
+            <Accordion type="single" collapsible className="w-full max-w-xl bg-surface-container rounded-xl border-2 border-border/80 px-4 [&>div:last-child]:border-b-0 [&>div]:border-border/70">
               {[
                 { id: 's1', icon: CheckCircle2, dot: 'bg-success', color: 'text-success', title: 'Pedido #15230 — Aprovado', desc: 'Aprovado pelo financeiro em 05/04/2026 às 14:32.' },
                 { id: 's2', icon: AlertTriangle, dot: 'bg-warning', color: 'text-warning', title: 'Pedido #15231 — Pendente', desc: 'Aguardando aprovação do gerente comercial. SLA: 2h restantes.' },
