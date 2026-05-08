@@ -128,7 +128,7 @@ export default function AccordionPage() {
           title="Com item desabilitado"
           description="Itens com disabled ficam inertes (não respondem a clique nem teclado) e visualmente esmaecidos."
           preview={
-            <Accordion type="single" collapsible className="w-full max-w-xl">
+            <Accordion type="single" collapsible className="w-full max-w-xl bg-surface-container rounded-xl border-2 border-border/80 px-4 [&>div:last-child]:border-b-0 [&>div]:border-border/70">
               <AccordionItem value="d1">
                 <AccordionTrigger>
                   <div className="flex items-center gap-2">
