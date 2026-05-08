@@ -27,7 +27,7 @@ export default function AccordionPage() {
           title="Padrão (single + collapsible)"
           description="Apenas uma seção aberta por vez. Use collapsible para permitir fechar todas."
           preview={
-            <Accordion type="single" collapsible className="w-full max-w-xl">
+            <Accordion type="single" collapsible className="w-full max-w-xl bg-surface-container rounded-xl border-2 border-border/80 px-4 [&>div:last-child]:border-b-0 [&>div]:border-border/70">
               <AccordionItem value="i1">
                 <AccordionTrigger>Como faturar um pedido?</AccordionTrigger>
                 <AccordionContent className="text-muted-foreground">
@@ -60,7 +60,7 @@ export default function AccordionPage() {
           title="Múltiplo (várias seções abertas)"
           description="type='multiple' permite que o usuário expanda quantas seções quiser ao mesmo tempo."
           preview={
-            <Accordion type="multiple" defaultValue={['m1']} className="w-full max-w-xl">
+            <Accordion type="multiple" defaultValue={['m1']} className="w-full max-w-xl bg-surface-container rounded-xl border-2 border-border/80 px-4 [&>div:last-child]:border-b-0 [&>div]:border-border/70">
               <AccordionItem value="m1">
                 <AccordionTrigger>Faturamento</AccordionTrigger>
                 <AccordionContent className="text-muted-foreground">
@@ -93,7 +93,7 @@ export default function AccordionPage() {
           title="Com ícones e indicadores de status"
           description="Combine ícones, cores semânticas (success/warning/destructive) e descrições no trigger."
           preview={
-            <Accordion type="single" collapsible className="w-full max-w-xl">
+            <Accordion type="single" collapsible className="w-full max-w-xl bg-surface-container rounded-xl border-2 border-border/80 px-4 [&>div:last-child]:border-b-0 [&>div]:border-border/70">
               {[
                 { id: 's1', icon: CheckCircle2, dot: 'bg-success', color: 'text-success', title: 'Pedido #15230 — Aprovado', desc: 'Aprovado pelo financeiro em 05/04/2026 às 14:32.' },
                 { id: 's2', icon: AlertTriangle, dot: 'bg-warning', color: 'text-warning', title: 'Pedido #15231 — Pendente', desc: 'Aguardando aprovação do gerente comercial. SLA: 2h restantes.' },
@@ -128,7 +128,7 @@ export default function AccordionPage() {
           title="Com item desabilitado"
           description="Itens com disabled ficam inertes (não respondem a clique nem teclado) e visualmente esmaecidos."
           preview={
-            <Accordion type="single" collapsible className="w-full max-w-xl">
+            <Accordion type="single" collapsible className="w-full max-w-xl bg-surface-container rounded-xl border-2 border-border/80 px-4 [&>div:last-child]:border-b-0 [&>div]:border-border/70">
               <AccordionItem value="d1">
                 <AccordionTrigger>
                   <div className="flex items-center gap-2">
