@@ -609,7 +609,165 @@ export default function TablePage() {
         />
 
         <VariantSection
-          title="Linhas contextuais"
+          title="Compacta com rodapé"
+          description="Densidade reduzida (text-xs / py-3) e tfoot com totalização para itens de pedido."
+          preview={
+            <div className={WRAPPER}>
+              <table className="w-full text-xs">
+                <thead>
+                  <tr>
+                    <th className={TH}>Código</th>
+                    <th className={TH}>Produto</th>
+                    <th className={cn(TH, 'text-center')}>Qtd</th>
+                    <th className={cn(TH, 'text-right')}>Unit.</th>
+                    <th className={cn(TH, 'text-right')}>Total</th>
+                  </tr>
+                </thead>
+                <tbody>
+                  {orders.map((row, i) => (
+                    <tr key={i} className={cn('hover:bg-muted/30 transition-colors', i % 2 === 0 ? 'bg-background' : 'bg-surface-container-low/50')}>
+                      <td className={cn(TD, 'font-mono text-muted-foreground')}>{row.cod}</td>
+                      <td className={TD}>{row.prod}</td>
+                      <td className={cn(TD, 'text-center font-mono font-semibold')}>{row.qtd}</td>
+                      <td className={cn(TD, 'text-right font-mono text-muted-foreground')}>R$ {row.unit}</td>
+                      <td className={cn(TD, 'text-right font-mono font-semibold')}>R$ {row.total}</td>
+                    </tr>
+                  ))}
+                </tbody>
+                <tfoot>
+                  <tr className="bg-surface-container-low font-semibold">
+                    <td colSpan={4} className="px-5 py-3 text-right text-[11px] font-bold text-muted-foreground uppercase tracking-wider">Total Geral:</td>
+                    <td className="px-5 py-3 text-right font-mono text-secondary font-bold">R$ 3.364,00</td>
+                  </tr>
+                </tfoot>
+              </table>
+            </div>
+          }
+          code={`<table className="w-full text-xs">
+  <thead>{/* TH compactos */}</thead>
+  <tbody>{/* py-3 */}</tbody>
+  <tfoot>
+    <tr className="bg-surface-container-low font-semibold">
+      <td colSpan={4} className="text-right">Total Geral:</td>
+      <td className="text-right text-secondary">R$ 3.364,00</td>
+    </tr>
+  </tfoot>
+</table>`}
+        />
+
+        <VariantSection
+          title="Zebrada com criticidade"
+          description="Linhas alternadas e badge de criticidade pintado por nível (crítica → baixa)."
+          preview={
+            <div className={WRAPPER}>
+              <table className="w-full text-sm">
+                <thead>
+                  <tr>
+                    <th className={TH}>#</th>
+                    <th className={TH}>Equipamento</th>
+                    <th className={TH}>Setor</th>
+                    <th className={cn(TH, 'text-center')}>Criticidade</th>
+                    <th className={cn(TH, 'text-right')}>Última Manutenção</th>
+                  </tr>
+                </thead>
+                <tbody>
+                  {equipments.map((row, i) => (
+                    <tr key={i} className={cn('hover:bg-muted/30 transition-colors', i % 2 === 0 ? 'bg-background' : 'bg-surface-container-low/50')}>
+                      <td className={cn(TD, 'font-mono text-xs text-muted-foreground')}>{i + 1}</td>
+                      <td className={cn(TD, 'font-medium')}>{row.eq}</td>
+                      <td className={cn(TD, 'text-muted-foreground')}>{row.setor}</td>
+                      <td className={cn(TD, 'text-center')}>
+                        <span className={cn(
+                          'inline-flex px-2 py-0.5 rounded-full text-[10px] font-bold uppercase',
+                          row.crit === 'Crítica' && 'bg-destructive/10 text-destructive',
+                          row.crit === 'Alta' && 'bg-warning/10 text-warning',
+                          row.crit === 'Média' && 'bg-info/10 text-info',
+                          row.crit === 'Baixa' && 'bg-success/10 text-success',
+                        )}>{row.crit}</span>
+                      </td>
+                      <td className={cn(TD, 'text-right text-muted-foreground')}>{row.data}</td>
+                    </tr>
+                  ))}
+                </tbody>
+              </table>
+            </div>
+          }
+          code={`<tr className={i % 2 === 0 ? 'bg-background' : 'bg-surface-container-low/50'}>
+  <td>{row.eq}</td>
+  <td>
+    <span className={cn(
+      'px-2 py-0.5 rounded-full text-[10px] font-bold uppercase',
+      crit === 'Crítica' && 'bg-destructive/10 text-destructive',
+      crit === 'Alta' && 'bg-warning/10 text-warning',
+    )}>{crit}</span>
+  </td>
+</tr>`}
+        />
+
+        <VariantSection
+          title="Com seleção em lote"
+          description="Checkbox por linha + master no header. Quando há seleção, aparece a barra de ações em lote no rodapé."
+          preview={<SelectionTablePreview />}
+          code={`const [selected, setSelected] = useState<string[]>([]);
+
+<tr className={selected.includes(row.cod) ? 'bg-secondary/5' : 'bg-background'}>
+  <td><input type="checkbox" checked={selected.includes(row.cod)} onChange={...} /></td>
+</tr>
+
+{selected.length > 0 && (
+  <div className="flex gap-3 border-t bg-surface-container-low">
+    <span>{selected.length} selecionado(s)</span>
+    <button>Aprovar</button>
+  </div>
+)}`}
+        />
+
+        <VariantSection
+          title="Com bordas (matriz)"
+          description="Tabela tipo planilha com bordas em todas as células — boa para comparação multi-coluna (ex.: consumo mensal)."
+          preview={
+            <div className="overflow-hidden rounded-xl border border-border">
+              <table className="w-full text-sm">
+                <thead>
+                  <tr>
+                    <th className={cn(TH, 'border-b border-r border-border')}>Material</th>
+                    <th className={cn(TH, 'text-center border-b border-r border-border')}>Jan</th>
+                    <th className={cn(TH, 'text-center border-b border-r border-border')}>Fev</th>
+                    <th className={cn(TH, 'text-center border-b border-r border-border')}>Mar</th>
+                    <th className={cn(TH, 'text-center border-b border-border')}>Abr</th>
+                  </tr>
+                </thead>
+                <tbody>
+                  {consumption.map((row, i) => (
+                    <tr key={i} className={cn('border-b border-border/50 last:border-b-0', i % 2 === 0 ? 'bg-background' : 'bg-surface-container-low/50')}>
+                      <td className={cn(TD, 'font-medium border-r border-border/50')}>{row.mat}</td>
+                      {row.vals.map((v, j) => (
+                        <td key={j} className={cn(TD, 'text-center font-mono text-muted-foreground', j < 3 && 'border-r border-border/50')}>{v} ton</td>
+                      ))}
+                    </tr>
+                  ))}
+                </tbody>
+              </table>
+            </div>
+          }
+          code={`<div className="rounded-xl border border-border overflow-hidden">
+  <table>
+    <thead>
+      <tr>
+        <th className="border-b border-r border-border">Material</th>
+        <th className="border-b border-r border-border text-center">Jan</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr className="border-b border-border/50">
+        <td className="border-r border-border/50">{row.mat}</td>
+      </tr>
+    </tbody>
+  </table>
+</div>`}
+        />
+
+        <VariantSection
           description="Cada linha recebe um tom semântico (success/warning/destructive/info) para destacar eventos."
           preview={
             <div className={WRAPPER}>
