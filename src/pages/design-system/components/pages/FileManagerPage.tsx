@@ -21,8 +21,15 @@ import {
   ArrowUpDown,
   LayoutGrid,
   Monitor,
+  List,
+  Rows3,
+  LayoutList,
+  Grid2x2,
+  Grid3x3,
+  Check,
 } from 'lucide-react';
 import { cn } from '@/lib/utils';
+import { Popover, PopoverTrigger, PopoverContent } from '@/components/ui/popover';
 import { ComponentDoc, DocSection, VariantSection, UsageNote } from '../_docs';
 import { FormFileUpload, FileListItem, FormAvatarUpload } from '@/components/ui/forms';
 
@@ -312,8 +319,169 @@ function ToolbarBtn({ icon: Icon, label }: { icon: any; label?: string }) {
   );
 }
 
+type ViewMode = 'xl-icons' | 'lg-icons' | 'md-icons' | 'sm-icons' | 'list' | 'details' | 'tiles' | 'content';
+
+const viewModes: { id: ViewMode; label: string; icon: any }[] = [
+  { id: 'xl-icons', label: 'Ícones extra grandes', icon: Grid2x2 },
+  { id: 'lg-icons', label: 'Ícones grandes', icon: Grid2x2 },
+  { id: 'md-icons', label: 'Ícones médios', icon: LayoutGrid },
+  { id: 'sm-icons', label: 'Ícones pequenos', icon: Grid3x3 },
+  { id: 'list', label: 'Lista', icon: List },
+  { id: 'details', label: 'Detalhes', icon: Rows3 },
+  { id: 'tiles', label: 'Lado a lado', icon: LayoutList },
+  { id: 'content', label: 'Conteúdo', icon: LayoutList },
+];
+
+function ItemIcon({ row, size }: { row: (typeof explorerRows)[number]; size: number }) {
+  return row.isFolder ? (
+    <Folder size={size} className="text-warning" fill="currentColor" />
+  ) : (
+    <FileText size={size} className="text-info" />
+  );
+}
+
+function ExplorerBody({
+  mode,
+  selected,
+  onSelect,
+}: {
+  mode: ViewMode;
+  selected: string | null;
+  onSelect: (n: string) => void;
+}) {
+  const rowCls = (name: string) =>
+    cn(
+      'cursor-pointer transition-colors rounded-md',
+      selected === name ? 'bg-primary/10 text-foreground' : 'hover:bg-surface-container-low',
+    );
+
+  if (mode === 'details') {
+    return (
+      <table className="w-full text-xs">
+        <thead className="sticky top-0 bg-surface-container-low/80 backdrop-blur z-10">
+          <tr className="text-left border-b border-border/40">
+            <th className="px-3 py-2 font-semibold text-foreground/90">
+              <span className="inline-flex items-center gap-1">
+                Nome <ChevronDown size={12} className="text-primary" />
+              </span>
+            </th>
+            <th className="px-3 py-2 font-semibold text-foreground/90">Data de modificação</th>
+            <th className="px-3 py-2 font-semibold text-foreground/90">Tipo</th>
+            <th className="px-3 py-2 font-semibold text-foreground/90 text-right pr-6">Tamanho</th>
+          </tr>
+        </thead>
+        <tbody>
+          {explorerRows.map((row) => (
+            <tr
+              key={row.name}
+              onClick={() => onSelect(row.name)}
+              className={cn(
+                'cursor-pointer transition-colors border-b border-border/20',
+                selected === row.name
+                  ? 'bg-primary/10 text-foreground'
+                  : 'hover:bg-surface-container-low',
+              )}
+            >
+              <td className="px-3 py-1.5">
+                <div className="flex items-center gap-2">
+                  <ItemIcon row={row} size={14} />
+                  <span className="truncate">{row.name}</span>
+                </div>
+              </td>
+              <td className="px-3 py-1.5 text-muted-foreground whitespace-nowrap">{row.date}</td>
+              <td className="px-3 py-1.5 text-muted-foreground whitespace-nowrap">{row.type}</td>
+              <td className="px-3 py-1.5 text-muted-foreground text-right pr-6 font-mono whitespace-nowrap">
+                {row.size || '—'}
+              </td>
+            </tr>
+          ))}
+        </tbody>
+      </table>
+    );
+  }
+
+  if (mode === 'list') {
+    return (
+      <ul className="grid grid-cols-2 md:grid-cols-3 gap-x-4 gap-y-1 p-3 text-xs">
+        {explorerRows.map((row) => (
+          <li
+            key={row.name}
+            onClick={() => onSelect(row.name)}
+            className={cn(rowCls(row.name), 'flex items-center gap-2 px-2 py-1')}
+          >
+            <ItemIcon row={row} size={14} />
+            <span className="truncate">{row.name}</span>
+          </li>
+        ))}
+      </ul>
+    );
+  }
+
+  if (mode === 'tiles' || mode === 'content') {
+    const isContent = mode === 'content';
+    return (
+      <ul className={cn('p-3 text-xs', isContent ? 'space-y-1' : 'grid grid-cols-2 lg:grid-cols-3 gap-2')}>
+        {explorerRows.map((row) => (
+          <li
+            key={row.name}
+            onClick={() => onSelect(row.name)}
+            className={cn(rowCls(row.name), 'flex items-center gap-3 p-2')}
+          >
+            <ItemIcon row={row} size={isContent ? 18 : 28} />
+            <div className="min-w-0 flex-1">
+              <p className="font-semibold text-foreground truncate">{row.name}</p>
+              <p className="text-[11px] text-muted-foreground truncate">
+                {row.type}
+                {row.size && ` · ${row.size}`}
+              </p>
+              {isContent && (
+                <p className="text-[10px] text-muted-foreground">Modificado em {row.date}</p>
+              )}
+            </div>
+          </li>
+        ))}
+      </ul>
+    );
+  }
+
+  // Icon grids (sm/md/lg/xl)
+  const dim =
+    mode === 'xl-icons'
+      ? { cell: 'w-28', icon: 56, gap: 'gap-4' }
+      : mode === 'lg-icons'
+        ? { cell: 'w-24', icon: 44, gap: 'gap-3' }
+        : mode === 'md-icons'
+          ? { cell: 'w-20', icon: 32, gap: 'gap-3' }
+          : { cell: 'w-16', icon: 22, gap: 'gap-2' };
+
+  return (
+    <div className={cn('flex flex-wrap p-4', dim.gap)}>
+      {explorerRows.map((row) => (
+        <button
+          key={row.name}
+          onClick={() => onSelect(row.name)}
+          className={cn(
+            dim.cell,
+            'flex flex-col items-center gap-1.5 p-2 rounded-md text-center transition-colors',
+            selected === row.name
+              ? 'bg-primary/10 text-foreground'
+              : 'hover:bg-surface-container-low',
+          )}
+        >
+          <ItemIcon row={row} size={dim.icon} />
+          <span className="text-[11px] leading-tight line-clamp-2 text-foreground/90">
+            {row.name}
+          </span>
+        </button>
+      ))}
+    </div>
+  );
+}
+
 function ExplorerPreview() {
   const [selected, setSelected] = useState<string | null>('Arquivos de Programas');
+  const [mode, setMode] = useState<ViewMode>('details');
+  const currentMode = viewModes.find((m) => m.id === mode)!;
 
   return (
     <div className="bg-surface-container rounded-2xl border border-border/40 overflow-hidden shadow-ambient">
@@ -332,7 +500,44 @@ function ExplorerPreview() {
         <ToolbarBtn icon={Trash2} />
         <div className="w-px h-5 bg-border/60 mx-1" />
         <ToolbarBtn icon={ArrowUpDown} label="Classificar" />
-        <ToolbarBtn icon={LayoutGrid} label="Visualizar" />
+
+        <Popover>
+          <PopoverTrigger asChild>
+            <button
+              type="button"
+              className="flex items-center gap-1.5 h-8 px-2 rounded-md text-xs font-medium text-foreground/80 hover:bg-surface-container-low transition-colors"
+            >
+              <currentMode.icon size={14} />
+              <span>Visualizar</span>
+              <ChevronDown size={12} className="opacity-60" />
+            </button>
+          </PopoverTrigger>
+          <PopoverContent align="end" className="w-56 p-1">
+            <ul className="text-xs">
+              {viewModes.map((m) => {
+                const active = m.id === mode;
+                return (
+                  <li key={m.id}>
+                    <button
+                      onClick={() => setMode(m.id)}
+                      className={cn(
+                        'w-full flex items-center gap-2 px-2 py-1.5 rounded-md transition-colors',
+                        active
+                          ? 'bg-primary/10 text-primary font-semibold'
+                          : 'hover:bg-surface-container-low text-foreground/85',
+                      )}
+                    >
+                      <m.icon size={14} />
+                      <span className="flex-1 text-left">{m.label}</span>
+                      {active && <Check size={12} />}
+                    </button>
+                  </li>
+                );
+              })}
+            </ul>
+          </PopoverContent>
+        </Popover>
+
         <button className="ml-auto h-8 w-8 grid place-items-center rounded-md text-muted-foreground hover:bg-surface-container-low">
           <MoreVertical size={14} />
         </button>
@@ -378,60 +583,17 @@ function ExplorerPreview() {
           </ul>
         </aside>
 
-        {/* Detail list */}
+        {/* Content area — varia conforme o modo de visualização */}
         <div className="overflow-auto max-h-[420px]">
-          <table className="w-full text-xs">
-            <thead className="sticky top-0 bg-surface-container-low/80 backdrop-blur z-10">
-              <tr className="text-left border-b border-border/40">
-                <th className="px-3 py-2 font-semibold text-foreground/90">
-                  <span className="inline-flex items-center gap-1">
-                    Nome <ChevronDown size={12} className="text-primary" />
-                  </span>
-                </th>
-                <th className="px-3 py-2 font-semibold text-foreground/90">Data de modificação</th>
-                <th className="px-3 py-2 font-semibold text-foreground/90">Tipo</th>
-                <th className="px-3 py-2 font-semibold text-foreground/90 text-right pr-6">Tamanho</th>
-              </tr>
-            </thead>
-            <tbody>
-              {explorerRows.map((row) => {
-                const isSel = selected === row.name;
-                return (
-                  <tr
-                    key={row.name}
-                    onClick={() => setSelected(row.name)}
-                    className={cn(
-                      'cursor-pointer transition-colors border-b border-border/20',
-                      isSel ? 'bg-primary/10 text-foreground' : 'hover:bg-surface-container-low',
-                    )}
-                  >
-                    <td className="px-3 py-1.5">
-                      <div className="flex items-center gap-2">
-                        {row.isFolder ? (
-                          <Folder size={14} className="text-warning" fill="currentColor" />
-                        ) : (
-                          <FileText size={14} className="text-info" />
-                        )}
-                        <span className="truncate">{row.name}</span>
-                      </div>
-                    </td>
-                    <td className="px-3 py-1.5 text-muted-foreground whitespace-nowrap">{row.date}</td>
-                    <td className="px-3 py-1.5 text-muted-foreground whitespace-nowrap">{row.type}</td>
-                    <td className="px-3 py-1.5 text-muted-foreground text-right pr-6 font-mono whitespace-nowrap">
-                      {row.size || '—'}
-                    </td>
-                  </tr>
-                );
-              })}
-            </tbody>
-          </table>
+          <ExplorerBody mode={mode} selected={selected} onSelect={setSelected} />
         </div>
       </div>
 
       {/* Status bar */}
       <div className="flex items-center justify-between px-4 h-8 border-t border-border/40 bg-surface-container-low/40 text-[11px] text-muted-foreground">
         <span>
-          {explorerRows.length} itens{selected && ' · 1 item selecionado'}
+          {explorerRows.length} itens{selected && ' · 1 item selecionado'} ·{' '}
+          <span className="text-foreground/70">{currentMode.label}</span>
         </span>
         <span>Disco Local (C:) · 24,5 GB de 100 GB usados</span>
       </div>
