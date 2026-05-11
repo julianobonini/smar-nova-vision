@@ -58,10 +58,10 @@ export default function ProfileShowcase() {
           </div>
         </div>
 
-        <div className="px-6 pb-6">
-          <div className="flex flex-col sm:flex-row sm:items-start gap-5">
+        <div className="px-4 sm:px-6 pb-6">
+          <div className="flex flex-col items-center text-center sm:flex-row sm:items-start sm:text-left gap-4 sm:gap-5">
             <div className="relative -mt-14 shrink-0">
-              <div className="w-28 h-28 rounded-2xl bg-gradient-to-br from-primary to-secondary text-primary-foreground flex items-center justify-center font-display text-3xl font-bold border-4 border-surface-container shadow-xl">
+              <div className="w-24 h-24 sm:w-28 sm:h-28 rounded-2xl bg-gradient-to-br from-primary to-secondary text-primary-foreground flex items-center justify-center font-display text-2xl sm:text-3xl font-bold border-4 border-surface-container shadow-xl">
                 AR
               </div>
               <span className="absolute bottom-1.5 right-1.5 w-4 h-4 rounded-full bg-success border-2 border-surface-container" />
@@ -69,25 +69,25 @@ export default function ProfileShowcase() {
                 <Camera size={14} />
               </button>
             </div>
-            <div className="flex-1 min-w-0 pt-4">
-              <div className="flex items-center gap-2 flex-wrap">
-                <h2 className="font-display text-2xl font-bold text-foreground">Ana Paula Ribeiro</h2>
+            <div className="flex-1 min-w-0 w-full sm:pt-4">
+              <div className="flex items-center justify-center sm:justify-start gap-2 flex-wrap">
+                <h2 className="font-display text-xl sm:text-2xl font-bold text-foreground">Ana Paula Ribeiro</h2>
                 <span className="text-[10px] font-bold px-2 py-0.5 rounded-full bg-primary/10 text-primary uppercase tracking-wider">Pro</span>
               </div>
               <p className="text-sm text-muted-foreground mt-0.5">
                 Gerente Comercial · Nova Smar S/A
               </p>
-              <div className="flex flex-wrap items-center gap-x-4 gap-y-1 mt-2 text-xs text-muted-foreground">
+              <div className="flex flex-wrap justify-center sm:justify-start items-center gap-x-4 gap-y-1 mt-2 text-xs text-muted-foreground">
                 <span className="flex items-center gap-1.5"><MapPin size={12} /> São Paulo, SP</span>
                 <span className="flex items-center gap-1.5"><Calendar size={12} /> Desde mar/2019</span>
                 <span className="flex items-center gap-1.5"><Award size={12} /> Top performer 2024</span>
               </div>
             </div>
-            <div className="flex items-center gap-2 sm:pb-2">
-              <button className="flex items-center gap-2 px-4 h-9 rounded-lg bg-muted text-foreground text-xs font-semibold hover:bg-muted/80">
+            <div className="flex flex-col sm:flex-row items-stretch sm:items-center gap-2 w-full sm:w-auto sm:pt-4">
+              <button className="flex items-center justify-center gap-2 px-4 h-9 rounded-lg bg-muted text-foreground text-xs font-semibold hover:bg-muted/80">
                 <MessageSquare size={13} /> Mensagem
               </button>
-              <button className="flex items-center gap-2 px-4 h-9 rounded-lg bg-primary text-primary-foreground text-xs font-semibold hover:bg-primary/90 shadow-sm">
+              <button className="flex items-center justify-center gap-2 px-4 h-9 rounded-lg bg-primary text-primary-foreground text-xs font-semibold hover:bg-primary/90 shadow-sm">
                 <Edit size={13} /> Editar perfil
               </button>
             </div>
