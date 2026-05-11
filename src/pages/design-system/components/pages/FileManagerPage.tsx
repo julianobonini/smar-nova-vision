@@ -528,6 +528,24 @@ export default function FileManagerPage() {
           herdam contornos via <code>border-border</code>.
         </UsageNote>
       </DocSection>
+
+      <DocSection
+        title="Explorer (estilo desktop)"
+        description="Layout familiar de file explorer com toolbar de ações, árvore de navegação e tabela detalhada — adaptado aos tokens do design system."
+      >
+        <VariantSection
+          title="File Manager — Explorer"
+          description="Toolbar + tree sidebar + lista detalhada (Nome, Data de modificação, Tipo, Tamanho) com seleção e barra de status."
+          preview={<ExplorerPreview />}
+          code={explorerCode}
+        />
+
+        <UsageNote type="tip">
+          Pastas usam <code>text-warning</code> com <code>fill="currentColor"</code> para o look
+          clássico; o item ativo da árvore e a linha selecionada usam{' '}
+          <code>bg-primary/10 + text-primary</code> — adapta-se automaticamente ao tema claro/escuro.
+        </UsageNote>
+      </DocSection>
     </ComponentDoc>
   );
 }
