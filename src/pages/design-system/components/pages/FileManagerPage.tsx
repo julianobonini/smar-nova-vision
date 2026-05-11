@@ -12,7 +12,18 @@ import {
   HardDrive,
   Share2,
   Trash2,
+  ChevronRight,
+  ChevronDown,
+  Scissors,
+  Copy,
+  Clipboard,
+  Pencil,
+  ArrowUpDown,
+  LayoutGrid,
+  Monitor,
+  HardDriveIcon,
 } from 'lucide-react';
+import { cn } from '@/lib/utils';
 import { ComponentDoc, DocSection, VariantSection, UsageNote } from '../_docs';
 import { FormFileUpload, FileListItem, FormAvatarUpload } from '@/components/ui/forms';
 
