@@ -21,8 +21,15 @@ import {
   ArrowUpDown,
   LayoutGrid,
   Monitor,
+  List,
+  Rows3,
+  LayoutList,
+  Grid2x2,
+  Grid3x3,
+  Check,
 } from 'lucide-react';
 import { cn } from '@/lib/utils';
+import { Popover, PopoverTrigger, PopoverContent } from '@/components/ui/popover';
 import { ComponentDoc, DocSection, VariantSection, UsageNote } from '../_docs';
 import { FormFileUpload, FileListItem, FormAvatarUpload } from '@/components/ui/forms';
 
