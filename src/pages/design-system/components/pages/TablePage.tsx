@@ -1,4 +1,26 @@
 import { useMemo, useState } from 'react';
+
+const orders = [
+  { cod: '001', prod: 'Parafuso M8x30 Inox', qtd: 500, unit: '0,45', total: '225,00' },
+  { cod: '002', prod: 'Porca Sext. M8 Inox', qtd: 500, unit: '0,22', total: '110,00' },
+  { cod: '003', prod: 'Arruela Lisa M8', qtd: 1000, unit: '0,08', total: '80,00' },
+  { cod: '004', prod: 'Chapa Aço 1020 3mm', qtd: 10, unit: '189,90', total: '1.899,00' },
+  { cod: '005', prod: 'Tubo Galv. 1" x 6m', qtd: 25, unit: '42,00', total: '1.050,00' },
+];
+
+const equipments = [
+  { eq: 'Compressor Atlas ZR-250', setor: 'Utilidades', crit: 'Alta', data: '12/03/2026' },
+  { eq: 'Caldeira Aalborg OC-B', setor: 'Geração', crit: 'Crítica', data: '28/02/2026' },
+  { eq: 'Bomba KSB Megabloc', setor: 'Transferência', crit: 'Média', data: '05/04/2026' },
+  { eq: 'Torre de Resfriamento GEA', setor: 'Utilidades', crit: 'Alta', data: '18/01/2026' },
+  { eq: 'Inversor ABB ACS580', setor: 'Automação', crit: 'Baixa', data: '10/04/2026' },
+];
+
+const consumption = [
+  { mat: 'Aço Inox 304', vals: [120, 145, 132, 158] },
+  { mat: 'Alumínio 6061', vals: [89, 92, 105, 98] },
+  { mat: 'Cobre Eletrolítico', vals: [45, 52, 48, 61] },
+];
 import {
   Table, TableBody, TableCaption, TableCell, TableFooter, TableHead, TableHeader, TableRow,
 } from '@/components/ui/table';
