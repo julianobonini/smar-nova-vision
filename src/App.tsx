@@ -369,6 +369,7 @@ function AppRoutes() {
           <Route path="panels" element={<LazyRoute><DSCPanels /></LazyRoute>} />
           <Route path="list-groups" element={<LazyRoute><DSCListGroups /></LazyRoute>} />
           <Route path="dropdowns" element={<LazyRoute><DSCDropdowns /></LazyRoute>} />
+          <Route path="file-manager" element={<LazyRoute><DSCFileManager /></LazyRoute>} />
         </Route>
         <Route path="patterns" element={<LazyRoute><DSPatterns /></LazyRoute>} />
         <Route path="dashboards" element={<LazyRoute><DSDashboards /></LazyRoute>} />
