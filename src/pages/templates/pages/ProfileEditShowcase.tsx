@@ -77,10 +77,10 @@ export default function ProfileEditShowcase() {
           )}
         </div>
 
-        <div className="px-6 pb-6">
-          <div className="flex flex-col sm:flex-row sm:items-start gap-5">
+        <div className="px-4 sm:px-6 pb-6">
+          <div className="flex flex-col items-center text-center sm:flex-row sm:items-start sm:text-left gap-4 sm:gap-5">
             <div className="relative -mt-14 shrink-0">
-              <div className="w-28 h-28 rounded-2xl bg-gradient-to-br from-primary to-secondary text-primary-foreground flex items-center justify-center font-display text-3xl font-bold border-4 border-surface-container shadow-xl">
+              <div className="w-24 h-24 sm:w-28 sm:h-28 rounded-2xl bg-gradient-to-br from-primary to-secondary text-primary-foreground flex items-center justify-center font-display text-2xl sm:text-3xl font-bold border-4 border-surface-container shadow-xl">
                 {profile.firstName[0]}{profile.lastName[0]}
               </div>
               <span className="absolute bottom-1.5 right-1.5 w-4 h-4 rounded-full bg-success border-2 border-surface-container" />
@@ -90,21 +90,21 @@ export default function ProfileEditShowcase() {
                 </button>
               )}
             </div>
-            <div className="flex-1 min-w-0 pt-4">
-              <h2 className="font-display text-2xl font-bold text-foreground truncate">{fullName}</h2>
-              <p className="text-sm text-muted-foreground mt-0.5 truncate">
+            <div className="flex-1 min-w-0 w-full sm:pt-4">
+              <h2 className="font-display text-xl sm:text-2xl font-bold text-foreground sm:truncate">{fullName}</h2>
+              <p className="text-sm text-muted-foreground mt-0.5 sm:truncate">
                 {profile.role} · {profile.company}
               </p>
-              <div className="flex flex-wrap items-center gap-x-4 gap-y-1 mt-2 text-xs text-muted-foreground">
-                <span className="flex items-center gap-1.5"><Mail size={12} /> {profile.email}</span>
+              <div className="flex flex-wrap justify-center sm:justify-start items-center gap-x-4 gap-y-1 mt-2 text-xs text-muted-foreground">
+                <span className="flex items-center gap-1.5 min-w-0"><Mail size={12} className="shrink-0" /> <span className="truncate">{profile.email}</span></span>
                 <span className="flex items-center gap-1.5"><MapPin size={12} /> {profile.city}</span>
               </div>
             </div>
-            <div className="flex items-center gap-2 sm:pb-2">
+            <div className="flex flex-col sm:flex-row items-stretch sm:items-center gap-2 w-full sm:w-auto sm:pt-4">
               {!isEdit ? (
                 <button
                   onClick={startEdit}
-                  className="flex items-center gap-2 px-4 h-9 rounded-lg bg-primary text-primary-foreground text-xs font-semibold hover:bg-primary/90 shadow-sm"
+                  className="flex items-center justify-center gap-2 px-4 h-9 rounded-lg bg-primary text-primary-foreground text-xs font-semibold hover:bg-primary/90 shadow-sm"
                 >
                   <Pencil size={13} /> Editar perfil
                 </button>
@@ -112,13 +112,13 @@ export default function ProfileEditShowcase() {
                 <>
                   <button
                     onClick={cancel}
-                    className="flex items-center gap-2 px-4 h-9 rounded-lg bg-muted text-foreground text-xs font-semibold hover:bg-muted/80"
+                    className="flex items-center justify-center gap-2 px-4 h-9 rounded-lg bg-muted text-foreground text-xs font-semibold hover:bg-muted/80"
                   >
                     <X size={13} /> Cancelar
                   </button>
                   <button
                     onClick={save}
-                    className="flex items-center gap-2 px-4 h-9 rounded-lg bg-success text-success-foreground text-xs font-semibold hover:bg-success/90 shadow-sm"
+                    className="flex items-center justify-center gap-2 px-4 h-9 rounded-lg bg-success text-success-foreground text-xs font-semibold hover:bg-success/90 shadow-sm"
                   >
                     <Save size={13} /> Salvar alterações
                   </button>
