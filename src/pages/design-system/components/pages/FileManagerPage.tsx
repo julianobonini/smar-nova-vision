@@ -21,7 +21,6 @@ import {
   ArrowUpDown,
   LayoutGrid,
   Monitor,
-  HardDriveIcon,
 } from 'lucide-react';
 import { cn } from '@/lib/utils';
 import { ComponentDoc, DocSection, VariantSection, UsageNote } from '../_docs';
