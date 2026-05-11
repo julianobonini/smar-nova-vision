@@ -150,6 +150,7 @@ const JobsLandingShowcase = lazy(() => import("./pages/templates/pages/JobsLandi
 const NotificationsShowcase = lazy(() => import("./pages/templates/pages/NotificationsShowcase"));
 const PricingShowcase = lazy(() => import("./pages/templates/pages/PricingShowcase"));
 const ProfileShowcase = lazy(() => import("./pages/templates/pages/ProfileShowcase"));
+const ProfileEditShowcase = lazy(() => import("./pages/templates/pages/ProfileEditShowcase"));
 const ReviewsShowcase = lazy(() => import("./pages/templates/pages/ReviewsShowcase"));
 const TeamShowcase = lazy(() => import("./pages/templates/pages/TeamShowcase"));
 const TermsConditionsShowcase = lazy(() => import("./pages/templates/pages/TermsConditionsShowcase"));
@@ -515,6 +516,7 @@ function AppRoutes() {
         <Route path="templates/pages/notifications" element={<LazyRoute><NotificationsShowcase /></LazyRoute>} />
         <Route path="templates/pages/pricing" element={<LazyRoute><PricingShowcase /></LazyRoute>} />
         <Route path="templates/pages/profile" element={<LazyRoute><ProfileShowcase /></LazyRoute>} />
+        <Route path="templates/pages/profile-edit" element={<LazyRoute><ProfileEditShowcase /></LazyRoute>} />
         <Route path="templates/pages/reviews" element={<LazyRoute><ReviewsShowcase /></LazyRoute>} />
         <Route path="templates/pages/team" element={<LazyRoute><TeamShowcase /></LazyRoute>} />
         <Route path="templates/pages/termsconditions" element={<LazyRoute><TermsConditionsShowcase /></LazyRoute>} />

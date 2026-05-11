@@ -115,6 +115,7 @@ export const templateMenuGroups: TemplateMenuGroup[] = [
           { label: 'Notifications', path: '/app/templates/pages/notifications' },
           { label: 'Pricing', path: '/app/templates/pages/pricing' },
           { label: 'Profile', path: '/app/templates/pages/profile' },
+          { label: 'Profile — Edit', path: '/app/templates/pages/profile-edit' },
           { label: 'Reviews', path: '/app/templates/pages/reviews' },
           { label: 'Team', path: '/app/templates/pages/team' },
           { label: 'Terms & Conditions', path: '/app/templates/pages/termsconditions' },
