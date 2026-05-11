@@ -103,6 +103,7 @@ export const componentGroups = [
       { to: '/design-system/components/scroll-area', label: 'Scroll Area' },
       { to: '/design-system/components/resizable', label: 'Resizable' },
       { to: '/design-system/components/chart', label: 'Chart' },
+      { to: '/design-system/components/file-manager', label: 'File Manager' },
     ],
   },
 ];

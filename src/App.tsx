@@ -279,6 +279,7 @@ const DSCChart = lazy(() => import("./pages/design-system/components/pages/Chart
 const DSCPanels = lazy(() => import("./pages/design-system/components/pages/PanelsPage"));
 const DSCListGroups = lazy(() => import("./pages/design-system/components/pages/ListGroupsPage"));
 const DSCDropdowns = lazy(() => import("./pages/design-system/components/pages/DropdownsPage"));
+const DSCFileManager = lazy(() => import("./pages/design-system/components/pages/FileManagerPage"));
 const DSPatterns = lazy(() => import("./pages/design-system/PatternsPage"));
 const DSDashboards = lazy(() => import("./pages/design-system/DashboardsPage"));
 const DSTemplates = lazy(() => import("./pages/design-system/TemplateElementsPage"));
@@ -368,6 +369,7 @@ function AppRoutes() {
           <Route path="panels" element={<LazyRoute><DSCPanels /></LazyRoute>} />
           <Route path="list-groups" element={<LazyRoute><DSCListGroups /></LazyRoute>} />
           <Route path="dropdowns" element={<LazyRoute><DSCDropdowns /></LazyRoute>} />
+          <Route path="file-manager" element={<LazyRoute><DSCFileManager /></LazyRoute>} />
         </Route>
         <Route path="patterns" element={<LazyRoute><DSPatterns /></LazyRoute>} />
         <Route path="dashboards" element={<LazyRoute><DSDashboards /></LazyRoute>} />
