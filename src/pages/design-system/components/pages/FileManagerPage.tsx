@@ -260,7 +260,7 @@ const managerCode = `// Página completa: estatísticas + pastas + recentes.
 const treeItems = [
   { label: 'S24+ de Juliano', icon: Monitor, expanded: false, depth: 0 },
   { label: 'Este Computador', icon: Monitor, expanded: true, depth: 0 },
-  { label: 'Disco Local (C:)', icon: HardDriveIcon, expanded: true, depth: 1, active: true },
+  { label: 'Disco Local (C:)', icon: HardDrive, expanded: true, depth: 1, active: true },
   { label: '$GetCurrent', icon: Folder, depth: 2 },
   { label: 'AMD', icon: Folder, depth: 2 },
   { label: 'Arquivos de Programas', icon: Folder, depth: 2 },
