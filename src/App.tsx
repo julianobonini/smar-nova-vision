@@ -279,6 +279,7 @@ const DSCChart = lazy(() => import("./pages/design-system/components/pages/Chart
 const DSCPanels = lazy(() => import("./pages/design-system/components/pages/PanelsPage"));
 const DSCListGroups = lazy(() => import("./pages/design-system/components/pages/ListGroupsPage"));
 const DSCDropdowns = lazy(() => import("./pages/design-system/components/pages/DropdownsPage"));
+const DSCFileManager = lazy(() => import("./pages/design-system/components/pages/FileManagerPage"));
 const DSPatterns = lazy(() => import("./pages/design-system/PatternsPage"));
 const DSDashboards = lazy(() => import("./pages/design-system/DashboardsPage"));
 const DSTemplates = lazy(() => import("./pages/design-system/TemplateElementsPage"));
