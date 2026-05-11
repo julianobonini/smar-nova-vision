@@ -59,8 +59,8 @@ export default function ProfileShowcase() {
         </div>
 
         <div className="px-6 pb-6">
-          <div className="flex flex-col sm:flex-row sm:items-end gap-5 -mt-14">
-            <div className="relative">
+          <div className="flex flex-col sm:flex-row sm:items-start gap-5">
+            <div className="relative -mt-14 shrink-0">
               <div className="w-28 h-28 rounded-2xl bg-gradient-to-br from-primary to-secondary text-primary-foreground flex items-center justify-center font-display text-3xl font-bold border-4 border-surface-container shadow-xl">
                 AR
               </div>
@@ -69,7 +69,7 @@ export default function ProfileShowcase() {
                 <Camera size={14} />
               </button>
             </div>
-            <div className="flex-1 sm:pb-2 min-w-0">
+            <div className="flex-1 min-w-0 pt-4">
               <div className="flex items-center gap-2 flex-wrap">
                 <h2 className="font-display text-2xl font-bold text-foreground">Ana Paula Ribeiro</h2>
                 <span className="text-[10px] font-bold px-2 py-0.5 rounded-full bg-primary/10 text-primary uppercase tracking-wider">Pro</span>
