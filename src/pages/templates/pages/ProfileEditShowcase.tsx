@@ -5,6 +5,7 @@ import {
   Pencil, Building2, Globe, Linkedin, Shield, Bell, Lock, KeyRound,
   CheckCircle2, AlertCircle, Smartphone, Monitor, Tablet, LogOut,
   User, Eye, EyeOff,
+  type LucideIcon,
 } from 'lucide-react';
 import { Input } from '@/components/ui/input';
 import { Label } from '@/components/ui/label';
@@ -353,7 +354,7 @@ function Field({
   mode: Mode;
   onChange: (v: string) => void;
   type?: string;
-  icon?: React.ComponentType<{ size?: number; className?: string }>;
+  icon?: LucideIcon;
 }) {
   return (
     <div>
@@ -402,7 +403,7 @@ function PwdField({ label, show, onToggle }: { label: string; show: boolean; onT
 function SecurityCard({
   icon: Icon, title, desc, badge,
 }: {
-  icon: React.ComponentType<{ size?: number; className?: string }>;
+  icon: LucideIcon;
   title: string;
   desc: string;
   badge: { label: string; tone: 'success' | 'warning' };
