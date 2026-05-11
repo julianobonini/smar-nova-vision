@@ -1,4 +1,26 @@
 import { useMemo, useState } from 'react';
+
+const orders = [
+  { cod: '001', prod: 'Parafuso M8x30 Inox', qtd: 500, unit: '0,45', total: '225,00' },
+  { cod: '002', prod: 'Porca Sext. M8 Inox', qtd: 500, unit: '0,22', total: '110,00' },
+  { cod: '003', prod: 'Arruela Lisa M8', qtd: 1000, unit: '0,08', total: '80,00' },
+  { cod: '004', prod: 'Chapa Aço 1020 3mm', qtd: 10, unit: '189,90', total: '1.899,00' },
+  { cod: '005', prod: 'Tubo Galv. 1" x 6m', qtd: 25, unit: '42,00', total: '1.050,00' },
+];
+
+const equipments = [
+  { eq: 'Compressor Atlas ZR-250', setor: 'Utilidades', crit: 'Alta', data: '12/03/2026' },
+  { eq: 'Caldeira Aalborg OC-B', setor: 'Geração', crit: 'Crítica', data: '28/02/2026' },
+  { eq: 'Bomba KSB Megabloc', setor: 'Transferência', crit: 'Média', data: '05/04/2026' },
+  { eq: 'Torre de Resfriamento GEA', setor: 'Utilidades', crit: 'Alta', data: '18/01/2026' },
+  { eq: 'Inversor ABB ACS580', setor: 'Automação', crit: 'Baixa', data: '10/04/2026' },
+];
+
+const consumption = [
+  { mat: 'Aço Inox 304', vals: [120, 145, 132, 158] },
+  { mat: 'Alumínio 6061', vals: [89, 92, 105, 98] },
+  { mat: 'Cobre Eletrolítico', vals: [45, 52, 48, 61] },
+];
 import {
   Table, TableBody, TableCaption, TableCell, TableFooter, TableHead, TableHeader, TableRow,
 } from '@/components/ui/table';
@@ -330,6 +352,50 @@ function DataTablePreview() {
   );
 }
 
+function SelectionTablePreview() {
+  const [selected, setSelected] = useState<string[]>([]);
+  const toggleSelect = (cod: string) => setSelected(prev => prev.includes(cod) ? prev.filter(c => c !== cod) : [...prev, cod]);
+  const toggleAll = () => setSelected(prev => prev.length === products.length ? [] : products.map(p => p.cod));
+
+  return (
+    <div className={WRAPPER}>
+      <table className="w-full text-sm">
+        <thead>
+          <tr>
+            <th className={cn(TH, 'w-10')}>
+              <input type="checkbox" checked={selected.length === products.length} onChange={toggleAll} className="rounded border-border accent-secondary" />
+            </th>
+            <th className={TH}>Código</th>
+            <th className={TH}>Descrição</th>
+            <th className={cn(TH, 'text-right')}>Valor</th>
+            <th className={cn(TH, 'text-center')}>Status</th>
+          </tr>
+        </thead>
+        <tbody>
+          {products.map((row, i) => (
+            <tr key={i} className={cn('transition-colors', selected.includes(row.cod) ? 'bg-secondary/5' : i % 2 === 0 ? 'bg-background' : 'bg-surface-container-low/50')}>
+              <td className={TD}><input type="checkbox" checked={selected.includes(row.cod)} onChange={() => toggleSelect(row.cod)} className="rounded border-border accent-secondary" /></td>
+              <td className={cn(TD, 'font-mono text-xs font-semibold text-secondary')}>{row.cod}</td>
+              <td className={cn(TD, 'font-medium')}>{row.desc}</td>
+              <td className={cn(TD, 'text-right font-mono font-semibold')}>{row.valor}</td>
+              <td className={cn(TD, 'text-center')}>
+                <span className={cn('inline-flex px-2.5 py-0.5 rounded-full text-[10px] font-bold uppercase tracking-wider', statusMap[row.status])}>{row.status}</span>
+              </td>
+            </tr>
+          ))}
+        </tbody>
+      </table>
+      {selected.length > 0 && (
+        <div className="flex items-center gap-3 px-5 py-3 border-t border-border/60 bg-surface-container-low text-xs">
+          <span className="font-semibold text-secondary">{selected.length} selecionado(s)</span>
+          <button className="px-3 py-1 rounded-md bg-secondary text-secondary-foreground font-semibold hover:bg-secondary/90 transition-colors">Aprovar</button>
+          <button className="px-3 py-1 rounded-md text-destructive hover:bg-destructive/10 font-semibold transition-colors">Excluir</button>
+        </div>
+      )}
+    </div>
+  );
+}
+
 /* ========== Props metadata ========== */
 
 const tableProps: PropDef[] = [
@@ -537,6 +603,165 @@ export default function TablePage() {
           <td className="px-5 py-3 font-mono text-xs text-secondary">{r.cod}</td>
         </tr>
       ))}
+    </tbody>
+  </table>
+</div>`}
+        />
+
+        <VariantSection
+          title="Compacta com rodapé"
+          description="Densidade reduzida (text-xs / py-3) e tfoot com totalização para itens de pedido."
+          preview={
+            <div className={WRAPPER}>
+              <table className="w-full text-xs">
+                <thead>
+                  <tr>
+                    <th className={TH}>Código</th>
+                    <th className={TH}>Produto</th>
+                    <th className={cn(TH, 'text-center')}>Qtd</th>
+                    <th className={cn(TH, 'text-right')}>Unit.</th>
+                    <th className={cn(TH, 'text-right')}>Total</th>
+                  </tr>
+                </thead>
+                <tbody>
+                  {orders.map((row, i) => (
+                    <tr key={i} className={cn('hover:bg-muted/30 transition-colors', i % 2 === 0 ? 'bg-background' : 'bg-surface-container-low/50')}>
+                      <td className={cn(TD, 'font-mono text-muted-foreground')}>{row.cod}</td>
+                      <td className={TD}>{row.prod}</td>
+                      <td className={cn(TD, 'text-center font-mono font-semibold')}>{row.qtd}</td>
+                      <td className={cn(TD, 'text-right font-mono text-muted-foreground')}>R$ {row.unit}</td>
+                      <td className={cn(TD, 'text-right font-mono font-semibold')}>R$ {row.total}</td>
+                    </tr>
+                  ))}
+                </tbody>
+                <tfoot>
+                  <tr className="bg-surface-container-low font-semibold">
+                    <td colSpan={4} className="px-5 py-3 text-right text-[11px] font-bold text-muted-foreground uppercase tracking-wider">Total Geral:</td>
+                    <td className="px-5 py-3 text-right font-mono text-secondary font-bold">R$ 3.364,00</td>
+                  </tr>
+                </tfoot>
+              </table>
+            </div>
+          }
+          code={`<table className="w-full text-xs">
+  <thead>{/* TH compactos */}</thead>
+  <tbody>{/* py-3 */}</tbody>
+  <tfoot>
+    <tr className="bg-surface-container-low font-semibold">
+      <td colSpan={4} className="text-right">Total Geral:</td>
+      <td className="text-right text-secondary">R$ 3.364,00</td>
+    </tr>
+  </tfoot>
+</table>`}
+        />
+
+        <VariantSection
+          title="Zebrada com criticidade"
+          description="Linhas alternadas e badge de criticidade pintado por nível (crítica → baixa)."
+          preview={
+            <div className={WRAPPER}>
+              <table className="w-full text-sm">
+                <thead>
+                  <tr>
+                    <th className={TH}>#</th>
+                    <th className={TH}>Equipamento</th>
+                    <th className={TH}>Setor</th>
+                    <th className={cn(TH, 'text-center')}>Criticidade</th>
+                    <th className={cn(TH, 'text-right')}>Última Manutenção</th>
+                  </tr>
+                </thead>
+                <tbody>
+                  {equipments.map((row, i) => (
+                    <tr key={i} className={cn('hover:bg-muted/30 transition-colors', i % 2 === 0 ? 'bg-background' : 'bg-surface-container-low/50')}>
+                      <td className={cn(TD, 'font-mono text-xs text-muted-foreground')}>{i + 1}</td>
+                      <td className={cn(TD, 'font-medium')}>{row.eq}</td>
+                      <td className={cn(TD, 'text-muted-foreground')}>{row.setor}</td>
+                      <td className={cn(TD, 'text-center')}>
+                        <span className={cn(
+                          'inline-flex px-2 py-0.5 rounded-full text-[10px] font-bold uppercase',
+                          row.crit === 'Crítica' && 'bg-destructive/10 text-destructive',
+                          row.crit === 'Alta' && 'bg-warning/10 text-warning',
+                          row.crit === 'Média' && 'bg-info/10 text-info',
+                          row.crit === 'Baixa' && 'bg-success/10 text-success',
+                        )}>{row.crit}</span>
+                      </td>
+                      <td className={cn(TD, 'text-right text-muted-foreground')}>{row.data}</td>
+                    </tr>
+                  ))}
+                </tbody>
+              </table>
+            </div>
+          }
+          code={`<tr className={i % 2 === 0 ? 'bg-background' : 'bg-surface-container-low/50'}>
+  <td>{row.eq}</td>
+  <td>
+    <span className={cn(
+      'px-2 py-0.5 rounded-full text-[10px] font-bold uppercase',
+      crit === 'Crítica' && 'bg-destructive/10 text-destructive',
+      crit === 'Alta' && 'bg-warning/10 text-warning',
+    )}>{crit}</span>
+  </td>
+</tr>`}
+        />
+
+        <VariantSection
+          title="Com seleção em lote"
+          description="Checkbox por linha + master no header. Quando há seleção, aparece a barra de ações em lote no rodapé."
+          preview={<SelectionTablePreview />}
+          code={`const [selected, setSelected] = useState<string[]>([]);
+
+<tr className={selected.includes(row.cod) ? 'bg-secondary/5' : 'bg-background'}>
+  <td><input type="checkbox" checked={selected.includes(row.cod)} onChange={...} /></td>
+</tr>
+
+{selected.length > 0 && (
+  <div className="flex gap-3 border-t bg-surface-container-low">
+    <span>{selected.length} selecionado(s)</span>
+    <button>Aprovar</button>
+  </div>
+)}`}
+        />
+
+        <VariantSection
+          title="Com bordas (matriz)"
+          description="Tabela tipo planilha com bordas em todas as células — boa para comparação multi-coluna (ex.: consumo mensal)."
+          preview={
+            <div className="overflow-hidden rounded-xl border border-border">
+              <table className="w-full text-sm">
+                <thead>
+                  <tr>
+                    <th className={cn(TH, 'border-b border-r border-border')}>Material</th>
+                    <th className={cn(TH, 'text-center border-b border-r border-border')}>Jan</th>
+                    <th className={cn(TH, 'text-center border-b border-r border-border')}>Fev</th>
+                    <th className={cn(TH, 'text-center border-b border-r border-border')}>Mar</th>
+                    <th className={cn(TH, 'text-center border-b border-border')}>Abr</th>
+                  </tr>
+                </thead>
+                <tbody>
+                  {consumption.map((row, i) => (
+                    <tr key={i} className={cn('border-b border-border/50 last:border-b-0', i % 2 === 0 ? 'bg-background' : 'bg-surface-container-low/50')}>
+                      <td className={cn(TD, 'font-medium border-r border-border/50')}>{row.mat}</td>
+                      {row.vals.map((v, j) => (
+                        <td key={j} className={cn(TD, 'text-center font-mono text-muted-foreground', j < 3 && 'border-r border-border/50')}>{v} ton</td>
+                      ))}
+                    </tr>
+                  ))}
+                </tbody>
+              </table>
+            </div>
+          }
+          code={`<div className="rounded-xl border border-border overflow-hidden">
+  <table>
+    <thead>
+      <tr>
+        <th className="border-b border-r border-border">Material</th>
+        <th className="border-b border-r border-border text-center">Jan</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr className="border-b border-border/50">
+        <td className="border-r border-border/50">{row.mat}</td>
+      </tr>
     </tbody>
   </table>
 </div>`}
