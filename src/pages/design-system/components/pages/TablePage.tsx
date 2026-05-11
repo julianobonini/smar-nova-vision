@@ -352,6 +352,50 @@ function DataTablePreview() {
   );
 }
 
+function SelectionTablePreview() {
+  const [selected, setSelected] = useState<string[]>([]);
+  const toggleSelect = (cod: string) => setSelected(prev => prev.includes(cod) ? prev.filter(c => c !== cod) : [...prev, cod]);
+  const toggleAll = () => setSelected(prev => prev.length === products.length ? [] : products.map(p => p.cod));
+
+  return (
+    <div className={WRAPPER}>
+      <table className="w-full text-sm">
+        <thead>
+          <tr>
+            <th className={cn(TH, 'w-10')}>
+              <input type="checkbox" checked={selected.length === products.length} onChange={toggleAll} className="rounded border-border accent-secondary" />
+            </th>
+            <th className={TH}>Código</th>
+            <th className={TH}>Descrição</th>
+            <th className={cn(TH, 'text-right')}>Valor</th>
+            <th className={cn(TH, 'text-center')}>Status</th>
+          </tr>
+        </thead>
+        <tbody>
+          {products.map((row, i) => (
+            <tr key={i} className={cn('transition-colors', selected.includes(row.cod) ? 'bg-secondary/5' : i % 2 === 0 ? 'bg-background' : 'bg-surface-container-low/50')}>
+              <td className={TD}><input type="checkbox" checked={selected.includes(row.cod)} onChange={() => toggleSelect(row.cod)} className="rounded border-border accent-secondary" /></td>
+              <td className={cn(TD, 'font-mono text-xs font-semibold text-secondary')}>{row.cod}</td>
+              <td className={cn(TD, 'font-medium')}>{row.desc}</td>
+              <td className={cn(TD, 'text-right font-mono font-semibold')}>{row.valor}</td>
+              <td className={cn(TD, 'text-center')}>
+                <span className={cn('inline-flex px-2.5 py-0.5 rounded-full text-[10px] font-bold uppercase tracking-wider', statusMap[row.status])}>{row.status}</span>
+              </td>
+            </tr>
+          ))}
+        </tbody>
+      </table>
+      {selected.length > 0 && (
+        <div className="flex items-center gap-3 px-5 py-3 border-t border-border/60 bg-surface-container-low text-xs">
+          <span className="font-semibold text-secondary">{selected.length} selecionado(s)</span>
+          <button className="px-3 py-1 rounded-md bg-secondary text-secondary-foreground font-semibold hover:bg-secondary/90 transition-colors">Aprovar</button>
+          <button className="px-3 py-1 rounded-md text-destructive hover:bg-destructive/10 font-semibold transition-colors">Excluir</button>
+        </div>
+      )}
+    </div>
+  );
+}
+
 /* ========== Props metadata ========== */
 
 const tableProps: PropDef[] = [
