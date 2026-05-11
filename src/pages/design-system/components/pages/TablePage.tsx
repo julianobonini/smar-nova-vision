@@ -768,6 +768,7 @@ export default function TablePage() {
         />
 
         <VariantSection
+          title="Linhas contextuais"
           description="Cada linha recebe um tom semântico (success/warning/destructive/info) para destacar eventos."
           preview={
             <div className={WRAPPER}>
