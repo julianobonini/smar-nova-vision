@@ -1,5 +1,6 @@
 import { NavLink, Outlet, useLocation, Link } from 'react-router-dom';
-import { Sparkles, Palette, Component, LayoutDashboard, Layers3, ArrowLeft, Blocks } from 'lucide-react';
+import { Sparkles, Palette, Component, LayoutDashboard, Layers3, ArrowLeft, Blocks, Sun, Moon, Monitor } from 'lucide-react';
+import { useApp } from '@/contexts/AppContext';
 import { cn } from '@/lib/utils';
 
 const sections = [
@@ -13,7 +14,13 @@ const sections = [
 
 export default function DesignSystemLayout() {
   const { pathname } = useLocation();
+  const { theme, setTheme } = useApp();
   const current = sections.find((s) => (s.end ? pathname === s.to : pathname.startsWith(s.to)));
+  const themes = [
+    { id: 'light' as const, icon: Sun, label: 'Claro' },
+    { id: 'dark' as const, icon: Moon, label: 'Escuro' },
+    { id: 'system' as const, icon: Monitor, label: 'Sistema' },
+  ];
 
   return (
     <div className="min-h-screen bg-background text-foreground">
@@ -33,9 +40,30 @@ export default function DesignSystemLayout() {
               </span>
             </p>
           </div>
-          <p className="text-xs text-muted-foreground hidden md:block">
-            v1.0 · Industrial ERP language
-          </p>
+          <div className="flex items-center gap-4">
+            <div className="inline-flex items-center gap-1 p-1 rounded-xl bg-surface-container">
+              {themes.map(({ id, icon: Icon, label }) => (
+                <button
+                  key={id}
+                  onClick={() => setTheme(id)}
+                  title={label}
+                  aria-label={`Tema ${label}`}
+                  className={cn(
+                    'flex items-center gap-1.5 px-2.5 h-7 rounded-lg text-xs font-medium transition-all',
+                    theme === id
+                      ? 'bg-background text-foreground shadow-sm'
+                      : 'text-muted-foreground hover:text-foreground'
+                  )}
+                >
+                  <Icon size={13} />
+                  <span className="hidden sm:inline">{label}</span>
+                </button>
+              ))}
+            </div>
+            <p className="text-xs text-muted-foreground hidden md:block">
+              v1.0 · Industrial ERP
+            </p>
+          </div>
         </div>
       </header>
 
