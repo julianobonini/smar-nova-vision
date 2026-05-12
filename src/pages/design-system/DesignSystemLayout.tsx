@@ -40,11 +40,30 @@ export default function DesignSystemLayout() {
               </span>
             </p>
           </div>
-          <p className="text-xs text-muted-foreground hidden md:block">
-            v1.0 · Industrial ERP language
-          </p>
-        </div>
-      </header>
+          <div className="flex items-center gap-4">
+            <div className="inline-flex items-center gap-1 p-1 rounded-xl bg-surface-container">
+              {themes.map(({ id, icon: Icon, label }) => (
+                <button
+                  key={id}
+                  onClick={() => setTheme(id)}
+                  title={label}
+                  aria-label={`Tema ${label}`}
+                  className={cn(
+                    'flex items-center gap-1.5 px-2.5 h-7 rounded-lg text-xs font-medium transition-all',
+                    theme === id
+                      ? 'bg-background text-foreground shadow-sm'
+                      : 'text-muted-foreground hover:text-foreground'
+                  )}
+                >
+                  <Icon size={13} />
+                  <span className="hidden sm:inline">{label}</span>
+                </button>
+              ))}
+            </div>
+            <p className="text-xs text-muted-foreground hidden md:block">
+              v1.0 · Industrial ERP
+            </p>
+          </div>
 
       <div className="max-w-[1400px] mx-auto flex">
         {/* Sidebar */}
