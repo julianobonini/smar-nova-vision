@@ -14,13 +14,13 @@ export function LandingNav() {
 
   return (
     <>
-      <nav className="fixed top-0 left-0 right-0 z-40 bg-background border-b border-border shadow-sm">
+      <nav className="fixed top-0 left-0 right-0 z-40 bg-primary shadow-md">
         <div className="max-w-7xl mx-auto px-6 lg:px-12 h-20 flex items-center justify-between">
           <div className="flex flex-col leading-none">
-            <p className="font-display font-extrabold text-3xl tracking-tight text-foreground">
+            <p className="font-display font-extrabold text-3xl tracking-tight text-primary-foreground">
               smar<span className="text-accent">NET</span>
             </p>
-            <span className="text-xs font-bold tracking-[0.25em] uppercase text-muted-foreground">
+            <span className="text-xs font-bold tracking-[0.25em] uppercase text-primary-foreground/60">
               intranet
             </span>
           </div>
@@ -29,11 +29,11 @@ export function LandingNav() {
             {/* Language */}
             <div className="relative">
               <button onClick={() => { setLangOpen(!langOpen); setThemeOpen(false); }}
-                className="p-2.5 rounded-xl hover:bg-surface-container-low transition-colors text-muted-foreground hover:text-foreground">
+                className="p-2.5 rounded-xl hover:bg-primary-foreground/10 transition-colors text-primary-foreground/70 hover:text-primary-foreground">
                 <Globe size={18} />
               </button>
               {langOpen && (
-                <div className="absolute right-0 top-full mt-2 bg-background rounded-xl shadow-ambient-lg py-2 min-w-[140px]">
+                <div className="absolute right-0 top-full mt-2 bg-background border border-border rounded-xl shadow-ambient-lg py-2 min-w-[140px]">
                   {(Object.keys(localeNames) as Locale[]).map((l) => (
                     <button key={l} onClick={() => { setLocale(l); setLangOpen(false); }}
                       className={`w-full text-left px-4 py-2 text-sm hover:bg-surface-container-low transition-colors ${locale === l ? 'text-secondary font-semibold' : 'text-foreground'}`}>
@@ -47,11 +47,11 @@ export function LandingNav() {
             {/* Theme */}
             <div className="relative">
               <button onClick={() => { setThemeOpen(!themeOpen); setLangOpen(false); }}
-                className="p-2.5 rounded-xl hover:bg-surface-container-low transition-colors text-muted-foreground hover:text-foreground">
+                className="p-2.5 rounded-xl hover:bg-primary-foreground/10 transition-colors text-primary-foreground/70 hover:text-primary-foreground">
                 {(() => { const Icon = themeIcons[theme]; return <Icon size={18} />; })()}
               </button>
               {themeOpen && (
-                <div className="absolute right-0 top-full mt-2 bg-background rounded-xl shadow-ambient-lg py-2 min-w-[140px]">
+                <div className="absolute right-0 top-full mt-2 bg-background border border-border rounded-xl shadow-ambient-lg py-2 min-w-[140px]">
                   {(['light', 'dark', 'system'] as const).map((th) => {
                     const Icon = themeIcons[th];
                     return (
@@ -67,7 +67,7 @@ export function LandingNav() {
 
             {/* Login */}
             <button onClick={() => setLoginOpen(true)}
-              className="ml-2 px-5 py-2 rounded-xl gradient-primary text-primary-foreground text-sm font-semibold flex items-center gap-2 hover:opacity-90 transition-opacity">
+              className="ml-2 px-5 py-2 rounded-xl bg-accent text-accent-foreground text-sm font-semibold flex items-center gap-2 hover:bg-accent/90 transition-colors shadow-sm">
               <Lock size={14} /> {t('nav.login', locale)}
             </button>
           </div>
