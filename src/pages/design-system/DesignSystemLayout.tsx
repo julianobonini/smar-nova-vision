@@ -64,6 +64,8 @@ export default function DesignSystemLayout() {
               v1.0 · Industrial ERP
             </p>
           </div>
+        </div>
+      </header>
 
       <div className="max-w-[1400px] mx-auto flex">
         {/* Sidebar */}
