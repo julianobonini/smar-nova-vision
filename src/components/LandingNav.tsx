@@ -14,13 +14,13 @@ export function LandingNav() {
 
   return (
     <>
-      <nav className="fixed top-0 left-0 right-0 z-40 bg-primary shadow-md">
+      <nav className="fixed top-0 left-0 right-0 z-40 bg-sidebar shadow-md">
         <div className="max-w-7xl mx-auto px-6 lg:px-12 h-20 flex items-center justify-between">
           <div className="flex flex-col leading-none">
             <p className="font-display font-extrabold text-3xl tracking-tight text-primary-foreground">
               smar<span className="text-accent">NET</span>
             </p>
-            <span className="text-xs font-bold tracking-[0.25em] uppercase text-primary-foreground/60">
+            <span className="text-xs font-bold tracking-[0.25em] uppercase text-sidebar-foreground/60">
               intranet
             </span>
           </div>
@@ -29,7 +29,7 @@ export function LandingNav() {
             {/* Language */}
             <div className="relative">
               <button onClick={() => { setLangOpen(!langOpen); setThemeOpen(false); }}
-                className="p-2.5 rounded-xl hover:bg-primary-foreground/10 transition-colors text-primary-foreground/70 hover:text-primary-foreground">
+                className="p-2.5 rounded-xl hover:bg-sidebar-foreground/10 transition-colors text-sidebar-foreground/70 hover:text-sidebar-foreground">
                 <Globe size={18} />
               </button>
               {langOpen && (
@@ -47,7 +47,7 @@ export function LandingNav() {
             {/* Theme */}
             <div className="relative">
               <button onClick={() => { setThemeOpen(!themeOpen); setLangOpen(false); }}
-                className="p-2.5 rounded-xl hover:bg-primary-foreground/10 transition-colors text-primary-foreground/70 hover:text-primary-foreground">
+                className="p-2.5 rounded-xl hover:bg-sidebar-foreground/10 transition-colors text-sidebar-foreground/70 hover:text-sidebar-foreground">
                 {(() => { const Icon = themeIcons[theme]; return <Icon size={18} />; })()}
               </button>
               {themeOpen && (
