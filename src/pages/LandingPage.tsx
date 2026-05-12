@@ -31,19 +31,19 @@ export default function LandingPage() {
               <span className="w-1.5 h-1.5 rounded-full bg-tertiary" />
               <span className="text-xs font-bold tracking-widest text-tertiary">{t('hero.badge', locale)}</span>
             </motion.div>
-            <motion.h1 custom={1} variants={fadeUp} className="text-4xl lg:text-6xl font-display font-extrabold text-primary-foreground leading-tight">
+            <motion.h1 custom={1} variants={fadeUp} className="text-4xl lg:text-6xl font-display font-extrabold text-sidebar-foreground leading-tight drop-shadow-lg">
               {t('hero.title1', locale)}
               <br />
-              <span className="text-secondary">{t('hero.title2', locale)}</span>
+              <span className="text-tertiary">{t('hero.title2', locale)}</span>
             </motion.h1>
-            <motion.p custom={2} variants={fadeUp} className="mt-6 text-lg text-primary-foreground/70 leading-relaxed max-w-lg">
+            <motion.p custom={2} variants={fadeUp} className="mt-6 text-lg text-sidebar-foreground/85 leading-relaxed max-w-lg drop-shadow">
               {t('hero.subtitle', locale)}
             </motion.p>
             <motion.div custom={3} variants={fadeUp} className="mt-10 flex flex-wrap gap-4">
-              <button className="px-8 py-3.5 rounded-2xl gradient-primary text-primary-foreground font-semibold flex items-center gap-2 hover:opacity-90 transition-opacity shadow-lg shadow-primary/30">
+              <button className="px-8 py-3.5 rounded-2xl bg-tertiary text-tertiary-foreground font-semibold flex items-center gap-2 hover:bg-tertiary/90 transition-colors shadow-lg">
                 {t('hero.cta', locale)} →
               </button>
-              <button className="px-8 py-3.5 rounded-2xl bg-primary-foreground/10 text-primary-foreground font-semibold backdrop-blur-sm hover:bg-primary-foreground/20 transition-colors">
+              <button className="px-8 py-3.5 rounded-2xl bg-sidebar-foreground/10 text-sidebar-foreground font-semibold backdrop-blur-sm hover:bg-sidebar-foreground/20 transition-colors border border-sidebar-foreground/20">
                 {t('hero.roadmap', locale)}
               </button>
             </motion.div>
