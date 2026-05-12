@@ -14,7 +14,13 @@ const sections = [
 
 export default function DesignSystemLayout() {
   const { pathname } = useLocation();
+  const { theme, setTheme } = useApp();
   const current = sections.find((s) => (s.end ? pathname === s.to : pathname.startsWith(s.to)));
+  const themes = [
+    { id: 'light' as const, icon: Sun, label: 'Claro' },
+    { id: 'dark' as const, icon: Moon, label: 'Escuro' },
+    { id: 'system' as const, icon: Monitor, label: 'Sistema' },
+  ];
 
   return (
     <div className="min-h-screen bg-background text-foreground">
