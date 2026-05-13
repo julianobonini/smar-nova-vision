@@ -1,8 +1,6 @@
 import { PagesLayout, PageSection } from './PagesLayout';
-import { Mail, Linkedin, Github, MoreVertical, UserPlus } from 'lucide-react';
-import { Avatar, AvatarFallback, AvatarImage } from '@/components/ui/avatar';
-import { Button } from '@/components/ui/button';
-import { IconButton } from '@/components/ui/buttons';
+import { Mail, Linkedin, Github } from 'lucide-react';
+import { ProfileCard } from '@/components/ui/cards';
 
 interface TeamMember {
   name: string;
@@ -32,64 +30,6 @@ const departments = ['Todos', 'Diretoria', 'Tecnologia', 'Comercial', 'Operaçõ
 function formatCount(n: number) {
   if (n >= 1000) return `${(n / 1000).toFixed(n % 1000 === 0 ? 0 : 1)}k`;
   return String(n);
-}
-
-function ProfileCard({ member }: { member: TeamMember }) {
-  const initials = member.name.split(' ').map(w => w[0]).slice(0, 2).join('');
-  return (
-    <article className="relative rounded-3xl bg-card text-card-foreground shadow-elevated overflow-hidden flex flex-col">
-      {/* Cover */}
-      <div className="relative h-32">
-        <img src={member.cover} alt="" className="w-full h-full object-cover" loading="lazy" />
-      </div>
-
-      {/* Body */}
-      <div className="relative px-6 pt-16 pb-7 flex flex-col items-center text-center">
-        {/* Avatar overlapping cover */}
-        <Avatar className="absolute -top-14 left-1/2 -translate-x-1/2 h-28 w-28 border-4 border-card shadow-elevated">
-          <AvatarImage src={member.avatar} alt={member.name} />
-          <AvatarFallback className="bg-primary/10 text-primary font-display font-bold text-xl">{initials}</AvatarFallback>
-        </Avatar>
-
-        {/* Kebab */}
-        <button
-          type="button"
-          aria-label="Mais ações"
-          className="absolute top-3 right-3 w-8 h-8 rounded-full text-muted-foreground hover:text-foreground hover:bg-muted flex items-center justify-center transition-colors"
-        >
-          <MoreVertical size={18} />
-        </button>
-
-        <h3 className="font-display font-extrabold text-xl text-foreground">{member.name}</h3>
-        <p className="text-sm text-muted-foreground mt-1">{member.role}</p>
-
-        <div className="grid grid-cols-2 gap-8 mt-5">
-          <div>
-            <p className="font-display text-3xl font-extrabold text-primary leading-none">{formatCount(member.followers)}</p>
-            <p className="text-xs text-muted-foreground mt-1.5">Seguidores</p>
-          </div>
-          <div>
-            <p className="font-display text-3xl font-extrabold text-primary leading-none">{formatCount(member.following)}</p>
-            <p className="text-xs text-muted-foreground mt-1.5">Seguindo</p>
-          </div>
-        </div>
-
-        <Button
-          className="w-full mt-6 h-12 rounded-full bg-accent text-accent-foreground hover:bg-accent/90 font-display font-bold text-base"
-        >
-          <UserPlus size={16} /> Seguir
-        </Button>
-
-        <p className="text-sm text-muted-foreground leading-relaxed mt-5">{member.bio}</p>
-
-        <div className="flex justify-center gap-1.5 mt-5 pt-5 border-t border-border/50 w-full">
-          <IconButton variant="ghost" size="sm" label="E-mail" icon={Mail} iconSize={14} />
-          <IconButton variant="ghost" size="sm" label="LinkedIn" icon={Linkedin} iconSize={14} />
-          <IconButton variant="ghost" size="sm" label="GitHub" icon={Github} iconSize={14} />
-        </div>
-      </div>
-    </article>
-  );
 }
 
 export default function TeamShowcase() {
