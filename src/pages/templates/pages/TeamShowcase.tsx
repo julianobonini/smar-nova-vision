@@ -37,49 +37,52 @@ function formatCount(n: number) {
 function ProfileCard({ member }: { member: TeamMember }) {
   const initials = member.name.split(' ').map(w => w[0]).slice(0, 2).join('');
   return (
-    <article className="group relative rounded-2xl bg-card text-card-foreground shadow-ambient overflow-hidden flex flex-col">
-      <div className="relative h-28 overflow-hidden">
+    <article className="relative rounded-3xl bg-card text-card-foreground shadow-elevated overflow-hidden flex flex-col">
+      {/* Cover */}
+      <div className="relative h-32">
         <img src={member.cover} alt="" className="w-full h-full object-cover" loading="lazy" />
-        <div className="absolute inset-0 bg-gradient-to-t from-card/40 to-transparent" />
+      </div>
+
+      {/* Body */}
+      <div className="relative px-6 pt-16 pb-7 flex flex-col items-center text-center">
+        {/* Avatar overlapping cover */}
+        <Avatar className="absolute -top-14 left-1/2 -translate-x-1/2 h-28 w-28 border-4 border-card shadow-elevated">
+          <AvatarImage src={member.avatar} alt={member.name} />
+          <AvatarFallback className="bg-primary/10 text-primary font-display font-bold text-xl">{initials}</AvatarFallback>
+        </Avatar>
+
+        {/* Kebab */}
         <button
           type="button"
           aria-label="Mais ações"
-          className="absolute top-2 right-2 w-8 h-8 rounded-full bg-card/80 backdrop-blur text-muted-foreground hover:text-foreground hover:bg-card flex items-center justify-center transition-colors"
+          className="absolute top-3 right-3 w-8 h-8 rounded-full text-muted-foreground hover:text-foreground hover:bg-muted flex items-center justify-center transition-colors"
         >
-          <MoreVertical size={16} />
+          <MoreVertical size={18} />
         </button>
-      </div>
 
-      <div className="px-5 pb-5 -mt-10 flex flex-col items-center text-center">
-        <Avatar className="h-20 w-20 border-4 border-card shadow-ambient">
-          <AvatarImage src={member.avatar} alt={member.name} />
-          <AvatarFallback className="bg-primary/10 text-primary font-display font-bold">{initials}</AvatarFallback>
-        </Avatar>
+        <h3 className="font-display font-extrabold text-xl text-foreground">{member.name}</h3>
+        <p className="text-sm text-muted-foreground mt-1">{member.role}</p>
 
-        <h3 className="font-display font-bold text-base text-foreground mt-3">{member.name}</h3>
-        <p className="text-xs text-muted-foreground mt-0.5">{member.role}</p>
-
-        <div className="grid grid-cols-2 gap-6 mt-4 w-full max-w-[220px]">
+        <div className="grid grid-cols-2 gap-8 mt-5">
           <div>
-            <p className="font-display text-xl font-bold text-primary">{formatCount(member.followers)}</p>
-            <p className="text-[11px] text-muted-foreground uppercase tracking-wide">Seguidores</p>
+            <p className="font-display text-3xl font-extrabold text-primary leading-none">{formatCount(member.followers)}</p>
+            <p className="text-xs text-muted-foreground mt-1.5">Seguidores</p>
           </div>
           <div>
-            <p className="font-display text-xl font-bold text-primary">{formatCount(member.following)}</p>
-            <p className="text-[11px] text-muted-foreground uppercase tracking-wide">Seguindo</p>
+            <p className="font-display text-3xl font-extrabold text-primary leading-none">{formatCount(member.following)}</p>
+            <p className="text-xs text-muted-foreground mt-1.5">Seguindo</p>
           </div>
         </div>
 
         <Button
-          className="w-full mt-4 rounded-full bg-tertiary text-tertiary-foreground hover:bg-tertiary/90 font-semibold"
-          size="sm"
+          className="w-full mt-6 h-12 rounded-full bg-accent text-accent-foreground hover:bg-accent/90 font-display font-bold text-base"
         >
-          <UserPlus size={14} /> Seguir
+          <UserPlus size={16} /> Seguir
         </Button>
 
-        <p className="text-xs text-muted-foreground leading-relaxed mt-4">{member.bio}</p>
+        <p className="text-sm text-muted-foreground leading-relaxed mt-5">{member.bio}</p>
 
-        <div className="flex justify-center gap-1.5 mt-4 pt-4 border-t border-border/50 w-full">
+        <div className="flex justify-center gap-1.5 mt-5 pt-5 border-t border-border/50 w-full">
           <IconButton variant="ghost" size="sm" label="E-mail" icon={Mail} iconSize={14} />
           <IconButton variant="ghost" size="sm" label="LinkedIn" icon={Linkedin} iconSize={14} />
           <IconButton variant="ghost" size="sm" label="GitHub" icon={Github} iconSize={14} />
@@ -108,21 +111,9 @@ export default function TeamShowcase() {
           </div>
         </div>
 
-        <div className="grid sm:grid-cols-2 lg:grid-cols-4 gap-4">
+        <div className="grid sm:grid-cols-2 lg:grid-cols-3 gap-6 max-w-6xl mx-auto">
           {team.map((t) => (
-            <div key={t.name} className="bg-surface-container-low rounded-2xl p-5 text-center hover:bg-surface-container-low/70 transition-colors">
-              <div className="w-20 h-20 mx-auto rounded-full bg-primary/10 text-primary flex items-center justify-center font-display text-xl font-bold">
-                {t.name.split(' ').map(w => w[0]).slice(0, 2).join('')}
-              </div>
-              <p className="font-semibold text-foreground mt-3">{t.name}</p>
-              <p className="text-xs text-primary font-semibold mt-0.5">{t.role}</p>
-              <p className="text-[11px] text-muted-foreground">{t.dept}</p>
-              <div className="flex justify-center gap-2 mt-3 text-muted-foreground">
-                <button className="w-7 h-7 rounded-lg hover:bg-surface-container hover:text-foreground flex items-center justify-center"><Mail size={12} /></button>
-                <button className="w-7 h-7 rounded-lg hover:bg-surface-container hover:text-foreground flex items-center justify-center"><Linkedin size={12} /></button>
-                <button className="w-7 h-7 rounded-lg hover:bg-surface-container hover:text-foreground flex items-center justify-center"><Github size={12} /></button>
-              </div>
-            </div>
+            <ProfileCard key={t.name} member={t} />
           ))}
         </div>
       </PageSection>
