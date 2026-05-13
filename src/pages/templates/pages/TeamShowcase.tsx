@@ -111,21 +111,9 @@ export default function TeamShowcase() {
           </div>
         </div>
 
-        <div className="grid sm:grid-cols-2 lg:grid-cols-4 gap-4">
+        <div className="grid sm:grid-cols-2 lg:grid-cols-3 gap-6 max-w-6xl mx-auto">
           {team.map((t) => (
-            <div key={t.name} className="bg-surface-container-low rounded-2xl p-5 text-center hover:bg-surface-container-low/70 transition-colors">
-              <div className="w-20 h-20 mx-auto rounded-full bg-primary/10 text-primary flex items-center justify-center font-display text-xl font-bold">
-                {t.name.split(' ').map(w => w[0]).slice(0, 2).join('')}
-              </div>
-              <p className="font-semibold text-foreground mt-3">{t.name}</p>
-              <p className="text-xs text-primary font-semibold mt-0.5">{t.role}</p>
-              <p className="text-[11px] text-muted-foreground">{t.dept}</p>
-              <div className="flex justify-center gap-2 mt-3 text-muted-foreground">
-                <button className="w-7 h-7 rounded-lg hover:bg-surface-container hover:text-foreground flex items-center justify-center"><Mail size={12} /></button>
-                <button className="w-7 h-7 rounded-lg hover:bg-surface-container hover:text-foreground flex items-center justify-center"><Linkedin size={12} /></button>
-                <button className="w-7 h-7 rounded-lg hover:bg-surface-container hover:text-foreground flex items-center justify-center"><Github size={12} /></button>
-              </div>
-            </div>
+            <ProfileCard key={t.name} member={t} />
           ))}
         </div>
       </PageSection>
