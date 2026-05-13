@@ -1,5 +1,5 @@
-import { DollarSign, Users, Package, TrendingUp } from 'lucide-react';
-import { KpiCard, AccentCard, ActivityCard } from '@/components/ui/cards';
+import { DollarSign, Users, Package, TrendingUp, Mail, Linkedin, Github } from 'lucide-react';
+import { KpiCard, AccentCard, ActivityCard, ProfileCard } from '@/components/ui/cards';
 import { Card, CardContent, CardDescription, CardFooter, CardHeader, CardTitle } from '@/components/ui/card';
 import { Button } from '@/components/ui/button';
 import { ComponentDoc, DocSection, VariantSection, PropsTable } from '../_docs';
