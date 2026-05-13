@@ -80,9 +80,9 @@ function ProfileCard({ member }: { member: TeamMember }) {
         <p className="text-xs text-muted-foreground leading-relaxed mt-4">{member.bio}</p>
 
         <div className="flex justify-center gap-1.5 mt-4 pt-4 border-t border-border/50 w-full">
-          <IconButton variant="ghost" size="sm" aria-label="E-mail" icon={<Mail size={14} />} />
-          <IconButton variant="ghost" size="sm" aria-label="LinkedIn" icon={<Linkedin size={14} />} />
-          <IconButton variant="ghost" size="sm" aria-label="GitHub" icon={<Github size={14} />} />
+          <IconButton variant="ghost" size="sm" label="E-mail" icon={Mail} iconSize={14} />
+          <IconButton variant="ghost" size="sm" label="LinkedIn" icon={Linkedin} iconSize={14} />
+          <IconButton variant="ghost" size="sm" label="GitHub" icon={Github} iconSize={14} />
         </div>
       </div>
     </article>
