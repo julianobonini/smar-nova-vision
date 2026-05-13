@@ -53,7 +53,23 @@ export default function TeamShowcase() {
 
         <div className="grid sm:grid-cols-2 lg:grid-cols-3 gap-6 max-w-6xl mx-auto">
           {team.map((t) => (
-            <ProfileCard key={t.name} member={t} />
+            <ProfileCard
+              key={t.name}
+              name={t.name}
+              role={`${t.role} · ${t.dept}`}
+              avatarUrl={t.avatar}
+              coverUrl={t.cover}
+              stats={[
+                { label: 'Seguidores', value: formatCount(t.followers) },
+                { label: 'Seguindo', value: formatCount(t.following) },
+              ]}
+              bio={t.bio}
+              socials={[
+                { key: 'mail', label: 'E-mail', icon: Mail },
+                { key: 'linkedin', label: 'LinkedIn', icon: Linkedin },
+                { key: 'github', label: 'GitHub', icon: Github },
+              ]}
+            />
           ))}
         </div>
       </PageSection>
