@@ -1,5 +1,5 @@
-import { DollarSign, Users, Package, TrendingUp } from 'lucide-react';
-import { KpiCard, AccentCard, ActivityCard } from '@/components/ui/cards';
+import { DollarSign, Users, Package, TrendingUp, Mail, Linkedin, Github } from 'lucide-react';
+import { KpiCard, AccentCard, ActivityCard, ProfileCard } from '@/components/ui/cards';
 import { Card, CardContent, CardDescription, CardFooter, CardHeader, CardTitle } from '@/components/ui/card';
 import { Button } from '@/components/ui/button';
 import { ComponentDoc, DocSection, VariantSection, PropsTable } from '../_docs';
@@ -114,6 +114,75 @@ export default function CardsPage() {
             { name: 'onFooterClick', type: '() => void', description: 'Habilita o botão de "Ver todas".' },
             { name: 'footerLabel', type: 'string', default: '"Ver todas"', description: 'Texto do footer.' },
             { name: 'emptyState', type: 'ReactNode', description: 'Conteúdo quando items=[].' },
+          ]}
+        />
+      </DocSection>
+
+      <DocSection title="ProfileCard" description="Card de perfil com cover, avatar grande sobreposto, stats, CTA e bio. Ideal para listas de usuários, equipe e colaboradores.">
+        <VariantSection
+          title="Perfil completo"
+          preview={
+            <div className="grid sm:grid-cols-2 gap-6 max-w-3xl">
+              <ProfileCard
+                name="Ana Paula Ribeiro"
+                role="CTO · Tecnologia"
+                avatarUrl="https://i.pravatar.cc/150?img=47"
+                coverUrl="https://images.unsplash.com/photo-1518770660439-4636190af475?w=600"
+                stats={[
+                  { label: 'Seguidores', value: '942' },
+                  { label: 'Seguindo', value: '188' },
+                ]}
+                bio="Arquiteta de plataformas distribuídas, apaixonada por DX e times de alta performance."
+                socials={[
+                  { key: 'mail', label: 'E-mail', icon: Mail },
+                  { key: 'linkedin', label: 'LinkedIn', icon: Linkedin },
+                  { key: 'github', label: 'GitHub', icon: Github },
+                ]}
+              />
+              <ProfileCard
+                name="Carlos Mendes"
+                role="CEO & Fundador"
+                coverUrl="https://images.unsplash.com/photo-1503387762-592deb58ef4e?w=600"
+                stats={[
+                  { label: 'Projetos', value: '34' },
+                  { label: 'Times', value: '8' },
+                  { label: 'Anos', value: '12' },
+                ]}
+                actionLabel="Mensagem"
+                bio="Lidera a SmarNet há 12 anos com foco em inovação industrial e cultura de pessoas."
+              />
+            </div>
+          }
+          code={`<ProfileCard
+  name="Ana Paula Ribeiro"
+  role="CTO · Tecnologia"
+  avatarUrl="https://..."
+  coverUrl="https://..."
+  stats={[
+    { label: 'Seguidores', value: '942' },
+    { label: 'Seguindo', value: '188' },
+  ]}
+  bio="..."
+  socials={[
+    { key: 'mail', label: 'E-mail', icon: Mail },
+  ]}
+/>`}
+        />
+        <PropsTable
+          rows={[
+            { name: 'name', type: 'string', required: true, description: 'Nome exibido em destaque.' },
+            { name: 'role', type: 'string', required: true, description: 'Cargo / função (subtítulo).' },
+            { name: 'avatarUrl', type: 'string', description: 'URL da foto. Sem ela, mostra iniciais.' },
+            { name: 'coverUrl', type: 'string', description: 'URL da imagem de capa.' },
+            { name: 'initials', type: 'string', description: 'Iniciais customizadas (default: derivado do nome).' },
+            { name: 'stats', type: 'ProfileCardStat[]', description: 'Até 3 métricas {label, value}.' },
+            { name: 'bio', type: 'string', description: 'Texto descritivo.' },
+            { name: 'actionLabel', type: 'string', default: '"Seguir"', description: 'Rótulo do CTA.' },
+            { name: 'onAction', type: '() => void', description: 'Handler do CTA.' },
+            { name: 'hideAction', type: 'boolean', default: 'false', description: 'Esconde o CTA.' },
+            { name: 'socials', type: 'ProfileCardSocial[]', description: 'Ícones sociais no rodapé.' },
+            { name: 'onMenu', type: '() => void', description: 'Handler do botão kebab.' },
+            { name: 'hideMenu', type: 'boolean', default: 'false', description: 'Esconde o kebab.' },
           ]}
         />
       </DocSection>
