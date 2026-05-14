@@ -82,8 +82,9 @@ export default function FullCalendarShowcase() {
 
   return (
     <AppsLayout title="Full Calendar" description="Componente de calendário interativo com eventos, múltiplas visualizações e suporte a marcações de múltiplos dias.">
-      <ShowcaseSection title="Calendário Completo" description="Eventos podem ocupar um único dia ou se estender por vários dias, exibidos como barras contínuas.">
+      <ShowcaseSection title="Calendário Completo">
         <div className="space-y-4">
+          <p className="text-sm text-muted-foreground">Eventos podem ocupar um único dia ou se estender por vários dias, exibidos como barras contínuas.</p>
           {/* Toolbar */}
           <div className="flex items-center justify-between flex-wrap gap-3">
             <div className="flex items-center gap-2">
