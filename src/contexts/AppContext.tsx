@@ -24,11 +24,25 @@ interface AppContextType {
 const AppContext = createContext<AppContextType | undefined>(undefined);
 
 const THEME_KEY = 'smarnet:theme';
+const USER_KEY = 'smarnet:user';
 
 function readStoredTheme(): Theme {
   if (typeof window === 'undefined') return 'light';
   const v = window.localStorage.getItem(THEME_KEY);
   return v === 'dark' || v === 'light' || v === 'system' ? v : 'light';
+}
+
+function readStoredUser(): User | null {
+  if (typeof window === 'undefined') return null;
+  try {
+    const raw = window.localStorage.getItem(USER_KEY);
+    if (!raw) return null;
+    const parsed = JSON.parse(raw);
+    if (parsed && typeof parsed.email === 'string') return parsed as User;
+  } catch {
+    // ignore
+  }
+  return null;
 }
 
 function applyTheme(theme: Theme) {
