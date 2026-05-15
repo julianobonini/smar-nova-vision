@@ -24,11 +24,25 @@ interface AppContextType {
 const AppContext = createContext<AppContextType | undefined>(undefined);
 
 const THEME_KEY = 'smarnet:theme';
+const USER_KEY = 'smarnet:user';
 
 function readStoredTheme(): Theme {
   if (typeof window === 'undefined') return 'light';
   const v = window.localStorage.getItem(THEME_KEY);
   return v === 'dark' || v === 'light' || v === 'system' ? v : 'light';
+}
+
+function readStoredUser(): User | null {
+  if (typeof window === 'undefined') return null;
+  try {
+    const raw = window.localStorage.getItem(USER_KEY);
+    if (!raw) return null;
+    const parsed = JSON.parse(raw);
+    if (parsed && typeof parsed.email === 'string') return parsed as User;
+  } catch {
+    // ignore
+  }
+  return null;
 }
 
 function applyTheme(theme: Theme) {
@@ -47,7 +61,17 @@ function applyTheme(theme: Theme) {
 export function AppProvider({ children }: { children: ReactNode }) {
   const [locale, setLocale] = useState<Locale>('pt-BR');
   const [theme, setThemeState] = useState<Theme>(() => readStoredTheme());
-  const [user, setUser] = useState<User | null>(null);
+  const [user, setUserState] = useState<User | null>(() => readStoredUser());
+
+  const setUser = (u: User | null) => {
+    setUserState(u);
+    try {
+      if (u) window.localStorage.setItem(USER_KEY, JSON.stringify(u));
+      else window.localStorage.removeItem(USER_KEY);
+    } catch {
+      // ignore
+    }
+  };
 
   const setTheme = (t: Theme) => {
     setThemeState(t);
