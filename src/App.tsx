@@ -480,6 +480,7 @@ function AppRoutes() {
         <Route path="templates/apps/fullcalendar" element={<LazyRoute><FullCalendarShowcase /></LazyRoute>} />
         <Route path="templates/apps/gallery" element={<LazyRoute><GalleryShowcase /></LazyRoute>} />
         <Route path="templates/apps/sweetalerts" element={<LazyRoute><SweetAlertsShowcase /></LazyRoute>} />
+        <Route path="templates/apps/webmail" element={<LazyRoute><WebmailShowcase /></LazyRoute>} />
         <Route path="templates/apps/projects/list" element={<LazyRoute><ProjectsListShowcase /></LazyRoute>} />
         <Route path="templates/apps/projects/overview" element={<LazyRoute><ProjectsOverviewShowcase /></LazyRoute>} />
         <Route path="templates/apps/projects/create" element={<LazyRoute><ProjectsCreateShowcase /></LazyRoute>} />
