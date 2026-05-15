@@ -108,6 +108,7 @@ const LucideIconsShowcase = lazy(() => import("./pages/templates/icons/LucideIco
 const FullCalendarShowcase = lazy(() => import("./pages/templates/apps/FullCalendarShowcase"));
 const GalleryShowcase = lazy(() => import("./pages/templates/apps/GalleryShowcase"));
 const SweetAlertsShowcase = lazy(() => import("./pages/templates/apps/SweetAlertsShowcase"));
+const WebmailShowcase = lazy(() => import("./pages/templates/apps/WebmailShowcase"));
 const ProjectsListShowcase = lazy(() => import("./pages/templates/apps/ProjectsListShowcase"));
 const ProjectsOverviewShowcase = lazy(() => import("./pages/templates/apps/ProjectsOverviewShowcase"));
 const ProjectsCreateShowcase = lazy(() => import("./pages/templates/apps/ProjectsCreateShowcase"));
