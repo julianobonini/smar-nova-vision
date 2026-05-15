@@ -301,6 +301,7 @@ export const templateMenuGroups: TemplateMenuGroup[] = [
           { label: 'Full Calendar', path: '/app/templates/apps/fullcalendar' },
           { label: 'Gallery', path: '/app/templates/apps/gallery' },
           { label: 'Sweet Alerts', path: '/app/templates/apps/sweetalerts' },
+          { label: 'Webmail', path: '/app/templates/apps/webmail' },
           {
             label: 'Projects',
             badge: 'New',
