@@ -61,7 +61,17 @@ function applyTheme(theme: Theme) {
 export function AppProvider({ children }: { children: ReactNode }) {
   const [locale, setLocale] = useState<Locale>('pt-BR');
   const [theme, setThemeState] = useState<Theme>(() => readStoredTheme());
-  const [user, setUser] = useState<User | null>(null);
+  const [user, setUserState] = useState<User | null>(() => readStoredUser());
+
+  const setUser = (u: User | null) => {
+    setUserState(u);
+    try {
+      if (u) window.localStorage.setItem(USER_KEY, JSON.stringify(u));
+      else window.localStorage.removeItem(USER_KEY);
+    } catch {
+      // ignore
+    }
+  };
 
   const setTheme = (t: Theme) => {
     setThemeState(t);
