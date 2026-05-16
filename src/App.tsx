@@ -286,6 +286,21 @@ const DSPatterns = lazy(() => import("./pages/design-system/PatternsPage"));
 const DSDashboards = lazy(() => import("./pages/design-system/DashboardsPage"));
 const DSTemplates = lazy(() => import("./pages/design-system/TemplateElementsPage"));
 
+// Portal da Transparência
+const PortalLayout = lazy(() => import("./pages/portal/PortalLayout"));
+const PortalHome = lazy(() => import("./pages/portal/PortalHome"));
+const PortalNoticia = lazy(() => import("./pages/portal/NoticiaPage"));
+const PortalGrupo = lazy(() => import("./pages/portal/GrupoPage"));
+const PortalMenuDinamico = lazy(() => import("./pages/portal/MenuDinamicoPage"));
+const PortalAdminLayout = lazy(() => import("./pages/portal/admin/PortalAdminLayout"));
+const PortalAdminDashboard = lazy(() => import("./pages/portal/admin/AdminDashboard"));
+const PortalNoticiasList = lazy(() => import("./pages/portal/admin/NoticiasList"));
+const PortalNoticiaForm = lazy(() => import("./pages/portal/admin/NoticiaForm"));
+const PortalMenusList = lazy(() => import("./pages/portal/admin/MenusList"));
+const PortalMenuForm = lazy(() => import("./pages/portal/admin/MenuForm"));
+const PortalGruposList = lazy(() => import("./pages/portal/admin/GruposList"));
+const PortalGrupoForm = lazy(() => import("./pages/portal/admin/GrupoForm"));
+
 const queryClient = new QueryClient();
 
 const LazyFallback = () => (
@@ -610,6 +625,28 @@ function AppRoutes() {
         <Route path="integracoes" element={<LazyRoute><SystemAdmin /></LazyRoute>} />
         <Route path="notificacoes" element={<LazyRoute><SystemAdmin /></LazyRoute>} />
         <Route path="logs" element={<LazyRoute><SettingsOverview /></LazyRoute>} />
+      </Route>
+
+      {/* Portal da Transparência — Admin (rotas mais específicas primeiro) */}
+      <Route path="/portal/admin" element={<LazyRoute><PortalAdminLayout /></LazyRoute>}>
+        <Route index element={<LazyRoute><PortalAdminDashboard /></LazyRoute>} />
+        <Route path="menus" element={<LazyRoute><PortalMenusList /></LazyRoute>} />
+        <Route path="menus/novo" element={<LazyRoute><PortalMenuForm /></LazyRoute>} />
+        <Route path="menus/:id" element={<LazyRoute><PortalMenuForm /></LazyRoute>} />
+        <Route path="grupos" element={<LazyRoute><PortalGruposList /></LazyRoute>} />
+        <Route path="grupos/novo" element={<LazyRoute><PortalGrupoForm /></LazyRoute>} />
+        <Route path="grupos/:id" element={<LazyRoute><PortalGrupoForm /></LazyRoute>} />
+        <Route path="noticias" element={<LazyRoute><PortalNoticiasList /></LazyRoute>} />
+        <Route path="noticias/nova" element={<LazyRoute><PortalNoticiaForm /></LazyRoute>} />
+        <Route path="noticias/:id" element={<LazyRoute><PortalNoticiaForm /></LazyRoute>} />
+      </Route>
+
+      {/* Portal da Transparência — Público */}
+      <Route path="/portal" element={<LazyRoute><PortalLayout /></LazyRoute>}>
+        <Route index element={<LazyRoute><PortalHome /></LazyRoute>} />
+        <Route path="noticias/:slug" element={<LazyRoute><PortalNoticia /></LazyRoute>} />
+        <Route path="grupo/:slug" element={<LazyRoute><PortalGrupo /></LazyRoute>} />
+        <Route path=":menuSlug" element={<LazyRoute><PortalMenuDinamico /></LazyRoute>} />
       </Route>
 
       <Route path="*" element={<NotFound />} />
