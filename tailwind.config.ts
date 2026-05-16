@@ -97,6 +97,12 @@ export default {
           border: "hsl(var(--sidebar-border))",
           ring: "hsl(var(--sidebar-ring))",
         },
+        portal: {
+          bg: "#0A0E1A",
+          fg: "#E6EAF2",
+          primary: "#0F4C81",
+          gold: "#C8922A",
+        },
       },
       borderRadius: {
         "3xl": "1.5rem",
@@ -123,12 +129,17 @@ export default {
           from: { opacity: "0", transform: "translateX(-8px)" },
           to: { opacity: "1", transform: "translateX(0)" },
         },
+        "portal-scroll": {
+          "0%": { transform: "translateY(0%)" },
+          "100%": { transform: "translateY(-50%)" },
+        },
       },
       animation: {
         "accordion-down": "accordion-down 0.2s ease-out",
         "accordion-up": "accordion-up 0.2s ease-out",
         "fade-in": "fade-in 0.5s ease-out",
         "slide-in": "slide-in 0.4s ease-out",
+        "portal-scroll": "portal-scroll 40s linear infinite",
       },
     },
   },
