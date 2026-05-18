@@ -11,12 +11,45 @@ export const mockGrupos: GrupoNoticias[] = [
 ];
 
 export const mockMenus: Menu[] = [
-  { id: 'm1', label: 'Institucional', slug: 'institucional', ordem: 1, ativo: true, tipo: 'vazio' },
-  { id: 'm2', label: 'Comunicados', slug: 'comunicados', ordem: 2, ativo: true, tipo: 'grupo', grupoNoticiaId: 'g1' },
-  { id: 'm3', label: 'Obras', slug: 'obras', ordem: 3, ativo: true, tipo: 'grupo', grupoNoticiaId: 'g2' },
-  { id: 'm4', label: 'Sustentabilidade', slug: 'sustentabilidade', ordem: 4, ativo: true, tipo: 'grupo', grupoNoticiaId: 'g3' },
-  { id: 'm5', label: 'Indicadores', slug: 'indicadores', ordem: 5, ativo: true, tipo: 'url', urlExterna: 'https://exemplo.com.br/indicadores' },
-  { id: 'm6', label: 'Contato', slug: 'contato', ordem: 6, ativo: true, tipo: 'vazio', menuPaiId: 'm1' },
+  // Raízes
+  { id: 'm-portal',    label: 'O PORTAL',           slug: 'o-portal',           ordem: 1, ativo: true, tipo: 'vazio' },
+  { id: 'm-smar',      label: 'A SMAR',             slug: 'a-smar',             ordem: 2, ativo: true, tipo: 'vazio' },
+  { id: 'm-qual',      label: 'QUALIDADE',          slug: 'qualidade',          ordem: 3, ativo: true, tipo: 'vazio' },
+  { id: 'm-rh',        label: 'RECURSOS HUMANOS',   slug: 'recursos-humanos',   ordem: 4, ativo: true, tipo: 'vazio' },
+  { id: 'm-contas',    label: 'PRESTAÇÃO DE CONTAS',slug: 'prestacao-de-contas',ordem: 5, ativo: true, tipo: 'vazio' },
+  { id: 'm-saiba',     label: 'SAIBA MAIS',         slug: 'saiba-mais',         ordem: 6, ativo: true, tipo: 'vazio' },
+  { id: 'm-gov',       label: 'GOVERNANÇA',         slug: 'governanca',         ordem: 7, ativo: true, tipo: 'vazio' },
+
+  // QUALIDADE
+  { id: 'm-qual-1', label: 'Índices',                       slug: 'indices',                       ordem: 1, ativo: true, tipo: 'vazio', menuPaiId: 'm-qual' },
+  { id: 'm-qual-2', label: 'Treinamento Qualidade',         slug: 'treinamento-qualidade',         ordem: 2, ativo: true, tipo: 'vazio', menuPaiId: 'm-qual' },
+  { id: 'm-qual-3', label: 'Tratamento de não Conformidade',slug: 'tratamento-nao-conformidade',   ordem: 3, ativo: true, tipo: 'vazio', menuPaiId: 'm-qual' },
+
+  // RECURSOS HUMANOS
+  { id: 'm-rh-1', label: 'Moderador',       slug: 'moderador',       ordem: 1, ativo: true, tipo: 'vazio', menuPaiId: 'm-rh' },
+  { id: 'm-rh-2', label: 'Treinamento',     slug: 'treinamento-rh',  ordem: 2, ativo: true, tipo: 'vazio', menuPaiId: 'm-rh' },
+  { id: 'm-rh-3', label: 'Políticas de RH', slug: 'politicas-rh',    ordem: 3, ativo: true, tipo: 'vazio', menuPaiId: 'm-rh' },
+  { id: 'm-rh-4', label: 'Procedimentos',   slug: 'procedimentos-rh',ordem: 4, ativo: true, tipo: 'vazio', menuPaiId: 'm-rh' },
+  { id: 'm-rh-5', label: 'CIPA',            slug: 'cipa',            ordem: 5, ativo: true, tipo: 'vazio', menuPaiId: 'm-rh' },
+
+  // PRESTAÇÃO DE CONTAS
+  { id: 'm-contas-1', label: 'Mensagem da Gestão',         slug: 'mensagem-da-gestao',         ordem: 1, ativo: true, tipo: 'vazio', menuPaiId: 'm-contas' },
+  { id: 'm-contas-2', label: 'Reunião Semanal de Gestão',  slug: 'reuniao-semanal-de-gestao',  ordem: 2, ativo: true, tipo: 'vazio', menuPaiId: 'm-contas' },
+
+  // SAIBA MAIS
+  { id: 'm-saiba-1', label: 'Boas Vindas',            slug: 'boas-vindas',            ordem: 1, ativo: true, tipo: 'vazio', menuPaiId: 'm-saiba' },
+  { id: 'm-saiba-2', label: 'FAQ',                    slug: 'faq',                    ordem: 2, ativo: true, tipo: 'vazio', menuPaiId: 'm-saiba' },
+  { id: 'm-saiba-3', label: 'Aconteceu',              slug: 'aconteceu',              ordem: 3, ativo: true, tipo: 'vazio', menuPaiId: 'm-saiba' },
+  { id: 'm-saiba-4', label: 'Eventos',                slug: 'eventos',                ordem: 4, ativo: true, tipo: 'vazio', menuPaiId: 'm-saiba' },
+  { id: 'm-saiba-5', label: 'Comentários / Sugestões',slug: 'comentarios-sugestoes',  ordem: 5, ativo: true, tipo: 'vazio', menuPaiId: 'm-saiba' },
+  { id: 'm-saiba-6', label: 'Acesso a internet',      slug: 'acesso-internet',        ordem: 6, ativo: true, tipo: 'vazio', menuPaiId: 'm-saiba' },
+
+  // GOVERNANÇA
+  { id: 'm-gov-1', label: 'Canal de Soluções',         slug: 'canal-de-solucoes',         ordem: 1, ativo: true, tipo: 'vazio', menuPaiId: 'm-gov' },
+  { id: 'm-gov-2', label: 'Código de Ética e Conduta', slug: 'codigo-de-etica-e-conduta', ordem: 2, ativo: true, tipo: 'vazio', menuPaiId: 'm-gov' },
+  { id: 'm-gov-3', label: 'Company Profile',           slug: 'company-profile',           ordem: 3, ativo: true, tipo: 'vazio', menuPaiId: 'm-gov' },
+  { id: 'm-gov-4', label: 'ESG',                       slug: 'esg',                       ordem: 4, ativo: true, tipo: 'vazio', menuPaiId: 'm-gov' },
+  { id: 'm-gov-5', label: 'Programa de Integridade',   slug: 'programa-de-integridade',   ordem: 5, ativo: true, tipo: 'vazio', menuPaiId: 'm-gov' },
 ];
 
 const img = (id: number) =>
