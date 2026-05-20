@@ -98,7 +98,8 @@ export function TopNav() {
             </button>
             {openMenu === 'profile' && (
               <div className="absolute right-0 top-full mt-1 bg-background rounded-xl shadow-ambient-lg py-2 min-w-[180px]">
-                <button className="w-full text-left px-4 py-2.5 text-sm flex items-center gap-3 hover:bg-surface-container-low transition-colors text-foreground">
+                <button onClick={() => { navigate('/app/profile'); close(); }}
+                  className="w-full text-left px-4 py-2.5 text-sm flex items-center gap-3 hover:bg-surface-container-low transition-colors text-foreground">
                   <User size={16} className="text-muted-foreground" /> {t('nav.profile', locale)}
                 </button>
                 <button className="w-full text-left px-4 py-2.5 text-sm flex items-center gap-3 hover:bg-surface-container-low transition-colors text-foreground">
