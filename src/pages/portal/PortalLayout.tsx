@@ -139,7 +139,7 @@ export default function PortalLayout() {
   return (
     <div className="h-screen overflow-hidden bg-[#0A0E1A] text-portal-fg flex flex-col">
       {/* Main bar */}
-      <header className="h-16 shrink-0 bg-[#0A0E1A] border-b border-white/10 px-4 flex items-stretch gap-1 sticky top-0 z-50">
+      <header className="h-16 shrink-0 bg-[#0A0E1A] border-b border-white/10 px-4 flex items-center gap-1 sticky top-0 z-50">
         {/* Home icon */}
         <Link
           to="/portal"
@@ -152,7 +152,7 @@ export default function PortalLayout() {
           <Home className="w-6 h-6" />
         </Link>
 
-        <nav className="flex-1 flex items-stretch overflow-x-auto no-scrollbar">
+        <nav className="flex-1 flex items-center overflow-x-auto no-scrollbar">
           {roots.map((m) => {
             const children = childrenByParent[m.id] ?? [];
             const href = hrefFor(m);
