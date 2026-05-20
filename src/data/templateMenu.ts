@@ -92,6 +92,8 @@ export const templateMenuGroups: TemplateMenuGroup[] = [
               { label: 'Mail App', path: '/app/templates/pages/email/mailapp' },
               { label: 'Mail Editor', path: '/app/templates/pages/email/maileditor' },
               { label: 'Mail Settings', path: '/app/templates/pages/email/mailsettings' },
+              { label: 'E-mail Interno', path: '/app/templates/pages/email/interno' },
+              { label: 'E-mail Externo', path: '/app/templates/pages/email/externo' },
             ],
           },
           { label: 'Empty', path: '/app/templates/pages/empty' },
