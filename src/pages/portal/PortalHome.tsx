@@ -139,8 +139,13 @@ export default function PortalHome() {
           <p className="text-sm text-white/50">Atualização em tempo real</p>
         </div>
         <div className="relative flex-1 overflow-hidden group">
-          <div className="absolute inset-x-0 top-0 animate-portal-scroll group-hover:[animation-play-state:paused]">
-            {[...recentes, ...recentes].map((n, i) => (
+          <div
+            className={cn(
+              'absolute inset-x-0 top-0',
+              recentes.length >= 5 && 'animate-portal-scroll group-hover:[animation-play-state:paused]',
+            )}
+          >
+            {(recentes.length >= 5 ? [...recentes, ...recentes] : recentes).map((n, i) => (
               <Link
                 key={`${n.id}-${i}`}
                 to={`/portal/noticias/${n.slug}`}
