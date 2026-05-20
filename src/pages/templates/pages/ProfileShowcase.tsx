@@ -1,3 +1,4 @@
+import { useNavigate } from 'react-router-dom';
 import { PagesLayout, PageSection } from './PagesLayout';
 import {
   Mail, Phone, MapPin, Calendar, Briefcase, Edit, Camera, Building2,
