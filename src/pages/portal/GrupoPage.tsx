@@ -47,6 +47,7 @@ export default function GrupoPage() {
           </Link>
         ))}
       </div>
+      </div>
     </div>
   );
 }
