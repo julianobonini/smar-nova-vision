@@ -128,7 +128,7 @@ function MenuItem({
           <button
             type="button"
             onClick={onClose}
-            className="mt-1 w-[calc(100%-1rem)] mx-2 flex items-center justify-center gap-2 px-5 py-2.5 text-xs uppercase tracking-wider text-white/80 hover:text-white bg-white/5 hover:bg-white/10 rounded border border-white/10 transition-colors"
+            className="mt-1 w-full flex items-center justify-center gap-2 px-5 py-2.5 text-xs uppercase tracking-wider text-white/70 hover:text-white hover:bg-white/5 transition-colors"
           >
             <X className="w-3.5 h-3.5" /> Sair
           </button>
