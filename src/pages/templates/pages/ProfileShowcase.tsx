@@ -89,7 +89,7 @@ export default function ProfileShowcase() {
               <button className="flex items-center justify-center gap-2 px-4 h-9 rounded-lg bg-muted text-foreground text-xs font-semibold hover:bg-muted/80">
                 <MessageSquare size={13} /> Mensagem
               </button>
-              <button className="flex items-center justify-center gap-2 px-4 h-9 rounded-lg bg-primary text-primary-foreground text-xs font-semibold hover:bg-primary/90 shadow-sm">
+              <button onClick={() => navigate('/app/profile/edit')} className="flex items-center justify-center gap-2 px-4 h-9 rounded-lg bg-primary text-primary-foreground text-xs font-semibold hover:bg-primary/90 shadow-sm">
                 <Edit size={13} /> Editar perfil
               </button>
             </div>
