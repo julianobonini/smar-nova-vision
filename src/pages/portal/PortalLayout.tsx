@@ -194,7 +194,7 @@ export default function PortalLayout() {
                     const ch = hrefFor(c);
                     const isExt = c.tipo === 'url';
                     const cls =
-                      'inline-flex items-center px-6 py-3 rounded-full bg-[#0F4C81] text-white text-sm font-semibold uppercase tracking-wide hover:bg-[#1565a8] shadow-lg transition-colors whitespace-nowrap';
+                      'inline-flex items-center justify-center px-10 py-5 rounded-full bg-[#0F4C81] text-white text-lg font-semibold uppercase tracking-wide hover:bg-[#1565a8] shadow-lg transition-colors whitespace-nowrap';
                     return isExt ? (
                       <a
                         key={c.id}
@@ -220,7 +220,7 @@ export default function PortalLayout() {
                 <button
                   type="button"
                   onClick={() => setOpenMenuId(null)}
-                  className="inline-flex items-center gap-2 px-6 py-3 rounded-full bg-white/10 text-white text-sm font-semibold uppercase tracking-wide hover:bg-white/20 transition-colors"
+                  className="inline-flex items-center justify-center gap-2 px-10 py-5 rounded-full bg-white/10 text-white text-lg font-semibold uppercase tracking-wide hover:bg-white/20 transition-colors"
                 >
                   <X className="w-4 h-4" /> Sair
                 </button>
