@@ -8,6 +8,7 @@ export interface InternalEmailData {
   subject: string;        // "PO P2026/010 · SO 2026/01731"
   intro: string;
   fields: { label: string; value: string }[];
+  detailsLabel?: string;  // override "Created by"
   detailsTitle?: string;
   detailsLines?: string[];
   detailsEmail?: string;
@@ -172,9 +173,9 @@ export function renderInternalEmail(d: InternalEmailData = internalEmailSample, 
                 ? `<tr><td style="padding:24px 36px 0 36px;" class="px">
                     <table role="presentation" width="100%" cellpadding="0" cellspacing="0" border="0" class="meta-box" style="background:#f8fafc;border-radius:12px;">
                       <tr><td style="padding:14px 18px;">
-                        <div class="muted" style="font-size:10px;letter-spacing:0.16em;text-transform:uppercase;color:#94a3b8;font-weight:700;margin-bottom:6px;">Created by</div>
-                        <div class="text" style="font-size:14px;font-weight:700;color:#0f172a;">${d.detailsTitle}</div>
-                        ${(d.detailsLines || []).map((l) => `<div class="muted" style="font-size:13px;color:#64748b;">${l}</div>`).join('')}
+                        <div class="muted" style="font-size:10px;letter-spacing:0.16em;text-transform:uppercase;color:#94a3b8;font-weight:700;margin-bottom:6px;">${d.detailsLabel || 'Created by'}</div>
+                        ${d.detailsLabel ? '' : `<div class="text" style="font-size:14px;font-weight:700;color:#0f172a;">${d.detailsTitle}</div>`}
+                        ${(d.detailsLines || []).map((l) => `<div class="muted" style="font-size:13px;color:#475569;line-height:1.6;">${l}</div>`).join('')}
                         ${d.detailsEmail ? `<div style="font-size:13px;margin-top:4px;"><a href="mailto:${d.detailsEmail}" class="link" style="color:#1d4ed8;">${d.detailsEmail}</a></div>` : ''}
                       </td></tr>
                     </table>
