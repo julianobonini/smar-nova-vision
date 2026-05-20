@@ -8,6 +8,7 @@ export interface InternalEmailData {
   subject: string;        // "PO P2026/010 · SO 2026/01731"
   intro: string;
   fields: { label: string; value: string }[];
+  detailsLabel?: string;  // override "Created by"
   detailsTitle?: string;
   detailsLines?: string[];
   detailsEmail?: string;
@@ -40,6 +41,36 @@ export const internalEmailSample: InternalEmailData = {
   closing: 'Best regards,',
   signatureName: 'Inside Sales',
   ctaLabel: 'Open in SmarNet',
+  ctaUrl: '#',
+};
+
+// Variante com bloco de DETALHES em destaque (equivalente ao card lateral do sistema legado)
+export const internalEmailWithDetailsSample: InternalEmailData = {
+  recipientName: 'Equipe de Assistência Técnica',
+  date: '18 de maio de 2026',
+  category: 'Ordem de Serviço',
+  subject: 'O.S. 2026/02154 · VIRALCOOL · Moderado',
+  intro:
+    'A data de retorno desta O.S. foi alterada para 25/05/2026. Confira os detalhes ao lado e atualize seu planejamento.',
+  fields: [
+    { label: 'Moderado por', value: 'Carlos Vinicius Toniollo Moi' },
+    { label: 'Recebido AC', value: 'Miriam Beatriz Torres Luiz (18/05/2026)' },
+    { label: 'Moderado EA', value: 'Carlos Vinicius Toniollo Moi (18/05/2026)' },
+    { label: 'Elaborado EA', value: 'Abenoel de Oliveira Polli' },
+    { label: 'Notas', value: '—' },
+  ],
+  detailsLabel: 'DETALHES',
+  detailsTitle: 'DETALHES',
+  detailsLines: [
+    'O.S.: 2026/02154-1',
+    'Cliente: VIRALCOOL AÇÚCAR E ÁLCOOL LTDA.',
+    'Solicitante: Miriam Beatriz Torres Luiz',
+    'Data Solicitação: 18/05/2026',
+    'Data Retorno: 25/05/2026',
+  ],
+  closing: 'Atenciosamente,',
+  signatureName: 'SmarNet · Assistência Técnica',
+  ctaLabel: 'Abrir O.S. no SmarNet',
   ctaUrl: '#',
 };
 
@@ -143,9 +174,9 @@ export function renderInternalEmail(d: InternalEmailData = internalEmailSample, 
                 ? `<tr><td style="padding:24px 36px 0 36px;" class="px">
                     <table role="presentation" width="100%" cellpadding="0" cellspacing="0" border="0" class="meta-box" style="background:#f8fafc;border-radius:12px;">
                       <tr><td style="padding:14px 18px;">
-                        <div class="muted" style="font-size:10px;letter-spacing:0.16em;text-transform:uppercase;color:#94a3b8;font-weight:700;margin-bottom:6px;">Created by</div>
-                        <div class="text" style="font-size:14px;font-weight:700;color:#0f172a;">${d.detailsTitle}</div>
-                        ${(d.detailsLines || []).map((l) => `<div class="muted" style="font-size:13px;color:#64748b;">${l}</div>`).join('')}
+                        <div class="muted" style="font-size:10px;letter-spacing:0.16em;text-transform:uppercase;color:#94a3b8;font-weight:700;margin-bottom:6px;">${d.detailsLabel || 'Created by'}</div>
+                        ${d.detailsLabel ? '' : `<div class="text" style="font-size:14px;font-weight:700;color:#0f172a;">${d.detailsTitle}</div>`}
+                        ${(d.detailsLines || []).map((l) => `<div class="muted" style="font-size:13px;color:#475569;line-height:1.6;">${l}</div>`).join('')}
                         ${d.detailsEmail ? `<div style="font-size:13px;margin-top:4px;"><a href="mailto:${d.detailsEmail}" class="link" style="color:#1d4ed8;">${d.detailsEmail}</a></div>` : ''}
                       </td></tr>
                     </table>

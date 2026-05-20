@@ -57,6 +57,43 @@ export const externalEmailSample: ExternalEmailData = {
   copyright: '© 2026 Nova Smar S/A · Smar Technology Company',
 };
 
+// Variante com bloco de DESTAQUE evidenciado (ex.: alteração de prazo / aviso crítico ao cliente)
+export const externalEmailWithHighlightSample: ExternalEmailData = {
+  preheader: 'Alteração de prazo do seu pedido junto à Smar Technology Company',
+  date: '20 de maio de 2026',
+  category: 'Atualização de pedido',
+  title: 'Nova data de entrega do pedido nº 4103884358',
+  greeting: 'Prezado Sr. Edson Rodrigues,',
+  intro:
+    'Informamos uma atualização importante sobre o prazo do seu pedido. Pedimos a gentileza de revisar o novo cronograma destacado abaixo.',
+  highlightLabel: 'Nova data de entrega',
+  highlightValue: '25/06/2026  ·  +6 dias úteis',
+  fields: [
+    { label: 'Cliente', value: 'BUNGE ALIMENTOS S.A.' },
+    { label: 'Contato', value: 'Sr. Edson Rodrigues' },
+    { label: 'Pedido', value: '4103884358' },
+    { label: 'Nossa O.S.', value: '2026/02098' },
+    { label: 'Prazo anterior', value: '19/06/2026' },
+    { label: 'Motivo', value: 'Reprogramação de produção' },
+    { label: 'Valor (sem impostos)', value: 'R$ 11.542,68' },
+  ],
+  body:
+    'Caso a nova data não atenda à sua operação, fale com seu consultor de Pós-Venda. Reiteramos nosso compromisso com a qualidade e o atendimento que você espera da Smar.',
+  closing: 'Atenciosamente,',
+  signatureName: 'Fernando Jose Campos Anselmo',
+  signatureRole: 'Pós-Venda · Smar Technology Company',
+  ctaLabel: 'Confirmar nova data',
+  ctaUrl: '#',
+  contacts: [
+    { dept: 'Comercial', phone: '+55 16 3946-3599', email: 'orcamento@smar.com.br' },
+    { dept: 'Pós-venda', phone: '+55 16 3946-3599', email: 'pedido@smar.com.br' },
+    { dept: 'Compras', phone: '+55 16 3946-3599', email: 'divisaodecompras@smar.com.br' },
+    { dept: 'Assistência Técnica', phone: '+55 16 3946-3509', email: 'assistencia.tecnica@smar.com.br' },
+  ],
+  address: 'Rua Dr. Antônio Furlan Junior, 1028 · Sertãozinho/SP · 14.170-480 · Brasil',
+  copyright: '© 2026 Nova Smar S/A · Smar Technology Company',
+};
+
 export function renderExternalEmail(d: ExternalEmailData = externalEmailSample, origin = ''): string {
   const fieldsHtml = d.fields
     .map(
