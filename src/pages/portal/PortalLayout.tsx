@@ -99,41 +99,6 @@ function MenuItem({
           {content}
         </Link>
       )}
-      {hasChildren && open && (
-        <div className="absolute left-0 top-full min-w-[280px] bg-transparent z-50 py-1 animate-fade-in">
-          {children
-            .sort((a, b) => a.ordem - b.ordem)
-            .map((c) => {
-              const ch = hrefFor(c);
-              const isExt = c.tipo === 'url';
-              const cls =
-                'block px-5 py-3 min-h-12 text-sm font-medium text-white/90 hover:bg-[#0F4C81] hover:text-white transition-colors';
-              return isExt ? (
-                <a
-                  key={c.id}
-                  href={ch}
-                  target="_blank"
-                  rel="noreferrer"
-                  className={cls}
-                  onClick={onClose}
-                >
-                  {c.label}
-                </a>
-              ) : (
-                <Link key={c.id} to={ch} className={cls} onClick={onClose}>
-                  {c.label}
-                </Link>
-              );
-            })}
-          <button
-            type="button"
-            onClick={onClose}
-            className="mt-1 w-full flex items-center justify-center gap-2 px-5 py-2.5 text-xs uppercase tracking-wider text-white/70 hover:text-white hover:bg-white/5 transition-colors"
-          >
-            <X className="w-3.5 h-3.5" /> Sair
-          </button>
-        </div>
-      )}
     </div>
   );
 }
