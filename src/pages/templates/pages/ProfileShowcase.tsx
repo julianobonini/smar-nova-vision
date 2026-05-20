@@ -37,6 +37,7 @@ const toneMap = {
 };
 
 export default function ProfileShowcase() {
+  const navigate = useNavigate();
   return (
     <PagesLayout title="Perfil do Usuário" description="Suas informações pessoais e atividade recente." category="Páginas">
       {/* Header / Cover */}
