@@ -107,7 +107,7 @@ export function TopNav() {
                 {user?.role === 'admin' && (
                   <button onClick={() => { navigate('/settings'); close(); }}
                     className="w-full text-left px-4 py-2.5 text-sm flex items-center gap-3 hover:bg-surface-container-low transition-colors text-foreground">
-                    <Settings size={16} className="text-muted-foreground" /> Settings / Admin
+                    <Settings size={16} className="text-muted-foreground" /> App Admin
                   </button>
                 )}
                 <div className="my-1 mx-4 h-px bg-surface-container" />
