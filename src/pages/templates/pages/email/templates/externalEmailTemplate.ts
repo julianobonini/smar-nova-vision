@@ -10,6 +10,8 @@ export interface ExternalEmailData {
   intro: string;
   highlightLabel?: string; // "Prazo de entrega"
   highlightValue?: string; // "19/06/2026"
+  highlightNote?: string;  // texto opcional embaixo do valor
+  highlightProminent?: boolean; // bloco em destaque cheio (cor sólida + tipografia maior)
   fields: { label: string; value: string }[];
   body: string;
   closing: string;
@@ -199,14 +201,31 @@ export function renderExternalEmail(d: ExternalEmailData = externalEmailSample, 
             <!-- Highlight -->
             ${
               d.highlightValue
-                ? `<tr><td style="padding:22px 40px 0 40px;" class="px">
-                    <table role="presentation" width="100%" cellpadding="0" cellspacing="0" border="0" class="highlight" style="background:#fffbeb;border-left:4px solid #f59e0b;border-radius:8px;">
-                      <tr><td style="padding:14px 18px;">
-                        <div class="muted" style="font-size:11px;letter-spacing:0.14em;text-transform:uppercase;color:#92400e;font-weight:700;">${d.highlightLabel || 'Atenção'}</div>
-                        <div class="text" style="font-size:18px;font-weight:800;color:#0f172a;margin-top:2px;font-family:'Manrope','Inter',Arial,sans-serif;">${d.highlightValue}</div>
-                      </td></tr>
-                    </table>
-                  </td></tr>`
+                ? d.highlightProminent
+                  ? `<tr><td style="padding:26px 40px 0 40px;" class="px">
+                      <table role="presentation" width="100%" cellpadding="0" cellspacing="0" border="0" class="highlight-strong" style="background:linear-gradient(135deg,#fef3c7 0%,#fde68a 100%);border-radius:14px;border:2px solid #f59e0b;">
+                        <tr><td style="padding:22px 26px;">
+                          <table role="presentation" width="100%" cellpadding="0" cellspacing="0" border="0"><tr>
+                            <td valign="middle" width="44" style="padding-right:14px;">
+                              <div style="width:44px;height:44px;border-radius:999px;background:#f59e0b;text-align:center;line-height:44px;font-size:22px;color:#ffffff;font-weight:900;font-family:Arial,sans-serif;">!</div>
+                            </td>
+                            <td valign="middle">
+                              <div class="hl-label" style="font-size:11px;letter-spacing:0.18em;text-transform:uppercase;color:#92400e;font-weight:800;">${d.highlightLabel || 'Atenção'}</div>
+                              <div class="hl-value" style="font-size:26px;font-weight:900;color:#0f172a;margin-top:4px;line-height:1.15;font-family:'Manrope','Inter',Arial,sans-serif;letter-spacing:-0.01em;">${d.highlightValue}</div>
+                              ${d.highlightNote ? `<div class="hl-note" style="font-size:13px;color:#7c2d12;margin-top:6px;line-height:1.5;">${d.highlightNote}</div>` : ''}
+                            </td>
+                          </tr></table>
+                        </td></tr>
+                      </table>
+                    </td></tr>`
+                  : `<tr><td style="padding:22px 40px 0 40px;" class="px">
+                      <table role="presentation" width="100%" cellpadding="0" cellspacing="0" border="0" class="highlight" style="background:#fffbeb;border-left:4px solid #f59e0b;border-radius:8px;">
+                        <tr><td style="padding:14px 18px;">
+                          <div class="muted" style="font-size:11px;letter-spacing:0.14em;text-transform:uppercase;color:#92400e;font-weight:700;">${d.highlightLabel || 'Atenção'}</div>
+                          <div class="text" style="font-size:18px;font-weight:800;color:#0f172a;margin-top:2px;font-family:'Manrope','Inter',Arial,sans-serif;">${d.highlightValue}</div>
+                        </td></tr>
+                      </table>
+                    </td></tr>`
                 : ''
             }
 
