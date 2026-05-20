@@ -51,7 +51,7 @@ export default function MenuDinamicoPage() {
 
   return (
     <article className="bg-[#0A0E1A] h-full overflow-y-auto text-white">
-      <header className="relative h-[80%] w-full overflow-hidden">
+      <header className="relative h-[36vh] min-h-[250px] w-full overflow-hidden">
         <img
           src={imagemFixa}
           alt={menu.label}
