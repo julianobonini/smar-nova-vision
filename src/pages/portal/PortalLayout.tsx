@@ -179,12 +179,54 @@ export default function PortalLayout() {
 
       <main className="flex-1 min-h-0 overflow-hidden relative">
         {openMenuId && (
-          <button
-            type="button"
-            aria-label="Fechar menu"
-            onClick={() => setOpenMenuId(null)}
-            className="absolute inset-0 z-40 bg-[#0A0E1A]/40 backdrop-blur-[2px] animate-fade-in"
-          />
+          <>
+            <button
+              type="button"
+              aria-label="Fechar menu"
+              onClick={() => setOpenMenuId(null)}
+              className="absolute inset-0 z-40 bg-[#0A0E1A]/40 backdrop-blur-[2px] animate-fade-in"
+            />
+            <div className="absolute left-0 right-0 top-0 z-50 px-6 pt-8 pb-10 animate-fade-in">
+              <div className="max-w-6xl mx-auto flex flex-wrap items-center justify-center gap-3">
+                {(childrenByParent[openMenuId] ?? [])
+                  .sort((a, b) => a.ordem - b.ordem)
+                  .map((c) => {
+                    const ch = hrefFor(c);
+                    const isExt = c.tipo === 'url';
+                    const cls =
+                      'inline-flex items-center px-6 py-3 rounded-full bg-[#0F4C81] text-white text-sm font-semibold uppercase tracking-wide hover:bg-[#1565a8] shadow-lg transition-colors whitespace-nowrap';
+                    return isExt ? (
+                      <a
+                        key={c.id}
+                        href={ch}
+                        target="_blank"
+                        rel="noreferrer"
+                        className={cls}
+                        onClick={() => setOpenMenuId(null)}
+                      >
+                        {c.label}
+                      </a>
+                    ) : (
+                      <Link
+                        key={c.id}
+                        to={ch}
+                        className={cls}
+                        onClick={() => setOpenMenuId(null)}
+                      >
+                        {c.label}
+                      </Link>
+                    );
+                  })}
+                <button
+                  type="button"
+                  onClick={() => setOpenMenuId(null)}
+                  className="inline-flex items-center gap-2 px-6 py-3 rounded-full bg-white/10 text-white text-sm font-semibold uppercase tracking-wide hover:bg-white/20 transition-colors"
+                >
+                  <X className="w-4 h-4" /> Sair
+                </button>
+              </div>
+            </div>
+          </>
         )}
         <Outlet />
       </main>
