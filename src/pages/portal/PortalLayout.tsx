@@ -48,19 +48,24 @@ function MenuItem({
   item,
   children,
   active,
+  open,
+  onToggle,
+  onClose,
 }: {
   item: Menu;
   children: Menu[];
   active: boolean;
+  open: boolean;
+  onToggle: () => void;
+  onClose: () => void;
 }) {
-  const [open, setOpen] = useState(false);
   const hasChildren = children.length > 0;
   const href = hrefFor(item);
   const isExternal = item.tipo === 'url';
 
   const baseCls = cn(
     'min-h-12 px-4 inline-flex items-center gap-1.5 text-sm font-semibold uppercase tracking-wide transition-colors whitespace-nowrap',
-    active
+    active || open
       ? 'bg-[#0F4C81] text-white'
       : 'text-white/85 hover:bg-[#0F4C81] hover:text-white',
   );
@@ -68,44 +73,65 @@ function MenuItem({
   const content = (
     <>
       {item.label}
-      {hasChildren && <ChevronDown className="w-3.5 h-3.5 opacity-80" />}
+      {hasChildren && (
+        <ChevronDown
+          className={cn('w-3.5 h-3.5 opacity-80 transition-transform', open && 'rotate-180')}
+        />
+      )}
     </>
   );
 
+  const handleClick = (e: React.MouseEvent) => {
+    if (hasChildren) {
+      e.preventDefault();
+      onToggle();
+    }
+  };
+
   return (
-    <div
-      className="relative"
-      onMouseEnter={() => setOpen(true)}
-      onMouseLeave={() => setOpen(false)}
-    >
+    <div className="relative">
       {isExternal ? (
-        <a href={href} target="_blank" rel="noreferrer" className={baseCls}>
+        <a href={href} target="_blank" rel="noreferrer" className={baseCls} onClick={handleClick}>
           {content}
         </a>
       ) : (
-        <Link to={href} className={baseCls}>
+        <Link to={href} className={baseCls} onClick={handleClick}>
           {content}
         </Link>
       )}
       {hasChildren && open && (
-        <div className="absolute left-0 top-full min-w-[260px] bg-[#0A0E1A] border-t-2 border-portal-gold shadow-2xl z-50 py-2">
+        <div className="absolute left-0 top-full min-w-[280px] bg-[#0A0E1A]/95 backdrop-blur-md border-t-2 border-portal-gold shadow-2xl z-50 py-2 animate-fade-in">
           {children
             .sort((a, b) => a.ordem - b.ordem)
             .map((c) => {
               const ch = hrefFor(c);
               const isExt = c.tipo === 'url';
               const cls =
-                'block px-5 py-3 min-h-12 text-sm text-white/90 hover:bg-[#0F4C81] hover:text-white transition-colors';
+                'block px-5 py-3 min-h-12 text-sm text-white bg-[#0F4C81]/90 hover:bg-[#0F4C81] mb-1 mx-2 rounded transition-colors';
               return isExt ? (
-                <a key={c.id} href={ch} target="_blank" rel="noreferrer" className={cls}>
+                <a
+                  key={c.id}
+                  href={ch}
+                  target="_blank"
+                  rel="noreferrer"
+                  className={cls}
+                  onClick={onClose}
+                >
                   {c.label}
                 </a>
               ) : (
-                <Link key={c.id} to={ch} className={cls}>
+                <Link key={c.id} to={ch} className={cls} onClick={onClose}>
                   {c.label}
                 </Link>
               );
             })}
+          <button
+            type="button"
+            onClick={onClose}
+            className="mt-1 w-[calc(100%-1rem)] mx-2 flex items-center justify-center gap-2 px-5 py-2.5 text-xs uppercase tracking-wider text-white/80 hover:text-white bg-white/5 hover:bg-white/10 rounded border border-white/10 transition-colors"
+          >
+            <X className="w-3.5 h-3.5" /> Sair
+          </button>
         </div>
       )}
     </div>
