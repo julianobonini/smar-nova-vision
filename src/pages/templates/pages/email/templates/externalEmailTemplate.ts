@@ -208,15 +208,26 @@ export function renderExternalEmail(d: ExternalEmailData = externalEmailSample, 
           </table>
         </td></tr>
 
-        <!-- Footer -->
-        <tr><td style="padding:20px 8px 8px 8px;">
-          <table role="presentation" width="100%" cellpadding="0" cellspacing="0" border="0"><tr>
-            <td align="center" class="muted" style="font-size:11px;color:#94a3b8;line-height:1.7;">
+        <!-- Footer dark band with social + address -->
+        <tr><td style="padding:18px 8px 8px 8px;">
+          <table role="presentation" width="100%" cellpadding="0" cellspacing="0" border="0" class="footer-band" style="background:#0b1220;border-radius:14px;">
+            <tr><td align="center" style="padding:28px 24px 10px 24px;">
+              <img src="${origin}/email/smar-logo-white.png" alt="Smar Technology Company" width="120" style="width:120px;height:auto;margin:0 auto 16px;display:block;" />
+              <table role="presentation" cellpadding="0" cellspacing="0" border="0" align="center" style="margin:0 auto;"><tr>
+                <td style="padding:0 8px;"><a href="https://www.linkedin.com/company/nova-smar-s-a/" target="_blank" rel="noopener noreferrer"><img src="https://www.smarnet.com.br/dqanet/imagens/email/icon_1.png" alt="LinkedIn" width="28" height="28" style="display:block;width:28px;height:28px;" /></a></td>
+                <td style="padding:0 8px;"><a href="https://www.instagram.com/novasmar_sa/" target="_blank" rel="noopener noreferrer"><img src="https://www.smarnet.com.br/dqanet/imagens/email/icon_2.png" alt="Instagram" width="28" height="28" style="display:block;width:28px;height:28px;" /></a></td>
+                <td style="padding:0 8px;"><a href="https://www.facebook.com/novasmar/?ref=br_rs" target="_blank" rel="noopener noreferrer"><img src="https://www.smarnet.com.br/dqanet/imagens/email/icon_4.png" alt="Facebook" width="28" height="28" style="display:block;width:28px;height:28px;" /></a></td>
+                <td style="padding:0 8px;"><a href="https://twitter.com/smar_br" target="_blank" rel="noopener noreferrer"><img src="https://www.smarnet.com.br/dqanet/imagens/email/icon_5.png" alt="Twitter" width="28" height="28" style="display:block;width:28px;height:28px;" /></a></td>
+                <td style="padding:0 8px;"><a href="https://www.youtube.com/@novasmarsa5860" target="_blank" rel="noopener noreferrer"><img src="https://www.smarnet.com.br/dqanet/imagens/email/icon_3.png" alt="YouTube" width="28" height="28" style="display:block;width:28px;height:28px;" /></a></td>
+              </tr></table>
+            </td></tr>
+            <tr><td align="center" style="padding:6px 24px 26px 24px;font-family:'Inter',Arial,sans-serif;font-size:11px;color:#94a3b8;line-height:1.7;">
               ${d.address}<br/>
               ${d.copyright}
-            </td>
-          </tr></table>
+            </td></tr>
+          </table>
         </td></tr>
+
 
       </table>
     </td></tr>
