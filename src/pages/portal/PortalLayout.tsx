@@ -138,14 +138,6 @@ export default function PortalLayout() {
 
   return (
     <div className="min-h-screen bg-[#0A0E1A] text-portal-fg flex flex-col">
-      {/* Topbar */}
-      <div className="h-12 shrink-0 bg-[#070B14] border-b border-white/5 px-6 flex items-center justify-between">
-        <div className="text-white/70 text-xs uppercase tracking-[0.2em]">
-          Portal da Transparência · Nova Smar S/A
-        </div>
-        <Clock />
-      </div>
-
       {/* Main bar */}
       <header className="h-16 shrink-0 bg-[#0A0E1A] border-b border-white/10 px-4 flex items-stretch gap-1 sticky top-0 z-50">
         {/* Home icon */}
@@ -186,6 +178,14 @@ export default function PortalLayout() {
       <main className="flex-1 min-h-0">
         <Outlet />
       </main>
+
+      {/* Footer */}
+      <footer className="h-12 shrink-0 bg-[#070B14] border-t border-white/5 px-6 flex items-center justify-between">
+        <div className="text-white/70 text-xs uppercase tracking-[0.2em]">
+          Portal da Transparência · Nova Smar S/A
+        </div>
+        <Clock />
+      </footer>
     </div>
   );
 }
