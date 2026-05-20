@@ -110,6 +110,12 @@ export function TopNav() {
                     <Settings size={16} className="text-muted-foreground" /> App Admin
                   </button>
                 )}
+                {user?.role === 'admin' && (
+                  <button onClick={() => { navigate('/portal/admin'); close(); }}
+                    className="w-full text-left px-4 py-2.5 text-sm flex items-center gap-3 hover:bg-surface-container-low transition-colors text-foreground">
+                    <Settings size={16} className="text-muted-foreground" /> Portal Admin
+                  </button>
+                )}
                 <div className="my-1 mx-4 h-px bg-surface-container" />
                 <button onClick={() => { setUser(null); navigate('/'); close(); }}
                   className="w-full text-left px-4 py-2.5 text-sm flex items-center gap-3 hover:bg-surface-container-low transition-colors text-destructive">
