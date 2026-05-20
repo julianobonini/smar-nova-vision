@@ -187,7 +187,7 @@ export default function PortalLayout() {
               className="absolute inset-0 z-40 bg-[#0A0E1A]/40 backdrop-blur-[2px] animate-fade-in"
             />
             <div className="absolute inset-0 z-50 px-6 flex items-center justify-center pointer-events-none">
-              <div className="max-w-6xl w-full flex flex-wrap items-center justify-center gap-3 pointer-events-auto">
+              <div className="max-w-md w-full flex flex-col items-stretch justify-center gap-3 pointer-events-auto">
                 {(childrenByParent[openMenuId] ?? [])
                   .sort((a, b) => a.ordem - b.ordem)
                   .map((c) => {
