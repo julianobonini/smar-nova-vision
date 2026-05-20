@@ -152,7 +152,7 @@ export default function PortalLayout() {
           <Home className="w-6 h-6" />
         </Link>
 
-        <nav className="flex-1 flex items-stretch overflow-x-auto no-scrollbar">
+        <nav className="flex-1 flex items-center overflow-x-auto no-scrollbar">
           {roots.map((m) => {
             const children = childrenByParent[m.id] ?? [];
             const href = hrefFor(m);
