@@ -59,6 +59,7 @@ export const internalEmailWithDetailsSample: InternalEmailData = {
     { label: 'Elaborado EA', value: 'Abenoel de Oliveira Polli' },
     { label: 'Notas', value: '—' },
   ],
+  detailsLabel: 'DETALHES',
   detailsTitle: 'DETALHES',
   detailsLines: [
     'O.S.: 2026/02154-1',
