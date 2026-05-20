@@ -212,7 +212,15 @@ export default function PortalLayout() {
         </div>
       </header>
 
-      <main className="flex-1 min-h-0 overflow-hidden">
+      <main className="flex-1 min-h-0 overflow-hidden relative">
+        {openMenuId && (
+          <button
+            type="button"
+            aria-label="Fechar menu"
+            onClick={() => setOpenMenuId(null)}
+            className="absolute inset-0 z-40 bg-[#0A0E1A]/40 backdrop-blur-[2px] animate-fade-in"
+          />
+        )}
         <Outlet />
       </main>
 
