@@ -1,7 +1,7 @@
 import { useEffect, useMemo, useState } from 'react';
 import { Link, Outlet, useLocation } from 'react-router-dom';
 import { useQuery } from '@tanstack/react-query';
-import { ChevronDown, Home } from 'lucide-react';
+import { ChevronDown, Home, X } from 'lucide-react';
 import { getMenus } from '@/services/portal';
 import novasmarLogo from '@/assets/novasmar-logo.png';
 import type { Menu } from '@/types/portal';
