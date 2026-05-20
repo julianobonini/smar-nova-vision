@@ -396,6 +396,8 @@ function AppRoutes() {
       {/* All authenticated routes share the same AppLayout instance */}
       <Route path="/app" element={<ProtectedLayout />}>
         <Route index element={<Dashboard />} />
+        <Route path="profile" element={<LazyRoute><ProfileShowcase /></LazyRoute>} />
+        <Route path="profile/edit" element={<LazyRoute><ProfileEditShowcase /></LazyRoute>} />
         <Route path="clientes" element={<ClientesPage />} />
         <Route path="clientes/novo" element={<ClienteForm />} />
         <Route path="produtos" element={<ProdutosPage />} />
