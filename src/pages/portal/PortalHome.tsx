@@ -139,38 +139,64 @@ export default function PortalHome() {
           <p className="text-sm text-white/50">Atualização em tempo real</p>
         </div>
         <div className="relative flex-1 overflow-hidden group">
-          <div
-            className={cn(
-              'absolute inset-x-0 top-0',
-              recentes.length >= 5 && 'animate-portal-scroll group-hover:[animation-play-state:paused]',
-            )}
-          >
-            {(recentes.length >= 5 ? [...recentes, ...recentes] : recentes).map((n, i) => (
-              <Link
-                key={`${n.id}-${i}`}
-                to={`/portal/noticias/${n.slug}`}
-                className="flex gap-3 p-3 mx-3 mb-3 rounded-xl bg-white/[0.04] hover:bg-white/[0.08] active:bg-white/[0.12] transition-colors border border-white/5"
-              >
-                <img
-                  src={n.imagem}
-                  alt={n.imagemAlt}
-                  className="w-20 h-20 object-cover rounded-lg shrink-0"
-                />
-                <div className="min-w-0 flex-1">
-                  <span className="inline-block text-[11px] font-semibold uppercase tracking-wider text-[#C8922A]">
-                    {n.categoria}
-                  </span>
-                  <p className="text-sm font-semibold text-white leading-snug line-clamp-2 mt-1">
-                    {n.manchete}
-                  </p>
-                  <p className="text-xs text-white/50 mt-1">
-                    {formatDate(n.dataPublicacao)}
-                  </p>
-                </div>
-              </Link>
-            ))}
-          </div>
+          {recentes.length >= 5 ? (
+            <div className="absolute inset-x-0 top-0 animate-portal-scroll group-hover:[animation-play-state:paused]">
+              {[...recentes, ...recentes].map((n, i) => (
+                <Link
+                  key={`${n.id}-${i}`}
+                  to={`/portal/noticias/${n.slug}`}
+                  className="flex gap-3 p-3 mx-3 mb-3 rounded-xl bg-white/[0.04] hover:bg-white/[0.08] active:bg-white/[0.12] transition-colors border border-white/5"
+                >
+                  <img
+                    src={n.imagem}
+                    alt={n.imagemAlt}
+                    className="w-20 h-20 object-cover rounded-lg shrink-0"
+                  />
+                  <div className="min-w-0 flex-1">
+                    <span className="inline-block text-[11px] font-semibold uppercase tracking-wider text-[#C8922A]">
+                      {n.categoria}
+                    </span>
+                    <p className="text-sm font-semibold text-white leading-snug line-clamp-2 mt-1">
+                      {n.manchete}
+                    </p>
+                    <p className="text-xs text-white/50 mt-1">
+                      {formatDate(n.dataPublicacao)}
+                    </p>
+                  </div>
+                </Link>
+              ))}
+            </div>
+          ) : (
+            <div className="absolute inset-0 flex flex-col p-3 gap-3">
+              {recentes.map((n) => (
+                <Link
+                  key={n.id}
+                  to={`/portal/noticias/${n.slug}`}
+                  className="flex gap-3 p-3 rounded-xl bg-white/[0.04] hover:bg-white/[0.08] active:bg-white/[0.12] transition-colors border border-white/5 flex-1 min-h-0"
+                  style={{ maxHeight: 'calc((100% - 1.5rem) / 2)' }}
+                >
+                  <img
+                    src={n.imagem}
+                    alt={n.imagemAlt}
+                    className="h-full aspect-square object-cover rounded-lg shrink-0"
+                  />
+                  <div className="min-w-0 flex-1">
+                    <span className="inline-block text-[11px] font-semibold uppercase tracking-wider text-[#C8922A]">
+                      {n.categoria}
+                    </span>
+                    <p className="text-sm font-semibold text-white leading-snug line-clamp-2 mt-1">
+                      {n.manchete}
+                    </p>
+                    <p className="text-xs text-white/50 mt-1">
+                      {formatDate(n.dataPublicacao)}
+                    </p>
+                  </div>
+                </Link>
+              ))}
+            </div>
+          )}
         </div>
+
       </aside>
     </div>
   );
