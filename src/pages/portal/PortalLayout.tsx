@@ -3,7 +3,7 @@ import { Link, Outlet, useLocation } from 'react-router-dom';
 import { useQuery } from '@tanstack/react-query';
 import { ChevronDown, Home } from 'lucide-react';
 import { getMenus } from '@/services/portal';
-import novasmarLogo from '@/assets/novasmar-logo.jpg';
+import novasmarLogo from '@/assets/novasmar-logo.png';
 import type { Menu } from '@/types/portal';
 import { cn } from '@/lib/utils';
 
@@ -137,7 +137,7 @@ export default function PortalLayout() {
   const isHome = pathname === '/portal' || pathname === '/portal/';
 
   return (
-    <div className="min-h-screen bg-[#0A0E1A] text-portal-fg flex flex-col">
+    <div className="h-screen overflow-hidden bg-[#0A0E1A] text-portal-fg flex flex-col">
       {/* Main bar */}
       <header className="h-16 shrink-0 bg-[#0A0E1A] border-b border-white/10 px-4 flex items-stretch gap-1 sticky top-0 z-50">
         {/* Home icon */}
@@ -165,22 +165,20 @@ export default function PortalLayout() {
 
         {/* NOVASMAR logo */}
         <div className="flex items-center pl-4 pr-2">
-          <div className="bg-white rounded-md px-3 py-1.5 flex items-center">
-            <img
-              src={novasmarLogo}
-              alt="Nova Smar S/A"
-              className="h-10 w-auto object-contain"
-            />
-          </div>
+          <img
+            src={novasmarLogo}
+            alt="Nova Smar S/A"
+            className="h-10 w-auto object-contain"
+          />
         </div>
       </header>
 
-      <main className="flex-1 min-h-0">
+      <main className="flex-1 min-h-0 overflow-hidden">
         <Outlet />
       </main>
 
       {/* Footer */}
-      <footer className="h-12 shrink-0 bg-[#070B14] border-t border-white/5 px-6 flex items-center justify-between sticky bottom-0 z-50">
+      <footer className="h-12 shrink-0 bg-[#070B14] border-t border-white/5 px-6 flex items-center justify-between z-50">
         <div className="text-white/70 text-xs uppercase tracking-[0.2em]">
           Portal da Transparência · Nova Smar S/A
         </div>

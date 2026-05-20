@@ -13,7 +13,8 @@ export default function GrupoPage() {
   if (!data) return <div className="p-10 text-white/60">Carregando…</div>;
 
   return (
-    <div className="max-w-6xl mx-auto px-6 py-10 text-white">
+    <div className="h-full overflow-y-auto">
+      <div className="max-w-6xl mx-auto px-6 py-10 text-white">
       <h1 className="text-3xl font-bold">{data.grupo.nome}</h1>
       {data.grupo.descricao && (
         <p className="text-white/60 mt-2">{data.grupo.descricao}</p>
@@ -45,6 +46,7 @@ export default function GrupoPage() {
             </div>
           </Link>
         ))}
+      </div>
       </div>
     </div>
   );

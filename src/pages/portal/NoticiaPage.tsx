@@ -21,7 +21,7 @@ export default function NoticiaPage() {
   const expirando = dias !== null && dias <= 7;
 
   return (
-    <article className="bg-[#0A0E1A] min-h-[calc(100vh-3.5rem)] text-white">
+    <article className="bg-[#0A0E1A] h-full overflow-y-auto text-white">
       <header className="relative h-[60vh] min-h-[420px] w-full overflow-hidden">
         <img src={n.imagem} alt={n.imagemAlt} className="absolute inset-0 w-full h-full object-cover" />
         <div className="absolute inset-0 bg-gradient-to-t from-black via-black/70 to-black/30" />
