@@ -3,6 +3,7 @@ import { Link, Outlet, useLocation } from 'react-router-dom';
 import { useQuery } from '@tanstack/react-query';
 import { ChevronDown, Home } from 'lucide-react';
 import { getMenus } from '@/services/portal';
+import novasmarLogo from '@/assets/novasmar-logo.jpg';
 import type { Menu } from '@/types/portal';
 import { cn } from '@/lib/utils';
 
@@ -172,18 +173,12 @@ export default function PortalLayout() {
 
         {/* NOVASMAR logo */}
         <div className="flex items-center pl-4 pr-2">
-          <div className="flex items-center gap-2 px-3 py-1.5 rounded-md bg-white/95">
-            <div className="w-8 h-8 rounded bg-[#0F4C81] grid place-items-center text-white font-extrabold text-sm">
-              N
-            </div>
-            <div className="leading-tight">
-              <div className="text-[#0F4C81] font-extrabold text-base tracking-tight">
-                NOVASMAR
-              </div>
-              <div className="text-[9px] uppercase tracking-[0.18em] text-[#0F4C81]/70">
-                S/A
-              </div>
-            </div>
+          <div className="bg-white rounded-md px-3 py-1.5 flex items-center">
+            <img
+              src={novasmarLogo}
+              alt="Nova Smar S/A"
+              className="h-10 w-auto object-contain"
+            />
           </div>
         </div>
       </header>
