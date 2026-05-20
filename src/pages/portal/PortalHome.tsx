@@ -47,7 +47,7 @@ export default function PortalHome() {
   const next = () => setIdx((i) => (i + 1) % destaques.length);
 
   return (
-    <div className="grid grid-cols-1 lg:grid-cols-4 gap-4 p-4 h-[calc(100vh-3.5rem)]">
+    <div className="grid grid-cols-1 lg:grid-cols-4 gap-4 p-4 h-full overflow-hidden">
       {/* Carrossel */}
       <section
         className="lg:col-span-3 relative overflow-hidden rounded-2xl bg-black"
