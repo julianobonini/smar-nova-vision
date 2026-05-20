@@ -1,64 +1,58 @@
-// HTML email template — Comunicação interna (SmarNet Intranet)
-// Compatível com clientes de e-mail (Outlook, Gmail, Apple Mail) e suporte a dark mode
-// via @media (prefers-color-scheme: dark) e meta color-scheme.
+// HTML email — Comunicação INTERNA (SmarNet)
+// Design moderno, minimalista, alto contraste. Compatível com dark mode dos clientes de e-mail.
 
 export interface InternalEmailData {
   recipientName: string;
-  date: string;        // "APRIL 22, 2026"
-  subject: string;     // "PURCHASE ORDER - PO P2026/010 - SO 2026/01731"
-  intro: string;       // "This purchase order was received today for your area:"
+  date: string;
+  category: string;       // "PURCHASE ORDER"
+  subject: string;        // "PO P2026/010 · SO 2026/01731"
+  intro: string;
   fields: { label: string; value: string }[];
   detailsTitle?: string;
   detailsLines?: string[];
   detailsEmail?: string;
-  signatureName: string; // "Inside Sales"
-  closing?: string;      // "Best regards,"
+  signatureName: string;
+  closing?: string;
+  ctaLabel?: string;
+  ctaUrl?: string;
 }
 
 export const internalEmailSample: InternalEmailData = {
   recipientName: 'Joao Luis Ancheschi',
-  date: 'APRIL 22, 2026',
-  subject: 'PURCHASE ORDER - PO P2026/010 - SO 2026/01731',
-  intro: 'This purchase order was received today for your area:',
+  date: '22 Apr 2026',
+  category: 'Purchase Order',
+  subject: 'PO P2026/010 · SO 2026/01731',
+  intro: 'A new purchase order was registered today for your area. Review the details below and confirm next steps.',
   fields: [
-    { label: 'DIVISION', value: 'EXPORTACAO' },
+    { label: 'Division', value: 'Exportação' },
     { label: 'P.O.', value: 'P2026/010' },
     { label: 'S.O.', value: '2026/01731' },
-    { label: 'DATE', value: '04/22/2026' },
-    { label: 'CUSTOMER', value: 'SMAR EUROPE BV' },
-    { label: 'END USER', value: 'SMAR EUROPE BV' },
-    { label: 'COUNTRY', value: 'PAÍSES BAIXOS' },
-    { label: 'TOTAL ORDER', value: 'US$ 4,011.90' },
-    { label: 'IQV', value: '' },
+    { label: 'Date', value: '04/22/2026' },
+    { label: 'Customer', value: 'SMAR EUROPE BV' },
+    { label: 'End User', value: 'SMAR EUROPE BV' },
+    { label: 'Country', value: 'Países Baixos' },
+    { label: 'Total Order', value: 'US$ 4,011.90' },
+    { label: 'IQV', value: '—' },
   ],
-  detailsTitle: 'Made by Aparecido Gallo Junior',
+  detailsTitle: 'Aparecido Gallo Junior',
   detailsLines: ['NOVA SMAR S/A'],
   detailsEmail: 'gallo@smar.com.br',
   closing: 'Best regards,',
   signatureName: 'Inside Sales',
+  ctaLabel: 'Open in SmarNet',
+  ctaUrl: '#',
 };
 
-export function renderInternalEmail(d: InternalEmailData = internalEmailSample): string {
+export function renderInternalEmail(d: InternalEmailData = internalEmailSample, origin = ''): string {
   const fieldsHtml = d.fields
     .map(
-      (f) =>
-        `<div style="margin:0 0 4px 0;font-size:14px;line-height:1.5;color:#1f2937;"><strong style="color:#111827;">${f.label}:</strong> ${f.value}</div>`,
+      (f) => `
+        <tr>
+          <td style="padding:10px 0;border-bottom:1px solid #eef0f4;font-size:13px;color:#6b7280;font-weight:500;width:38%;" class="muted brd">${f.label}</td>
+          <td style="padding:10px 0;border-bottom:1px solid #eef0f4;font-size:14px;color:#0f172a;font-weight:600;text-align:right;" class="text brd">${f.value}</td>
+        </tr>`,
     )
     .join('');
-
-  const detailsHtml = d.detailsTitle
-    ? `
-        <td valign="top" width="260" style="width:260px;padding:0 0 0 16px;" class="dets-cell">
-          <table role="presentation" width="100%" cellpadding="0" cellspacing="0" border="0" style="background:#f3f4f6;border-radius:6px;" class="dets-box">
-            <tr><td style="padding:14px 16px;">
-              <div style="font-size:10px;letter-spacing:0.18em;color:#6b7280;font-weight:700;margin-bottom:6px;" class="muted">DETAILS</div>
-              <div style="font-size:14px;font-weight:700;color:#111827;margin-bottom:4px;" class="text">${d.detailsTitle}</div>
-              ${(d.detailsLines || []).map((l) => `<div style="font-size:13px;color:#374151;" class="text">${l}</div>`).join('')}
-              ${d.detailsEmail ? `<div style="font-size:13px;margin-top:4px;"><a href="mailto:${d.detailsEmail}" style="color:#2563eb;text-decoration:none;" class="link">${d.detailsEmail}</a></div>` : ''}
-            </td></tr>
-          </table>
-        </td>`
-    : '';
 
   return `<!doctype html>
 <html lang="pt-br">
@@ -67,93 +61,125 @@ export function renderInternalEmail(d: InternalEmailData = internalEmailSample):
 <meta name="viewport" content="width=device-width,initial-scale=1" />
 <meta name="color-scheme" content="light dark" />
 <meta name="supported-color-schemes" content="light dark" />
-<title>SmarNet - Automatic E-mail</title>
+<title>SmarNet · Notification</title>
 <style>
-  body{margin:0;padding:0;background:#e9ecef;font-family:Arial,Helvetica,sans-serif;-webkit-font-smoothing:antialiased;}
-  a{color:#2563eb;}
-  /* Dark mode */
+  body{margin:0;padding:0;background:#f4f5f7;font-family:'Inter','Helvetica Neue',Arial,sans-serif;-webkit-font-smoothing:antialiased;}
+  a{color:#1e40af;text-decoration:none;}
+  img{border:0;display:block;outline:none;}
   @media (prefers-color-scheme: dark){
     body, .bg-page{background:#0b1220 !important;}
-    .card{background:#111827 !important;border-color:#1f2937 !important;}
+    .card{background:#0f172a !important;}
     .text, .text *{color:#e5e7eb !important;}
-    .muted, .muted *{color:#9ca3af !important;}
-    .dets-box{background:#1f2937 !important;}
-    .link{color:#60a5fa !important;}
-    .preheader{color:#9ca3af !important;}
-    .footer{background:#000 !important;}
+    .muted{color:#94a3b8 !important;}
+    .brd{border-color:#1e293b !important;}
+    .chip{background:#1e293b !important;color:#cbd5e1 !important;}
+    .meta-box{background:#111827 !important;}
+    .divider{border-color:#1e293b !important;}
+    .footer{background:#020617 !important;color:#94a3b8 !important;}
+    .link{color:#93c5fd !important;}
+    .btn{background:#3b82f6 !important;color:#fff !important;}
   }
   [data-ogsc] body, [data-ogsc] .bg-page{background:#0b1220 !important;}
-  [data-ogsc] .card{background:#111827 !important;}
+  [data-ogsc] .card{background:#0f172a !important;}
   [data-ogsc] .text, [data-ogsc] .text *{color:#e5e7eb !important;}
-  [data-ogsc] .muted, [data-ogsc] .muted *{color:#9ca3af !important;}
-  [data-ogsc] .dets-box{background:#1f2937 !important;}
-  [data-ogsc] .link{color:#60a5fa !important;}
+  [data-ogsc] .muted{color:#94a3b8 !important;}
+  [data-ogsc] .brd{border-color:#1e293b !important;}
+  [data-ogsc] .chip{background:#1e293b !important;color:#cbd5e1 !important;}
+  [data-ogsc] .meta-box{background:#111827 !important;}
+  [data-ogsc] .footer{background:#020617 !important;color:#94a3b8 !important;}
+  [data-ogsc] .link{color:#93c5fd !important;}
   @media only screen and (max-width:600px){
-    .dets-cell{display:block !important;width:100% !important;padding:16px 0 0 0 !important;}
-    .body-cell{display:block !important;width:100% !important;}
+    .px{padding-left:24px !important;padding-right:24px !important;}
+    .header-stack{display:block !important;width:100% !important;text-align:left !important;}
+    .header-stack + .header-stack{padding-top:12px !important;}
   }
 </style>
 </head>
-<body class="bg-page" style="background:#e9ecef;">
-  <div class="preheader" style="display:none;max-height:0;overflow:hidden;opacity:0;color:transparent;">SmarNet - Automatic E-mail</div>
-  <table role="presentation" width="100%" cellpadding="0" cellspacing="0" border="0" class="bg-page" style="background:#e9ecef;padding:16px 0;">
+<body class="bg-page" style="background:#f4f5f7;">
+  <div style="display:none;max-height:0;overflow:hidden;opacity:0;color:transparent;">${d.category} · ${d.subject}</div>
+  <table role="presentation" width="100%" cellpadding="0" cellspacing="0" border="0" class="bg-page" style="background:#f4f5f7;padding:32px 12px;">
     <tr><td align="center">
-      <table role="presentation" width="780" cellpadding="0" cellspacing="0" border="0" style="max-width:780px;width:100%;">
-        <tr><td align="center" style="padding:8px 0 12px 0;font-size:12px;color:#0f4c81;font-weight:700;" class="muted">SmarNet - Automatic E-mail</td></tr>
+      <table role="presentation" width="640" cellpadding="0" cellspacing="0" border="0" style="max-width:640px;width:100%;">
+
+        <!-- Brand row -->
+        <tr><td style="padding:0 8px 18px 8px;">
+          <table role="presentation" width="100%" cellpadding="0" cellspacing="0" border="0"><tr>
+            <td align="left" valign="middle">
+              <img src="${origin}/email/smar-logo.png" alt="Smar" width="86" style="width:86px;height:auto;" />
+            </td>
+            <td align="right" valign="middle" style="font-size:11px;color:#94a3b8;letter-spacing:0.14em;text-transform:uppercase;font-weight:600;" class="muted">
+              SmarNet · Automated
+            </td>
+          </tr></table>
+        </td></tr>
+
+        <!-- Card -->
         <tr><td>
-          <table role="presentation" width="100%" cellpadding="0" cellspacing="0" border="0" class="card" style="background:#ffffff;border:1px solid #d1d5db;border-radius:2px;">
-            <!-- Logo -->
-            <tr><td style="padding:18px 24px;">
-              <table role="presentation" width="100%" cellpadding="0" cellspacing="0" border="0"><tr>
-                <td style="font-family:Arial,Helvetica,sans-serif;font-size:28px;font-weight:700;color:#0f4c81;letter-spacing:-1px;" class="text">
-                  smar<span style="color:#9ca3af;font-weight:400;">net</span>
-                  <div style="font-size:9px;letter-spacing:0.5em;color:#9ca3af;font-weight:700;margin-top:-2px;" class="muted">INTRANET</div>
-                </td>
-                <td align="right" style="font-family:Arial,Helvetica,sans-serif;font-size:14px;font-weight:700;color:#0f4c81;" class="text">
-                  SmarNet - Intranet Smar
-                  <div style="font-size:11px;font-weight:400;color:#6b7280;margin-top:2px;" class="muted">E-mail notification of Smarnet systems</div>
-                </td>
-              </tr></table>
+          <table role="presentation" width="100%" cellpadding="0" cellspacing="0" border="0" class="card" style="background:#ffffff;border-radius:16px;box-shadow:0 1px 2px rgba(15,23,42,0.04),0 8px 24px rgba(15,23,42,0.06);overflow:hidden;">
+
+            <!-- Header strip -->
+            <tr><td style="padding:28px 36px 8px 36px;" class="px">
+              <span class="chip" style="display:inline-block;background:#eff6ff;color:#1d4ed8;font-size:11px;font-weight:700;letter-spacing:0.1em;text-transform:uppercase;padding:6px 10px;border-radius:999px;">${d.category}</span>
+              <span class="muted" style="display:inline-block;margin-left:8px;font-size:12px;color:#94a3b8;">${d.date}</span>
             </td></tr>
-            <!-- Date + Subject bar -->
-            <tr><td style="padding:0;">
-              <table role="presentation" width="100%" cellpadding="0" cellspacing="0" border="0"><tr>
-                <td width="160" style="background:#e74c3c;color:#fff;font-weight:700;font-size:12px;padding:10px 16px;letter-spacing:0.04em;">${d.date}</td>
-                <td style="background:#2c2f33;color:#fff;font-weight:700;font-size:12px;padding:10px 16px;letter-spacing:0.04em;">${d.subject}</td>
-              </tr></table>
+
+            <tr><td style="padding:10px 36px 0 36px;" class="px">
+              <h1 style="margin:0;font-family:'Manrope','Inter',Arial,sans-serif;font-size:24px;line-height:1.25;color:#0f172a;font-weight:800;letter-spacing:-0.01em;" class="text">${d.subject}</h1>
             </td></tr>
-            <!-- Body -->
-            <tr><td style="padding:22px 24px 28px 24px;">
-              <table role="presentation" width="100%" cellpadding="0" cellspacing="0" border="0"><tr>
-                <td valign="top" class="body-cell">
-                  <div style="font-size:16px;font-weight:700;color:#111827;margin:0 0 12px 0;" class="text">Dear ${d.recipientName}</div>
-                  <div style="font-size:14px;color:#1f2937;margin:0 0 12px 0;" class="text">${d.intro}</div>
-                  ${fieldsHtml}
-                  <div style="margin:24px 0 6px 0;font-size:14px;color:#1f2937;" class="text">${d.closing || ''}</div>
-                  <div style="margin-top:18px;font-size:14px;"><a href="#" style="color:#2563eb;text-decoration:none;" class="link">${d.signatureName}</a></div>
-                </td>
-                ${detailsHtml}
-              </tr></table>
-              <hr style="border:none;border-top:1px dashed #d1d5db;margin:28px 0 0 0;" />
+
+            <tr><td style="padding:16px 36px 0 36px;" class="px">
+              <p style="margin:0;font-size:15px;line-height:1.6;color:#334155;" class="text">Hi <strong style="color:#0f172a;">${d.recipientName}</strong>,</p>
+              <p style="margin:8px 0 0 0;font-size:14px;line-height:1.65;color:#475569;" class="text">${d.intro}</p>
             </td></tr>
-            <!-- Footer -->
-            <tr><td class="footer" style="background:#111111;color:#cbd5e1;padding:22px 24px;">
-              <table role="presentation" width="100%" cellpadding="0" cellspacing="0" border="0"><tr>
-                <td valign="top" style="font-size:11px;line-height:1.6;color:#cbd5e1;">
-                  <div style="color:#fff;font-weight:700;font-size:13px;margin-bottom:8px;">IT Departament</div>
-                  Tel.: +55 016 3946 3599<br/>
-                  Fax: +55 016 3946 3514<br/>
-                  Address: Rua Dr. Antônio Furlan Junior, 1028 Sertãozinho, SP, Brasil CEP 14.170-480<br/>
-                  E-mail <a href="mailto:smarnet@smar.com.br" style="color:#60a5fa;text-decoration:none;">smarnet@smar.com.br</a>
-                </td>
-                <td valign="bottom" align="right" style="font-family:Arial,Helvetica,sans-serif;">
-                  <div style="font-size:36px;font-weight:700;color:#1d8fd6;line-height:1;">smar</div>
-                  <div style="font-size:11px;color:#fff;letter-spacing:0.06em;margin-top:2px;">www.smar.com.br</div>
-                </td>
-              </tr></table>
+
+            <!-- Details table -->
+            <tr><td style="padding:24px 36px 0 36px;" class="px">
+              <table role="presentation" width="100%" cellpadding="0" cellspacing="0" border="0">${fieldsHtml}</table>
+            </td></tr>
+
+            <!-- Created by box -->
+            ${
+              d.detailsTitle
+                ? `<tr><td style="padding:24px 36px 0 36px;" class="px">
+                    <table role="presentation" width="100%" cellpadding="0" cellspacing="0" border="0" class="meta-box" style="background:#f8fafc;border-radius:12px;">
+                      <tr><td style="padding:14px 18px;">
+                        <div class="muted" style="font-size:10px;letter-spacing:0.16em;text-transform:uppercase;color:#94a3b8;font-weight:700;margin-bottom:6px;">Created by</div>
+                        <div class="text" style="font-size:14px;font-weight:700;color:#0f172a;">${d.detailsTitle}</div>
+                        ${(d.detailsLines || []).map((l) => `<div class="muted" style="font-size:13px;color:#64748b;">${l}</div>`).join('')}
+                        ${d.detailsEmail ? `<div style="font-size:13px;margin-top:4px;"><a href="mailto:${d.detailsEmail}" class="link" style="color:#1d4ed8;">${d.detailsEmail}</a></div>` : ''}
+                      </td></tr>
+                    </table>
+                  </td></tr>`
+                : ''
+            }
+
+            <!-- CTA -->
+            ${
+              d.ctaLabel
+                ? `<tr><td align="left" style="padding:28px 36px 0 36px;" class="px">
+                    <a href="${d.ctaUrl || '#'}" class="btn" style="display:inline-block;background:#0f172a;color:#ffffff;font-size:14px;font-weight:700;padding:12px 22px;border-radius:10px;text-decoration:none;">${d.ctaLabel} →</a>
+                  </td></tr>`
+                : ''
+            }
+
+            <!-- Signature -->
+            <tr><td style="padding:28px 36px 32px 36px;" class="px">
+              <div class="muted" style="font-size:14px;color:#64748b;" class="text">${d.closing || 'Best regards,'}</div>
+              <div class="text" style="font-size:14px;color:#0f172a;font-weight:700;margin-top:2px;">${d.signatureName}</div>
             </td></tr>
           </table>
         </td></tr>
+
+        <!-- Footer -->
+        <tr><td style="padding:20px 8px 8px 8px;">
+          <table role="presentation" width="100%" cellpadding="0" cellspacing="0" border="0"><tr>
+            <td class="muted" style="font-size:11px;color:#94a3b8;line-height:1.6;">
+              Nova Smar S/A · Rua Dr. Antônio Furlan Junior, 1028 · Sertãozinho/SP · 14.170-480<br/>
+              You received this because it was routed to your area in SmarNet.
+            </td>
+          </tr></table>
+        </td></tr>
+
       </table>
     </td></tr>
   </table>

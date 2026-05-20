@@ -7,7 +7,7 @@ import { renderInternalEmail } from './templates/internalEmailTemplate';
 export default function EmailInternoShowcase() {
   const [dark, setDark] = useState(false);
   const [copied, setCopied] = useState(false);
-  const html = useMemo(() => renderInternalEmail(), []);
+  const html = useMemo(() => renderInternalEmail(undefined, window.location.origin), []);
 
   // Para o preview, injetamos data-ogsc para forçar dark mode visualmente.
   const previewHtml = dark ? html.replace('<body ', '<body data-ogsc ') : html;
