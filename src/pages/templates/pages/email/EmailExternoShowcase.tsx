@@ -7,7 +7,7 @@ import { renderExternalEmail } from './templates/externalEmailTemplate';
 export default function EmailExternoShowcase() {
   const [dark, setDark] = useState(false);
   const [copied, setCopied] = useState(false);
-  const html = useMemo(() => renderExternalEmail(), []);
+  const html = useMemo(() => renderExternalEmail(undefined, window.location.origin), []);
 
   const previewHtml = dark ? html.replace('<body ', '<body data-ogsc ') : html;
 
