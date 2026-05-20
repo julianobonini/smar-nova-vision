@@ -180,7 +180,7 @@ export default function PortalLayout() {
       </main>
 
       {/* Footer */}
-      <footer className="h-12 shrink-0 bg-[#070B14] border-t border-white/5 px-6 flex items-center justify-between">
+      <footer className="h-12 shrink-0 bg-[#070B14] border-t border-white/5 px-6 flex items-center justify-between sticky bottom-0 z-50">
         <div className="text-white/70 text-xs uppercase tracking-[0.2em]">
           Portal da Transparência · Nova Smar S/A
         </div>
