@@ -43,6 +43,35 @@ export const internalEmailSample: InternalEmailData = {
   ctaUrl: '#',
 };
 
+// Variante com bloco de DETALHES em destaque (equivalente ao card lateral do sistema legado)
+export const internalEmailWithDetailsSample: InternalEmailData = {
+  recipientName: 'Equipe de Assistência Técnica',
+  date: '18 de maio de 2026',
+  category: 'Ordem de Serviço',
+  subject: 'O.S. 2026/02154 · VIRALCOOL · Moderado',
+  intro:
+    'A data de retorno desta O.S. foi alterada para 25/05/2026. Confira os detalhes ao lado e atualize seu planejamento.',
+  fields: [
+    { label: 'Moderado por', value: 'Carlos Vinicius Toniollo Moi' },
+    { label: 'Recebido AC', value: 'Miriam Beatriz Torres Luiz (18/05/2026)' },
+    { label: 'Moderado EA', value: 'Carlos Vinicius Toniollo Moi (18/05/2026)' },
+    { label: 'Elaborado EA', value: 'Abenoel de Oliveira Polli' },
+    { label: 'Notas', value: '—' },
+  ],
+  detailsTitle: 'DETALHES',
+  detailsLines: [
+    'O.S.: 2026/02154-1',
+    'Cliente: VIRALCOOL AÇÚCAR E ÁLCOOL LTDA.',
+    'Solicitante: Miriam Beatriz Torres Luiz',
+    'Data Solicitação: 18/05/2026',
+    'Data Retorno: 25/05/2026',
+  ],
+  closing: 'Atenciosamente,',
+  signatureName: 'SmarNet · Assistência Técnica',
+  ctaLabel: 'Abrir O.S. no SmarNet',
+  ctaUrl: '#',
+};
+
 export function renderInternalEmail(d: InternalEmailData = internalEmailSample, origin = ''): string {
   const fieldsHtml = d.fields
     .map(
