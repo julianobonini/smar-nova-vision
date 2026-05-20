@@ -161,6 +161,11 @@ export default function PortalLayout() {
   }, [menus]);
 
   const isHome = pathname === '/portal' || pathname === '/portal/';
+  const [openMenuId, setOpenMenuId] = useState<string | null>(null);
+
+  useEffect(() => {
+    setOpenMenuId(null);
+  }, [pathname]);
 
   return (
     <div className="h-screen overflow-hidden bg-[#0A0E1A] text-portal-fg flex flex-col">
@@ -184,7 +189,15 @@ export default function PortalLayout() {
             const href = hrefFor(m);
             const active = !isHome && pathname.startsWith(href);
             return (
-              <MenuItem key={m.id} item={m} children={children} active={active} />
+              <MenuItem
+                key={m.id}
+                item={m}
+                children={children}
+                active={active}
+                open={openMenuId === m.id}
+                onToggle={() => setOpenMenuId((id) => (id === m.id ? null : m.id))}
+                onClose={() => setOpenMenuId(null)}
+              />
             );
           })}
         </nav>
