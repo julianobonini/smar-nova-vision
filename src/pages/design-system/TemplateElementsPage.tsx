@@ -197,6 +197,8 @@ const templateGroups = [
       { label: 'Mail App', to: '/app/templates/pages/email/mailapp' },
       { label: 'Mail Editor', to: '/app/templates/pages/email/maileditor' },
       { label: 'Mail Settings', to: '/app/templates/pages/email/mailsettings' },
+      { label: 'E-mail Interno (template)', to: '/app/templates/pages/email/interno' },
+      { label: 'E-mail Externo (template)', to: '/app/templates/pages/email/externo' },
       { label: 'Create Invoice', to: '/app/templates/pages/invoice/create' },
       { label: 'Invoice Details', to: '/app/templates/pages/invoice/details' },
       { label: 'Invoice List', to: '/app/templates/pages/invoice/list' },
