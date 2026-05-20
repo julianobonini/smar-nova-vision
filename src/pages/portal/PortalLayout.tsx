@@ -100,14 +100,14 @@ function MenuItem({
         </Link>
       )}
       {hasChildren && open && (
-        <div className="absolute left-0 top-full min-w-[280px] bg-[#0A0E1A]/95 backdrop-blur-md border-t-2 border-portal-gold shadow-2xl z-50 py-2 animate-fade-in">
+        <div className="absolute left-0 top-full min-w-[280px] bg-transparent z-50 py-1 animate-fade-in">
           {children
             .sort((a, b) => a.ordem - b.ordem)
             .map((c) => {
               const ch = hrefFor(c);
               const isExt = c.tipo === 'url';
               const cls =
-                'block px-5 py-3 min-h-12 text-sm text-white bg-[#0F4C81]/90 hover:bg-[#0F4C81] mb-1 mx-2 rounded transition-colors';
+                'block px-5 py-3 min-h-12 text-sm font-medium text-white/90 hover:bg-[#0F4C81] hover:text-white transition-colors';
               return isExt ? (
                 <a
                   key={c.id}
