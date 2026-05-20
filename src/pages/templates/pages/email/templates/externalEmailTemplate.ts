@@ -69,7 +69,9 @@ export const externalEmailWithHighlightSample: ExternalEmailData = {
   intro:
     'Informamos uma atualização importante sobre o prazo do seu pedido. Pedimos a gentileza de revisar o novo cronograma destacado abaixo.',
   highlightLabel: 'Nova data de entrega',
-  highlightValue: '25/06/2026  ·  +6 dias úteis',
+  highlightValue: '25/06/2026',
+  highlightNote: 'Reprogramação aprovada · +6 dias úteis em relação ao prazo original (19/06/2026).',
+  highlightProminent: true,
   fields: [
     { label: 'Cliente', value: 'BUNGE ALIMENTOS S.A.' },
     { label: 'Contato', value: 'Sr. Edson Rodrigues' },
