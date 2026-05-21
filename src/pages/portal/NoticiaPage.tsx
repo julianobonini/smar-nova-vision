@@ -3,7 +3,7 @@ import { useQuery } from '@tanstack/react-query';
 import DOMPurify from 'dompurify';
 import { ArrowLeft, CalendarClock, ShieldCheck } from 'lucide-react';
 import { getNoticia } from '@/services/portal';
-import { daysUntil, formatDate, formatDateTime } from '@/lib/portalUtils';
+import { daysUntil, formatDate, formatDateTime, toEmbedUrl } from '@/lib/portalUtils';
 import { cn } from '@/lib/utils';
 
 export default function NoticiaPage() {
@@ -19,6 +19,7 @@ export default function NoticiaPage() {
 
   const dias = n.dataExpiracao ? daysUntil(n.dataExpiracao) : null;
   const expirando = dias !== null && dias <= 7;
+  const embed = toEmbedUrl(n.videoUrl);
 
   return (
     <article className="bg-[#0A0E1A] h-full overflow-y-auto text-white">
@@ -48,6 +49,18 @@ export default function NoticiaPage() {
       </header>
 
       <div className="max-w-3xl mx-auto px-6 py-12">
+        {embed && (
+          <div className="mb-10 rounded-2xl overflow-hidden border border-white/10 bg-black aspect-video">
+            <iframe
+              src={embed}
+              title={n.manchete}
+              className="w-full h-full"
+              allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture"
+              allowFullScreen
+            />
+          </div>
+        )}
+
         <div
           className="prose prose-invert prose-lg max-w-none prose-headings:font-bold prose-a:text-[#C8922A] prose-blockquote:border-l-[#C8922A]"
           style={{ fontSize: '19px', lineHeight: 1.7 }}

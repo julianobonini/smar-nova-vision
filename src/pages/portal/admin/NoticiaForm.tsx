@@ -141,7 +141,7 @@ export default function NoticiaForm() {
         </label>
       </Section>
 
-      <Section title="Imagem">
+      <Section title="Mídia">
         <div className="flex flex-wrap gap-4 items-start">
           {form.imagem ? (
             <img src={form.imagem} alt="" className="w-48 h-32 object-cover rounded-lg border border-zinc-800" />
@@ -168,6 +168,50 @@ export default function NoticiaForm() {
               onChange={(e) => upd({ imagemAlt: e.target.value })}
             />
           </div>
+        </div>
+
+        <div className="pt-2 border-t border-zinc-800">
+          <div className="text-xs text-zinc-400 mb-2">Tipo de publicação</div>
+          <div className="flex gap-2 mb-3">
+            <button
+              type="button"
+              onClick={() => upd({ videoUrl: undefined })}
+              className={cn(
+                'px-3 py-1.5 text-xs rounded-lg border',
+                !form.videoUrl
+                  ? 'bg-[#C8922A] text-black border-[#C8922A] font-semibold'
+                  : 'bg-zinc-950 border-zinc-800 text-zinc-400 hover:bg-zinc-800',
+              )}
+            >
+              Apenas texto
+            </button>
+            <button
+              type="button"
+              onClick={() => upd({ videoUrl: form.videoUrl ?? '' })}
+              className={cn(
+                'px-3 py-1.5 text-xs rounded-lg border',
+                form.videoUrl !== undefined
+                  ? 'bg-[#C8922A] text-black border-[#C8922A] font-semibold'
+                  : 'bg-zinc-950 border-zinc-800 text-zinc-400 hover:bg-zinc-800',
+              )}
+            >
+              Texto + Vídeo
+            </button>
+          </div>
+          {form.videoUrl !== undefined && (
+            <>
+              <label className="text-xs text-zinc-400 mb-1 block">URL do vídeo (YouTube ou Vimeo)</label>
+              <input
+                className={inp}
+                placeholder="https://www.youtube.com/watch?v=..."
+                value={form.videoUrl ?? ''}
+                onChange={(e) => upd({ videoUrl: e.target.value })}
+              />
+              <p className="text-[11px] text-zinc-500 mt-1">
+                A imagem de capa continua sendo usada no carrossel; um selo de vídeo é exibido automaticamente.
+              </p>
+            </>
+          )}
         </div>
       </Section>
 

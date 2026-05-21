@@ -1,7 +1,7 @@
 import { useEffect, useRef, useState } from 'react';
 import { Link } from 'react-router-dom';
 import { useQuery } from '@tanstack/react-query';
-import { ChevronLeft, ChevronRight } from 'lucide-react';
+import { ChevronLeft, ChevronRight, Play } from 'lucide-react';
 import { getDestaques, getRecentes } from '@/services/portal';
 import { formatDate } from '@/lib/portalUtils';
 import { cn } from '@/lib/utils';
@@ -67,6 +67,18 @@ export default function PortalHome() {
               className="absolute inset-0 w-full h-full object-cover"
             />
             <div className="absolute inset-0 bg-gradient-to-t from-black/95 via-black/60 to-black/10" />
+            {current.videoUrl && (
+              <>
+                <div className="absolute inset-0 grid place-items-center pointer-events-none">
+                  <span className="w-20 h-20 lg:w-24 lg:h-24 rounded-full bg-black/55 backdrop-blur-sm border-2 border-white/80 grid place-items-center shadow-2xl">
+                    <Play className="w-9 h-9 lg:w-11 lg:h-11 text-white fill-white ml-1" />
+                  </span>
+                </div>
+                <span className="absolute top-4 left-4 inline-flex items-center gap-1.5 px-3 py-1.5 rounded-full bg-red-600 text-white text-xs font-bold uppercase tracking-wider shadow-lg">
+                  <Play className="w-3 h-3 fill-white" /> Vídeo
+                </span>
+              </>
+            )}
             <div className="absolute bottom-0 left-0 right-0 p-10 lg:p-14 max-w-5xl">
               <span className="inline-block px-3 py-1 rounded-full text-sm font-semibold bg-[#C8922A] text-black mb-4">
                 {current.categoria}
@@ -147,11 +159,20 @@ export default function PortalHome() {
                   to={`/portal/noticias/${n.slug}`}
                   className="flex gap-3 p-3 mx-3 mb-3 rounded-xl bg-white/[0.04] hover:bg-white/[0.08] active:bg-white/[0.12] transition-colors border border-white/5"
                 >
-                  <img
-                    src={n.imagem}
-                    alt={n.imagemAlt}
-                    className="w-20 h-20 object-cover rounded-lg shrink-0"
-                  />
+                  <div className="relative shrink-0">
+                    <img
+                      src={n.imagem}
+                      alt={n.imagemAlt}
+                      className="w-20 h-20 object-cover rounded-lg"
+                    />
+                    {n.videoUrl && (
+                      <span className="absolute inset-0 grid place-items-center bg-black/40 rounded-lg">
+                        <span className="w-8 h-8 rounded-full bg-red-600/95 grid place-items-center border border-white/80">
+                          <Play className="w-4 h-4 text-white fill-white ml-0.5" />
+                        </span>
+                      </span>
+                    )}
+                  </div>
                   <div className="min-w-0 flex-1">
                     <span className="inline-block text-[11px] font-semibold uppercase tracking-wider text-[#C8922A]">
                       {n.categoria}
@@ -175,11 +196,20 @@ export default function PortalHome() {
                   className="flex gap-3 p-3 rounded-xl bg-white/[0.04] hover:bg-white/[0.08] active:bg-white/[0.12] transition-colors border border-white/5 flex-1 min-h-0"
                   style={{ maxHeight: 'calc((100% - 1.5rem) / 2)' }}
                 >
-                  <img
-                    src={n.imagem}
-                    alt={n.imagemAlt}
-                    className="h-full aspect-square object-cover rounded-lg shrink-0"
-                  />
+                  <div className="relative h-full aspect-square shrink-0">
+                    <img
+                      src={n.imagem}
+                      alt={n.imagemAlt}
+                      className="h-full w-full object-cover rounded-lg"
+                    />
+                    {n.videoUrl && (
+                      <span className="absolute inset-0 grid place-items-center bg-black/40 rounded-lg">
+                        <span className="w-10 h-10 rounded-full bg-red-600/95 grid place-items-center border border-white/80">
+                          <Play className="w-5 h-5 text-white fill-white ml-0.5" />
+                        </span>
+                      </span>
+                    )}
+                  </div>
                   <div className="min-w-0 flex-1">
                     <span className="inline-block text-[11px] font-semibold uppercase tracking-wider text-[#C8922A]">
                       {n.categoria}

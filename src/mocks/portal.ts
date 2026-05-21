@@ -88,6 +88,7 @@ export const mockNoticias: Noticia[] = [
     autorNome: 'Mariana Costa', autorCargo: 'Diretora de Operações',
     status: 'publicada', dataPublicacao: iso(-1), dataExpiracao: null, naoExpira: true,
     publicadoEm: iso(-1), criadoEm: iso(-2), atualizadoEm: iso(-1), grupoId: 'g2', menuId: 'm3',
+    videoUrl: 'https://www.youtube.com/watch?v=dQw4w9WgXcQ',
   },
   {
     id: 'n2', slug: 'plano-sustentabilidade-2026',
@@ -118,6 +119,7 @@ export const mockNoticias: Noticia[] = [
     autorNome: 'Júlia Andrade', autorCargo: 'Coordenadora de Comunicação',
     status: 'publicada', dataPublicacao: iso(-4), dataExpiracao: iso(60), naoExpira: false,
     publicadoEm: iso(-4), criadoEm: iso(-5), atualizadoEm: iso(-4), grupoId: 'g3',
+    videoUrl: 'https://vimeo.com/76979871',
   },
   {
     id: 'n5', slug: 'concurso-publico',

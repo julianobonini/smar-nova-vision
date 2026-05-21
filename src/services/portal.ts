@@ -102,6 +102,7 @@ export async function saveNoticia(n: Partial<Noticia>): Promise<Noticia> {
       atualizadoEm: nowIso(),
       grupoId: n.grupoId,
       menuId: n.menuId,
+      videoUrl: n.videoUrl,
     };
     noticias = [nova, ...noticias];
     return delay(nova);

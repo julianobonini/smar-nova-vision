@@ -42,6 +42,7 @@ export interface Noticia {
   atualizadoEm: string;
   grupoId?: string;
   menuId?: string;
+  videoUrl?: string;
 }
 
 export interface GrupoNoticias {
