@@ -196,11 +196,20 @@ export default function PortalHome() {
                   className="flex gap-3 p-3 rounded-xl bg-white/[0.04] hover:bg-white/[0.08] active:bg-white/[0.12] transition-colors border border-white/5 flex-1 min-h-0"
                   style={{ maxHeight: 'calc((100% - 1.5rem) / 2)' }}
                 >
-                  <img
-                    src={n.imagem}
-                    alt={n.imagemAlt}
-                    className="h-full aspect-square object-cover rounded-lg shrink-0"
-                  />
+                  <div className="relative h-full aspect-square shrink-0">
+                    <img
+                      src={n.imagem}
+                      alt={n.imagemAlt}
+                      className="h-full w-full object-cover rounded-lg"
+                    />
+                    {n.videoUrl && (
+                      <span className="absolute inset-0 grid place-items-center bg-black/40 rounded-lg">
+                        <span className="w-10 h-10 rounded-full bg-red-600/95 grid place-items-center border border-white/80">
+                          <Play className="w-5 h-5 text-white fill-white ml-0.5" />
+                        </span>
+                      </span>
+                    )}
+                  </div>
                   <div className="min-w-0 flex-1">
                     <span className="inline-block text-[11px] font-semibold uppercase tracking-wider text-[#C8922A]">
                       {n.categoria}
