@@ -49,6 +49,18 @@ export default function NoticiaPage() {
       </header>
 
       <div className="max-w-3xl mx-auto px-6 py-12">
+        {embed && (
+          <div className="mb-10 rounded-2xl overflow-hidden border border-white/10 bg-black aspect-video">
+            <iframe
+              src={embed}
+              title={n.manchete}
+              className="w-full h-full"
+              allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture"
+              allowFullScreen
+            />
+          </div>
+        )}
+
         <div
           className="prose prose-invert prose-lg max-w-none prose-headings:font-bold prose-a:text-[#C8922A] prose-blockquote:border-l-[#C8922A]"
           style={{ fontSize: '19px', lineHeight: 1.7 }}
