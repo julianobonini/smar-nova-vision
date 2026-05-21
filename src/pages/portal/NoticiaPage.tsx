@@ -19,6 +19,7 @@ export default function NoticiaPage() {
 
   const dias = n.dataExpiracao ? daysUntil(n.dataExpiracao) : null;
   const expirando = dias !== null && dias <= 7;
+  const embed = toEmbedUrl(n.videoUrl);
 
   return (
     <article className="bg-[#0A0E1A] h-full overflow-y-auto text-white">
