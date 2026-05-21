@@ -3,7 +3,7 @@ import { useQuery } from '@tanstack/react-query';
 import DOMPurify from 'dompurify';
 import { ArrowLeft, CalendarClock, ShieldCheck } from 'lucide-react';
 import { getNoticia } from '@/services/portal';
-import { daysUntil, formatDate, formatDateTime } from '@/lib/portalUtils';
+import { daysUntil, formatDate, formatDateTime, toEmbedUrl } from '@/lib/portalUtils';
 import { cn } from '@/lib/utils';
 
 export default function NoticiaPage() {
