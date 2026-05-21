@@ -1,7 +1,7 @@
 import { useEffect, useRef, useState } from 'react';
 import { Link } from 'react-router-dom';
 import { useQuery } from '@tanstack/react-query';
-import { ChevronLeft, ChevronRight } from 'lucide-react';
+import { ChevronLeft, ChevronRight, Play } from 'lucide-react';
 import { getDestaques, getRecentes } from '@/services/portal';
 import { formatDate } from '@/lib/portalUtils';
 import { cn } from '@/lib/utils';
