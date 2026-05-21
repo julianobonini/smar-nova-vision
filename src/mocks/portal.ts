@@ -119,6 +119,7 @@ export const mockNoticias: Noticia[] = [
     autorNome: 'Júlia Andrade', autorCargo: 'Coordenadora de Comunicação',
     status: 'publicada', dataPublicacao: iso(-4), dataExpiracao: iso(60), naoExpira: false,
     publicadoEm: iso(-4), criadoEm: iso(-5), atualizadoEm: iso(-4), grupoId: 'g3',
+    videoUrl: 'https://vimeo.com/76979871',
   },
   {
     id: 'n5', slug: 'concurso-publico',
