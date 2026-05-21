@@ -28,3 +28,33 @@ export function daysUntil(iso: string): number {
   const ms = +new Date(iso) - Date.now();
   return Math.ceil(ms / 86_400_000);
 }
+
+/**
+ * Converte URLs do YouTube/Vimeo para o formato embed.
+ * Retorna null se não reconhecer o formato.
+ */
+export function toEmbedUrl(url?: string | null): string | null {
+  if (!url) return null;
+  try {
+    const u = new URL(url);
+    const host = u.hostname.replace(/^www\./, '');
+    if (host === 'youtube.com' || host === 'm.youtube.com') {
+      const v = u.searchParams.get('v');
+      if (v) return `https://www.youtube.com/embed/${v}`;
+      if (u.pathname.startsWith('/embed/')) return url;
+    }
+    if (host === 'youtu.be') {
+      const id = u.pathname.slice(1);
+      if (id) return `https://www.youtube.com/embed/${id}`;
+    }
+    if (host === 'vimeo.com') {
+      const id = u.pathname.split('/').filter(Boolean)[0];
+      if (id) return `https://player.vimeo.com/video/${id}`;
+    }
+    if (host === 'player.vimeo.com') return url;
+    return url;
+  } catch {
+    return null;
+  }
+}
+
