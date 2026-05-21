@@ -67,6 +67,18 @@ export default function PortalHome() {
               className="absolute inset-0 w-full h-full object-cover"
             />
             <div className="absolute inset-0 bg-gradient-to-t from-black/95 via-black/60 to-black/10" />
+            {current.videoUrl && (
+              <>
+                <div className="absolute inset-0 grid place-items-center pointer-events-none">
+                  <span className="w-20 h-20 lg:w-24 lg:h-24 rounded-full bg-black/55 backdrop-blur-sm border-2 border-white/80 grid place-items-center shadow-2xl">
+                    <Play className="w-9 h-9 lg:w-11 lg:h-11 text-white fill-white ml-1" />
+                  </span>
+                </div>
+                <span className="absolute top-4 left-4 inline-flex items-center gap-1.5 px-3 py-1.5 rounded-full bg-red-600 text-white text-xs font-bold uppercase tracking-wider shadow-lg">
+                  <Play className="w-3 h-3 fill-white" /> Vídeo
+                </span>
+              </>
+            )}
             <div className="absolute bottom-0 left-0 right-0 p-10 lg:p-14 max-w-5xl">
               <span className="inline-block px-3 py-1 rounded-full text-sm font-semibold bg-[#C8922A] text-black mb-4">
                 {current.categoria}
