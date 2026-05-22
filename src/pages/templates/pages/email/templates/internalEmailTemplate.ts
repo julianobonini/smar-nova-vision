@@ -136,7 +136,7 @@ export function renderInternalEmail(d: InternalEmailData = internalEmailSample, 
         <tr><td style="padding:0 8px 18px 8px;">
           <table role="presentation" width="100%" cellpadding="0" cellspacing="0" border="0"><tr>
             <td align="left" valign="middle">
-              <img src="${origin}/email/smar-logo.png" alt="Smar" width="86" style="width:86px;height:auto;" />
+              <img src="${origin}/email/smarnet-logo.png" alt="SmarNet Intranet" width="120" style="width:120px;height:auto;" />
             </td>
             <td align="right" valign="middle" style="font-size:11px;color:#94a3b8;letter-spacing:0.14em;text-transform:uppercase;font-weight:600;" class="muted">
               SmarNet · Automated
