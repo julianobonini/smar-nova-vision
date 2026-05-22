@@ -190,7 +190,7 @@ export function AppSidebar() {
             S
           </div>
         ) : (
-          <img src="/email/smarnet-logo.png" alt="SmarNet Intranet" className="h-9 w-auto" />
+          <img src="/smarnet-logo.png" alt="SmarNet Intranet" className="h-10 w-auto" />
         )}
       </div>
 
