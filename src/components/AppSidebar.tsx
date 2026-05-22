@@ -185,16 +185,12 @@ export function AppSidebar() {
     <Sidebar collapsible="icon" className="border-r-0">
       {/* Logo */}
       <div className="px-4 py-5 flex items-center gap-3">
-        <div className="w-8 h-8 rounded-lg bg-[hsl(185,78%,55%)]/20 flex items-center justify-center text-[hsl(185,78%,55%)] text-xs font-bold shrink-0 border border-[hsl(185,78%,55%)]/30">
-          S
-        </div>
-        {!collapsed && (
-          <div>
-            <p className="font-display font-extrabold text-white text-base leading-tight tracking-tight">
-              smar<span className="text-[hsl(185,78%,55%)] font-extrabold">NET</span>
-            </p>
-            <p className="text-[9px] font-semibold text-white/50 tracking-[0.15em] uppercase">Nova Smar S/A ERP</p>
+        {collapsed ? (
+          <div className="w-8 h-8 rounded-lg bg-[hsl(185,78%,55%)]/20 flex items-center justify-center text-[hsl(185,78%,55%)] text-xs font-bold shrink-0 border border-[hsl(185,78%,55%)]/30">
+            S
           </div>
+        ) : (
+          <img src="/email/smarnet-logo.png" alt="SmarNet Intranet" className="h-9 w-auto" />
         )}
       </div>
 
