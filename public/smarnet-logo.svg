@@ -7,12 +7,11 @@
         fill="#FFFFFF"
         text-anchor="middle"
         letter-spacing="-1.5">smarnet</text>
-  <rect x="35" y="92" width="330" height="22" fill="#FFFFFF" />
   <text x="200" y="108"
         font-family="'Helvetica Neue', Helvetica, Arial, sans-serif"
         font-size="14"
         font-weight="700"
-        fill="#0A428C"
+        fill="#FFFFFF"
         text-anchor="middle"
         letter-spacing="9">INTRANET</text>
 </svg>
