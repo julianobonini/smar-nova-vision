@@ -194,7 +194,7 @@ export function AppSidebar() {
         )}
       </div>
 
-      <SidebarContent className="px-2 overflow-y-auto sidebar-scroll">
+      <SidebarContent className="px-2 pt-4 overflow-y-auto sidebar-scroll">
         {/* Dashboard */}
         <SidebarMenu>
           <SidebarMenuItem>
