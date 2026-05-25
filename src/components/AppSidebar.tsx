@@ -184,13 +184,13 @@ export function AppSidebar() {
   return (
     <Sidebar collapsible="icon" className="border-r-0">
       {/* Logo */}
-      <div className="h-16 px-3 flex items-center justify-center overflow-hidden shrink-0">
+      <div className="h-16 px-3 flex items-center justify-center overflow-hidden shrink-0 bg-transparent">
         {collapsed ? (
           <div className="w-10 h-10 rounded-lg bg-[hsl(185,78%,55%)]/20 flex items-center justify-center text-[hsl(185,78%,55%)] text-sm font-bold shrink-0 border border-[hsl(185,78%,55%)]/30">
             S
           </div>
         ) : (
-          <img src="/smarnet-logo.svg" alt="SmarNet Intranet" className="max-h-full max-w-full object-contain" />
+          <img src="/smarnet-logo.svg" alt="SmarNet Intranet" className="max-h-full max-w-full object-contain bg-transparent" style={{ background: 'transparent' }} />
         )}
       </div>
 
