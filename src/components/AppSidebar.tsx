@@ -184,15 +184,20 @@ export function AppSidebar() {
   return (
     <Sidebar collapsible="icon" className="border-r-0">
       {/* Logo */}
-      <div className="h-16 px-3 flex items-center justify-center overflow-hidden shrink-0 bg-transparent">
+      <div className="px-3 flex flex-col items-center justify-center overflow-hidden shrink-0 bg-transparent py-3">
         {collapsed ? (
           <div className="w-10 h-10 rounded-lg bg-[hsl(185,78%,55%)]/20 flex items-center justify-center text-[hsl(185,78%,55%)] text-sm font-bold shrink-0 border border-[hsl(185,78%,55%)]/30">
             S
           </div>
         ) : (
-          <span className="tracking-tight text-sidebar-foreground shadow-md text-4xl font-sans font-bold rounded-md italic">
-            smarnet
-          </span>
+          <>
+            <span className="tracking-tight text-sidebar-foreground shadow-md text-4xl font-sans font-bold rounded-md italic leading-none">
+              smarnet
+            </span>
+            <span className="text-[10px] font-semibold tracking-[0.3em] text-sidebar-foreground/70 uppercase mt-1">
+              I N T R A N E T
+            </span>
+          </>
         )}
       </div>
 
