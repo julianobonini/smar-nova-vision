@@ -394,6 +394,7 @@ function AppRoutes() {
         <Route path="patterns" element={<LazyRoute><DSPatterns /></LazyRoute>} />
         <Route path="dashboards" element={<LazyRoute><DSDashboards /></LazyRoute>} />
         <Route path="templates" element={<LazyRoute><DSTemplates /></LazyRoute>} />
+        <Route path="integrations" element={<LazyRoute><DSIntegrations /></LazyRoute>} />
       </Route>
 
       {/* All authenticated routes share the same AppLayout instance */}
