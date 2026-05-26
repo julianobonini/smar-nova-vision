@@ -45,6 +45,9 @@ export type { FormComboboxProps, FormComboboxOption, FormComboboxGroup } from '.
 export { FormRichText } from './FormRichText';
 export type { FormRichTextProps } from './FormRichText';
 
+export { FormRichTextTinyMCE } from './FormRichTextTinyMCE';
+export type { FormRichTextTinyMCEProps } from './FormRichTextTinyMCE';
+
 export { FormMaskedInput } from './FormMaskedInput';
 export type { FormMaskedInputProps, MaskType } from './FormMaskedInput';
 

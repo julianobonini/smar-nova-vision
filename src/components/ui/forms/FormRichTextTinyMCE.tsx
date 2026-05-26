@@ -106,10 +106,10 @@ export function FormRichTextTinyMCE({
       >
         <Editor
           id={id}
+          licenseKey="gpl"
           initialValue={content}
           onEditorChange={(html) => onChange?.(html)}
           init={{
-            license_key: 'gpl',
             height: minHeight,
             menubar: false,
             branding: false,
