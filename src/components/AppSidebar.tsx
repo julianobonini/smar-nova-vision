@@ -218,7 +218,7 @@ export function AppSidebar() {
             <Collapsible key={group.key} defaultOpen={groupActive} className="mt-1">
               <SidebarGroup>
                 <CollapsibleTrigger className="w-full">
-                  <SidebarGroupLabel className="flex items-center justify-between cursor-pointer hover:bg-surface-container-low rounded-xl px-3 py-2 text-xs font-bold uppercase tracking-wider text-muted-foreground">
+                  <SidebarGroupLabel className="flex items-center justify-between cursor-pointer hover:bg-surface-container-low rounded-xl px-3 py-2 text-xs font-bold uppercase tracking-wider text-sidebar-foreground/90">
                     <span className="flex items-center gap-2">
                       <group.icon size={16} />
                       {!collapsed && groupLabels[group.key]}
@@ -230,7 +230,7 @@ export function AppSidebar() {
                   {group.sections.map((section, si) => (
                     <SidebarGroupContent key={si} className="mt-1">
                       {section.label && !collapsed && (
-                        <p className="px-3 py-1.5 text-[10px] font-bold uppercase tracking-widest text-muted-foreground/60">
+                        <p className="px-3 py-1.5 text-[10px] font-bold uppercase tracking-widest text-sidebar-foreground/60">
                           {section.label}
                         </p>
                       )}
@@ -263,7 +263,7 @@ export function AppSidebar() {
         {templateMenuGroups.map((group) => (
           <div key={group.category} className="mt-1">
             {!collapsed && (
-              <p className="px-3 py-2 text-[9px] font-bold uppercase tracking-[0.2em] text-muted-foreground/50">
+              <p className="px-3 py-2 text-[9px] font-bold uppercase tracking-[0.2em] text-sidebar-foreground/50">
                 {group.category}
               </p>
             )}
@@ -308,7 +308,7 @@ export function AppSidebar() {
                 <Collapsible key={item.label} defaultOpen={childActive}>
                   <SidebarGroup>
                     <CollapsibleTrigger className="w-full">
-                      <SidebarGroupLabel className="flex items-center justify-between cursor-pointer hover:bg-surface-container-low rounded-xl px-3 py-2 text-xs font-bold uppercase tracking-wider text-muted-foreground">
+                      <SidebarGroupLabel className="flex items-center justify-between cursor-pointer hover:bg-surface-container-low rounded-xl px-3 py-2 text-xs font-bold uppercase tracking-wider text-sidebar-foreground/90">
                         <span className="flex items-center gap-2">
                           <item.icon size={16} />
                           {!collapsed && (
@@ -354,7 +354,7 @@ export function AppSidebar() {
             <SidebarMenuItem>
               <SidebarMenuButton
                 onClick={() => navigate('/settings')}
-                className="rounded-xl text-muted-foreground"
+                className="rounded-xl text-sidebar-foreground/80"
               >
                 <Settings size={16} />
                 {!collapsed && <span>Settings</span>}
@@ -362,7 +362,7 @@ export function AppSidebar() {
             </SidebarMenuItem>
           )}
           <SidebarMenuItem>
-            <SidebarMenuButton className="rounded-xl text-muted-foreground">
+            <SidebarMenuButton className="rounded-xl text-sidebar-foreground/80">
               <HelpCircle size={16} />
               {!collapsed && <span>Support</span>}
             </SidebarMenuButton>
