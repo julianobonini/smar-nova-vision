@@ -287,6 +287,7 @@ const DSCFileManager = lazy(() => import("./pages/design-system/components/pages
 const DSPatterns = lazy(() => import("./pages/design-system/PatternsPage"));
 const DSDashboards = lazy(() => import("./pages/design-system/DashboardsPage"));
 const DSTemplates = lazy(() => import("./pages/design-system/TemplateElementsPage"));
+const DSIntegrations = lazy(() => import("./pages/design-system/IntegrationsPage"));
 
 // Portal da Transparência
 const PortalLayout = lazy(() => import("./pages/portal/PortalLayout"));
