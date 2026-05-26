@@ -190,8 +190,8 @@ export function AppSidebar() {
             S
           </div>
         ) : (
-          <span className="text-xl font-bold tracking-tight text-sidebar-foreground">
-            SmarNet
+          <span className="tracking-tight text-sidebar-foreground shadow-md text-4xl font-sans font-bold rounded-md">
+            SMARNET
           </span>
         )}
       </div>
