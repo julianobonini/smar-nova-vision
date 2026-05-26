@@ -81,25 +81,27 @@ export default function Dashboard() {
           <div className="space-y-4">
             {flowItems.map((item, i) => (
               <motion.div key={i} initial="hidden" animate="visible" custom={i + 4} variants={fadeUp}
-                className="relative bg-surface-container-low rounded-2xl p-5 flex flex-col sm:flex-row sm:items-center gap-4">
+                className="relative bg-surface-container-low rounded-2xl p-4 sm:p-5 flex flex-col xl:flex-row xl:items-center gap-4">
                 <div className="status-beacon bg-tertiary" />
-                <div className="flex items-center gap-4 flex-1">
+                <div className="flex items-center gap-3 sm:gap-4 flex-1 min-w-0">
                   <div className="w-10 h-10 rounded-xl bg-surface-container flex items-center justify-center text-xs font-bold text-muted-foreground shrink-0">
                     {item.code}
                   </div>
-                  <div className="min-w-0">
-                    <h4 className="font-display font-bold text-foreground text-sm">{item.title}</h4>
+                  <div className="min-w-0 flex-1">
+                    <h4 className="font-display font-bold text-foreground text-sm truncate">{item.title}</h4>
                     <p className="text-xs text-muted-foreground truncate">{item.sub}</p>
                   </div>
                 </div>
-                <div className="text-center shrink-0">
-                  <p className="text-[10px] font-bold text-muted-foreground tracking-wider">{item.label}</p>
-                  <p className="text-sm font-semibold text-foreground">{item.data}</p>
+                <div className="flex items-center justify-between gap-3 xl:gap-4 xl:justify-end">
+                  <div className="text-left xl:text-center shrink-0">
+                    <p className="text-[10px] font-bold text-muted-foreground tracking-wider">{item.label}</p>
+                    <p className="text-sm font-semibold text-foreground">{item.data}</p>
+                  </div>
+                  <span className={`px-3 py-1.5 rounded-lg text-xs font-semibold ${item.statusColor} shrink-0 whitespace-nowrap`}>{item.status}</span>
+                  <button className="text-muted-foreground hover:text-foreground transition-colors shrink-0">
+                    <MoreVertical size={18} />
+                  </button>
                 </div>
-                <span className={`px-3 py-1.5 rounded-lg text-xs font-semibold ${item.statusColor} shrink-0`}>{item.status}</span>
-                <button className="text-muted-foreground hover:text-foreground transition-colors shrink-0">
-                  <MoreVertical size={18} />
-                </button>
               </motion.div>
             ))}
           </div>
