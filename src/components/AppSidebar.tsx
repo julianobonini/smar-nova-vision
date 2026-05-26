@@ -362,7 +362,7 @@ export function AppSidebar() {
             </SidebarMenuItem>
           )}
           <SidebarMenuItem>
-            <SidebarMenuButton className="rounded-xl text-muted-foreground">
+            <SidebarMenuButton className="rounded-xl text-sidebar-foreground/80">
               <HelpCircle size={16} />
               {!collapsed && <span>Support</span>}
             </SidebarMenuButton>
