@@ -191,7 +191,7 @@ export function AppSidebar() {
           </div>
         ) : (
           <>
-            <span className="tracking-tight text-sidebar-foreground shadow-md text-4xl font-sans font-bold rounded-md italic leading-none -mb-1">
+            <span className="tracking-tight text-sidebar-foreground shadow-md text-4xl font-sans font-bold rounded-md italic leading-none -mb-1 -mt-2">
               smarnet
             </span>
             <span className="text-[10px] font-semibold tracking-[0.3em] text-sidebar-foreground/70 uppercase opacity-100 text-gray-950 px-[8px] bg-slate-300">
