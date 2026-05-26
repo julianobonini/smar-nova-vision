@@ -287,6 +287,7 @@ const DSCFileManager = lazy(() => import("./pages/design-system/components/pages
 const DSPatterns = lazy(() => import("./pages/design-system/PatternsPage"));
 const DSDashboards = lazy(() => import("./pages/design-system/DashboardsPage"));
 const DSTemplates = lazy(() => import("./pages/design-system/TemplateElementsPage"));
+const DSIntegrations = lazy(() => import("./pages/design-system/IntegrationsPage"));
 
 // Portal da Transparência
 const PortalLayout = lazy(() => import("./pages/portal/PortalLayout"));
@@ -393,6 +394,7 @@ function AppRoutes() {
         <Route path="patterns" element={<LazyRoute><DSPatterns /></LazyRoute>} />
         <Route path="dashboards" element={<LazyRoute><DSDashboards /></LazyRoute>} />
         <Route path="templates" element={<LazyRoute><DSTemplates /></LazyRoute>} />
+        <Route path="integrations" element={<LazyRoute><DSIntegrations /></LazyRoute>} />
       </Route>
 
       {/* All authenticated routes share the same AppLayout instance */}

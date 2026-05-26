@@ -1,5 +1,5 @@
 import { NavLink, Outlet, useLocation, Link } from 'react-router-dom';
-import { Sparkles, Palette, Component, LayoutDashboard, Layers3, ArrowLeft, Blocks, Sun, Moon, Monitor } from 'lucide-react';
+import { Sparkles, Palette, Component, LayoutDashboard, Layers3, ArrowLeft, Blocks, Sun, Moon, Monitor, Plug } from 'lucide-react';
 import { useApp } from '@/contexts/AppContext';
 import { cn } from '@/lib/utils';
 
@@ -10,6 +10,7 @@ const sections = [
   { to: '/design-system/patterns', label: 'Padrões de Layout', icon: Layers3 },
   { to: '/design-system/dashboards', label: 'Dashboards', icon: LayoutDashboard },
   { to: '/design-system/templates', label: 'Elementos dos Templates', icon: Blocks },
+  { to: '/design-system/integrations', label: 'Integrações', icon: Plug },
 ];
 
 export default function DesignSystemLayout() {
