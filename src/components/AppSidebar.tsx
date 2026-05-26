@@ -308,7 +308,7 @@ export function AppSidebar() {
                 <Collapsible key={item.label} defaultOpen={childActive}>
                   <SidebarGroup>
                     <CollapsibleTrigger className="w-full">
-                      <SidebarGroupLabel className="flex items-center justify-between cursor-pointer hover:bg-surface-container-low rounded-xl px-3 py-2 text-xs font-bold uppercase tracking-wider text-muted-foreground">
+                      <SidebarGroupLabel className="flex items-center justify-between cursor-pointer hover:bg-surface-container-low rounded-xl px-3 py-2 text-xs font-bold uppercase tracking-wider text-sidebar-foreground/90">
                         <span className="flex items-center gap-2">
                           <item.icon size={16} />
                           {!collapsed && (
