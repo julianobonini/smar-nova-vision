@@ -10,6 +10,7 @@ const sections = [
   { to: '/design-system/patterns', label: 'Padrões de Layout', icon: Layers3 },
   { to: '/design-system/dashboards', label: 'Dashboards', icon: LayoutDashboard },
   { to: '/design-system/templates', label: 'Elementos dos Templates', icon: Blocks },
+  { to: '/design-system/integrations', label: 'Integrações', icon: Plug },
 ];
 
 export default function DesignSystemLayout() {
