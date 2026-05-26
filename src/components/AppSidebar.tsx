@@ -230,7 +230,7 @@ export function AppSidebar() {
                   {group.sections.map((section, si) => (
                     <SidebarGroupContent key={si} className="mt-1">
                       {section.label && !collapsed && (
-                        <p className="px-3 py-1.5 text-[10px] font-bold uppercase tracking-widest text-muted-foreground/60">
+                        <p className="px-3 py-1.5 text-[10px] font-bold uppercase tracking-widest text-sidebar-foreground/60">
                           {section.label}
                         </p>
                       )}
