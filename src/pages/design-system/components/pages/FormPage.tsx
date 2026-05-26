@@ -7,6 +7,7 @@ import {
   FormAvatarUpload,
   FormColorPicker,
   FormRichText,
+  FormRichTextTinyMCE,
   FormSection,
   FormGrid,
   FormRow,
@@ -260,6 +261,48 @@ const [range, setRange] = useState<DateRange | undefined>();
             { name: 'label / required / error / hint / description', type: '— igual FormInput —', description: 'Props de field.' },
           ]}
         />
+      </DocSection>
+
+      {/* ============== Rich text (TinyMCE) ============== */}
+      <DocSection
+        title="FormRichTextTinyMCE"
+        description="Alternativa ao TipTap usando TinyMCE self-hosted (licença GPL, sem API key). Mesma API de field — escolha conforme a familiaridade da equipe."
+      >
+        <VariantSection
+          title="Editor TinyMCE"
+          preview={
+            <div className="max-w-2xl">
+              <FormRichTextTinyMCE
+                label="Descrição do produto"
+                content="<p>Editor <strong>TinyMCE</strong> integrado ao design system.</p>"
+                hint="Toolbar completa com tabelas, imagens, links e código."
+              />
+            </div>
+          }
+          code={`<FormRichTextTinyMCE
+  label="Descrição"
+  content="<p>Texto inicial</p>"
+  onChange={(html) => setContent(html)}
+/>`}
+        />
+
+        <PropsTable
+          rows={[
+            { name: 'content', type: 'string', description: 'HTML inicial.' },
+            { name: 'onChange', type: '(html: string) => void', description: 'Recebe HTML a cada mudança.' },
+            { name: 'minHeight', type: 'number', default: '240', description: 'Altura mínima do editor em px.' },
+            { name: 'toolbar', type: 'string', description: 'String de toolbar do TinyMCE (override).' },
+            { name: 'plugins', type: 'string[]', description: 'Lista de plugins TinyMCE habilitados.' },
+            { name: 'label / required / error / hint / description', type: '— igual FormInput —', description: 'Props de field.' },
+          ]}
+        />
+
+        <UsageNote type="info">
+          <strong>TipTap vs TinyMCE:</strong> use <strong>FormRichText</strong> (TipTap) para
+          editores leves e altamente customizáveis em React; use <strong>FormRichTextTinyMCE</strong>
+          quando precisar de toolbar completa pronta (tabelas, mídia, código) ou quando a equipe já
+          domina TinyMCE.
+        </UsageNote>
       </DocSection>
 
       <UsageNote type="tip">
