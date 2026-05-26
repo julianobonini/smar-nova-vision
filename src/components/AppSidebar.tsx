@@ -190,7 +190,9 @@ export function AppSidebar() {
             S
           </div>
         ) : (
-          <img src="/smarnet-logo.svg" alt="SmarNet Intranet" className="max-h-full max-w-full object-contain bg-transparent text-slate-200 shadow" style={{ background: 'transparent' }} />
+          <span className="text-xl font-bold tracking-tight text-sidebar-foreground">
+            SmarNet
+          </span>
         )}
       </div>
 
