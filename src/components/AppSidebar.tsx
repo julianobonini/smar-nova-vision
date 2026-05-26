@@ -263,7 +263,7 @@ export function AppSidebar() {
         {templateMenuGroups.map((group) => (
           <div key={group.category} className="mt-1">
             {!collapsed && (
-              <p className="px-3 py-2 text-[9px] font-bold uppercase tracking-[0.2em] text-muted-foreground/50">
+              <p className="px-3 py-2 text-[9px] font-bold uppercase tracking-[0.2em] text-sidebar-foreground/50">
                 {group.category}
               </p>
             )}
