@@ -185,20 +185,7 @@ export function AppSidebar() {
     <Sidebar collapsible="icon" className="border-r-0">
       {/* Logo */}
       <div className="px-3 flex flex-col items-center justify-center overflow-hidden shrink-0 bg-transparent py-2">
-        {collapsed ? (
-          <div className="w-10 h-10 rounded-lg bg-[hsl(185,78%,55%)]/20 flex items-center justify-center text-[hsl(185,78%,55%)] text-sm font-bold shrink-0 border border-[hsl(185,78%,55%)]/30">
-            S
-          </div>
-        ) : (
-          <>
-            <span className="tracking-tight text-sidebar-foreground shadow-md text-4xl font-sans font-bold rounded-md italic leading-none -mb-1 -mt-2">
-              smarnet
-            </span>
-            <span className="text-[10px] font-semibold tracking-[0.3em] text-sidebar-foreground/70 uppercase opacity-100 px-[8px] bg-slate-50/0 text-slate-400 mt-[2px]">
-              I N T R A N E T
-            </span>
-          </>
-        )}
+        {collapsed ? <SmarnetMark size={40} /> : <SmarnetLogo size="xl" onDark />}
       </div>
 
       <SidebarContent className="px-2 pt-4 overflow-y-auto sidebar-scroll">
