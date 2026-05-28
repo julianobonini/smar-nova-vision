@@ -8,7 +8,7 @@ export default function CreatePasswordCoverShowcase() {
     <AuthLayout title="Create Password - Cover" description="Definição de nova senha com layout split" variant="cover">
       <div className="bg-surface-container rounded-2xl border border-border/40 overflow-hidden grid lg:grid-cols-2 min-h-[600px]">
         <div className="bg-gradient-to-br from-secondary to-primary p-10 hidden lg:flex flex-col justify-between text-primary-foreground">
-          <AuthBrand />
+          <AuthBrand onDark />
           <div>
             <Lock size={40} className="mb-4 opacity-80" />
             <h3 className="text-2xl font-display font-bold mb-3">Segurança em primeiro lugar</h3>

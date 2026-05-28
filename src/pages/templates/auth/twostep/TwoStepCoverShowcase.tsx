@@ -6,7 +6,7 @@ export default function TwoStepCoverShowcase() {
     <AuthLayout title="Two Step Verification - Cover" description="2FA com layout split" variant="cover">
       <div className="bg-surface-container rounded-2xl border border-border/40 overflow-hidden grid lg:grid-cols-2 min-h-[600px]">
         <div className="bg-gradient-to-br from-secondary to-primary p-10 hidden lg:flex flex-col justify-between text-primary-foreground">
-          <AuthBrand />
+          <AuthBrand onDark />
           <div>
             <ShieldCheck size={48} className="mb-4 opacity-80" />
             <h3 className="text-2xl font-display font-bold mb-3">Camada extra de proteção</h3>

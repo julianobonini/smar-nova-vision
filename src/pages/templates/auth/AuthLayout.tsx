@@ -1,6 +1,7 @@
 import { ReactNode } from 'react';
 import { Link } from 'react-router-dom';
 import { Home, ChevronRight } from 'lucide-react';
+import { SmarnetLogo } from '@/components/SmarnetLogo';
 
 interface AuthLayoutProps {
   title: string;
@@ -46,16 +47,10 @@ export function AuthCard({ children, className = '' }: { children: ReactNode; cl
   );
 }
 
-export function AuthBrand() {
+export function AuthBrand({ onDark = false }: { onDark?: boolean } = {}) {
   return (
-    <div className="flex items-center justify-center gap-2 mb-8">
-      <div className="w-10 h-10 rounded-xl bg-gradient-to-br from-primary to-secondary flex items-center justify-center text-primary-foreground font-bold text-lg">
-        S
-      </div>
-      <div>
-        <p className="font-display font-bold text-foreground leading-none">SmarNet</p>
-        <p className="text-[10px] text-muted-foreground tracking-wider uppercase">Industrial ERP</p>
-      </div>
+    <div className="flex items-center justify-center mb-8">
+      <SmarnetLogo size="lg" onDark={onDark} />
     </div>
   );
 }

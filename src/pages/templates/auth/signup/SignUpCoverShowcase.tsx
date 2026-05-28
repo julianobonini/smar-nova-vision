@@ -8,7 +8,7 @@ export default function SignUpCoverShowcase() {
     <AuthLayout title="Sign Up - Cover" description="Cadastro com layout split e benefícios" variant="cover">
       <div className="bg-surface-container rounded-2xl border border-border/40 overflow-hidden grid lg:grid-cols-2 min-h-[600px]">
         <div className="relative bg-gradient-to-br from-secondary to-primary p-10 hidden lg:flex flex-col justify-between text-primary-foreground">
-          <AuthBrand />
+          <AuthBrand onDark />
           <div>
             <h3 className="text-2xl font-display font-bold mb-3">Comece em minutos</h3>
             <p className="text-sm opacity-90 mb-8">Mais de 500 indústrias já confiam na nossa plataforma para gestão integrada.</p>
