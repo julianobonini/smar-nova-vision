@@ -7,6 +7,7 @@ import {
 import { useApp } from '@/contexts/AppContext';
 import { t } from '@/lib/i18n';
 import { templateMenuGroups, TemplateMenuItem } from '@/data/templateMenu';
+import { SmarnetLogo, SmarnetMark } from '@/components/SmarnetLogo';
 import * as React from 'react';
 import {
   Sidebar,
