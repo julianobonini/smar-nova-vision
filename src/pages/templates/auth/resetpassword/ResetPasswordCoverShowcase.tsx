@@ -8,7 +8,7 @@ export default function ResetPasswordCoverShowcase() {
     <AuthLayout title="Reset Password - Cover" description="Recuperação de senha com layout split" variant="cover">
       <div className="bg-surface-container rounded-2xl border border-border/40 overflow-hidden grid lg:grid-cols-2 min-h-[600px]">
         <div className="bg-gradient-to-br from-primary to-secondary p-10 hidden lg:flex flex-col justify-between text-primary-foreground">
-          <AuthBrand />
+          <AuthBrand onDark />
           <div className="space-y-6">
             <h3 className="text-2xl font-display font-bold">Recupere o acesso em 3 passos</h3>
             {[
