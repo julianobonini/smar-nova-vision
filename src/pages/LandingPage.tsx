@@ -6,6 +6,7 @@ import { useApp } from '@/contexts/AppContext';
 import { t } from '@/lib/i18n';
 import { LGPDBanner } from '@/components/LGPDBanner';
 import { LandingNav } from '@/components/LandingNav';
+import { SmarnetLogo } from '@/components/SmarnetLogo';
 
 const fadeUp = {
   hidden: { opacity: 0, y: 24 },
