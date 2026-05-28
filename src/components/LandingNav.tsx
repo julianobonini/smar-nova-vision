@@ -16,14 +16,8 @@ export function LandingNav() {
     <>
       <nav className="fixed top-0 left-0 right-0 z-40 bg-transparent">
         <div className="max-w-7xl mx-auto px-6 lg:px-12 h-20 flex items-center justify-between">
-          <div className="flex flex-col leading-none">
-            <p className="font-display font-extrabold text-3xl tracking-tight text-sidebar-foreground">
-              smar<span className="text-accent">NET</span>
-            </p>
-            <span className="text-xs font-bold tracking-[0.25em] uppercase text-sidebar-foreground/60">
-              intranet
-            </span>
-          </div>
+          <SmarnetLogo size="lg" onDark className="!items-start" />
+
 
           <div className="flex items-center gap-2">
             {/* Language */}
