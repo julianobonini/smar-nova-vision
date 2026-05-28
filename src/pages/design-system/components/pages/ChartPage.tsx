@@ -90,6 +90,12 @@ const cjBarData = {
   ],
 };
 
+const resolveHsl = (token: string, alpha = 1) => {
+  if (typeof window === 'undefined') return `hsla(0, 0%, 0%, ${alpha})`;
+  const raw = getComputedStyle(document.documentElement).getPropertyValue(token).trim();
+  return raw ? `hsla(${raw.replace(/\s+/g, ', ')}, ${alpha})` : `hsla(0, 0%, 0%, ${alpha})`;
+};
+
 const cjAreaData = {
   labels: data.map((d) => d.mes),
   datasets: [
@@ -100,8 +106,8 @@ const cjAreaData = {
       backgroundColor: (ctx: any) => {
         const c = ctx.chart.ctx;
         const g = c.createLinearGradient(0, 0, 0, 280);
-        g.addColorStop(0, 'hsl(var(--secondary) / 0.5)');
-        g.addColorStop(1, 'hsl(var(--secondary) / 0)');
+        g.addColorStop(0, resolveHsl('--secondary', 0.5));
+        g.addColorStop(1, resolveHsl('--secondary', 0));
         return g;
       },
       fill: true,
