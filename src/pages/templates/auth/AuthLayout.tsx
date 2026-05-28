@@ -48,15 +48,11 @@ export function AuthCard({ children, className = '' }: { children: ReactNode; cl
 }
 
 export function AuthBrand() {
+  // Em superfícies escuras (covers com gradient), usa cor clara automaticamente via prop onDark no consumidor se necessário.
+  // Aqui adotamos a versão padrão (foreground) por ficar sobre AuthCard claro.
   return (
-    <div className="flex items-center justify-center gap-2 mb-8">
-      <div className="w-10 h-10 rounded-xl bg-gradient-to-br from-primary to-secondary flex items-center justify-center text-primary-foreground font-bold text-lg">
-        S
-      </div>
-      <div>
-        <p className="font-display font-bold text-foreground leading-none">SmarNet</p>
-        <p className="text-[10px] text-muted-foreground tracking-wider uppercase">Industrial ERP</p>
-      </div>
+    <div className="flex items-center justify-center mb-8">
+      <SmarnetLogo size="lg" />
     </div>
   );
 }
