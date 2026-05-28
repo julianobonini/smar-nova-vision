@@ -201,6 +201,207 @@ def dashboard(request):
         </DSCard>
       </DSSection>
 
+      {/* ───────────────────────────── Django Templates (direto) ───────────────────────────── */}
+      <DSSection
+        title="Django Templates (direto)"
+        description="Use o DS sem React: compile os tokens HSL com Tailwind CLI e sirva templates Django com classes utilitárias. Ideal para CRUDs, admin interno e páginas estáticas."
+      >
+        <DSCard className="space-y-4">
+          <div className="flex items-center gap-3">
+            <div className="w-10 h-10 rounded-xl bg-[hsl(150_60%_35%/0.15)] text-[hsl(150_60%_35%)] flex items-center justify-center">
+              <Server size={20} />
+            </div>
+            <div>
+              <h3 className="font-display font-bold">Stack recomendada</h3>
+              <p className="text-xs text-muted-foreground">
+                Django 5 · Tailwind CLI v3 · django-compressor (opcional) · WhiteNoise
+              </p>
+            </div>
+          </div>
+
+          <p className="text-sm text-muted-foreground">
+            1. Instale o Tailwind CLI e inicialize o projeto de CSS no Django:
+          </p>
+
+          <DSCode>{`npm install -g tailwindcss
+# ou use npx sem instalar global
+
+cd projeto_django
+mkdir -p static/css static/js templates
+
+# crie tailwind.config.js na raiz do projeto Django
+npx tailwindcss init`}</DSCode>
+
+          <p className="text-sm text-muted-foreground">
+            2. Configure o <code className="font-mono text-xs">tailwind.config.js</code> apontando para seus templates:
+          </p>
+
+          <DSCode>{`/** @type {import('tailwindcss').Config} */
+module.exports = {
+  content: [
+    './templates/**/*.html',
+    './**/templates/**/*.html',
+  ],
+  theme: {
+    extend: {},
+  },
+  plugins: [require('tailwindcss-animate')],
+}`}</DSCode>
+
+          <p className="text-sm text-muted-foreground">
+            3. Crie <code className="font-mono text-xs">static/css/input.css</code> com os tokens HSL do SmarNet:
+          </p>
+
+          <DSCode>{`@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+@layer base {
+  :root {
+    --background: 220 25% 10%;
+    --foreground: 210 20% 96%;
+    --primary: 195 75% 45%;
+    --primary-foreground: 210 20% 96%;
+    --secondary: 200 15% 25%;
+    --muted: 220 20% 18%;
+    --accent: 42 90% 55%;
+    --border: 220 15% 22%;
+    --surface: 220 22% 14%;
+    --surface-container: 220 20% 16%;
+    /* ...copie todos os tokens do index.css do SmarNet */
+  }
+}`}</DSCode>
+
+          <p className="text-sm text-muted-foreground">
+            4. Adicione o script de build no <code className="font-mono text-xs">package.json</code>:
+          </p>
+
+          <DSCode>{`{
+  "scripts": {
+    "build:css": "tailwindcss -i ./static/css/input.css -o ./static/css/output.css --minify",
+    "watch:css": "tailwindcss -i ./static/css/input.css -o ./static/css/output.css --watch"
+  }
+}`}</DSCode>
+
+          <p className="text-sm text-muted-foreground">
+            5. Configure o Django para servir arquivos estáticos com WhiteNoise:
+          </p>
+
+          <DSCode>{`# settings.py
+INSTALLED_APPS = [
+    ...
+    'django.contrib.staticfiles',
+]
+
+MIDDLEWARE = [
+    'django.middleware.security.SecurityMiddleware',
+    'whitenoise.middleware.WhiteNoiseMiddleware',  # ← adicione
+    ...
+]
+
+STATIC_URL = '/static/'
+STATIC_ROOT = BASE_DIR / 'staticfiles'
+STATICFILES_DIRS = [BASE_DIR / 'static']
+
+# WhiteNoise em produção
+STATICFILES_STORAGE = 'whitenoise.storage.CompressedManifestStaticFilesStorage'`}</DSCode>
+
+          <p className="text-sm text-muted-foreground">
+            6. Template base Django usando as classes do DS:
+          </p>
+
+          <DSCode>{`<!-- templates/base.html -->
+{% load static %}
+<!DOCTYPE html>
+<html lang="pt-BR" class="dark">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>{% block title %}SmarNet{% endblock %}</title>
+  <link rel="stylesheet" href="{% static 'css/output.css' %}">
+  <link href="https://fonts.googleapis.com/css2?family=Manrope:wght@400;600;700;800&family=Inter:wght@400;500;600&display=swap" rel="stylesheet">
+  <style>body { font-family: 'Inter', sans-serif; }</style>
+</head>
+<body class="bg-background text-foreground min-h-screen">
+  <div class="flex">
+    <!-- sidebar -->
+    <aside class="w-64 bg-surface border-r border-border/30 min-h-screen p-4">
+      <div class="font-display font-bold text-xl text-primary mb-6">SmarNet</div>
+      <nav class="space-y-1">
+        <a href="/" class="flex items-center gap-2 px-3 py-2 rounded-lg text-sm text-foreground hover:bg-muted transition-colors">
+          Dashboard
+        </a>
+      </nav>
+    </aside>
+    <!-- content -->
+    <main class="flex-1 p-6">
+      {% block content %}{% endblock %}
+    </main>
+  </div>
+</body>
+</html>`}</DSCode>
+
+          <p className="text-sm text-muted-foreground">
+            7. Exemplo de página estendendo o template base:
+          </p>
+
+          <DSCode>{`<!-- templates/dashboard.html -->
+{% extends 'base.html' %}
+
+{% block content %}
+<h1 class="font-display text-3xl font-bold mb-6">Operação</h1>
+
+<div class="grid grid-cols-1 md:grid-cols-3 gap-4">
+  {% for kpi in kpis %}
+  <div class="rounded-2xl bg-surface-container p-6 border border-border/30 shadow-ambient">
+    <p class="text-xs text-muted-foreground uppercase tracking-wider">{{ kpi.label }}</p>
+    <p class="font-display text-2xl font-bold mt-1">{{ kpi.value }}</p>
+  </div>
+  {% endfor %}
+</div>
+
+<button class="inline-flex items-center gap-2 rounded-lg bg-primary px-4 py-2.5 text-sm font-medium text-primary-foreground hover:opacity-90 transition-opacity mt-6">
+  Nova ordem
+</button>
+{% endblock %}`}</DSCode>
+
+          <p className="text-sm text-muted-foreground">
+            View Django renderizando o template diretamente:
+          </p>
+
+          <DSCode>{`# views.py
+from django.shortcuts import render
+
+def dashboard(request):
+    kpis = [
+        {'label': 'Produção', 'value': '94%'},
+        {'label': 'OEE', 'value': '87%'},
+        {'label': 'Paradas', 'value': '3'},
+    ]
+    return render(request, 'dashboard.html', {'kpis': kpis})`}</DSCode>
+
+          <p className="text-sm text-muted-foreground">
+            8. Build em produção (antes do deploy):
+          </p>
+
+          <DSCode>{`npm run build:css        # gera output.css minificado
+python manage.py collectstatic --noinput
+python manage.py migrate
+python manage.py runserver`}</DSCode>
+
+          <div className="grid md:grid-cols-2 gap-3 pt-2">
+            <DoDont type="do">
+              Use <code className="font-mono text-xs">--watch</code> em desenvolvimento para
+              recompilar CSS automaticamente ao editar templates.
+            </DoDont>
+            <DoDont type="dont">
+              Não edite <code className="font-mono text-xs">output.css</code> diretamente —
+              ele é gerado. Sempre edite <code className="font-mono text-xs">input.css</code>.
+            </DoDont>
+          </div>
+        </DSCard>
+      </DSSection>
+
       {/* ───────────────────────────── Next.js ───────────────────────────── */}
       <DSSection
         title="Next.js (App Router)"
