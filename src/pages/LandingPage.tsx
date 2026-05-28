@@ -156,7 +156,7 @@ export default function LandingPage() {
 
       {/* Footer */}
       <footer className="py-8 max-w-7xl mx-auto px-6 lg:px-12 flex flex-col sm:flex-row items-center justify-between gap-4">
-        <span className="font-display font-bold text-primary text-lg">SmarNet</span>
+        <SmarnetLogo size="md" />
         <div className="flex items-center gap-6 text-sm text-muted-foreground">
           <a href="https://smar.com.br" target="_blank" rel="noopener noreferrer" className="hover:text-foreground transition-colors">smar.com.br</a>
           <span className="hover:text-foreground transition-colors cursor-pointer">{t('footer.privacy', locale)}</span>
