@@ -1,6 +1,7 @@
 import { ReactNode } from 'react';
 import { Link } from 'react-router-dom';
 import { Home, ChevronRight } from 'lucide-react';
+import { SmarnetLogo } from '@/components/SmarnetLogo';
 
 interface AuthLayoutProps {
   title: string;
