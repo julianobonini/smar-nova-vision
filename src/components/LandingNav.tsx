@@ -3,6 +3,7 @@ import { Globe, Moon, Sun, Monitor, Lock } from 'lucide-react';
 import { useApp } from '@/contexts/AppContext';
 import { t, Locale, localeNames } from '@/lib/i18n';
 import { LoginModal } from '@/components/LoginModal';
+import { SmarnetLogo } from '@/components/SmarnetLogo';
 
 export function LandingNav() {
   const { locale, setLocale, theme, setTheme } = useApp();
