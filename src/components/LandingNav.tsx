@@ -15,7 +15,7 @@ export function LandingNav() {
 
   return (
     <>
-      <nav className="fixed top-0 left-0 right-0 z-40 bg-transparent">
+      <nav className="fixed top-0 left-0 right-0 z-40 bg-background/70 backdrop-blur-xl border-b border-border/20">
         <div className="max-w-7xl mx-auto px-6 lg:px-12 h-20 flex items-center justify-between">
           <SmarnetLogo size="lg" onDark className="!items-start" />
 
